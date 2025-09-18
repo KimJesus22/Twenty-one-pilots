@@ -1,6 +1,7 @@
 const express = require('express');
 const { Playlist } = require('../models/Playlist');
 const User = require('../models/User');
+const { paginate, sendPaginatedResponse } = require('../middleware/pagination');
 const router = express.Router();
 
 const { authenticateToken } = require('../middleware/auth');
@@ -171,15 +172,13 @@ router.delete('/:id', authenticateToken, async (req, res) => {
   }
 });
 
-// Obtener playlists públicas
-router.get('/public/all', async (req, res) => {
+// Obtener playlists públicas con paginación
+router.get('/public/all', paginate(Playlist), async (req, res) => {
   try {
-    const playlists = await Playlist.find({ isPublic: true })
-      .populate('user', 'username')
-      .populate('songs')
-      .populate('likes', 'username')
-      .sort({ createdAt: -1 });
-    res.json(playlists);
+    // Configurar filtro y populate para la paginación
+    req.filter = { isPublic: true };
+    req.populate = ['user', 'songs', 'likes'];
+    await sendPaginatedResponse(req, res);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -2,16 +2,18 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-// Ruta para buscar conciertos
+// Ruta para buscar conciertos con paginación simulada
 router.get('/search', async (req, res) => {
   try {
-    const { q, location } = req.query;
+    const { q, location, page = 1, limit = 10 } = req.query;
     const apiKey = process.env.EVENTBRITE_API_KEY;
 
     if (!apiKey) {
       return res.status(500).json({ error: 'Eventbrite API key no configurada' });
     }
 
+    // Eventbrite API tiene paginación nativa
+    const pageSize = Math.min(parseInt(limit) || 10, 50);
     const response = await axios.get('https://www.eventbriteapi.com/v3/events/search/', {
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -21,10 +23,25 @@ router.get('/search', async (req, res) => {
         location: location || 'all',
         categories: '103', // Music category
         sort_by: 'date',
+        page: page,
+        page_size: pageSize,
       },
     });
 
-    res.json(response.data.events);
+    // Estructurar respuesta con paginación
+    const result = {
+      data: response.data.events,
+      pagination: {
+        currentPage: parseInt(page),
+        totalPages: response.data.pagination.page_count,
+        totalItems: response.data.pagination.object_count,
+        itemsPerPage: pageSize,
+        hasNextPage: response.data.pagination.has_more_items,
+        hasPrevPage: parseInt(page) > 1,
+      }
+    };
+
+    res.json(result);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -1,12 +1,14 @@
 const express = require('express');
 const { Album, Song } = require('../models/Discography');
+const { paginate, sendPaginatedResponse } = require('../middleware/pagination');
 const router = express.Router();
 
-// Ruta para obtener todos los álbumes
-router.get('/albums', async (req, res) => {
+// Ruta para obtener todos los álbumes con paginación
+router.get('/albums', paginate(Album), async (req, res) => {
   try {
-    const albums = await Album.find().populate('songs');
-    res.json(albums);
+    // Configurar populate para la paginación
+    req.populate = ['songs'];
+    await sendPaginatedResponse(req, res);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
