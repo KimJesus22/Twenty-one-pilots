@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
 
 // Cargar variables de entorno
@@ -8,9 +10,36 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+// Seguridad y Middleware
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 100, // límite de 100 requests por ventana
+  message: 'Demasiadas solicitudes desde esta IP, por favor intenta más tarde.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.use('/api/', limiter);
+
+// Rate limiting más estricto para auth
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 5, // límite de 5 requests por ventana para auth
+  message: 'Demasiados intentos de autenticación, por favor intenta más tarde.',
+});
+
+app.use('/api/auth/', authLimiter);
+
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'http://localhost:3000',
+  credentials: true
+}));
+app.use(express.json({ limit: '10mb' })); // Limitar tamaño de payload
 
 // Conectar a MongoDB (opcional para desarrollo)
 if (process.env.MONGO_URI) {
