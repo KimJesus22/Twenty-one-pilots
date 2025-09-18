@@ -3,14 +3,10 @@ const { Playlist } = require('../models/Playlist');
 const User = require('../models/User');
 const router = express.Router();
 
-// Middleware para verificar autenticación (simplificado)
-const requireAuth = (req, res, next) => {
-  // En producción, verificar JWT token
-  next();
-};
+const { authenticateToken } = require('../middleware/auth');
 
 // Obtener playlists del usuario
-router.get('/user/:userId', requireAuth, async (req, res) => {
+router.get('/user/:userId', authenticateToken, async (req, res) => {
   console.log('GET /api/playlists/user/:userId - Obteniendo playlists para usuario:', req.params.userId);
   try {
     const { userId } = req.params;
@@ -41,7 +37,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Crear nueva playlist
-router.post('/', requireAuth, async (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
   console.log('POST /api/playlists - Creando playlist:', req.body);
   try {
     const { name, description, userId, isPublic } = req.body;
@@ -71,7 +67,7 @@ router.post('/', requireAuth, async (req, res) => {
 });
 
 // Agregar canción a playlist
-router.post('/:id/songs', requireAuth, async (req, res) => {
+router.post('/:id/songs', authenticateToken, async (req, res) => {
   try {
     const { songId, userId } = req.body;
 
@@ -101,7 +97,7 @@ router.post('/:id/songs', requireAuth, async (req, res) => {
 });
 
 // Eliminar canción de playlist
-router.delete('/:id/songs/:songId', requireAuth, async (req, res) => {
+router.delete('/:id/songs/:songId', authenticateToken, async (req, res) => {
   try {
     const { userId } = req.body;
 
@@ -126,7 +122,7 @@ router.delete('/:id/songs/:songId', requireAuth, async (req, res) => {
 });
 
 // Actualizar playlist
-router.put('/:id', requireAuth, async (req, res) => {
+router.put('/:id', authenticateToken, async (req, res) => {
   try {
     const { userId, name, description, isPublic } = req.body;
 
@@ -154,7 +150,7 @@ router.put('/:id', requireAuth, async (req, res) => {
 });
 
 // Eliminar playlist
-router.delete('/:id', requireAuth, async (req, res) => {
+router.delete('/:id', authenticateToken, async (req, res) => {
   try {
     const { userId } = req.body;
 
@@ -181,7 +177,108 @@ router.get('/public/all', async (req, res) => {
     const playlists = await Playlist.find({ isPublic: true })
       .populate('user', 'username')
       .populate('songs')
+      .populate('likes', 'username')
       .sort({ createdAt: -1 });
+    res.json(playlists);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Dar/quitar like a playlist
+router.post('/:id/like', authenticateToken, async (req, res) => {
+  try {
+    const playlist = await Playlist.findById(req.params.id);
+    if (!playlist) {
+      return res.status(404).json({ error: 'Playlist no encontrada' });
+    }
+
+    const likeCount = await playlist.toggleLike(req.user._id);
+    res.json({ likes: likeCount });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Compartir playlist
+router.get('/:id/share', async (req, res) => {
+  try {
+    const playlist = await Playlist.findById(req.params.id);
+    if (!playlist) {
+      return res.status(404).json({ error: 'Playlist no encontrada' });
+    }
+
+    if (!playlist.isPublic) {
+      return res.status(403).json({ error: 'Esta playlist no es pública' });
+    }
+
+    res.json({
+      shareUrl: playlist.shareUrl,
+      fullUrl: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/playlist/${playlist.shareUrl}`
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Acceder a playlist por URL de compartir
+router.get('/shared/:shareUrl', async (req, res) => {
+  try {
+    const playlist = await Playlist.findOne({ shareUrl: req.params.shareUrl })
+      .populate('user', 'username')
+      .populate('songs')
+      .populate('likes', 'username')
+      .populate('collaborators', 'username');
+
+    if (!playlist) {
+      return res.status(404).json({ error: 'Playlist no encontrada' });
+    }
+
+    // Incrementar contador de reproducciones
+    playlist.playCount += 1;
+    await playlist.save();
+
+    res.json(playlist);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Agregar colaborador a playlist
+router.post('/:id/collaborators', authenticateToken, async (req, res) => {
+  try {
+    const playlist = await Playlist.findById(req.params.id);
+    if (!playlist) {
+      return res.status(404).json({ error: 'Playlist no encontrada' });
+    }
+
+    // Solo el creador puede agregar colaboradores
+    if (playlist.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ error: 'Solo el creador puede gestionar colaboradores' });
+    }
+
+    if (!playlist.isCollaborative) {
+      return res.status(400).json({ error: 'Esta playlist no es colaborativa' });
+    }
+
+    const { userId } = req.body;
+    await playlist.addCollaborator(userId);
+
+    await playlist.populate('collaborators', 'username');
+    res.json(playlist.collaborators);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Obtener playlists más populares
+router.get('/popular/all', async (req, res) => {
+  try {
+    const playlists = await Playlist.find({ isPublic: true })
+      .populate('user', 'username')
+      .populate('likes', 'username')
+      .sort({ likes: -1, playCount: -1 })
+      .limit(20);
     res.json(playlists);
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -61,6 +61,7 @@ const forumRoutes = require('./routes/forum');
 const playlistsRoutes = require('./routes/playlists');
 const storeRoutes = require('./routes/store');
 const adminRoutes = require('./routes/admin');
+const favoritesRoutes = require('./routes/favorites');
 
 // Rutas básicas
 app.get('/', (req, res) => {
@@ -76,6 +77,7 @@ app.use('/api/forum', forumRoutes);
 app.use('/api/playlists', playlistsRoutes);
 app.use('/api/store', storeRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/favorites', favoritesRoutes);
 
 // Puerto
 const PORT = process.env.PORT || 5000;
