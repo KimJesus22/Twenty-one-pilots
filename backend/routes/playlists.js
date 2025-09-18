@@ -11,13 +11,16 @@ const requireAuth = (req, res, next) => {
 
 // Obtener playlists del usuario
 router.get('/user/:userId', requireAuth, async (req, res) => {
+  console.log('GET /api/playlists/user/:userId - Obteniendo playlists para usuario:', req.params.userId);
   try {
     const { userId } = req.params;
     const playlists = await Playlist.find({ user: userId })
       .populate('songs')
       .sort({ createdAt: -1 });
+    console.log(`Encontradas ${playlists.length} playlists`);
     res.json(playlists);
   } catch (error) {
+    console.error('Error obteniendo playlists:', error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -39,11 +42,13 @@ router.get('/:id', async (req, res) => {
 
 // Crear nueva playlist
 router.post('/', requireAuth, async (req, res) => {
+  console.log('POST /api/playlists - Creando playlist:', req.body);
   try {
     const { name, description, userId, isPublic } = req.body;
 
     const user = await User.findById(userId);
     if (!user) {
+      console.log('Usuario no encontrado:', userId);
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
@@ -57,8 +62,10 @@ router.post('/', requireAuth, async (req, res) => {
     await playlist.save();
     await playlist.populate('user', 'username');
 
+    console.log('Playlist creada:', playlist._id);
     res.status(201).json(playlist);
   } catch (error) {
+    console.error('Error creando playlist:', error);
     res.status(500).json({ error: error.message });
   }
 });

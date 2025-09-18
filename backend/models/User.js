@@ -7,6 +7,13 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   role: { type: String, enum: ['user', 'admin'], default: 'user' },
   playlists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Playlist' }],
+  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Album' }],
+  followedArtists: [{ type: String }], // Nombres de artistas seguidos
+  notifications: {
+    email: { type: Boolean, default: true },
+    push: { type: Boolean, default: true },
+    concerts: { type: Boolean, default: true }
+  },
   createdAt: { type: Date, default: Date.now },
 });
 

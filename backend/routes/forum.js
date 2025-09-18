@@ -11,12 +11,15 @@ const requireAuth = (req, res, next) => {
 
 // Obtener todos los hilos
 router.get('/threads', async (req, res) => {
+  console.log('GET /api/forum/threads - Obteniendo hilos');
   try {
     const threads = await Thread.find()
       .populate('author', 'username')
       .sort({ isPinned: -1, updatedAt: -1 });
+    console.log(`Encontrados ${threads.length} hilos`);
     res.json(threads);
   } catch (error) {
+    console.error('Error obteniendo hilos:', error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -38,11 +41,13 @@ router.get('/threads/:id', async (req, res) => {
 
 // Crear nuevo hilo
 router.post('/threads', requireAuth, async (req, res) => {
+  console.log('POST /api/forum/threads - Creando hilo:', req.body);
   try {
     const { title, content, authorId } = req.body;
 
     const author = await User.findById(authorId);
     if (!author) {
+      console.log('Usuario no encontrado:', authorId);
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
@@ -55,8 +60,10 @@ router.post('/threads', requireAuth, async (req, res) => {
     await thread.save();
     await thread.populate('author', 'username');
 
+    console.log('Hilo creado:', thread._id);
     res.status(201).json(thread);
   } catch (error) {
+    console.error('Error creando hilo:', error);
     res.status(500).json({ error: error.message });
   }
 });
