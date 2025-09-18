@@ -4,6 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
+const { logger, logRequest, logError } = require('./services/loggerService');
 
 // Cargar variables de entorno
 dotenv.config();
@@ -41,16 +42,23 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10mb' })); // Limitar tamaño de payload
 
+// Logging de requests
+app.use(logRequest);
+
 // Conectar a MongoDB (opcional para desarrollo)
 if (process.env.MONGO_URI) {
   mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log('Conectado a MongoDB'))
-  .catch(err => console.error('Error conectando a MongoDB:', err));
+  .then(() => {
+    logger.info('Conectado a MongoDB', { database: 'twentyonepilots' });
+  })
+  .catch(err => {
+    logger.error('Error conectando a MongoDB', { error: err.message });
+  });
 } else {
-  console.log('MongoDB no configurado - ejecutando sin base de datos');
+  logger.warn('MongoDB no configurado - ejecutando sin base de datos');
 }
 
 const discographyRoutes = require('./routes/discography');
@@ -94,5 +102,30 @@ app.use('/api/favorites', favoritesRoutes);
 // Puerto
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en puerto ${PORT}`);
+  logger.info(`Servidor corriendo en puerto ${PORT}`, {
+    port: PORT,
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
+
+// Manejo global de errores no capturados
+process.on('uncaughtException', (error) => {
+  logger.error('Uncaught Exception', { error: error.message, stack: error.stack });
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  logger.error('Unhandled Rejection', { reason, promise });
+  process.exit(1);
+});
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  logger.info('SIGTERM received, shutting down gracefully');
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  logger.info('SIGINT received, shutting down gracefully');
+  process.exit(0);
 });
