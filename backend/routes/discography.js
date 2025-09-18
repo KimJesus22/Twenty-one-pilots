@@ -1,10 +1,11 @@
 const express = require('express');
 const { Album, Song } = require('../models/Discography');
 const { paginate, sendPaginatedResponse } = require('../middleware/pagination');
+const { cachePublic, invalidateCache } = require('../middleware/cache');
 const router = express.Router();
 
 // Ruta para obtener todos los álbumes con paginación
-router.get('/albums', paginate(Album), async (req, res) => {
+router.get('/albums', cachePublic('albums', 1800), paginate(Album), async (req, res) => {
   try {
     // Configurar populate para la paginación
     req.populate = ['songs'];
