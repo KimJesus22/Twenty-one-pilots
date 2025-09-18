@@ -20,10 +20,15 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/twentyonepi
 .then(() => console.log('Conectado a MongoDB'))
 .catch(err => console.error('Error conectando a MongoDB:', err));
 
+const discographyRoutes = require('./routes/discography');
+
 // Rutas básicas
 app.get('/', (req, res) => {
   res.json({ message: 'Bienvenido a la API de Twenty One Pilots' });
 });
+
+// Usar rutas
+app.use('/api/discography', discographyRoutes);
 
 // Puerto
 const PORT = process.env.PORT || 5000;
