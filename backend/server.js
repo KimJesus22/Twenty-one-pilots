@@ -30,6 +30,7 @@ const videosRoutes = require('./routes/videos');
 const concertsRoutes = require('./routes/concerts');
 const forumRoutes = require('./routes/forum');
 const playlistsRoutes = require('./routes/playlists');
+const storeRoutes = require('./routes/store');
 
 // Rutas básicas
 app.get('/', (req, res) => {
@@ -43,6 +44,7 @@ app.use('/api/videos', videosRoutes);
 app.use('/api/concerts', concertsRoutes);
 app.use('/api/forum', forumRoutes);
 app.use('/api/playlists', playlistsRoutes);
+app.use('/api/store', storeRoutes);
 
 // Puerto
 const PORT = process.env.PORT || 5000;
