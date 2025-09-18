@@ -1,6 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const notificationService = require('../services/notificationService');
 
 const router = express.Router();
 
@@ -23,6 +24,11 @@ router.post('/register', async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: '7d',
     });
+
+    // Enviar email de bienvenida (no bloqueante)
+    notificationService.sendWelcomeEmail(user).catch(err =>
+      console.error('Error enviando email de bienvenida:', err)
+    );
 
     res.status(201).json({ token, user: { id: user._id, username, email } });
   } catch (error) {
