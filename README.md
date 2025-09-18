@@ -8,9 +8,12 @@ Aplicación web full-stack dedicada a Twenty One Pilots, ofreciendo una experien
 - **🎥 Videos Oficiales**: Acceso directo a videos musicales desde YouTube API
 - **🎪 Conciertos**: Encuentra fechas de conciertos próximos via Eventbrite API
 - **💬 Foro de Fans**: Comunidad interactiva con hilos, comentarios y moderación
-- **🎧 Playlists Personalizadas**: Crea, edita y comparte tus playlists favoritas
+- **🎧 Playlists Sociales**: Crea, edita, comparte y colabora en playlists con sistema de likes
+- **⭐ Sistema de Favoritos**: Marca álbumes como favoritos y sigue a tus artistas preferidos
+- **👥 Playlists Colaborativas**: Trabaja en playlists con otros usuarios
+- **🔗 Compartir Contenido**: URLs únicas para compartir playlists públicas
 - **🛍️ Tienda de Merchandise**: Catálogo completo con carrito de compras y checkout
-- **🔐 Autenticación**: Sistema seguro con JWT y encriptación de contraseñas
+- **🔐 Sistema de Roles**: Autenticación JWT con roles admin/user y permisos granulares
 - **📱 Diseño Responsive**: Optimizado para móvil y desktop con diseño minimalista
 
 ## 🛠️ Tecnologías
@@ -27,6 +30,20 @@ Aplicación web full-stack dedicada a Twenty One Pilots, ofreciendo una experien
 - **Axios** para llamadas HTTP
 - Diseño minimalista con colores rojo/negro
 - **CSS Grid/Flexbox** para layouts responsive
+
+### Seguridad y Validación
+- **JWT** con middleware de roles (admin/user)
+- **Joi** para validaciones de entrada
+- **Helmet** para headers de seguridad
+- **Rate limiting** para protección contra abuso
+- **bcryptjs** para hash de contraseñas
+
+### Características Sociales
+- Sistema de **favoritos many-to-many**
+- **Playlists colaborativas** con permisos
+- **Sistema de likes** y compartir
+- **URLs únicas** para compartir contenido
+- **Seguimiento de artistas**
 
 ## 📋 Prerrequisitos
 
@@ -98,13 +115,23 @@ twentyonepilots-app/
 │   │   ├── Forum.js     # Modelos de foro
 │   │   └── Product.js   # Modelo de productos
 │   ├── routes/          # Rutas de la API
-│   │   ├── auth.js      # Autenticación
+│   │   ├── auth.js      # Autenticación JWT
+│   │   ├── admin.js     # CRUD administrativo
 │   │   ├── discography.js # Discografía
 │   │   ├── videos.js    # Videos (YouTube)
 │   │   ├── concerts.js  # Conciertos (Eventbrite)
 │   │   ├── forum.js     # Foro de fans
-│   │   ├── playlists.js # Playlists
+│   │   ├── playlists.js # Playlists sociales
+│   │   ├── favorites.js # Sistema de favoritos
 │   │   └── store.js     # Tienda
+│   ├── middleware/      # Middleware personalizado
+│   │   └── auth.js      # Autenticación y roles
+│   ├── validations/     # Validaciones con Joi
+│   │   └── schemas.js   # Esquemas de validación
+│   ├── config/          # Configuración
+│   │   └── production.js # Config producción
+│   ├── tests/           # Tests automatizados
+│   │   └── auth.test.js # Tests de autenticación
 │   ├── server.js        # Servidor principal
 │   └── .env            # Variables de entorno
 ├── frontend/
@@ -153,6 +180,21 @@ twentyonepilots-app/
 - `POST /api/playlists/:id/songs` - Agregar canción
 - `DELETE /api/playlists/:id/songs/:songId` - Quitar canción
 - `GET /api/playlists/public/all` - Playlists públicas
+- `POST /api/playlists/:id/like` - Dar/quitar like a playlist
+- `GET /api/playlists/:id/share` - Obtener URL de compartir
+- `GET /api/playlists/shared/:shareUrl` - Acceder por URL compartida
+- `POST /api/playlists/:id/collaborators` - Agregar colaborador
+- `GET /api/playlists/popular/all` - Playlists más populares
+
+### Favoritos
+- `GET /api/favorites` - Obtener favoritos del usuario
+- `POST /api/favorites/albums/:albumId` - Agregar álbum a favoritos
+- `DELETE /api/favorites/albums/:albumId` - Remover álbum de favoritos
+- `GET /api/favorites/albums/:albumId/status` - Verificar si está en favoritos
+- `POST /api/favorites/artists/:artistName` - Seguir artista
+- `DELETE /api/favorites/artists/:artistName` - Dejar de seguir artista
+- `GET /api/favorites/artists` - Obtener artistas seguidos
+- `GET /api/favorites/artists/:artistName/status` - Verificar seguimiento
 
 ### Tienda
 - `GET /api/store/products` - Lista de productos
@@ -198,11 +240,14 @@ npm run build
 
 ## 📊 Estado del Proyecto
 
-- ✅ **Backend completo**: APIs RESTful, autenticación JWT, integración con MongoDB
+- ✅ **Backend avanzado**: APIs RESTful completas, autenticación JWT con roles, integración MongoDB
+- ✅ **Sistema de roles**: Middleware de autorización, CRUD administrativo, validaciones Joi
+- ✅ **Playlists sociales**: Likes, compartir, colaborativas, URLs únicas, contador de reproducciones
+- ✅ **Sistema de favoritos**: Many-to-many con álbumes y seguimiento de artistas
 - ✅ **Frontend funcional**: React con routing, diseño responsive minimalista
 - ✅ **Características principales**: Discografía, videos, conciertos, foro, playlists, tienda
-- 🔄 **Próximos pasos**: Optimización de responsividad, pruebas, despliegue en producción
-- 🔄 **Mejoras futuras**: Notificaciones en tiempo real, integración con Spotify, sistema de recomendaciones
+- 🔄 **Próximos pasos**: PWA, notificaciones push, geolocalización, mapas interactivos
+- 🔄 **Mejoras futuras**: Integración Spotify/Apple Music, paginación avanzada, Redis caché
 
 ##  Licencia
 
