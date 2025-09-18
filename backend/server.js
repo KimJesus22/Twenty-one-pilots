@@ -28,6 +28,7 @@ const discographyRoutes = require('./routes/discography');
 const authRoutes = require('./routes/auth');
 const videosRoutes = require('./routes/videos');
 const concertsRoutes = require('./routes/concerts');
+const forumRoutes = require('./routes/forum');
 
 // Rutas básicas
 app.get('/', (req, res) => {
@@ -39,6 +40,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/discography', discographyRoutes);
 app.use('/api/videos', videosRoutes);
 app.use('/api/concerts', concertsRoutes);
+app.use('/api/forum', forumRoutes);
 
 // Puerto
 const PORT = process.env.PORT || 5000;
