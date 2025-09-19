@@ -3,6 +3,11 @@
 [![CI/CD Pipeline](https://github.com/your-username/twentyonepilots-app/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/your-username/twentyonepilots-app/actions/workflows/ci-cd.yml)
 [![Coverage](https://codecov.io/gh/your-username/twentyonepilots-app/branch/main/graph/badge.svg)](https://codecov.io/gh/your-username/twentyonepilots-app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-20.81.227.69-blue)](http://20.81.227.69/)
+
+# 🎵 Twenty One Pilots - Fan Application
+
+**🚀 [APLICACIÓN EN VIVO](http://20.81.227.69/)** | **[📚 DOCUMENTACIÓN API](http://20.81.227.69/api-docs)**
 
 Una aplicación web completa para fans de Twenty One Pilots con características avanzadas de música, comunidad y contenido interactivo.
 
@@ -40,13 +45,20 @@ Una aplicación web completa para fans de Twenty One Pilots con características
 
 ## 🚀 Inicio Rápido
 
-### Prerrequisitos
+### 🌐 **APLICACIÓN EN PRODUCCIÓN**
+- **Frontend**: http://20.81.227.69/
+- **API Backend**: http://20.81.227.69/api
+- **Documentación Swagger**: http://20.81.227.69/api-docs
+
+### 💻 **Desarrollo Local**
+
+#### Prerrequisitos
 - Node.js 18+
 - MongoDB Atlas (gratuito)
 - Redis (opcional para cache)
 - Git
 
-### Instalación
+#### Instalación
 
 1. **Clonar el repositorio**
    ```bash
@@ -168,6 +180,32 @@ twentyonepilots-app/
 - **Encriptación** de contraseñas con bcrypt
 - **CORS** configurado
 - **Auditoría** de acciones de usuario
+
+## 🌐 **APLICACIÓN EN PRODUCCIÓN**
+
+### **🚀 URLs Activas**
+- **Frontend Principal**: http://20.81.227.69/
+- **API Backend**: http://20.81.227.69/api
+- **Documentación Swagger**: http://20.81.227.69/api-docs
+- **Health Check**: http://20.81.227.69/health
+
+### **📊 Estado del Sistema**
+- ✅ **Backend**: Node.js/Express corriendo
+- ✅ **Base de datos**: MongoDB Atlas conectada
+- ✅ **Cache**: Redis operativo
+- ✅ **API**: 25+ endpoints funcionales
+- ✅ **Documentación**: Swagger completa
+- ✅ **Tests**: Cobertura 80%+
+- ✅ **CI/CD**: GitHub Actions activo
+
+### **🔧 Tecnologías en Producción**
+- **Servidor**: VPS Ubuntu 22.04
+- **Runtime**: Node.js 18 LTS
+- **Base de datos**: MongoDB Atlas (gratuito)
+- **Cache**: Redis 7
+- **Gestión de procesos**: PM2
+- **Logging**: Winston con rotación diaria
+- **Monitoreo**: PM2 monitoring
 
 ## 📊 Monitoreo
 

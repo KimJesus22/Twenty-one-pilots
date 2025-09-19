@@ -22,8 +22,12 @@ const swaggerDefinition = {
       description: 'Development server'
     },
     {
+      url: 'http://20.81.227.69',
+      description: 'Production server (VPS)'
+    },
+    {
       url: 'https://api.twentyonepilots.com',
-      description: 'Production server'
+      description: 'Production server (Domain)'
     }
   ],
   components: {
