@@ -1,1 +1,2 @@
 2025-09-19 16:09:32 [INFO]: Conectado a MongoDB | {"database":"twentyonepilots"}
+2025-09-19 17:02:48 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}

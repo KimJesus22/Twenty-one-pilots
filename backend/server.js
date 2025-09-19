@@ -17,6 +17,8 @@ const {
 // TODO: Implementar Swagger
 // const setupSwagger = require('./swagger');
 
+// Debug handlers temporales (ya no necesarios)
+
 // Cargar variables de entorno
 dotenv.config();
 
@@ -59,56 +61,36 @@ app.use((req, res, next) => {
 
   res.on('finish', () => {
     const duration = Date.now() - start;
-    logger.http(`${req.method} ${req.path}`, {
-      statusCode: res.statusCode,
-      duration: `${duration}ms`,
-      ip: req.ip,
-      userAgent: req.get('User-Agent')
-    });
+    console.log(`${req.method} ${req.path} - ${res.statusCode} - ${duration}ms`);
   });
 
   next();
 });
 
 // Seguridad y sanitización avanzada
-app.use(expressSanitizer()); // Sanitización con express-sanitizer
+// app.use(expressSanitizer()); // Temporalmente comentado para debugging
 app.use(securityLogger); // Logging de seguridad
 app.use(sanitizeInput); // Sanitización personalizada
-app.use(validateMongoId); // Validación de IDs MongoDB
+// app.use(validateMongoId); // Solo en rutas específicas, no global
 app.use(preventNoSQLInjection); // Prevención de inyección NoSQL
 
 // Conectar a MongoDB (opcional para desarrollo)
 if (process.env.MONGO_URI) {
-  mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    logger.info('Conectado a MongoDB', { database: 'twentyonepilots' });
+    console.log('Conectado a MongoDB');
   })
   .catch(err => {
-    logger.error('Error conectando a MongoDB', { error: err.message });
+    console.error('Error conectando a MongoDB:', err.message);
   });
 } else {
-  logger.warn('MongoDB no configurado - ejecutando sin base de datos');
+  console.log('MongoDB no configurado - ejecutando sin base de datos');
 }
 
 const discographyRoutes = require('./routes/discography');
 const authRoutes = require('./routes/auth');
 const videosRoutes = require('./routes/videos');
 const concertsRoutes = require('./routes/concerts');
-// TODO: Implementar rutas faltantes
-// const notificationsRoutes = require('./routes/notifications');
-// const locationRoutes = require('./routes/location');
-// const lyricsRoutes = require('./routes/lyrics');
-// const concertTriviaRoutes = require('./routes/concertTrivia');
-// const mapsRoutes = require('./routes/maps');
-// const cacheRoutes = require('./routes/cache');
-// const forumRoutes = require('./routes/forum');
-// const playlistsRoutes = require('./routes/playlists');
-// const storeRoutes = require('./routes/store');
-// const adminRoutes = require('./routes/admin');
-// const favoritesRoutes = require('./routes/favorites');
 
 // Rutas básicas
 app.get('/', (req, res) => {
@@ -173,12 +155,8 @@ app.use((error, req, res, next) => {
 });
 
 // Middleware para rutas no encontradas
-app.use('*', (req, res) => {
-  logger.warn('Ruta no encontrada', {
-    path: req.path,
-    method: req.method,
-    ip: req.ip
-  });
+app.use((req, res) => {
+  console.log('Ruta no encontrada:', req.path, req.method);
 
   res.status(404).json({
     success: false,

@@ -9,7 +9,7 @@ const Videos = () => {
 
   useEffect(() => {
     fetchVideos();
-  }, [searchQuery]);
+  }, [searchQuery]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchVideos = async () => {
     try {
@@ -24,7 +24,9 @@ const Videos = () => {
         }
 
         const data = await response.json();
-        setVideos(data || []);
+        // Asegurarse de que data sea un array
+        const videosArray = Array.isArray(data) ? data : [];
+        setVideos(videosArray);
         setError(null);
       } catch (backendError) {
         console.warn('Backend no disponible, usando datos mock:', backendError.message);
