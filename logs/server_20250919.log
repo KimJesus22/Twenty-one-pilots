@@ -1,0 +1,4 @@
+2025-09-19 00:22:19,612 - INFO - 127.0.0.1 - code 404, message File not found
+2025-09-19 00:22:19,612 - INFO - 127.0.0.1 - "GET / HTTP/1.1" 404 -
+2025-09-19 00:22:37,132 - INFO - 127.0.0.1 - code 404, message File not found
+2025-09-19 00:22:37,132 - INFO - 127.0.0.1 - "GET /landing.html HTTP/1.1" 404 -
