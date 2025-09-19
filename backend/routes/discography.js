@@ -6,9 +6,11 @@
  */
 
 const express = require('express');
-const { Album, Song } = require('../models/Discography');
-const { paginate, sendPaginatedResponse } = require('../middleware/pagination');
-const { cachePublic, invalidateCache } = require('../middleware/cache');
+const { query, param, body } = require('express-validator');
+const discographyController = require('../controllers/discographyController');
+const authService = require('../services/authService');
+const logger = require('../utils/logger');
+
 const router = express.Router();
 
 // Ruta para obtener todos los álbumes con paginación
@@ -78,50 +80,114 @@ const router = express.Router();
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get('/albums', cachePublic('albums', 1800), paginate(Album), async (req, res) => {
-  try {
-    // Configurar populate para la paginación
-    req.populate = ['songs'];
-    await sendPaginatedResponse(req, res);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+router.get('/albums',
+  [
+    query('page').optional().isInt({ min: 1 }).withMessage('Page debe ser un entero positivo'),
+    query('limit').optional().isInt({ min: 1, max: 100 }).withMessage('Limit debe ser entre 1 y 100'),
+    query('sort').optional().isIn(['title', 'releaseYear', 'createdAt']).withMessage('Sort inválido'),
+    query('order').optional().isIn(['asc', 'desc']).withMessage('Order debe ser asc o desc'),
+    query('search').optional().isString().withMessage('Search debe ser un string'),
+  ],
+  discographyController.getAlbums
+);
 
 // Ruta para obtener un álbum específico
-router.get('/albums/:id', async (req, res) => {
-  try {
-    const album = await Album.findById(req.params.id).populate('songs');
-    if (!album) {
-      return res.status(404).json({ error: 'Álbum no encontrado' });
-    }
-    res.json(album);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+router.get('/albums/:id',
+  [
+    param('id').isMongoId().withMessage('ID de álbum inválido'),
+  ],
+  discographyController.getAlbumById
+);
+
+// Crear álbum (solo admin)
+router.post('/albums',
+  authService.authenticateToken,
+  authService.requireAdmin,
+  [
+    body('title').trim().isLength({ min: 1, max: 200 }).withMessage('Título requerido (1-200 caracteres)'),
+    body('releaseYear').isInt({ min: 1900, max: new Date().getFullYear() + 1 }).withMessage('Año de lanzamiento inválido'),
+    body('coverImage').optional().isURL().withMessage('URL de imagen inválida'),
+  ],
+  discographyController.createAlbum
+);
+
+// Actualizar álbum (solo admin)
+router.put('/albums/:id',
+  authService.authenticateToken,
+  authService.requireAdmin,
+  [
+    param('id').isMongoId().withMessage('ID de álbum inválido'),
+    body('title').optional().trim().isLength({ min: 1, max: 200 }).withMessage('Título inválido'),
+    body('releaseYear').optional().isInt({ min: 1900, max: new Date().getFullYear() + 1 }).withMessage('Año de lanzamiento inválido'),
+    body('coverImage').optional().isURL().withMessage('URL de imagen inválida'),
+  ],
+  discographyController.updateAlbum
+);
+
+// Eliminar álbum (solo admin)
+router.delete('/albums/:id',
+  authService.authenticateToken,
+  authService.requireAdmin,
+  [
+    param('id').isMongoId().withMessage('ID de álbum inválido'),
+  ],
+  discographyController.deleteAlbum
+);
 
 // Ruta para obtener todas las canciones
-router.get('/songs', async (req, res) => {
-  try {
-    const songs = await Song.find().populate('album');
-    res.json(songs);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+router.get('/songs',
+  [
+    query('page').optional().isInt({ min: 1 }).withMessage('Page debe ser un entero positivo'),
+    query('limit').optional().isInt({ min: 1, max: 100 }).withMessage('Limit debe ser entre 1 y 100'),
+    query('album').optional().isMongoId().withMessage('ID de álbum inválido'),
+    query('search').optional().isString().withMessage('Search debe ser un string'),
+  ],
+  discographyController.getSongs
+);
 
 // Ruta para obtener una canción específica
-router.get('/songs/:id', async (req, res) => {
-  try {
-    const song = await Song.findById(req.params.id).populate('album');
-    if (!song) {
-      return res.status(404).json({ error: 'Canción no encontrada' });
-    }
-    res.json(song);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+router.get('/songs/:id',
+  [
+    param('id').isMongoId().withMessage('ID de canción inválido'),
+  ],
+  discographyController.getSongById
+);
+
+// Crear canción (solo admin)
+router.post('/songs',
+  authService.authenticateToken,
+  authService.requireAdmin,
+  [
+    body('title').trim().isLength({ min: 1, max: 200 }).withMessage('Título requerido (1-200 caracteres)'),
+    body('album').isMongoId().withMessage('ID de álbum inválido'),
+    body('lyrics').optional().isString().withMessage('Lyrics debe ser un string'),
+    body('duration').optional().matches(/^(\d{1,2}:)?\d{1,2}:\d{2}$/).withMessage('Formato de duración inválido (MM:SS o H:MM:SS)'),
+  ],
+  discographyController.createSong
+);
+
+// Actualizar canción (solo admin)
+router.put('/songs/:id',
+  authService.authenticateToken,
+  authService.requireAdmin,
+  [
+    param('id').isMongoId().withMessage('ID de canción inválido'),
+    body('title').optional().trim().isLength({ min: 1, max: 200 }).withMessage('Título inválido'),
+    body('album').optional().isMongoId().withMessage('ID de álbum inválido'),
+    body('lyrics').optional().isString().withMessage('Lyrics debe ser un string'),
+    body('duration').optional().matches(/^(\d{1,2}:)?\d{1,2}:\d{2}$/).withMessage('Formato de duración inválido'),
+  ],
+  discographyController.updateSong
+);
+
+// Eliminar canción (solo admin)
+router.delete('/songs/:id',
+  authService.authenticateToken,
+  authService.requireAdmin,
+  [
+    param('id').isMongoId().withMessage('ID de canción inválido'),
+  ],
+  discographyController.deleteSong
+);
 
 module.exports = router;

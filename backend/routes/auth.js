@@ -6,9 +6,9 @@
  */
 
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
-const notificationService = require('../services/notificationService');
+const { body } = require('express-validator');
+const authController = require('../controllers/authController');
+const authService = require('../services/authService');
 
 const router = express.Router();
 
@@ -67,35 +67,14 @@ const router = express.Router();
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.post('/register', async (req, res) => {
-  try {
-    const { username, email, password } = req.body;
-
-    // Verificar si el usuario ya existe
-    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
-    if (existingUser) {
-      return res.status(400).json({ error: 'Usuario o email ya existe' });
-    }
-
-    // Crear nuevo usuario
-    const user = new User({ username, email, password });
-    await user.save();
-
-    // Generar token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '7d',
-    });
-
-    // Enviar email de bienvenida (no bloqueante)
-    notificationService.sendWelcomeEmail(user).catch(err =>
-      console.error('Error enviando email de bienvenida:', err)
-    );
-
-    res.status(201).json({ token, user: { id: user._id, username, email } });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+router.post('/register',
+  [
+    body('username').trim().isLength({ min: 3, max: 30 }).withMessage('Username debe tener entre 3 y 30 caracteres'),
+    body('email').isEmail().normalizeEmail().withMessage('Email inválido'),
+    body('password').isLength({ min: 6 }).withMessage('Contraseña debe tener al menos 6 caracteres'),
+  ],
+  authController.register
+);
 
 // Login de usuario
 /**
@@ -158,31 +137,28 @@ router.post('/register', async (req, res) => {
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.post('/login', async (req, res) => {
-  try {
-    const { email, password } = req.body;
+router.post('/login',
+  [
+    body('email').isEmail().normalizeEmail().withMessage('Email inválido'),
+    body('password').notEmpty().withMessage('Contraseña requerida'),
+  ],
+  authController.login
+);
 
-    // Buscar usuario
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ error: 'Credenciales inválidas' });
-    }
+// Obtener perfil de usuario (requiere autenticación)
+router.get('/profile',
+  authService.authenticateToken,
+  authController.getProfile
+);
 
-    // Verificar contraseña
-    const isMatch = await user.comparePassword(password);
-    if (!isMatch) {
-      return res.status(400).json({ error: 'Credenciales inválidas' });
-    }
-
-    // Generar token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '7d',
-    });
-
-    res.json({ token, user: { id: user._id, username: user.username, email } });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+// Actualizar perfil de usuario (requiere autenticación)
+router.put('/profile',
+  authService.authenticateToken,
+  [
+    body('username').optional().trim().isLength({ min: 3, max: 30 }).withMessage('Username debe tener entre 3 y 30 caracteres'),
+    body('email').optional().isEmail().normalizeEmail().withMessage('Email inválido'),
+  ],
+  authController.updateProfile
+);
 
 module.exports = router;

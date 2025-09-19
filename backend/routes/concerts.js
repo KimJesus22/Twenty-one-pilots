@@ -1,72 +1,181 @@
 const express = require('express');
-const axios = require('axios');
+const { query, param } = require('express-validator');
+const eventbriteService = require('../services/eventbriteService');
+const logger = require('../utils/logger');
+
 const router = express.Router();
 
-// Ruta para buscar conciertos con paginación simulada
-router.get('/search', async (req, res) => {
-  try {
-    const { q, location, page = 1, limit = 10 } = req.query;
-    const apiKey = process.env.EVENTBRITE_API_KEY;
+// Ruta para buscar conciertos
+router.get('/search',
+  [
+    query('q').optional().isString().withMessage('Query debe ser un string'),
+    query('location').optional().isString().withMessage('Location debe ser un string'),
+    query('maxResults').optional().isInt({ min: 1, max: 50 }).withMessage('maxResults debe ser entre 1 y 50'),
+  ],
+  async (req, res) => {
+    try {
+      const { q, location, maxResults = 20 } = req.query;
 
-    if (!apiKey) {
-      return res.status(500).json({ error: 'Eventbrite API key no configurada' });
-    }
+      const result = await eventbriteService.searchEvents(q, location, parseInt(maxResults));
 
-    // Eventbrite API tiene paginación nativa
-    const pageSize = Math.min(parseInt(limit) || 10, 50);
-    const response = await axios.get('https://www.eventbriteapi.com/v3/events/search/', {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-      params: {
-        q: q || 'Twenty One Pilots',
-        location: location || 'all',
-        categories: '103', // Music category
-        sort_by: 'date',
-        page: page,
-        page_size: pageSize,
-      },
-    });
-
-    // Estructurar respuesta con paginación
-    const result = {
-      data: response.data.events,
-      pagination: {
-        currentPage: parseInt(page),
-        totalPages: response.data.pagination.page_count,
-        totalItems: response.data.pagination.object_count,
-        itemsPerPage: pageSize,
-        hasNextPage: response.data.pagination.has_more_items,
-        hasPrevPage: parseInt(page) > 1,
+      if (!result.success) {
+        logger.externalApi('Eventbrite', 'search', false, { query: q, location, error: result.error });
+        return res.status(500).json({
+          success: false,
+          message: 'Error buscando conciertos',
+          error: result.error
+        });
       }
-    };
 
-    res.json(result);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+      logger.externalApi('Eventbrite', 'search', true, {
+        query: q,
+        location,
+        resultsCount: result.data.length
+      });
 
-// Ruta para obtener detalles de un concierto
-router.get('/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const apiKey = process.env.EVENTBRITE_API_KEY;
-
-    if (!apiKey) {
-      return res.status(500).json({ error: 'Eventbrite API key no configurada' });
+      res.json({
+        success: true,
+        data: result.data,
+        pagination: result.pagination
+      });
+    } catch (error) {
+      logger.error('Error en ruta /concerts/search:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error interno del servidor'
+      });
     }
-
-    const response = await axios.get(`https://www.eventbriteapi.com/v3/events/${id}/`, {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    });
-
-    res.json(response.data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
   }
-});
+);
+
+// Ruta para obtener detalles de un concierto específico
+router.get('/:id',
+  [
+    param('id').isString().notEmpty().withMessage('ID de concierto requerido'),
+  ],
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const result = await eventbriteService.getEventDetails(id);
+
+      if (!result.success) {
+        logger.externalApi('Eventbrite', 'getEventDetails', false, { eventId: id, error: result.error });
+        return res.status(404).json({
+          success: false,
+          message: 'Concierto no encontrado',
+          error: result.error
+        });
+      }
+
+      logger.externalApi('Eventbrite', 'getEventDetails', true, { eventId: id });
+      res.json({
+        success: true,
+        data: result.data
+      });
+    } catch (error) {
+      logger.error('Error en ruta /concerts/:id:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error interno del servidor'
+      });
+    }
+  }
+);
+
+// Ruta para buscar conciertos por ubicación
+router.get('/location/search',
+  [
+    query('location').isString().notEmpty().withMessage('Location requerida'),
+    query('radius').optional().isInt({ min: 1, max: 100 }).withMessage('Radius debe ser entre 1 y 100 km'),
+    query('maxResults').optional().isInt({ min: 1, max: 50 }).withMessage('maxResults debe ser entre 1 y 50'),
+  ],
+  async (req, res) => {
+    try {
+      const { location, radius = 50, maxResults = 20 } = req.query;
+
+      const result = await eventbriteService.searchEventsByLocation(
+        location,
+        parseInt(radius),
+        parseInt(maxResults)
+      );
+
+      if (!result.success) {
+        logger.externalApi('Eventbrite', 'searchByLocation', false, {
+          location,
+          radius,
+          error: result.error
+        });
+        return res.status(500).json({
+          success: false,
+          message: 'Error buscando conciertos por ubicación',
+          error: result.error
+        });
+      }
+
+      logger.externalApi('Eventbrite', 'searchByLocation', true, {
+        location,
+        radius,
+        resultsCount: result.data.length
+      });
+
+      res.json({
+        success: true,
+        data: result.data,
+        location: result.location,
+        radius: result.radius
+      });
+    } catch (error) {
+      logger.error('Error en ruta /concerts/location/search:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error interno del servidor'
+      });
+    }
+  }
+);
+
+// Ruta para obtener conciertos próximos
+router.get('/upcoming/list',
+  [
+    query('organizerId').optional().isString().withMessage('Organizer ID debe ser un string'),
+    query('maxResults').optional().isInt({ min: 1, max: 50 }).withMessage('maxResults debe ser entre 1 y 50'),
+  ],
+  async (req, res) => {
+    try {
+      const { organizerId, maxResults = 20 } = req.query;
+
+      const result = await eventbriteService.getUpcomingEvents(organizerId, parseInt(maxResults));
+
+      if (!result.success) {
+        logger.externalApi('Eventbrite', 'getUpcomingEvents', false, {
+          organizerId,
+          error: result.error
+        });
+        return res.status(500).json({
+          success: false,
+          message: 'Error obteniendo conciertos próximos',
+          error: result.error
+        });
+      }
+
+      logger.externalApi('Eventbrite', 'getUpcomingEvents', true, {
+        organizerId,
+        resultsCount: result.data.length
+      });
+
+      res.json({
+        success: true,
+        data: result.data
+      });
+    } catch (error) {
+      logger.error('Error en ruta /concerts/upcoming/list:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error interno del servidor'
+      });
+    }
+  }
+);
 
 module.exports = router;

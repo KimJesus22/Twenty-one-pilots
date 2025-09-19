@@ -4,7 +4,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
-const { logger, logRequest, logError } = require('./services/loggerService');
+const { validationResult } = require('express-validator');
+const logger = require('./utils/logger');
 const setupSwagger = require('./swagger');
 
 // Cargar variables de entorno
@@ -43,8 +44,22 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10mb' })); // Limitar tamaño de payload
 
-// Logging de requests
-app.use(logRequest);
+// Middleware de logging de requests
+app.use((req, res, next) => {
+  const start = Date.now();
+
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    logger.http(`${req.method} ${req.path}`, {
+      statusCode: res.statusCode,
+      duration: `${duration}ms`,
+      ip: req.ip,
+      userAgent: req.get('User-Agent')
+    });
+  });
+
+  next();
+});
 
 // Conectar a MongoDB (opcional para desarrollo)
 if (process.env.MONGO_URI) {
@@ -100,6 +115,58 @@ app.use('/api/store', storeRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/favorites', favoritesRoutes);
 
+// Middleware para manejar errores de validación
+app.use((req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    logger.warn('Errores de validación detectados', {
+      errors: errors.array(),
+      path: req.path,
+      method: req.method
+    });
+    return res.status(400).json({
+      success: false,
+      message: 'Datos de entrada inválidos',
+      errors: errors.array()
+    });
+  }
+  next();
+});
+
+// Middleware de manejo de errores global
+app.use((error, req, res, next) => {
+  logger.error('Error no manejado', {
+    error: error.message,
+    stack: error.stack,
+    path: req.path,
+    method: req.method,
+    ip: req.ip
+  });
+
+  // No enviar detalles del error en producción
+  const isDevelopment = process.env.NODE_ENV !== 'production';
+
+  res.status(error.status || 500).json({
+    success: false,
+    message: isDevelopment ? error.message : 'Error interno del servidor',
+    ...(isDevelopment && { stack: error.stack })
+  });
+});
+
+// Middleware para rutas no encontradas
+app.use('*', (req, res) => {
+  logger.warn('Ruta no encontrada', {
+    path: req.path,
+    method: req.method,
+    ip: req.ip
+  });
+
+  res.status(404).json({
+    success: false,
+    message: 'Ruta no encontrada'
+  });
+});
+
 // Configurar Swagger
 setupSwagger(app);
 
@@ -114,22 +181,30 @@ app.listen(PORT, () => {
 
 // Manejo global de errores no capturados
 process.on('uncaughtException', (error) => {
-  logger.error('Uncaught Exception', { error: error.message, stack: error.stack });
+  logger.error('Excepción no capturada', {
+    error: error.message,
+    stack: error.stack,
+    timestamp: new Date().toISOString()
+  });
   process.exit(1);
 });
 
 process.on('unhandledRejection', (reason, promise) => {
-  logger.error('Unhandled Rejection', { reason, promise });
+  logger.error('Promesa rechazada no manejada', {
+    reason: reason?.message || reason,
+    promise: promise.toString(),
+    timestamp: new Date().toISOString()
+  });
   process.exit(1);
 });
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
-  logger.info('SIGTERM received, shutting down gracefully');
+  logger.info('SIGTERM recibido, cerrando servidor gracefully');
   process.exit(0);
 });
 
 process.on('SIGINT', () => {
-  logger.info('SIGINT received, shutting down gracefully');
+  logger.info('SIGINT recibido, cerrando servidor gracefully');
   process.exit(0);
 });
