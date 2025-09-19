@@ -3,9 +3,17 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const expressSanitizer = require('express-sanitizer');
 const dotenv = require('dotenv');
 const { validationResult } = require('express-validator');
 const logger = require('./utils/logger');
+const {
+  sanitizeInput,
+  validateMongoId,
+  preventNoSQLInjection,
+  advancedRateLimit,
+  securityLogger
+} = require('./middleware/security');
 // TODO: Implementar Swagger
 // const setupSwagger = require('./swagger');
 
@@ -61,6 +69,13 @@ app.use((req, res, next) => {
 
   next();
 });
+
+// Seguridad y sanitización avanzada
+app.use(expressSanitizer()); // Sanitización con express-sanitizer
+app.use(securityLogger); // Logging de seguridad
+app.use(sanitizeInput); // Sanitización personalizada
+app.use(validateMongoId); // Validación de IDs MongoDB
+app.use(preventNoSQLInjection); // Prevención de inyección NoSQL
 
 // Conectar a MongoDB (opcional para desarrollo)
 if (process.env.MONGO_URI) {

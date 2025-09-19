@@ -69,9 +69,25 @@ const router = express.Router();
  */
 router.post('/register',
   [
-    body('username').trim().isLength({ min: 3, max: 30 }).withMessage('Username debe tener entre 3 y 30 caracteres'),
-    body('email').isEmail().normalizeEmail().withMessage('Email inválido'),
-    body('password').isLength({ min: 6 }).withMessage('Contraseña debe tener al menos 6 caracteres'),
+    body('username')
+      .trim()
+      .isLength({ min: 3, max: 30 })
+      .withMessage('Username debe tener entre 3 y 30 caracteres')
+      .matches(/^[a-zA-Z0-9_]+$/)
+      .withMessage('Username solo puede contener letras, números y guiones bajos')
+      .notEmpty()
+      .withMessage('Username es requerido'),
+    body('email')
+      .isEmail()
+      .normalizeEmail()
+      .withMessage('Email inválido')
+      .isLength({ max: 254 })
+      .withMessage('Email demasiado largo'),
+    body('password')
+      .isLength({ min: 8, max: 128 })
+      .withMessage('Contraseña debe tener entre 8 y 128 caracteres')
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
+      .withMessage('Contraseña debe contener al menos una letra minúscula, una mayúscula y un número'),
   ],
   authController.register
 );
@@ -139,8 +155,17 @@ router.post('/register',
  */
 router.post('/login',
   [
-    body('email').isEmail().normalizeEmail().withMessage('Email inválido'),
-    body('password').notEmpty().withMessage('Contraseña requerida'),
+    body('email')
+      .isEmail()
+      .normalizeEmail()
+      .withMessage('Email inválido')
+      .isLength({ max: 254 })
+      .withMessage('Email demasiado largo'),
+    body('password')
+      .notEmpty()
+      .withMessage('Contraseña requerida')
+      .isLength({ max: 128 })
+      .withMessage('Contraseña demasiado larga'),
   ],
   authController.login
 );
