@@ -1,23 +1,40 @@
 const request = require('supertest');
+const express = require('express');
 const mongoose = require('mongoose');
-const app = require('../server');
 const User = require('../models/User');
 
-describe('Auth API', () => {
+// Crear app de test
+const app = express();
+app.use(express.json());
+
+// Importar rutas
+const authRoutes = require('../routes/auth');
+app.use('/api/auth', authRoutes);
+
+// Mock de servicios
+jest.mock('../services/notificationService');
+
+describe('Auth Routes', () => {
   beforeAll(async () => {
-    // Conectar a base de datos de test si es necesario
-    if (process.env.NODE_ENV !== 'test') {
-      console.log('Ejecutando pruebas en entorno no-test');
-    }
+    // Conectar a base de datos de test
+    const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/twentyonepilots_test';
+    await mongoose.connect(mongoUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
   });
 
   afterAll(async () => {
-    // Limpiar base de datos de test
+    await mongoose.connection.close();
+  });
+
+  beforeEach(async () => {
+    // Limpiar colección de usuarios
     await User.deleteMany({});
   });
 
   describe('POST /api/auth/register', () => {
-    it('debería registrar un nuevo usuario', async () => {
+    it('should register a new user successfully', async () => {
       const userData = {
         username: 'testuser',
         email: 'test@example.com',
@@ -30,13 +47,23 @@ describe('Auth API', () => {
         .expect(201);
 
       expect(response.body).toHaveProperty('token');
-      expect(response.body.user).toHaveProperty('username', 'testuser');
+      expect(response.body.user).toHaveProperty('id');
+      expect(response.body.user.username).toBe(userData.username);
+      expect(response.body.user.email).toBe(userData.email);
+      expect(response.body.user).not.toHaveProperty('password');
     });
 
-    it('debería rechazar registro con email duplicado', async () => {
+    it('should return error for duplicate email', async () => {
+      // Crear usuario primero
+      await User.create({
+        username: 'existinguser',
+        email: 'test@example.com',
+        password: 'password123'
+      });
+
       const userData = {
-        username: 'testuser2',
-        email: 'test@example.com', // mismo email
+        username: 'newuser',
+        email: 'test@example.com', // Email duplicado
         password: 'password123'
       };
 
@@ -45,12 +72,73 @@ describe('Auth API', () => {
         .send(userData)
         .expect(400);
 
-      expect(response.body).toHaveProperty('error');
+      expect(response.body.error).toMatch(/ya existe/i);
+    });
+
+    it('should return error for duplicate username', async () => {
+      // Crear usuario primero
+      await User.create({
+        username: 'testuser',
+        email: 'existing@example.com',
+        password: 'password123'
+      });
+
+      const userData = {
+        username: 'testuser', // Username duplicado
+        email: 'new@example.com',
+        password: 'password123'
+      };
+
+      const response = await request(app)
+        .post('/api/auth/register')
+        .send(userData)
+        .expect(400);
+
+      expect(response.body.error).toMatch(/ya existe/i);
+    });
+
+    it('should return error for missing required fields', async () => {
+      const incompleteData = {
+        username: 'testuser'
+        // Falta email y password
+      };
+
+      const response = await request(app)
+        .post('/api/auth/register')
+        .send(incompleteData)
+        .expect(500); // Error de validación de Mongoose
+
+      expect(response.body.error).toBeDefined();
+    });
+
+    it('should return error for invalid email format', async () => {
+      const invalidData = {
+        username: 'testuser',
+        email: 'invalid-email',
+        password: 'password123'
+      };
+
+      const response = await request(app)
+        .post('/api/auth/register')
+        .send(invalidData)
+        .expect(500); // Error de validación de Mongoose
+
+      expect(response.body.error).toBeDefined();
     });
   });
 
   describe('POST /api/auth/login', () => {
-    it('debería hacer login con credenciales correctas', async () => {
+    beforeEach(async () => {
+      // Crear usuario para tests de login
+      const user = new User({
+        username: 'testuser',
+        email: 'test@example.com',
+        password: 'password123'
+      });
+      await user.save();
+    });
+
+    it('should login user successfully', async () => {
       const loginData = {
         email: 'test@example.com',
         password: 'password123'
@@ -62,10 +150,26 @@ describe('Auth API', () => {
         .expect(200);
 
       expect(response.body).toHaveProperty('token');
-      expect(response.body.user).toHaveProperty('email', 'test@example.com');
+      expect(response.body.user).toHaveProperty('id');
+      expect(response.body.user.email).toBe(loginData.email);
+      expect(response.body.user).not.toHaveProperty('password');
     });
 
-    it('debería rechazar login con credenciales incorrectas', async () => {
+    it('should return error for invalid email', async () => {
+      const loginData = {
+        email: 'nonexistent@example.com',
+        password: 'password123'
+      };
+
+      const response = await request(app)
+        .post('/api/auth/login')
+        .send(loginData)
+        .expect(400);
+
+      expect(response.body.error).toMatch(/credenciales inválidas/i);
+    });
+
+    it('should return error for invalid password', async () => {
       const loginData = {
         email: 'test@example.com',
         password: 'wrongpassword'
@@ -76,7 +180,21 @@ describe('Auth API', () => {
         .send(loginData)
         .expect(400);
 
-      expect(response.body).toHaveProperty('error');
+      expect(response.body.error).toMatch(/credenciales inválidas/i);
+    });
+
+    it('should return error for missing fields', async () => {
+      const incompleteData = {
+        email: 'test@example.com'
+        // Falta password
+      };
+
+      const response = await request(app)
+        .post('/api/auth/login')
+        .send(incompleteData)
+        .expect(500);
+
+      expect(response.body.error).toBeDefined();
     });
   });
 });
