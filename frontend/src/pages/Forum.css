@@ -1,8 +1,11 @@
+/* Forum - Minimalista negro/rojo */
 .forum {
   min-height: calc(100vh - 80px);
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  background: #000000;
+  color: #ffffff;
 }
 
 .forum-header {
@@ -18,11 +21,14 @@
   color: #ff0000;
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .forum-title p {
-  color: #666;
+  color: #cccccc;
   font-size: 1.1rem;
+  opacity: 0.8;
 }
 
 .create-thread-btn {
@@ -35,8 +41,8 @@
   gap: 3rem;
   margin-bottom: 3rem;
   padding: 2rem;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: 15px;
+  background: #111111;
+  border: 1px solid #333333;
 }
 
 .stat-item {
@@ -52,9 +58,11 @@
 }
 
 .stat-label {
-  color: #666;
+  color: #cccccc;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .posts-list {
@@ -64,17 +72,15 @@
 }
 
 .post-card {
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #111111;
+  border: 1px solid #333333;
   padding: 2rem;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
 }
 
 .post-card:hover {
+  border-color: #ff0000;
   transform: translateY(-2px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 .post-header {
@@ -88,8 +94,9 @@
 .category-badge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  color: white;
+  border-radius: 0;
+  background: #ff0000;
+  color: #000000;
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -97,7 +104,7 @@
 }
 
 .post-title {
-  color: #333;
+  color: #ffffff;
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
   line-height: 1.3;
@@ -107,11 +114,12 @@
   display: flex;
   gap: 1rem;
   font-size: 0.9rem;
-  color: #666;
+  color: #cccccc;
 }
 
 .post-author {
   font-weight: 600;
+  color: #ff0000;
 }
 
 .post-content {
@@ -119,9 +127,10 @@
 }
 
 .post-content p {
-  color: #555;
+  color: #cccccc;
   line-height: 1.6;
   margin: 0;
+  opacity: 0.9;
 }
 
 .post-footer {
@@ -129,7 +138,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #333333;
 }
 
 .post-stats {
@@ -137,7 +146,7 @@
   flex-direction: column;
   gap: 0.25rem;
   font-size: 0.9rem;
-  color: #666;
+  color: #888888;
 }
 
 .replies-count {
@@ -147,9 +156,10 @@
 
 .last-reply {
   font-size: 0.8rem;
+  color: #cccccc;
 }
 
-/* Modal para crear post */
+/* Modal para crear post - Minimalista */
 .create-post-modal {
   position: fixed;
   top: 0;
@@ -168,18 +178,17 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
   position: relative;
-  background: white;
-  border-radius: 15px;
+  background: #111111;
+  border: 1px solid #333333;
   width: 90%;
   max-width: 600px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .modal-header {
@@ -187,20 +196,22 @@
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #333333;
 }
 
 .modal-header h2 {
-  color: #333;
+  color: #ffffff;
   margin: 0;
   font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .close-btn {
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: #666;
+  background: transparent;
+  border: 1px solid #ff0000;
+  font-size: 1.5rem;
+  color: #ff0000;
   cursor: pointer;
   padding: 0;
   width: 40px;
@@ -208,13 +219,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+  border-radius: 0;
+  transition: all 0.2s ease;
 }
 
 .close-btn:hover {
-  background: #f8f9fa;
-  color: #333;
+  background: #ff0000;
+  color: #000000;
 }
 
 .create-post-form {
@@ -228,8 +239,11 @@
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: #ffffff;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
 }
 
 .form-group input,
@@ -237,11 +251,13 @@
 .form-group textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  border: 1px solid #333333;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 0;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
-  font-family: inherit;
+  transition: border-color 0.2s ease;
+  font-family: 'Arial', sans-serif;
 }
 
 .form-group input:focus,
@@ -266,29 +282,26 @@
 .no-posts {
   text-align: center;
   padding: 4rem 2rem;
-  color: #666;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #cccccc;
+  background: #111111;
+  border: 1px solid #333333;
 }
 
 .no-posts h3 {
   margin-bottom: 1rem;
-  color: #333;
+  color: #ffffff;
 }
 
 .loading, .error {
   text-align: center;
   padding: 3rem;
   font-size: 1.2rem;
-}
-
-.error {
   color: #ff0000;
 }
 
 .error h2 {
   margin-bottom: 1rem;
+  color: #ff4444;
 }
 
 /* Responsive */

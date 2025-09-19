@@ -6,3 +6,5 @@
 2025-09-19 00:40:52 [ERROR]: Error conectando a MongoDB | {"error":"bad auth : authentication failed"}
 2025-09-19 00:50:59 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
 2025-09-19 00:51:00 [ERROR]: Error conectando a MongoDB | {"error":"bad auth : authentication failed"}
+2025-09-19 00:57:24 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 00:57:25 [ERROR]: Error conectando a MongoDB | {"error":"bad auth : authentication failed"}

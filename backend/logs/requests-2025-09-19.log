@@ -20,3 +20,7 @@
 2025-09-19 00:50:21 [WARN]: Request completed | {"method":"GET","url":"/albums?page=1&limit=10","statusCode":500,"duration":"2ms","ip":"::1","userId":"anonymous"}
 2025-09-19 00:50:21 [HTTP]: Request started | {"method":"GET","url":"/api/discography/albums?page=1&limit=10","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0","userId":"anonymous"}
 2025-09-19 00:50:21 [WARN]: Request completed | {"method":"GET","url":"/albums?page=1&limit=10","statusCode":500,"duration":"1ms","ip":"::1","userId":"anonymous"}
+2025-09-19 00:58:07 [HTTP]: Request started | {"method":"GET","url":"/","ip":"::1","userAgent":"curl/8.14.1","userId":"anonymous"}
+2025-09-19 00:58:07 [HTTP]: Request completed | {"method":"GET","url":"/","statusCode":200,"duration":"7ms","ip":"::1","userId":"anonymous"}
+2025-09-19 00:58:48 [HTTP]: Request started | {"method":"GET","url":"/api/videos/search?q=twenty+one+pilots","ip":"::1","userAgent":"curl/8.14.1","userId":"anonymous"}
+2025-09-19 00:58:48 [WARN]: Request completed | {"method":"GET","url":"/search?q=twenty+one+pilots","statusCode":500,"duration":"186ms","ip":"::1","userId":"anonymous"}
