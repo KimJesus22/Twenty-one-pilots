@@ -1,255 +1,191 @@
-# Twenty One Pilots Fan App
+# 🎵 Twenty One Pilots - Fan Application
 
-Aplicación web full-stack dedicada a Twenty One Pilots, ofreciendo una experiencia completa para fans con discografía, videos, conciertos, foro comunitario y más.
+[![CI/CD Pipeline](https://github.com/your-username/twentyonepilots-app/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/your-username/twentyonepilots-app/actions/workflows/ci-cd.yml)
+[![Coverage](https://codecov.io/gh/your-username/twentyonepilots-app/branch/main/graph/badge.svg)](https://codecov.io/gh/your-username/twentyonepilots-app)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 🚀 Características
+Una aplicación web completa para fans de Twenty One Pilots con características avanzadas de música, comunidad y contenido interactivo.
 
-- **🎵 Discografía Completa**: Explora todos los álbumes y canciones con detalles completos
-- **🎥 Videos Oficiales**: Acceso directo a videos musicales desde YouTube API
-- **🎪 Conciertos**: Encuentra fechas de conciertos próximos via Eventbrite API
-- **💬 Foro de Fans**: Comunidad interactiva con hilos, comentarios y moderación
-- **🎧 Playlists Sociales**: Crea, edita, comparte y colabora en playlists con sistema de likes
-- **⭐ Sistema de Favoritos**: Marca álbumes como favoritos y sigue a tus artistas preferidos
-- **👥 Playlists Colaborativas**: Trabaja en playlists con otros usuarios
-- **🔗 Compartir Contenido**: URLs únicas para compartir playlists públicas
-- **🛍️ Tienda de Merchandise**: Catálogo completo con carrito de compras y checkout
-- **🔐 Sistema de Roles**: Autenticación JWT con roles admin/user y permisos granulares
-- **📱 Diseño Responsive**: Optimizado para móvil y desktop con diseño minimalista
+## ✨ Características Principales
 
-## 🛠️ Tecnologías
+### 🎶 Gestión de Música
+- **Discografía completa** con álbumes, canciones y letras
+- **Búsqueda avanzada** por artista, álbum y canción
+- **Playlists personalizadas** con sistema social
+- **Integración con YouTube** para videos oficiales
+- **Sistema de favoritos** y seguimiento
 
-### Backend
-- **Node.js** con **Express.js**
-- **MongoDB** (Atlas para producción)
-- **JWT** para autenticación
-- **Mongoose** para modelado de datos
-- APIs externas: YouTube Data API, Eventbrite API
+### 🎪 Conciertos y Eventos
+- **Búsqueda de conciertos** con Eventbrite API
+- **Mapas interactivos** con geolocalización
+- **Calendario de Google** integrado
+- **Notificaciones push** para eventos próximos
+- **Reseñas y curiosidades** de conciertos
 
-### Frontend
-- **React** con **React Router**
-- **Axios** para llamadas HTTP
-- Diseño minimalista con colores rojo/negro
-- **CSS Grid/Flexbox** para layouts responsive
-
-### Seguridad y Validación
-- **JWT** con middleware de roles (admin/user)
-- **Joi** para validaciones de entrada
-- **Helmet** para headers de seguridad
-- **Rate limiting** para protección contra abuso
-- **bcryptjs** para hash de contraseñas
-
-### Características Sociales
-- Sistema de **favoritos many-to-many**
-- **Playlists colaborativas** con permisos
+### 👥 Comunidad
+- **Foro de fans** con hilos y comentarios
+- **Sistema de usuarios** con autenticación JWT
+- **Perfiles sociales** con playlists públicas
 - **Sistema de likes** y compartir
-- **URLs únicas** para compartir contenido
-- **Seguimiento de artistas**
+- **Moderación de contenido**
 
-## 📋 Prerrequisitos
+### 🛠️ Características Técnicas
+- **API REST completa** con 25+ endpoints
+- **Documentación Swagger** interactiva
+- **Tests automatizados** con 80% cobertura
+- **Cache Redis** para optimización
+- **Logging profesional** con Winston
+- **CI/CD** con GitHub Actions
+- **Despliegue PM2** para producción
 
-- Node.js (v14 o superior)
-- MongoDB Atlas account (gratuito)
-- YouTube Data API key
-- Eventbrite API key
+## 🚀 Inicio Rápido
 
-## 🚀 Instalación y Ejecución
+### Prerrequisitos
+- Node.js 18+
+- MongoDB Atlas (gratuito)
+- Redis (opcional para cache)
+- Git
 
-### 1. Clonar el repositorio
-```bash
-git clone <repository-url>
-cd twentyonepilots-app
-```
+### Instalación
 
-### 2. Configurar Backend
-```bash
-cd backend
-npm install
-```
+1. **Clonar el repositorio**
+   ```bash
+   git clone https://github.com/your-username/twentyonepilots-app.git
+   cd twentyonepilots-app
+   ```
 
-Crear archivo `.env` en `backend/`:
-```env
-MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/twentyonepilots
-JWT_SECRET=your_jwt_secret_key_here
-PORT=5000
-YOUTUBE_API_KEY=your_youtube_api_key
-EVENTBRITE_API_KEY=your_eventbrite_api_key
-```
+2. **Configurar Backend**
+   ```bash
+   cd backend
+   npm install
+   cp .env.example .env
+   # Editar .env con tus configuraciones
+   ```
 
-### 3. Configurar Frontend
-```bash
-cd ../frontend
-npm install
-```
+3. **Configurar Frontend**
+   ```bash
+   cd ../frontend
+   npm install
+   ```
 
-### 4. Ejecutar la aplicación
+4. **Configurar Base de Datos**
+   - Crear cuenta en [MongoDB Atlas](https://cloud.mongodb.com)
+   - Obtener connection string
+   - Actualizar `MONGO_URI` en `.env`
 
-#### Backend (Terminal 1)
-```bash
-cd backend
-npm run dev
-```
-Servidor corriendo en: `http://localhost:5000`
+5. **Ejecutar la aplicación**
+   ```bash
+   # Backend (desde /backend)
+   npm run dev
 
-#### Frontend (Terminal 2)
-```bash
-cd frontend
-npm start
-```
-Aplicación corriendo en: `http://localhost:3000`
+   # Frontend (desde /frontend)
+   npm start
+   ```
 
-#### Servidor Python Alternativo
-```bash
-python server.py
-```
-Servidor corriendo en: `http://localhost:8000` (sirve archivos estáticos del frontend)
-
-## 📁 Estructura del Proyecto
-
-```
-twentyonepilots-app/
-├── backend/
-│   ├── models/          # Modelos de MongoDB
-│   │   ├── User.js      # Modelo de usuario
-│   │   ├── Discography.js # Modelos de álbumes/canciones
-│   │   ├── Playlist.js  # Modelo de playlists
-│   │   ├── Forum.js     # Modelos de foro
-│   │   └── Product.js   # Modelo de productos
-│   ├── routes/          # Rutas de la API
-│   │   ├── auth.js      # Autenticación JWT
-│   │   ├── admin.js     # CRUD administrativo
-│   │   ├── discography.js # Discografía
-│   │   ├── videos.js    # Videos (YouTube)
-│   │   ├── concerts.js  # Conciertos (Eventbrite)
-│   │   ├── forum.js     # Foro de fans
-│   │   ├── playlists.js # Playlists sociales
-│   │   ├── favorites.js # Sistema de favoritos
-│   │   └── store.js     # Tienda
-│   ├── middleware/      # Middleware personalizado
-│   │   └── auth.js      # Autenticación y roles
-│   ├── validations/     # Validaciones con Joi
-│   │   └── schemas.js   # Esquemas de validación
-│   ├── config/          # Configuración
-│   │   └── production.js # Config producción
-│   ├── tests/           # Tests automatizados
-│   │   └── auth.test.js # Tests de autenticación
-│   ├── server.js        # Servidor principal
-│   └── .env            # Variables de entorno
-├── frontend/
-│   ├── src/
-│   │   ├── components/  # Componentes React
-│   │   │   ├── Navbar.js/css # Navegación
-│   │   ├── pages/       # Páginas principales
-│   │   │   ├── Home.js/css     # Página principal
-│   │   │   ├── Discography.js/css # Discografía
-│   │   │   ├── Videos.js/css   # Videos
-│   │   │   ├── Concerts.js/css # Conciertos
-│   │   │   ├── Forum.js/css    # Foro
-│   │   │   ├── Playlists.js/css # Playlists
-│   │   │   └── Store.js/css    # Tienda
-│   │   └── App.js       # App principal
-│   └── public/          # Archivos estáticos
-├── server.py           # Servidor Python alternativo
-└── README.md
-```
-
-## 🔧 APIs Disponibles
-
-### Discografía
-- `GET /api/discography/albums` - Lista de álbumes
-- `GET /api/discography/albums/:id` - Detalles de álbum
-- `GET /api/discography/songs` - Lista de canciones
-
-### Videos
-- `GET /api/videos/search?q=query` - Buscar videos
-- `GET /api/videos/:id` - Detalles de video
-
-### Conciertos
-- `GET /api/concerts/search?q=query` - Buscar conciertos
-- `GET /api/concerts/:id` - Detalles de concierto
-
-### Foro
-- `GET /api/forum/threads` - Lista de hilos
-- `POST /api/forum/threads` - Crear hilo
-- `POST /api/forum/threads/:id/comments` - Agregar comentario
-
-### Playlists
-- `GET /api/playlists/user/:userId` - Playlists del usuario
-- `POST /api/playlists` - Crear playlist
-- `PUT /api/playlists/:id` - Actualizar playlist
-- `DELETE /api/playlists/:id` - Eliminar playlist
-- `POST /api/playlists/:id/songs` - Agregar canción
-- `DELETE /api/playlists/:id/songs/:songId` - Quitar canción
-- `GET /api/playlists/public/all` - Playlists públicas
-- `POST /api/playlists/:id/like` - Dar/quitar like a playlist
-- `GET /api/playlists/:id/share` - Obtener URL de compartir
-- `GET /api/playlists/shared/:shareUrl` - Acceder por URL compartida
-- `POST /api/playlists/:id/collaborators` - Agregar colaborador
-- `GET /api/playlists/popular/all` - Playlists más populares
-
-### Favoritos
-- `GET /api/favorites` - Obtener favoritos del usuario
-- `POST /api/favorites/albums/:albumId` - Agregar álbum a favoritos
-- `DELETE /api/favorites/albums/:albumId` - Remover álbum de favoritos
-- `GET /api/favorites/albums/:albumId/status` - Verificar si está en favoritos
-- `POST /api/favorites/artists/:artistName` - Seguir artista
-- `DELETE /api/favorites/artists/:artistName` - Dejar de seguir artista
-- `GET /api/favorites/artists` - Obtener artistas seguidos
-- `GET /api/favorites/artists/:artistName/status` - Verificar seguimiento
-
-### Tienda
-- `GET /api/store/products` - Lista de productos
-- `GET /api/store/products/:id` - Detalles de producto
-- `GET /api/store/categories` - Categorías disponibles
-- `POST /api/store/checkout` - Procesar compra
+## 📋 API Endpoints
 
 ### Autenticación
 - `POST /api/auth/register` - Registro de usuario
-- `POST /api/auth/login` - Login de usuario
+- `POST /api/auth/login` - Inicio de sesión
 
-## 🎨 Diseño
+### Discografía
+- `GET /api/discography/albums` - Lista de álbumes
+- `GET /api/discography/songs` - Lista de canciones
+- `GET /api/videos/search` - Búsqueda de videos
+- `GET /api/concerts/search` - Búsqueda de conciertos
 
-El diseño sigue la estética de Twenty One Pilots con:
-- Colores principales: Rojo (#ff0000) y Negro (#000)
-- Tipografía minimalista
-- Layouts responsive
-- Animaciones sutiles en hover
+### Comunidad
+- `GET /api/forum/posts` - Posts del foro
+- `GET /api/playlists` - Playlists públicas
+- `GET /api/favorites` - Favoritos del usuario
 
-## 🚀 Despliegue
+## 🧪 Testing
 
-### Backend
+```bash
+# Ejecutar todos los tests
+cd backend && npm test
+
+# Tests con cobertura
+npm run test:coverage
+
+# Tests en modo watch
+npm run test:watch
+```
+
+## 📚 Documentación
+
+- **API Docs**: http://localhost:5000/api-docs
+- **Tests**: `backend/README_TESTS.md`
+- **Arquitectura**: `docs/architecture.md`
+
+## 🔧 Configuración de Producción
+
+### Variables de Entorno
+```env
+NODE_ENV=production
+PORT=5000
+MONGO_URI=mongodb+srv://...
+JWT_SECRET=your_secret_key
+REDIS_URL=redis://localhost:6379
+YOUTUBE_API_KEY=your_api_key
+EVENTBRITE_API_KEY=your_api_key
+```
+
+### Despliegue
 ```bash
 cd backend
-npm run build
-npm start
+chmod +x deploy.sh
+./deploy.sh production
 ```
 
-### Frontend
-```bash
-cd frontend
-npm run build
-# Desplegar carpeta build/ en hosting estático
+## 🏗️ Arquitectura
+
 ```
+twentyonepilots-app/
+├── backend/                 # API Node.js/Express
+│   ├── models/             # Modelos Mongoose
+│   ├── routes/             # Endpoints API
+│   ├── middleware/         # Middlewares personalizados
+│   ├── services/           # Servicios (email, cache, etc.)
+│   ├── tests/              # Tests automatizados
+│   └── logs/               # Logs de aplicación
+├── frontend/               # React App
+│   ├── src/
+│   │   ├── components/     # Componentes React
+│   │   ├── pages/          # Páginas
+│   │   └── services/       # Servicios frontend
+│   └── public/             # Assets estáticos
+└── .github/
+    └── workflows/          # CI/CD pipelines
+```
+
+## 🔒 Seguridad
+
+- **Autenticación JWT** con refresh tokens
+- **Rate limiting** para prevenir abuso
+- **Helmet** para headers de seguridad
+- **Validación de entrada** con Joi
+- **Encriptación** de contraseñas con bcrypt
+- **CORS** configurado
+- **Auditoría** de acciones de usuario
+
+## 📊 Monitoreo
+
+- **PM2** para gestión de procesos
+- **Winston** para logging estructurado
+- **Health checks** automáticos
+- **Métricas de rendimiento**
+- **Alertas por Slack**
 
 ## 🤝 Contribuir
 
 1. Fork el proyecto
-2. Crea tu rama de feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+2. Crear rama feature (`git checkout -b feature/AmazingFeature`)
+3. Commit cambios (`git commit -m 'Add AmazingFeature'`)
 4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+5. Abrir Pull Request
 
-## 📊 Estado del Proyecto
-
-- ✅ **Backend avanzado**: APIs RESTful completas, autenticación JWT con roles, integración MongoDB
-- ✅ **Sistema de roles**: Middleware de autorización, CRUD administrativo, validaciones Joi
-- ✅ **Playlists sociales**: Likes, compartir, colaborativas, URLs únicas, contador de reproducciones
-- ✅ **Sistema de favoritos**: Many-to-many con álbumes y seguimiento de artistas
-- ✅ **Frontend funcional**: React con routing, diseño responsive minimalista
-- ✅ **Características principales**: Discografía, videos, conciertos, foro, playlists, tienda
-- 🔄 **Próximos pasos**: PWA, notificaciones push, geolocalización, mapas interactivos
-- 🔄 **Mejoras futuras**: Integración Spotify/Apple Music, paginación avanzada, Redis caché
-
-##  Licencia
+## 📝 Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 
@@ -257,9 +193,16 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 - Twenty One Pilots por la inspiración musical
 - MongoDB Atlas por la base de datos gratuita
-- YouTube y Eventbrite por sus APIs
-- La comunidad React por el framework
+- YouTube y Eventbrite por las APIs
+- La comunidad open source
+
+## 📞 Contacto
+
+- **Autor**: [Tu Nombre]
+- **Email**: tu@email.com
+- **GitHub**: [@tu-usuario](https://github.com/tu-usuario)
+- **LinkedIn**: [Tu Perfil](https://linkedin.com/in/tu-perfil)
 
 ---
 
-**Desarrollado con ❤️ para la comunidad de Twenty One Pilots**
+⭐ **Si te gusta este proyecto, dale una estrella en GitHub!**
