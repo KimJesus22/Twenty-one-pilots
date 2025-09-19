@@ -36,27 +36,23 @@ const Videos = () => {
     fetchVideos();
   };
 
-  const formatDuration = (duration) => {
-    // YouTube duration format: PT4M13S -> 4:13
-    const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
-    if (!match) return duration;
-
-    const hours = (match[1] || '').replace('H', '');
-    const minutes = (match[2] || '').replace('M', '');
-    const seconds = (match[3] || '').replace('S', '');
-
-    let result = '';
-    if (hours) result += `${hours}:`;
-    result += `${minutes || '0'}:${seconds.padStart(2, '0')}`;
-    return result;
-  };
-
   const formatViewCount = (count) => {
     if (!count) return '0';
-    const num = parseInt(count);
-    if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
-    if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
-    return num.toString();
+    if (count >= 1000000) {
+      return (count / 1000000).toFixed(1) + 'M';
+    } else if (count >= 1000) {
+      return (count / 1000).toFixed(1) + 'K';
+    }
+    return count.toString();
+  };
+
+  const formatPublishedDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
   };
 
   if (loading) {
@@ -85,7 +81,7 @@ const Videos = () => {
     <div className="videos">
       <div className="videos-header">
         <h1>Videos de Twenty One Pilots</h1>
-        <p>Descubre videos oficiales, conciertos y contenido exclusivo</p>
+        <p>Descubre los mejores videos musicales y contenido oficial</p>
 
         <form onSubmit={handleSearch} className="search-form">
           <input
@@ -116,33 +112,24 @@ const Videos = () => {
                   alt={video.snippet.title}
                 />
                 <div className="play-overlay">
-                  <span>▶️</span>
+                  <span>▶</span>
                 </div>
               </div>
 
               <div className="video-info">
                 <h3 className="video-title">{video.snippet.title}</h3>
-                <p className="video-description">
-                  {video.snippet.description.length > 100
-                    ? `${video.snippet.description.substring(0, 100)}...`
-                    : video.snippet.description
-                  }
-                </p>
+                <p className="video-description">{video.snippet.description}</p>
 
                 <div className="video-meta">
                   <span className="channel">{video.snippet.channelTitle}</span>
-                  <span className="published">
-                    {new Date(video.snippet.publishedAt).toLocaleDateString()}
+                  <span className="published-date">
+                    {formatPublishedDate(video.snippet.publishedAt)}
                   </span>
                 </div>
 
                 <div className="video-stats">
-                  {video.statistics && (
-                    <>
-                      <span>👁️ {formatViewCount(video.statistics.viewCount)}</span>
-                      <span>👍 {formatViewCount(video.statistics.likeCount)}</span>
-                    </>
-                  )}
+                  <span>👁 {formatViewCount(video.statistics?.viewCount)}</span>
+                  <span>👍 {formatViewCount(video.statistics?.likeCount)}</span>
                 </div>
               </div>
             </div>

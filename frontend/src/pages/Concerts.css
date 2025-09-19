@@ -1,290 +1,199 @@
+/* Concerts - Minimalista negro/rojo */
 .concerts {
   min-height: calc(100vh - 80px);
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
+  background: #000000;
+  color: #ffffff;
 }
 
 .concerts-header {
-  text-align: center;
   margin-bottom: 3rem;
 }
 
 .concerts-header h1 {
   color: #ff0000;
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .concerts-header p {
-  color: #666;
+  color: #cccccc;
   font-size: 1.1rem;
+  opacity: 0.8;
   margin-bottom: 2rem;
 }
 
 .search-form {
   display: flex;
-  justify-content: center;
   gap: 1rem;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 800px;
 }
 
 .search-input {
   flex: 1;
-  padding: 0.75rem 1rem;
-  border: 2px solid #ddd;
-  border-radius: 25px;
+  padding: 0.75rem;
+  border: 1px solid #333333;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 0;
   font-size: 1rem;
-  outline: none;
-  transition: border-color 0.3s ease;
 }
 
 .search-input:focus {
+  outline: none;
   border-color: #ff0000;
 }
 
-.concerts-content {
+.concerts-grid {
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
-  margin-top: 2rem;
-}
-
-.concerts-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .concert-card {
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
+  background: #111111;
+  border: 1px solid #333333;
+  overflow: hidden;
+  transition: all 0.2s ease;
 }
 
 .concert-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-}
-
-.concert-card.selected {
   border-color: #ff0000;
-  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.2);
+  transform: translateY(-2px);
 }
 
 .concert-header {
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
+  align-items: center;
 }
 
-.concert-header h3 {
-  color: #333;
-  font-size: 1.2rem;
-  margin: 0;
-  flex: 1;
-}
-
-.concert-date {
-  background: #ff0000;
-  color: white;
+.status-badge {
   padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
+  border-radius: 0;
+  font-size: 0.8rem;
   font-weight: 600;
-  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-upcoming {
+  background: #ff0000;
+  color: #000000;
+}
+
+.status-today {
+  background: #ff6600;
+  color: #000000;
+}
+
+.status-past {
+  background: #666666;
+  color: #ffffff;
+}
+
+.concert-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.concert-info {
+  padding: 1.5rem;
+}
+
+.concert-title {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.concert-description {
+  color: #cccccc;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .concert-details {
   margin-bottom: 1rem;
 }
 
-.concert-venue strong {
-  color: #333;
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.concert-venue p {
-  color: #666;
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.concert-time,
-.concert-distance {
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.concert-price {
-  margin: 0.5rem 0;
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
   font-size: 0.9rem;
 }
 
-.free-event {
-  color: #28a745;
+.detail-label {
+  color: #cccccc;
   font-weight: 600;
 }
 
-.concert-actions {
+.detail-item span:last-child {
+  color: #ffffff;
+}
+
+.concert-footer {
+  padding: 1rem 1.5rem 1.5rem;
   display: flex;
-  gap: 0.5rem;
-  justify-content: flex-end;
-}
-
-.btn-small {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-}
-
-.map-container {
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  height: fit-content;
-  sticky: top;
-  top: 2rem;
-}
-
-.map-header {
-  padding: 1.5rem;
-  background: linear-gradient(135deg, #ff0000 0%, #333 100%);
-  color: white;
-}
-
-.map-header h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.2rem;
-}
-
-.map-header p {
-  margin: 0;
-  opacity: 0.9;
-  font-size: 0.9rem;
-}
-
-.map-placeholder {
-  height: 400px;
-  background: #f8f9fa;
-  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  position: relative;
 }
 
-.map-content {
-  width: 100%;
-  height: 100%;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.map-mock {
-  background: white;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.map-marker {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.map-info h4 {
-  color: #333;
-  margin-bottom: 0.5rem;
+.price-info {
   font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.map-info p {
-  color: #666;
-  margin-bottom: 0.25rem;
-  font-size: 0.9rem;
+.free-event {
+  color: #00ff00;
 }
 
-.map-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
+.paid-event {
+  color: #ff0000;
 }
 
-.map-empty {
+.no-concerts {
+  grid-column: 1 / -1;
   text-align: center;
-  color: #666;
+  padding: 4rem 2rem;
+  color: #cccccc;
+  background: #111111;
+  border: 1px solid #333333;
 }
 
-.map-empty .map-icon {
-  font-size: 4rem;
+.no-concerts h3 {
   margin-bottom: 1rem;
-  opacity: 0.5;
-}
-
-.map-empty p {
-  font-size: 1.1rem;
-  margin: 0;
+  color: #ffffff;
 }
 
 .loading, .error {
   text-align: center;
   padding: 3rem;
   font-size: 1.2rem;
-}
-
-.error {
   color: #ff0000;
 }
 
 .error h2 {
   margin-bottom: 1rem;
-}
-
-.no-concerts {
-  text-align: center;
-  padding: 3rem;
-  color: #666;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.no-concerts h3 {
-  margin-bottom: 1rem;
-  color: #333;
+  color: #ff4444;
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-  .concerts-content {
-    grid-template-columns: 1fr;
-  }
-
-  .map-container {
-    position: static;
-    order: -1;
-  }
-
-  .map-placeholder {
-    height: 300px;
-  }
-}
-
 @media (max-width: 768px) {
   .concerts {
     padding: 1rem;
@@ -294,41 +203,21 @@
     font-size: 2rem;
   }
 
+  .concerts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .concert-card {
+    margin: 0 auto;
+    max-width: 400px;
+  }
+
   .search-form {
     flex-direction: column;
-    align-items: center;
   }
 
-  .search-input {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .concert-header {
+  .concert-footer {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .concert-actions {
-    flex-direction: column;
-  }
-
-  .map-actions {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .concert-card {
-    padding: 1rem;
-  }
-
-  .map-mock {
-    padding: 1rem;
-  }
-
-  .map-marker {
-    font-size: 2.5rem;
+    gap: 1rem;
   }
 }

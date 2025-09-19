@@ -11,100 +11,51 @@ const Store = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, [filter]);
+  }, []);
 
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      // Simular datos por ahora - en producción vendría de la API
+      // Simular productos por ahora
       const mockProducts = [
         {
-          id: 1,
-          name: "Camiseta Oficial Blurryface",
-          description: "Camiseta de algodón premium con diseño oficial de Blurryface",
-          price: 29.99,
-          originalPrice: 39.99,
+          _id: '1',
+          name: 'Camiseta Oficial Twenty One Pilots',
+          description: 'Camiseta negra con logo oficial de la banda',
+          price: 25.99,
+          originalPrice: 29.99,
           image: null,
-          category: "camisetas",
+          category: 'clothing',
           inStock: true,
-          rating: 4.8,
-          reviews: 156,
-          tags: ["oficial", "blurryface", "algodon"]
+          rating: 4.5,
+          reviews: 128
         },
         {
-          id: 2,
-          name: "Vinilo Trench",
-          description: "Álbum completo en vinilo de alta calidad",
+          _id: '2',
+          name: 'Vinilo - Trench',
+          description: 'Álbum Trench en formato vinilo',
           price: 34.99,
           originalPrice: null,
           image: null,
-          category: "musica",
+          category: 'music',
           inStock: true,
-          rating: 4.9,
-          reviews: 89,
-          tags: ["vinilo", "trench", "coleccionable"]
+          rating: 4.8,
+          reviews: 89
         },
         {
-          id: 3,
-          name: "Taza Twenty One Pilots",
-          description: "Taza de cerámica con diseño único",
-          price: 14.99,
-          originalPrice: 19.99,
+          _id: '3',
+          name: 'Gorra Oficial',
+          description: 'Gorra negra con logo bordado',
+          price: 19.99,
+          originalPrice: 24.99,
           image: null,
-          category: "accesorios",
+          category: 'accessories',
           inStock: false,
-          rating: 4.5,
-          reviews: 67,
-          tags: ["taza", "ceramica", "cafe"]
-        },
-        {
-          id: 4,
-          name: "Poster Scaled and Icy",
-          description: "Poster oficial del álbum Scaled and Icy",
-          price: 9.99,
-          originalPrice: null,
-          image: null,
-          category: "decoracion",
-          inStock: true,
-          rating: 4.7,
-          reviews: 43,
-          tags: ["poster", "scaled", "decoracion"]
-        },
-        {
-          id: 5,
-          name: "Gorra TOP",
-          description: "Gorra ajustable con logo oficial",
-          price: 24.99,
-          originalPrice: 29.99,
-          image: null,
-          category: "accesorios",
-          inStock: true,
-          rating: 4.6,
-          reviews: 112,
-          tags: ["gorra", "ajustable", "oficial"]
-        },
-        {
-          id: 6,
-          name: "CD Completo",
-          description: "Colección completa de CDs oficiales",
-          price: 79.99,
-          originalPrice: 99.99,
-          image: null,
-          category: "musica",
-          inStock: true,
-          rating: 4.9,
-          reviews: 78,
-          tags: ["cd", "coleccion", "completo"]
+          rating: 4.2,
+          reviews: 67
         }
       ];
-
-      let filteredProducts = mockProducts;
-
-      if (filter !== 'all') {
-        filteredProducts = mockProducts.filter(p => p.category === filter);
-      }
-
-      setProducts(filteredProducts);
+      setProducts(mockProducts);
       setError(null);
     } catch (err) {
       console.error('Error cargando productos:', err);
@@ -115,35 +66,31 @@ const Store = () => {
   };
 
   const addToCart = (product) => {
-    setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.id === product.id);
-      if (existingItem) {
-        return prevCart.map(item =>
-          item.id === product.id
+    setCart(prev => {
+      const existing = prev.find(item => item._id === product._id);
+      if (existing) {
+        return prev.map(item =>
+          item._id === product._id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
-      } else {
-        return [...prevCart, { ...product, quantity: 1 }];
       }
+      return [...prev, { ...product, quantity: 1 }];
     });
   };
 
   const removeFromCart = (productId) => {
-    setCart(prevCart => prevCart.filter(item => item.id !== productId));
+    setCart(prev => prev.filter(item => item._id !== productId));
   };
 
-  const updateQuantity = (productId, newQuantity) => {
-    if (newQuantity <= 0) {
+  const updateQuantity = (productId, quantity) => {
+    if (quantity <= 0) {
       removeFromCart(productId);
       return;
     }
-
-    setCart(prevCart =>
-      prevCart.map(item =>
-        item.id === productId
-          ? { ...item, quantity: newQuantity }
-          : item
+    setCart(prev =>
+      prev.map(item =>
+        item._id === productId ? { ...item, quantity } : item
       )
     );
   };
@@ -152,9 +99,10 @@ const Store = () => {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
-  const getTotalItems = () => {
-    return cart.reduce((total, item) => total + item.quantity, 0);
-  };
+  const filteredProducts = products.filter(product => {
+    if (filter === 'all') return true;
+    return product.category === filter;
+  });
 
   const renderStars = (rating) => {
     const stars = [];
@@ -204,85 +152,17 @@ const Store = () => {
       <div className="store-header">
         <div className="header-content">
           <h1>Tienda Oficial</h1>
-          <p>Merchandise exclusivo de Twenty One Pilots</p>
+          <p>Merchandise oficial de Twenty One Pilots</p>
         </div>
-
         <div className="cart-button-container">
           <button
-            className="cart-button"
             onClick={() => setShowCart(true)}
+            className="cart-button"
           >
-            🛒 Carrito ({getTotalItems()})
+            🛒 Carrito ({cart.length})
           </button>
         </div>
       </div>
-
-      {/* Cart Modal */}
-      {showCart && (
-        <div className="cart-modal">
-          <div className="modal-overlay" onClick={() => setShowCart(false)}></div>
-          <div className="modal-content cart-content">
-            <div className="modal-header">
-              <h2>Carrito de Compras</h2>
-              <button
-                className="close-btn"
-                onClick={() => setShowCart(false)}
-              >
-                ×
-              </button>
-            </div>
-
-            <div className="cart-items">
-              {cart.length === 0 ? (
-                <div className="empty-cart">
-                  <p>Tu carrito está vacío</p>
-                </div>
-              ) : (
-                cart.map(item => (
-                  <div key={item.id} className="cart-item">
-                    <div className="cart-item-info">
-                      <h4>{item.name}</h4>
-                      <p>${item.price.toFixed(2)}</p>
-                    </div>
-                    <div className="cart-item-controls">
-                      <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="quantity-btn"
-                      >
-                        -
-                      </button>
-                      <span className="quantity">{item.quantity}</span>
-                      <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="quantity-btn"
-                      >
-                        +
-                      </button>
-                      <button
-                        onClick={() => removeFromCart(item.id)}
-                        className="remove-btn"
-                      >
-                        🗑️
-                      </button>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-
-            {cart.length > 0 && (
-              <div className="cart-footer">
-                <div className="cart-total">
-                  <strong>Total: ${getTotalPrice().toFixed(2)}</strong>
-                </div>
-                <button className="btn btn-primary checkout-btn">
-                  Proceder al Pago
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
 
       <div className="store-filters">
         <div className="filter-buttons">
@@ -290,60 +170,52 @@ const Store = () => {
             className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
             onClick={() => setFilter('all')}
           >
-            Todos los Productos
+            Todos
           </button>
           <button
-            className={`filter-btn ${filter === 'camisetas' ? 'active' : ''}`}
-            onClick={() => setFilter('camisetas')}
+            className={`filter-btn ${filter === 'clothing' ? 'active' : ''}`}
+            onClick={() => setFilter('clothing')}
           >
-            Camisetas
+            Ropa
           </button>
           <button
-            className={`filter-btn ${filter === 'musica' ? 'active' : ''}`}
-            onClick={() => setFilter('musica')}
+            className={`filter-btn ${filter === 'music' ? 'active' : ''}`}
+            onClick={() => setFilter('music')}
           >
             Música
           </button>
           <button
-            className={`filter-btn ${filter === 'accesorios' ? 'active' : ''}`}
-            onClick={() => setFilter('accesorios')}
+            className={`filter-btn ${filter === 'accessories' ? 'active' : ''}`}
+            onClick={() => setFilter('accessories')}
           >
             Accesorios
-          </button>
-          <button
-            className={`filter-btn ${filter === 'decoracion' ? 'active' : ''}`}
-            onClick={() => setFilter('decoracion')}
-          >
-            Decoración
           </button>
         </div>
       </div>
 
       <div className="products-grid">
-        {products.length === 0 ? (
+        {filteredProducts.length === 0 ? (
           <div className="no-products">
-            <h3>No hay productos en esta categoría</h3>
-            <p>Intenta con otra categoría o revisa más tarde.</p>
+            <h3>No hay productos disponibles</h3>
+            <p>Los productos aparecerán aquí cuando estén disponibles.</p>
           </div>
         ) : (
-          products.map(product => (
-            <div key={product.id} className="product-card">
+          filteredProducts.map(product => (
+            <div key={product._id} className="product-card">
               <div className="product-image">
                 {product.image ? (
                   <img src={product.image} alt={product.name} />
                 ) : (
                   <div className="no-image">
-                    <span>🛍️</span>
+                    <span>🎵</span>
                   </div>
                 )}
-
                 {!product.inStock && (
                   <div className="out-of-stock">Agotado</div>
                 )}
-
                 {product.originalPrice && (
                   <div className="discount-badge">
-                    -{Math.round((1 - product.price / product.originalPrice) * 100)}%
+                    -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
                   </div>
                 )}
               </div>
@@ -362,34 +234,98 @@ const Store = () => {
                 </div>
 
                 <div className="product-price">
-                  <span className="current-price">${product.price.toFixed(2)}</span>
+                  <span className="current-price">${product.price}</span>
                   {product.originalPrice && (
-                    <span className="original-price">${product.originalPrice.toFixed(2)}</span>
+                    <span className="original-price">${product.originalPrice}</span>
                   )}
                 </div>
 
-                {product.tags && (
-                  <div className="product-tags">
-                    {product.tags.slice(0, 3).map(tag => (
-                      <span key={tag} className="tag">#{tag}</span>
-                    ))}
-                  </div>
-                )}
+                <div className="product-tags">
+                  <span className="tag">{product.category}</span>
+                </div>
               </div>
 
               <div className="product-actions">
                 <button
-                  className="btn btn-primary add-to-cart-btn"
                   onClick={() => addToCart(product)}
                   disabled={!product.inStock}
+                  className="add-to-cart-btn"
                 >
-                  {product.inStock ? '🛒 Agregar al Carrito' : 'Agotado'}
+                  {product.inStock ? 'Agregar al Carrito' : 'Agotado'}
                 </button>
               </div>
             </div>
           ))
         )}
       </div>
+
+      {showCart && (
+        <div className="cart-modal">
+          <div className="modal-overlay" onClick={() => setShowCart(false)}></div>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>Carrito de Compras</h2>
+              <button
+                onClick={() => setShowCart(false)}
+                className="close-btn"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="cart-content">
+              {cart.length === 0 ? (
+                <div className="empty-cart">
+                  <p>Tu carrito está vacío</p>
+                </div>
+              ) : (
+                <div className="cart-items">
+                  {cart.map(item => (
+                    <div key={item._id} className="cart-item">
+                      <div className="cart-item-info">
+                        <h4>{item.name}</h4>
+                        <p>${item.price}</p>
+                      </div>
+                      <div className="cart-item-controls">
+                        <button
+                          onClick={() => updateQuantity(item._id, item.quantity - 1)}
+                          className="quantity-btn"
+                        >
+                          -
+                        </button>
+                        <span className="quantity">{item.quantity}</span>
+                        <button
+                          onClick={() => updateQuantity(item._id, item.quantity + 1)}
+                          className="quantity-btn"
+                        >
+                          +
+                        </button>
+                        <button
+                          onClick={() => removeFromCart(item._id)}
+                          className="remove-btn"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {cart.length > 0 && (
+              <div className="cart-footer">
+                <div className="cart-total">
+                  <strong>Total: ${getTotalPrice().toFixed(2)}</strong>
+                </div>
+                <button className="checkout-btn">
+                  Proceder al Pago
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

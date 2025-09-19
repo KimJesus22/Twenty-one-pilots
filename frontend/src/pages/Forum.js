@@ -5,7 +5,7 @@ const Forum = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showCreateForm, setShowCreateForm] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const [newPost, setNewPost] = useState({
     title: '',
     content: '',
@@ -19,37 +19,27 @@ const Forum = () => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      // Simular datos por ahora - en producción vendría de la API
+      // Simular datos por ahora
       const mockPosts = [
         {
-          id: 1,
-          title: "Mi experiencia en el concierto de México",
-          content: "Fue increíble ver a Twenty One Pilots en vivo...",
-          author: "fan_mexico",
-          category: "conciertos",
+          _id: '1',
+          title: '¿Cuál es tu canción favorita de Twenty One Pilots?',
+          content: 'Me gustaría saber cuál es la canción que más les gusta de la banda. La mía es "Stressed Out".',
+          category: 'general',
+          author: { username: 'fan123' },
+          createdAt: new Date().toISOString(),
+          replies: 5,
+          lastReply: new Date().toISOString()
+        },
+        {
+          _id: '2',
+          title: 'Nuevo álbum - ¿Qué opinan?',
+          content: 'Acabo de escuchar el nuevo álbum y me parece increíble. ¿Qué les parece a ustedes?',
+          category: 'music',
+          author: { username: 'musiclover' },
+          createdAt: new Date().toISOString(),
           replies: 12,
-          createdAt: "2024-01-15T10:30:00Z",
-          lastReply: "2024-01-16T14:20:00Z"
-        },
-        {
-          id: 2,
-          title: "¿Cuál es su canción favorita?",
-          content: "Para mí es Heathens, ¿y para ustedes?",
-          author: "music_lover",
-          category: "general",
-          replies: 8,
-          createdAt: "2024-01-14T16:45:00Z",
-          lastReply: "2024-01-15T09:15:00Z"
-        },
-        {
-          id: 3,
-          title: "Teoría sobre el significado de Blurryface",
-          content: "He estado pensando mucho sobre el concepto...",
-          author: "deep_thinker",
-          category: "teorias",
-          replies: 25,
-          createdAt: "2024-01-13T20:10:00Z",
-          lastReply: "2024-01-16T11:30:00Z"
+          lastReply: new Date().toISOString()
         }
       ];
       setPosts(mockPosts);
@@ -64,71 +54,45 @@ const Forum = () => {
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
-
-    if (!newPost.title.trim() || !newPost.content.trim()) {
-      alert('Por favor completa todos los campos');
-      return;
-    }
-
     try {
-      // Simular creación de post - en producción iría a la API
+      // Aquí iría la llamada al backend
       const newPostData = {
-        id: Date.now(),
         ...newPost,
-        author: 'usuario_actual', // En producción vendría del contexto de autenticación
-        replies: 0,
+        _id: Date.now().toString(),
+        author: { username: 'fan123' },
         createdAt: new Date().toISOString(),
+        replies: 0,
         lastReply: new Date().toISOString()
       };
 
-      setPosts(prevPosts => [newPostData, ...prevPosts]);
+      setPosts(prev => [newPostData, ...prev]);
       setNewPost({ title: '', content: '', category: 'general' });
-      setShowCreateForm(false);
-
-      alert('¡Hilo creado exitosamente!');
+      setShowCreateModal(false);
     } catch (err) {
       console.error('Error creando post:', err);
-      alert('Error al crear el hilo. Inténtalo de nuevo.');
+      setError(err.message);
     }
   };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const now = new Date();
-    const diffTime = Math.abs(now - date);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-    if (diffDays === 1) {
-      return 'Hoy';
-    } else if (diffDays === 2) {
-      return 'Ayer';
-    } else if (diffDays <= 7) {
-      return `Hace ${diffDays - 1} días`;
-    } else {
-      return date.toLocaleDateString('es-ES');
-    }
+    return date.toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
   };
 
-  const getCategoryColor = (category) => {
-    const colors = {
-      general: '#ff0000',
-      conciertos: '#28a745',
-      teorias: '#007bff',
-      musica: '#6f42c1',
-      merch: '#fd7e14'
+  const getCategoryBadge = (category) => {
+    const categories = {
+      general: { text: 'General', color: '#ff0000' },
+      music: { text: 'Música', color: '#ff6600' },
+      concerts: { text: 'Conciertos', color: '#ffcc00' },
+      merch: { text: 'Merchandise', color: '#66ff00' }
     };
-    return colors[category] || '#6c757d';
-  };
-
-  const getCategoryName = (category) => {
-    const names = {
-      general: 'General',
-      conciertos: 'Conciertos',
-      teorias: 'Teorías',
-      musica: 'Música',
-      merch: 'Merchandise'
-    };
-    return names[category] || 'General';
+    return categories[category] || categories.general;
   };
 
   if (loading) {
@@ -160,39 +124,110 @@ const Forum = () => {
           <h1>Foro de Fans</h1>
           <p>Conecta con otros fans de Twenty One Pilots</p>
         </div>
-
         <button
-          className="btn btn-primary btn-large create-thread-btn"
-          onClick={() => setShowCreateForm(true)}
+          onClick={() => setShowCreateModal(true)}
+          className="btn btn-primary create-thread-btn"
         >
-          ✏️ Crear Nuevo Hilo
+          Nuevo Post
         </button>
       </div>
 
-      {showCreateForm && (
+      <div className="forum-stats">
+        <div className="stat-item">
+          <div className="stat-number">{posts.length}</div>
+          <div className="stat-label">Posts</div>
+        </div>
+        <div className="stat-item">
+          <div className="stat-number">
+            {posts.reduce((total, post) => total + post.replies, 0)}
+          </div>
+          <div className="stat-label">Respuestas</div>
+        </div>
+        <div className="stat-item">
+          <div className="stat-number">
+            {new Set(posts.map(p => p.author.username)).size}
+          </div>
+          <div className="stat-label">Miembros</div>
+        </div>
+      </div>
+
+      <div className="posts-list">
+        {posts.length === 0 ? (
+          <div className="no-posts">
+            <h3>No hay posts aún</h3>
+            <p>Sé el primero en crear un post en el foro.</p>
+            <button
+              onClick={() => setShowCreateModal(true)}
+              className="btn btn-primary"
+            >
+              Crear Primer Post
+            </button>
+          </div>
+        ) : (
+          posts.map(post => {
+            const categoryInfo = getCategoryBadge(post.category);
+            return (
+              <div key={post._id} className="post-card">
+                <div className="post-header">
+                  <div className="post-category">
+                    <span
+                      className="category-badge"
+                      style={{ backgroundColor: categoryInfo.color }}
+                    >
+                      {categoryInfo.text}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="post-content">
+                  <h3 className="post-title">{post.title}</h3>
+                  <p className="post-text">{post.content}</p>
+                </div>
+
+                <div className="post-meta">
+                  <span className="post-author">Por: {post.author.username}</span>
+                  <span className="post-date">{formatDate(post.createdAt)}</span>
+                </div>
+
+                <div className="post-footer">
+                  <div className="post-stats">
+                    <span className="replies-count">{post.replies} respuestas</span>
+                    <span className="last-reply">
+                      Última respuesta: {formatDate(post.lastReply)}
+                    </span>
+                  </div>
+                  <button className="btn btn-secondary">Ver Post</button>
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
+
+      {showCreateModal && (
         <div className="create-post-modal">
-          <div className="modal-overlay" onClick={() => setShowCreateForm(false)}></div>
+          <div className="modal-overlay" onClick={() => setShowCreateModal(false)}></div>
           <div className="modal-content">
             <div className="modal-header">
-              <h2>Crear Nuevo Hilo</h2>
+              <h2>Crear Nuevo Post</h2>
               <button
+                onClick={() => setShowCreateModal(false)}
                 className="close-btn"
-                onClick={() => setShowCreateForm(false)}
               >
-                ×
+                ✕
               </button>
             </div>
 
             <form onSubmit={handleCreatePost} className="create-post-form">
               <div className="form-group">
-                <label htmlFor="title">Título del Hilo</label>
+                <label htmlFor="title">Título</label>
                 <input
                   type="text"
                   id="title"
                   value={newPost.title}
-                  onChange={(e) => setNewPost({...newPost, title: e.target.value})}
-                  placeholder="Escribe un título atractivo..."
+                  onChange={(e) => setNewPost(prev => ({ ...prev, title: e.target.value }))}
                   required
+                  placeholder="Escribe un título descriptivo..."
                 />
               </div>
 
@@ -201,12 +236,11 @@ const Forum = () => {
                 <select
                   id="category"
                   value={newPost.category}
-                  onChange={(e) => setNewPost({...newPost, category: e.target.value})}
+                  onChange={(e) => setNewPost(prev => ({ ...prev, category: e.target.value }))}
                 >
                   <option value="general">General</option>
-                  <option value="conciertos">Conciertos</option>
-                  <option value="teorias">Teorías</option>
-                  <option value="musica">Música</option>
+                  <option value="music">Música</option>
+                  <option value="concerts">Conciertos</option>
                   <option value="merch">Merchandise</option>
                 </select>
               </div>
@@ -216,95 +250,29 @@ const Forum = () => {
                 <textarea
                   id="content"
                   value={newPost.content}
-                  onChange={(e) => setNewPost({...newPost, content: e.target.value})}
-                  placeholder="Comparte tus pensamientos, experiencias o preguntas..."
-                  rows="6"
+                  onChange={(e) => setNewPost(prev => ({ ...prev, content: e.target.value }))}
                   required
-                ></textarea>
+                  placeholder="Escribe tu mensaje..."
+                  rows="6"
+                />
               </div>
 
               <div className="form-actions">
                 <button
                   type="button"
+                  onClick={() => setShowCreateModal(false)}
                   className="btn btn-secondary"
-                  onClick={() => setShowCreateForm(false)}
                 >
                   Cancelar
                 </button>
                 <button type="submit" className="btn btn-primary">
-                  Publicar Hilo
+                  Publicar Post
                 </button>
               </div>
             </form>
           </div>
         </div>
       )}
-
-      <div className="forum-stats">
-        <div className="stat-item">
-          <span className="stat-number">{posts.length}</span>
-          <span className="stat-label">Hilos Activos</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-number">{posts.reduce((sum, post) => sum + post.replies, 0)}</span>
-          <span className="stat-label">Respuestas Totales</span>
-        </div>
-        <div className="stat-item">
-          <span className="stat-number">24</span>
-          <span className="stat-label">Miembros Activos</span>
-        </div>
-      </div>
-
-      <div className="posts-list">
-        {posts.length === 0 ? (
-          <div className="no-posts">
-            <h3>No hay hilos todavía</h3>
-            <p>¡Sé el primero en crear un hilo!</p>
-            <button
-              className="btn btn-primary"
-              onClick={() => setShowCreateForm(true)}
-            >
-              Crear Primer Hilo
-            </button>
-          </div>
-        ) : (
-          posts.map(post => (
-            <div key={post.id} className="post-card">
-              <div className="post-header">
-                <div className="post-category">
-                  <span
-                    className="category-badge"
-                    style={{ backgroundColor: getCategoryColor(post.category) }}
-                  >
-                    {getCategoryName(post.category)}
-                  </span>
-                </div>
-                <h3 className="post-title">{post.title}</h3>
-                <div className="post-meta">
-                  <span className="post-author">👤 {post.author}</span>
-                  <span className="post-date">📅 {formatDate(post.createdAt)}</span>
-                </div>
-              </div>
-
-              <div className="post-content">
-                <p>{post.content.length > 200 ? `${post.content.substring(0, 200)}...` : post.content}</p>
-              </div>
-
-              <div className="post-footer">
-                <div className="post-stats">
-                  <span className="replies-count">💬 {post.replies} respuestas</span>
-                  <span className="last-reply">
-                    Última respuesta: {formatDate(post.lastReply)}
-                  </span>
-                </div>
-                <button className="btn btn-secondary btn-small">
-                  Ver Hilo Completo
-                </button>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
     </div>
   );
 };

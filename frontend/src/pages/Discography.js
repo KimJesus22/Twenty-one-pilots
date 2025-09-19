@@ -15,15 +15,15 @@ const Discography = () => {
   const fetchAlbums = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/discography/albums?page=${page}&limit=10`);
+      const response = await fetch(`http://localhost:5000/api/discography/albums`);
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
 
       const data = await response.json();
-      setAlbums(data.data || []);
-      setTotalPages(data.pagination?.pages || 1);
+      setAlbums(data || []);
+      setTotalPages(1); // Sin paginación por ahora
       setError(null);
     } catch (err) {
       console.error('Error cargando álbumes:', err);
