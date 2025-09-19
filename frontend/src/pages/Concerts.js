@@ -17,7 +17,7 @@ const Concerts = () => {
   const fetchConcerts = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/concerts/search?q=${encodeURIComponent(searchQuery)}`);
+      const response = await fetch(`http://localhost:5000/api/concerts/search?q=${encodeURIComponent(searchQuery)}`);
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);

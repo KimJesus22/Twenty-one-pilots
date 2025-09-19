@@ -15,7 +15,7 @@ const Discography = () => {
   const fetchAlbums = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/discography/albums?page=${page}&limit=10`);
+      const response = await fetch(`http://localhost:5000/api/discography/albums?page=${page}&limit=10`);
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
