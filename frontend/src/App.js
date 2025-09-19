@@ -7,6 +7,7 @@ import Videos from './pages/Videos';
 import Concerts from './pages/Concerts';
 import Forum from './pages/Forum';
 import Playlists from './pages/Playlists';
+import Store from './pages/Store';
 import './App.css';
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
             <Route path="/concerts" element={<Concerts />} />
             <Route path="/forum" element={<Forum />} />
             <Route path="/playlists" element={<Playlists />} />
-            <Route path="/store" element={<div>Tienda - Próximamente</div>} />
+            <Route path="/store" element={<Store />} />
           </Routes>
         </main>
       </div>
