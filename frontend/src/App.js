@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Discography from './pages/Discography';
 import Videos from './pages/Videos';
 import Concerts from './pages/Concerts';
+import Forum from './pages/Forum';
 import './App.css';
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
             <Route path="/discography" element={<Discography />} />
             <Route path="/videos" element={<Videos />} />
             <Route path="/concerts" element={<Concerts />} />
-            <Route path="/forum" element={<div>Foro - Próximamente</div>} />
+            <Route path="/forum" element={<Forum />} />
             <Route path="/playlists" element={<div>Playlists - Próximamente</div>} />
             <Route path="/store" element={<div>Tienda - Próximamente</div>} />
           </Routes>
