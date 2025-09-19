@@ -1,0 +1,160 @@
+{
+  "nav": {
+    "home": "Home",
+    "discography": "Discography",
+    "videos": "Videos",
+    "concerts": "Concerts",
+    "forum": "Forum",
+    "playlists": "Playlists",
+    "store": "Store"
+  },
+  "hero": {
+    "title": "Twenty One Pilots",
+    "subtitle": "Fan Experience",
+    "description": "Dive into the musical universe of Twenty One Pilots. Explore their complete discography, discover exclusive videos, find upcoming concerts and connect with a passionate community.",
+    "explore": "Explore Now",
+    "apiDocs": "API Docs"
+  },
+  "features": {
+    "discography": {
+      "title": "Complete Discography",
+      "description": "Access all Twenty One Pilots albums, songs and lyrics. From their beginnings to their latest releases."
+    },
+    "videos": {
+      "title": "Official Videos",
+      "description": "Watch music videos, live concerts, behind the scenes and exclusive content directly from YouTube."
+    },
+    "concerts": {
+      "title": "Concerts & Events",
+      "description": "Find upcoming concert dates, interactive venue maps and reviews of previous shows."
+    },
+    "community": {
+      "title": "Fan Community",
+      "description": "Join the forum, share your favorite playlists, connect with other fans and participate in passionate discussions."
+    },
+    "playlists": {
+      "title": "Personalized Playlists",
+      "description": "Create and share thematic playlists, discover new songs and save your favorite tracks."
+    },
+    "store": {
+      "title": "Official Store",
+      "description": "Buy official merchandise, records, t-shirts and exclusive Twenty One Pilots items."
+    }
+  },
+  "discography": {
+    "title": "Twenty One Pilots Discography",
+    "description": "Explore all the albums and songs of the band",
+    "noAlbums": "No albums available",
+    "noAlbumsDesc": "Albums will appear here when available.",
+    "songs": "songs",
+    "loading": "Loading albums...",
+    "error": "Error loading albums",
+    "retry": "Retry"
+  },
+  "videos": {
+    "title": "Twenty One Pilots Videos",
+    "description": "Discover the best music videos and official content",
+    "search": "Search videos...",
+    "searchBtn": "Search",
+    "noVideos": "No videos found",
+    "noVideosDesc": "Try a different search.",
+    "loading": "Loading videos...",
+    "error": "Error loading videos",
+    "retry": "Retry"
+  },
+  "concerts": {
+    "title": "Twenty One Pilots Concerts",
+    "description": "Find concert dates and upcoming events",
+    "search": "Search concerts...",
+    "location": "Location (optional)",
+    "searchBtn": "Search",
+    "noConcerts": "No concerts found",
+    "noConcertsDesc": "Try a different search or location.",
+    "loading": "Loading concerts...",
+    "error": "Error loading concerts",
+    "retry": "Retry",
+    "upcoming": "Upcoming",
+    "today": "Today",
+    "past": "Finished",
+    "free": "Free",
+    "paid": "Paid",
+    "details": "View Details"
+  },
+  "forum": {
+    "title": "Fan Forum",
+    "description": "Connect with other Twenty One Pilots fans",
+    "createPost": "Create Post",
+    "noPosts": "No posts yet",
+    "noPostsDesc": "Be the first to create a post in the forum.",
+    "createFirst": "Create First Post",
+    "loading": "Loading forum...",
+    "error": "Error loading forum",
+    "retry": "Retry",
+    "replies": "replies",
+    "lastReply": "Last reply",
+    "by": "By"
+  },
+  "playlists": {
+    "title": "My Playlists",
+    "description": "Create and manage your personalized playlists",
+    "createPlaylist": "Create Playlist",
+    "noPlaylists": "You have no playlists",
+    "noPlaylistsDesc": "Create your first playlist to start organizing your favorite songs.",
+    "createFirst": "Create First Playlist",
+    "loading": "Loading playlists...",
+    "error": "Error loading playlists",
+    "retry": "Retry",
+    "songs": "songs",
+    "public": "Public",
+    "private": "Private",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "store": {
+    "title": "Official Store",
+    "description": "Twenty One Pilots official merchandise",
+    "cart": "Cart",
+    "all": "All",
+    "clothing": "Clothing",
+    "music": "Music",
+    "accessories": "Accessories",
+    "noProducts": "No products available",
+    "noProductsDesc": "Products will appear here when available.",
+    "loading": "Loading store...",
+    "error": "Error loading store",
+    "retry": "Retry",
+    "addToCart": "Add to Cart",
+    "outOfStock": "Out of Stock",
+    "reviews": "reviews",
+    "total": "Total",
+    "checkout": "Checkout",
+    "emptyCart": "Your cart is empty",
+    "remove": "Remove"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous",
+    "page": "Page",
+    "of": "of"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "language": {
+    "select": "Select language",
+    "english": "English",
+    "spanish": "Spanish"
+  }
+}

@@ -13,3 +13,12 @@
 2025-09-19 01:27:19 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
 2025-09-19 01:27:20 [ERROR]: Error conectando a MongoDB | {"error":"bad auth : authentication failed"}
 2025-09-19 01:30:47 [ERROR]: Uncaught Exception | {"error":"EPIPE: broken pipe, write","stack":"Error: EPIPE: broken pipe, write\n    at Socket._write (node:internal/net:63:18)\n    at writeOrBuffer (node:internal/streams/writable:572:12)\n    at _write (node:internal/streams/writable:501:10)\n    at Writable.write (node:internal/streams/writable:510:10)\n    at console.value (node:internal/console/constructor:298:16)\n    at console.log (node:internal/console/constructor:384:26)\n    at c:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\cache.js:38:15\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-09-19 01:37:03 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 01:37:04 [ERROR]: Error conectando a MongoDB | {"error":"bad auth : authentication failed"}
+2025-09-19 01:37:08 [INFO]: SIGINT received, shutting down gracefully
+2025-09-19 01:38:19 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 01:38:20 [ERROR]: Error conectando a MongoDB | {"error":"bad auth : authentication failed"}
+2025-09-19 01:49:15 [INFO]: SIGINT received, shutting down gracefully
+2025-09-19 01:49:22 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 01:49:23 [ERROR]: Error conectando a MongoDB | {"error":"bad auth : authentication failed"}
+2025-09-19 01:49:25 [INFO]: SIGINT received, shutting down gracefully

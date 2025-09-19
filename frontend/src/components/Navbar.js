@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   AppBar,
   Toolbar,
@@ -21,20 +22,22 @@ import {
   ShoppingCart
 } from '@mui/icons-material';
 import { useTheme as useCustomTheme } from '../ThemeProvider';
+import LanguageSelector from './LanguageSelector';
 
 const Navbar = () => {
   const location = useLocation();
   const muiTheme = useTheme();
   const { isDarkMode, toggleTheme } = useCustomTheme();
+  const { t } = useTranslation();
 
   const menuItems = [
-    { path: '/', label: 'Inicio', icon: MusicNote },
-    { path: '/discography', label: 'Discografía', icon: Album },
-    { path: '/videos', label: 'Videos', icon: VideoLibrary },
-    { path: '/concerts', label: 'Conciertos', icon: Event },
-    { path: '/forum', label: 'Foro', icon: Forum },
-    { path: '/playlists', label: 'Playlists', icon: QueueMusic },
-    { path: '/store', label: 'Tienda', icon: ShoppingCart },
+    { path: '/', label: t('nav.home'), icon: MusicNote },
+    { path: '/discography', label: t('nav.discography'), icon: Album },
+    { path: '/videos', label: t('nav.videos'), icon: VideoLibrary },
+    { path: '/concerts', label: t('nav.concerts'), icon: Event },
+    { path: '/forum', label: t('nav.forum'), icon: Forum },
+    { path: '/playlists', label: t('nav.playlists'), icon: QueueMusic },
+    { path: '/store', label: t('nav.store'), icon: ShoppingCart },
   ];
 
   return (
@@ -91,17 +94,21 @@ const Navbar = () => {
           })}
         </Box>
 
-        <IconButton
-          onClick={toggleTheme}
-          sx={{
-            color: muiTheme.palette.text.primary,
-            '&:hover': {
-              color: muiTheme.palette.primary.main,
-            },
-          }}
-        >
-          {isDarkMode ? <Brightness7 /> : <Brightness4 />}
-        </IconButton>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <LanguageSelector />
+          <IconButton
+            onClick={toggleTheme}
+            sx={{
+              color: muiTheme.palette.text.primary,
+              '&:hover': {
+                color: muiTheme.palette.primary.main,
+              },
+            }}
+            title={t('theme.toggle')}
+          >
+            {isDarkMode ? <Brightness7 /> : <Brightness4 />}
+          </IconButton>
+        </Box>
       </Toolbar>
     </AppBar>
   );
