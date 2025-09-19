@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
 const { logger, logRequest, logError } = require('./services/loggerService');
+const setupSwagger = require('./swagger');
 
 // Cargar variables de entorno
 dotenv.config();
@@ -98,6 +99,9 @@ app.use('/api/playlists', playlistsRoutes);
 app.use('/api/store', storeRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/favorites', favoritesRoutes);
+
+// Configurar Swagger
+setupSwagger(app);
 
 // Puerto
 const PORT = process.env.PORT || 5000;
