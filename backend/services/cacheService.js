@@ -5,11 +5,16 @@ class CacheService {
     this.client = null;
     this.isConnected = false;
     this.defaultTTL = 3600; // 1 hora por defecto
-    this.init();
+    // No inicializar automáticamente para evitar errores en desarrollo
   }
 
-  // Inicializar conexión Redis
+  // Inicializar conexión Redis (llamar manualmente cuando sea necesario)
   async init() {
+    // Solo intentar conectar si no hay una conexión existente
+    if (this.client && this.isConnected) {
+      return;
+    }
+
     try {
       this.client = new Redis({
         host: process.env.REDIS_HOST || 'localhost',
@@ -18,7 +23,10 @@ class CacheService {
         db: process.env.REDIS_DB || 0,
         retryDelayOnFailover: 100,
         maxRetriesPerRequest: 3,
-        lazyConnect: true
+        lazyConnect: true,
+        connectTimeout: 5000, // Timeout de 5 segundos
+        commandTimeout: 3000,
+        enableReadyCheck: false
       });
 
       this.client.on('connect', () => {
@@ -35,12 +43,18 @@ class CacheService {
         console.log('🚀 Redis listo para usar');
       });
 
-      // Conectar
-      await this.client.connect();
+      // Intentar conectar con timeout
+      const connectPromise = this.client.connect();
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Redis connection timeout')), 5000)
+      );
+
+      await Promise.race([connectPromise, timeoutPromise]);
 
     } catch (error) {
       console.warn('⚠️  Redis no disponible, funcionando sin caché:', error.message);
       this.isConnected = false;
+      this.client = null; // Limpiar cliente fallido
     }
   }
 
