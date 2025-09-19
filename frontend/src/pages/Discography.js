@@ -15,19 +15,99 @@ const Discography = () => {
   const fetchAlbums = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/discography/albums`);
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      // Intentar conectar con el backend
+      try {
+        const response = await fetch(`http://localhost:5000/api/discography/albums`);
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        setAlbums(data || []);
+        setTotalPages(1);
+        setError(null);
+      } catch (backendError) {
+        console.warn('Backend no disponible, usando datos mock:', backendError.message);
+
+        // Datos mock si el backend no está disponible
+        const mockAlbums = [
+          {
+            _id: '1',
+            title: 'Twenty One Pilots',
+            releaseYear: 2009,
+            coverImage: null,
+            songs: [
+              { title: 'Implicit Demand for Proof', duration: '4:51' },
+              { title: 'Fall Away', duration: '3:58' },
+              { title: 'The Pantaloon', duration: '3:33' }
+            ]
+          },
+          {
+            _id: '2',
+            title: 'Regional at Best',
+            releaseYear: 2011,
+            coverImage: null,
+            songs: [
+              { title: 'Guns for Hands', duration: '4:33' },
+              { title: 'Holding on to You', duration: '4:23' },
+              { title: 'Ode to Sleep', duration: '5:08' }
+            ]
+          },
+          {
+            _id: '3',
+            title: 'Vessel',
+            releaseYear: 2013,
+            coverImage: null,
+            songs: [
+              { title: 'Ode to Sleep', duration: '5:08' },
+              { title: 'Holding on to You', duration: '4:23' },
+              { title: 'Migraine', duration: '4:10' }
+            ]
+          },
+          {
+            _id: '4',
+            title: 'Blurryface',
+            releaseYear: 2015,
+            coverImage: null,
+            songs: [
+              { title: 'Heavydirtysoul', duration: '4:54' },
+              { title: 'Stressed Out', duration: '3:22' },
+              { title: 'Ride', duration: '3:34' }
+            ]
+          },
+          {
+            _id: '5',
+            title: 'Trench',
+            releaseYear: 2018,
+            coverImage: null,
+            songs: [
+              { title: 'Jumpsuit', duration: '3:58' },
+              { title: 'Levitate', duration: '2:33' },
+              { title: 'Morph', duration: '4:19' }
+            ]
+          },
+          {
+            _id: '6',
+            title: 'Scaled and Icy',
+            releaseYear: 2021,
+            coverImage: null,
+            songs: [
+              { title: 'Good Day', duration: '3:24' },
+              { title: 'Choker', duration: '3:43' },
+              { title: 'Shy Away', duration: '2:55' }
+            ]
+          }
+        ];
+
+        setAlbums(mockAlbums);
+        setTotalPages(1);
+        setError(null);
       }
-
-      const data = await response.json();
-      setAlbums(data || []);
-      setTotalPages(1); // Sin paginación por ahora
-      setError(null);
     } catch (err) {
       console.error('Error cargando álbumes:', err);
-      setError(err.message);
+      setError('Error al cargar los álbumes. Revisa la conexión con el backend.');
     } finally {
       setLoading(false);
     }
