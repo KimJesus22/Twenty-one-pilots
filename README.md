@@ -1,255 +1,309 @@
-# 🎵 Twenty One Pilots - Fan Application
+# Twenty One Pilots Fan Platform
 
-[![CI/CD Pipeline](https://github.com/your-username/twentyonepilots-app/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/your-username/twentyonepilots-app/actions/workflows/ci-cd.yml)
-[![Coverage](https://codecov.io/gh/your-username/twentyonepilots-app/branch/main/graph/badge.svg)](https://codecov.io/gh/your-username/twentyonepilots-app)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-20.81.227.69-blue)](http://20.81.227.69/)
-[![API Docs](https://img.shields.io/badge/API%20Docs-Swagger-green)](http://20.81.227.69/api-docs)
+Una plataforma web completa para fans de Twenty One Pilots que incluye discografía, videos, conciertos, foro de fans, playlists personalizadas y tienda de merchandize.
 
-# 🚀 [APLICACIÓN EN VIVO](http://20.81.227.69/) | [📚 DOCUMENTACIÓN API](http://20.81.227.69/api-docs)
+## 🚀 Características
 
-Una aplicación web completa y profesional para fans de Twenty One Pilots, construida con las mejores prácticas de desarrollo moderno. Explora la discografía completa, descubre videos oficiales, encuentra conciertos próximos y conecta con la comunidad de fans.
+### 🎵 Discografía Completa
+- Exploración de todos los álbumes y canciones
+- Letras de canciones con búsqueda avanzada
+- Información detallada de cada track
 
-## ✨ Características Principales
+### 📹 Videos Oficiales
+- Integración con YouTube API
+- Videos musicales y contenido oficial
+- Búsqueda y filtros por artista
 
-### 🎶 **Gestión Musical Completa**
-- **📀 Discografía completa** con álbumes, canciones y letras detalladas
-- **🎵 Sistema de playlists** sociales con likes, compartir y colaboración
-- **⭐ Sistema de favoritos** y seguimiento personalizado de álbumes
-- **🔍 Búsqueda avanzada** por artista, álbum y canción
-- **📊 Estadísticas** de reproducción y popularidad
+### 🎪 Conciertos y Eventos
+- Integración con Eventbrite API
+- Calendario de conciertos próximos
+- Información de venues y tickets
+- Geolocalización y mapas interactivos
 
-### 🎪 **Conciertos y Eventos**
-- **📅 Calendario integrado** con Google Calendar
-- **🗺️ Mapas interactivos** con geolocalización y rutas
-- **📍 Geolocalización** automática para eventos cercanos
-- **⭐ Sistema de reseñas** y calificaciones de conciertos
-- **🎫 Integración con Eventbrite** para tickets oficiales
-- **💡 Curiosidades y anécdotas** de conciertos históricos
+### 👥 Comunidad de Fans
+- Foro de discusión moderado
+- Sistema de usuarios con autenticación JWT
+- Perfiles de usuario personalizables
 
-### 👥 **Comunidad Interactiva**
-- **💬 Foro de fans** con hilos, comentarios y moderación
-- **👤 Sistema de usuarios** con autenticación JWT y roles
-- **🤝 Playlists colaborativas** entre usuarios
-- **🔔 Notificaciones push** y emails automáticos
-- **📱 Perfiles sociales** con actividad y estadísticas
+### 🎶 Playlists Personalizadas
+- Creación de playlists colaborativas
+- Sistema de recomendaciones
+- Compartir con otros fans
 
-### 🛠️ **Características Técnicas Avanzadas**
-- **🔐 Sistema de roles** (admin/user) con middleware de autorización
-- **✅ Validaciones Joi** completas para todos los inputs
-- **📄 Paginación y ordenamiento** avanzado en todas las APIs
-- **⚡ Cache Redis** para optimización de rendimiento
-- **📝 Logging profesional** con Winston y rotación automática
-- **🔄 CI/CD completo** con GitHub Actions y Dependabot
-- **🧪 Tests automatizados** con Jest y 80% cobertura
-- **📚 Documentación Swagger/OpenAPI** interactiva completa
+### 🛍️ Tienda de Merchandize
+- Catálogo de productos oficiales
+- Carrito de compras integrado
+- Sistema de pagos seguro
 
-## 🌐 **APLICACIÓN EN PRODUCCIÓN**
+## 🛠️ Tecnologías Utilizadas
 
-### **🚀 URLs Activas**
-- **🏠 Frontend Principal**: http://20.81.227.69/
-- **🔧 API Backend**: http://20.81.227.69/api
-- **📖 Documentación Swagger**: http://20.81.227.69/api-docs
-- **💚 Health Check**: http://20.81.227.69/health
+### Backend
+- **Node.js** con **Express.js**
+- **MongoDB** con **Mongoose**
+- **JWT** para autenticación
+- **Winston** para logging
+- **Swagger/OpenAPI** para documentación
 
-### **📊 Estado del Sistema**
-- ✅ **Backend**: Node.js/Express corriendo con PM2
-- ✅ **Base de datos**: MongoDB Atlas conectada y operativa
-- ✅ **Cache**: Redis 7 funcionando perfectamente
-- ✅ **API**: 25+ endpoints completamente funcionales
-- ✅ **Documentación**: Swagger con testing interactivo
-- ✅ **Tests**: Cobertura del 80%+ ejecutándose automáticamente
-- ✅ **CI/CD**: GitHub Actions procesando cada commit
-- ✅ **Monitoreo**: Winston logging con rotación diaria
+### Frontend
+- **React** con **React Router**
+- **Material-UI** para componentes
+- **Axios** para llamadas HTTP
+- **PWA** (Progressive Web App)
 
-### **🔧 Tecnologías en Producción**
-- **🖥️ Servidor**: VPS Ubuntu 22.04 con 2GB RAM
-- **⚙️ Runtime**: Node.js 18 LTS optimizado
-- **🗄️ Base de datos**: MongoDB Atlas (cluster gratuito)
-- **💾 Cache**: Redis 7 para alta performance
-- **🎯 Gestión de procesos**: PM2 con clustering
-- **📋 Logging**: Winston con archivos rotativos
-- **🔍 Monitoreo**: PM2 monitoring y health checks
-- **🚀 Despliegue**: Automatizado con GitHub Actions
+### APIs Externas
+- **YouTube Data API v3**
+- **Eventbrite API**
+- **Google Maps API** (opcional)
 
-## 🚀 **Inicio Rápido**
+### DevOps & Calidad
+- **Docker** para contenerización
+- **Jest** para testing
+- **ESLint** para linting
+- **GitHub Actions** para CI/CD
 
-### **🌐 Ver la App en Vivo (Sin Instalación)**
-Solo necesitas un navegador web moderno:
-1. Ve a **[http://20.81.227.69/](http://20.81.227.69/)**
-2. Explora la interfaz de usuario
-3. Revisa la **[documentación API](http://20.81.227.69/api-docs)** para desarrolladores
-4. Prueba los endpoints directamente desde Swagger
+## 📋 Requisitos Previos
 
-### **💻 Desarrollo Local**
-
-#### Prerrequisitos
-- Node.js 18+
-- MongoDB Atlas (gratuito)
-- Redis (opcional para desarrollo local)
+- Node.js 16+
+- MongoDB (local o Atlas)
+- NPM o Yarn
 - Git
 
-#### Instalación
+## 🚀 Instalación y Configuración
 
-1. **Clonar el repositorio**
-   ```bash
-   git clone https://github.com/your-username/twentyonepilots-app.git
-   cd twentyonepilots-app
-   ```
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/tu-usuario/twenty-one-pilots-platform.git
+cd twenty-one-pilots-platform
+```
 
-2. **Configurar Backend**
-   ```bash
-   cd backend
-   npm install
-   cp .env.example .env
-   # Editar .env con tus configuraciones
-   ```
+### 2. Configurar el Backend
 
-3. **Configurar Frontend**
-   ```bash
-   cd ../frontend
-   npm install
-   ```
+```bash
+cd backend
+npm install
+```
 
-4. **Ejecutar la aplicación**
-   ```bash
-   # Backend (desde /backend)
-   npm run dev
+Crear archivo `.env` en la carpeta backend:
+```env
+# Base de datos
+MONGO_URI=mongodb://localhost:27017/twentyonepilots
+# O para MongoDB Atlas:
+# MONGO_URI=mongodb+srv://usuario:password@cluster.mongodb.net/twentyonepilots
 
-   # Frontend (desde /frontend)
-   npm start
-   ```
+# JWT
+JWT_SECRET=tu_jwt_secret_muy_seguro_aqui
+JWT_EXPIRES_IN=7d
 
-## 📋 **API Endpoints**
+# APIs Externas
+YOUTUBE_API_KEY=tu_youtube_api_key
+EVENTBRITE_API_KEY=tu_eventbrite_api_key
 
-### **🔐 Autenticación**
+# Servidor
+PORT=5000
+NODE_ENV=development
+
+# Frontend URL (para CORS)
+FRONTEND_URL=http://localhost:3000
+```
+
+### 3. Configurar el Frontend
+
+```bash
+cd ../frontend
+npm install
+```
+
+### 4. Ejecutar la aplicación
+
+#### Backend:
+```bash
+cd backend
+npm run dev
+```
+
+#### Frontend:
+```bash
+cd frontend
+npm start
+```
+
+La aplicación estará disponible en:
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:5000
+- **Documentación API**: http://localhost:5000/api-docs
+
+## 📖 Documentación de la API
+
+### Endpoints Principales
+
+#### Autenticación
 - `POST /api/auth/register` - Registro de usuario
 - `POST /api/auth/login` - Inicio de sesión
+- `GET /api/auth/profile` - Obtener perfil (requiere auth)
+- `PUT /api/auth/profile` - Actualizar perfil (requiere auth)
 
-### **🎵 Discografía**
+#### Discografía
 - `GET /api/discography/albums` - Lista de álbumes con paginación
 - `GET /api/discography/albums/:id` - Detalles de álbum específico
 - `GET /api/discography/songs` - Lista de canciones
 - `GET /api/discography/songs/:id` - Detalles de canción específica
 
-### **🎥 Videos**
-- `GET /api/videos/search` - Búsqueda de videos en YouTube
+#### Videos
+- `GET /api/videos/search` - Buscar videos en YouTube
 - `GET /api/videos/:id` - Detalles de video específico
+- `GET /api/videos/:id/related` - Videos relacionados
 
-### **🎪 Conciertos**
-- `GET /api/concerts/search` - Búsqueda de conciertos
+#### Conciertos
+- `GET /api/concerts/search` - Buscar conciertos
 - `GET /api/concerts/:id` - Detalles de concierto específico
+- `GET /api/concerts/location/search` - Buscar por ubicación
 
-### **👥 Comunidad**
-- `GET /api/forum/posts` - Posts del foro
-- `GET /api/playlists` - Playlists públicas
-- `GET /api/favorites` - Favoritos del usuario
+### Autenticación
 
-### **🎛️ Administrativo**
-- `POST /api/admin/albums` - Crear álbum (admin)
-- `PUT /api/admin/albums/:id` - Actualizar álbum (admin)
-- `DELETE /api/admin/albums/:id` - Eliminar álbum (admin)
+La API utiliza JWT (JSON Web Tokens) para autenticación. Para acceder a endpoints protegidos:
 
-## 🧪 **Testing**
+1. Obtener token mediante login: `POST /api/auth/login`
+2. Incluir token en header: `Authorization: Bearer <token>`
 
+## 🏗️ Arquitectura
+
+```
+twenty-one-pilots-platform/
+├── backend/
+│   ├── controllers/     # Lógica de negocio
+│   ├── models/         # Modelos de MongoDB
+│   ├── routes/         # Definición de rutas
+│   ├── services/       # Servicios externos (APIs)
+│   ├── middleware/     # Middleware personalizado
+│   ├── utils/          # Utilidades (logger, etc.)
+│   ├── validations/    # Validaciones con Joi
+│   └── tests/          # Tests automatizados
+├── frontend/
+│   ├── src/
+│   │   ├── components/ # Componentes React
+│   │   ├── pages/      # Páginas de la aplicación
+│   │   ├── services/   # Servicios para llamadas API
+│   │   └── utils/      # Utilidades del frontend
+│   └── public/         # Archivos estáticos
+└── docs/               # Documentación adicional
+```
+
+## 🧪 Testing
+
+### Ejecutar Tests
 ```bash
-# Ejecutar todos los tests
-cd backend && npm test
+# Backend
+cd backend
+npm test
 
-# Tests con reporte de cobertura
+# Frontend
+cd frontend
+npm test
+```
+
+### Cobertura de Tests
+```bash
+# Backend
 npm run test:coverage
 
-# Tests en modo watch (desarrollo)
-npm run test:watch
-
-# Tests para CI/CD
-npm run test:ci
+# Frontend
+npm run test:coverage
 ```
 
-### **📊 Cobertura de Tests**
-- **Modelos**: User, Album, Song, Playlist ✅
-- **APIs**: Auth, Discography, Videos, Concerts ✅
-- **Middlewares**: Auth, Cache, Pagination ✅
-- **Servicios**: Notification, Cache, Logger ✅
+## 🚀 Despliegue
 
-## 🏗️ **Arquitectura**
+### Desarrollo
+```bash
+# Backend
+npm run dev
 
-```
-twentyonepilots-app/
-├── backend/                 # 🖥️ API Node.js/Express
-│   ├── models/             # 📊 Modelos Mongoose
-│   ├── routes/             # 🛣️ Endpoints API (25+ rutas)
-│   ├── middleware/         # 🔧 Middlewares personalizados
-│   ├── services/           # ⚙️ Servicios (email, cache, etc.)
-│   ├── tests/              # 🧪 Tests automatizados
-│   ├── config/             # ⚙️ Configuraciones
-│   └── logs/               # 📝 Logs de aplicación
-├── frontend/               # ⚛️ React App
-│   ├── src/
-│   │   ├── components/     # 🧩 Componentes React
-│   │   ├── pages/          # 📄 Páginas
-│   │   └── services/       # 🔗 Servicios frontend
-│   └── public/             # 🖼️ Assets estáticos
-└── .github/
-    └── workflows/          # 🚀 CI/CD pipelines
+# Frontend
+npm start
 ```
 
-## 🔒 **Seguridad**
+### Producción
+```bash
+# Backend
+npm run build
+npm start
 
-- **🔐 Autenticación JWT** con refresh tokens
-- **🛡️ Rate limiting** para prevenir abuso
-- **🎭 Helmet** para headers de seguridad HTTP
-- **✅ Validación de entrada** con Joi
-- **🔒 Encriptación** de contraseñas con bcrypt
-- **🌐 CORS** configurado correctamente
-- **📊 Auditoría** de acciones de usuario
-- **🔍 Sanitización** de inputs
+# Frontend
+npm run build
+npm run serve
+```
 
-## 📊 **Monitoreo y Logging**
+### Docker
+```bash
+# Construir imágenes
+docker-compose build
 
-- **🎯 PM2** para gestión de procesos en producción
-- **📝 Winston** para logging estructurado con rotación
-- **💚 Health checks** automáticos cada 30 segundos
-- **📊 Métricas de rendimiento** en tiempo real
-- **🚨 Alertas por Slack** para errores críticos
-- **📈 Monitoreo de recursos** CPU, memoria, disco
+# Ejecutar servicios
+docker-compose up
 
-## 🤝 **Contribuir**
+# Ejecutar en background
+docker-compose up -d
+```
+
+## 🔒 Seguridad
+
+- **Autenticación JWT** con expiración configurable
+- **Rate limiting** para prevenir ataques DoS
+- **Helmet** para headers de seguridad HTTP
+- **Validación de entrada** con express-validator
+- **Encriptación de contraseñas** con bcrypt
+- **CORS** configurado para orígenes específicos
+
+## 📱 PWA (Progressive Web App)
+
+La aplicación incluye características PWA:
+- **Service Worker** para caching offline
+- **Manifest.json** para instalación
+- **Notificaciones push** (opcional)
+- **Responsive design** para móviles
+
+## ♿ Accesibilidad (WCAG 2.1 AA)
+
+- **Navegación por teclado** completa
+- **Lectores de pantalla** soportados
+- **Alto contraste** disponible
+- **Etiquetas ARIA** en componentes
+- **Skip links** para navegación rápida
+- **Focus management** adecuado
+
+## 🤝 Contribución
 
 1. Fork el proyecto
-2. Crear rama feature (`git checkout -b feature/AmazingFeature`)
-3. Commit cambios (`git commit -m 'Add AmazingFeature'`)
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
 4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abrir Pull Request
+5. Abre un Pull Request
 
-### **📋 Estándares de Código**
-- ESLint configurado para JavaScript moderno
-- Prettier para formateo automático
-- Husky para pre-commit hooks
-- Tests obligatorios para nuevas funcionalidades
+### Guías de Contribución
+- Seguir estándares de código ESLint
+- Escribir tests para nuevas funcionalidades
+- Actualizar documentación según cambios
+- Usar commits convencionales
 
-## 📝 **Licencia**
+## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 
-## 🙏 **Agradecimientos**
+## 👥 Autores
 
-- **Twenty One Pilots** por la inspiración musical
-- **MongoDB Atlas** por la base de datos gratuita
-- **YouTube API** por el contenido de videos
-- **Eventbrite** por la integración de conciertos
-- **La comunidad open source** por las herramientas utilizadas
+- **Tu Nombre** - *Desarrollo inicial* - [Tu GitHub](https://github.com/tu-usuario)
 
-## 📞 **Contacto**
+## 🙏 Agradecimientos
 
-- **👨‍💻 Autor**: [Tu Nombre]
-- **📧 Email**: tu@email.com
-- **🐙 GitHub**: [@tu-usuario](https://github.com/tu-usuario)
-- **💼 LinkedIn**: [Tu Perfil](https://linkedin.com/in/tu-perfil)
-- **🌐 Demo**: http://20.81.227.69/
+- Twenty One Pilots por la inspiración
+- Comunidad de fans por el apoyo
+- Contribuidores de código abierto utilizados
+
+## 📞 Contacto
+
+- **Email**: tu-email@ejemplo.com
+- **GitHub**: [https://github.com/tu-usuario/twenty-one-pilots-platform](https://github.com/tu-usuario)
+- **Discord**: [Servidor de la comunidad](https://discord.gg/ejemplo)
 
 ---
 
-⭐ **¡Si te gusta este proyecto, dale una estrella en GitHub!**
-
-🎵 *"Sometimes quiet is violent"* - Twenty One Pilots 🎵
+⭐ Si te gusta este proyecto, ¡dale una estrella en GitHub!
