@@ -1,8 +1,11 @@
+/* Videos - Minimalista negro/rojo */
 .videos {
   min-height: calc(100vh - 80px);
   padding: 2rem;
   max-width: 1400px;
   margin: 0 auto;
+  background: #000000;
+  color: #ffffff;
 }
 
 .videos-header {
@@ -14,12 +17,15 @@
   color: #ff0000;
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .videos-header p {
-  color: #666;
+  color: #cccccc;
   font-size: 1.1rem;
   margin-bottom: 2rem;
+  opacity: 0.8;
 }
 
 .search-form {
@@ -33,11 +39,13 @@
 .search-input {
   flex: 1;
   padding: 0.75rem 1rem;
-  border: 2px solid #ddd;
-  border-radius: 25px;
+  border: 1px solid #333333;
+  background: #111111;
+  color: #ffffff;
+  border-radius: 0;
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.2s ease;
 }
 
 .search-input:focus {
@@ -52,16 +60,15 @@
 }
 
 .video-card {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #111111;
+  border: 1px solid #333333;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .video-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  border-color: #ff0000;
+  transform: translateY(-2px);
 }
 
 .video-thumbnail {
@@ -74,11 +81,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .video-card:hover .video-thumbnail img {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .play-overlay {
@@ -86,7 +93,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 0, 0, 0.8);
+  background: rgba(255, 0, 0, 0.9);
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -94,7 +101,7 @@
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
 .video-card:hover .play-overlay {
@@ -103,7 +110,7 @@
 
 .play-overlay span {
   font-size: 1.5rem;
-  color: white;
+  color: #ffffff;
 }
 
 .video-info {
@@ -111,7 +118,7 @@
 }
 
 .video-title {
-  color: #333;
+  color: #ffffff;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
   line-height: 1.4;
@@ -122,7 +129,7 @@
 }
 
 .video-description {
-  color: #666;
+  color: #cccccc;
   font-size: 0.9rem;
   margin-bottom: 1rem;
   line-height: 1.4;
@@ -137,11 +144,11 @@
   justify-content: space-between;
   margin-bottom: 0.5rem;
   font-size: 0.85rem;
-  color: #888;
+  color: #888888;
 }
 
 .channel {
-  font-weight: bold;
+  font-weight: 600;
   color: #ff0000;
 }
 
@@ -149,33 +156,33 @@
   display: flex;
   gap: 1rem;
   font-size: 0.85rem;
-  color: #666;
+  color: #888888;
 }
 
 .loading, .error {
   text-align: center;
   padding: 3rem;
   font-size: 1.2rem;
-}
-
-.error {
   color: #ff0000;
 }
 
 .error h2 {
   margin-bottom: 1rem;
+  color: #ff4444;
 }
 
 .no-videos {
   grid-column: 1 / -1;
   text-align: center;
   padding: 3rem;
-  color: #666;
+  color: #cccccc;
+  background: #111111;
+  border: 1px solid #333333;
 }
 
 .no-videos h3 {
   margin-bottom: 1rem;
-  color: #333;
+  color: #ffffff;
 }
 
 /* Responsive */

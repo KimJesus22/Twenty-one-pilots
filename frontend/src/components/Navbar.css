@@ -1,10 +1,10 @@
 .navbar {
-  background-color: #000;
+  background-color: #000000;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-bottom: 1px solid #ff0000;
 }
 
 .navbar-brand .brand-link {
@@ -13,6 +13,8 @@
   font-size: 1.5rem;
   font-weight: bold;
   font-family: 'Arial', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .navbar-menu {
@@ -24,14 +26,20 @@
 }
 
 .navbar-menu .nav-link {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.2s ease;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
 }
 
 .navbar-menu .nav-link:hover {
   color: #ff0000;
+  border-bottom: 2px solid #ff0000;
 }
 
 /* Responsive */
@@ -39,10 +47,14 @@
   .navbar {
     flex-direction: column;
     padding: 1rem;
+    gap: 1rem;
   }
 
   .navbar-menu {
-    margin-top: 1rem;
     gap: 1rem;
+  }
+
+  .navbar-menu .nav-link {
+    font-size: 0.8rem;
   }
 }
