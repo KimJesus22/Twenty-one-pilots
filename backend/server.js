@@ -6,7 +6,8 @@ const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
 const { validationResult } = require('express-validator');
 const logger = require('./utils/logger');
-const setupSwagger = require('./swagger');
+// TODO: Implementar Swagger
+// const setupSwagger = require('./swagger');
 
 // Cargar variables de entorno
 dotenv.config();
@@ -81,39 +82,42 @@ const discographyRoutes = require('./routes/discography');
 const authRoutes = require('./routes/auth');
 const videosRoutes = require('./routes/videos');
 const concertsRoutes = require('./routes/concerts');
-const notificationsRoutes = require('./routes/notifications');
-const locationRoutes = require('./routes/location');
-const lyricsRoutes = require('./routes/lyrics');
-const concertTriviaRoutes = require('./routes/concertTrivia');
-const mapsRoutes = require('./routes/maps');
-const cacheRoutes = require('./routes/cache');
-const forumRoutes = require('./routes/forum');
-const playlistsRoutes = require('./routes/playlists');
-const storeRoutes = require('./routes/store');
-const adminRoutes = require('./routes/admin');
-const favoritesRoutes = require('./routes/favorites');
+// TODO: Implementar rutas faltantes
+// const notificationsRoutes = require('./routes/notifications');
+// const locationRoutes = require('./routes/location');
+// const lyricsRoutes = require('./routes/lyrics');
+// const concertTriviaRoutes = require('./routes/concertTrivia');
+// const mapsRoutes = require('./routes/maps');
+// const cacheRoutes = require('./routes/cache');
+// const forumRoutes = require('./routes/forum');
+// const playlistsRoutes = require('./routes/playlists');
+// const storeRoutes = require('./routes/store');
+// const adminRoutes = require('./routes/admin');
+// const favoritesRoutes = require('./routes/favorites');
 
 // Rutas básicas
 app.get('/', (req, res) => {
   res.json({ message: 'Bienvenido a la API de Twenty One Pilots' });
 });
 
-// Usar rutas
+// Usar rutas implementadas
 app.use('/api/auth', authRoutes);
 app.use('/api/discography', discographyRoutes);
 app.use('/api/videos', videosRoutes);
 app.use('/api/concerts', concertsRoutes);
-app.use('/api/notifications', notificationsRoutes);
-app.use('/api/location', locationRoutes);
-app.use('/api/lyrics', lyricsRoutes);
-app.use('/api/concert-trivia', concertTriviaRoutes);
-app.use('/api/maps', mapsRoutes);
-app.use('/api/cache', cacheRoutes);
-app.use('/api/forum', forumRoutes);
-app.use('/api/playlists', playlistsRoutes);
-app.use('/api/store', storeRoutes);
-app.use('/api/admin', adminRoutes);
-app.use('/api/favorites', favoritesRoutes);
+
+// TODO: Implementar rutas faltantes
+// app.use('/api/notifications', notificationsRoutes);
+// app.use('/api/location', locationRoutes);
+// app.use('/api/lyrics', lyricsRoutes);
+// app.use('/api/concert-trivia', concertTriviaRoutes);
+// app.use('/api/maps', mapsRoutes);
+// app.use('/api/cache', cacheRoutes);
+// app.use('/api/forum', forumRoutes);
+// app.use('/api/playlists', playlistsRoutes);
+// app.use('/api/store', storeRoutes);
+// app.use('/api/admin', adminRoutes);
+// app.use('/api/favorites', favoritesRoutes);
 
 // Middleware para manejar errores de validación
 app.use((req, res, next) => {
@@ -167,8 +171,8 @@ app.use('*', (req, res) => {
   });
 });
 
-// Configurar Swagger
-setupSwagger(app);
+// TODO: Configurar Swagger cuando se implemente
+// setupSwagger(app);
 
 // Puerto
 const PORT = process.env.PORT || 5000;
