@@ -55,8 +55,13 @@ const sanitizeInput = (req, res, next) => {
  * Función recursiva para sanitizar objetos anidados
  */
 function sanitizeObject(obj) {
+  // Verificar que obj sea un objeto válido
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) {
+    return;
+  }
+
   for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
+    if (obj.hasOwnProperty && obj.hasOwnProperty(key)) {
       if (typeof obj[key] === 'string') {
         // Remover caracteres peligrosos
         obj[key] = obj[key]
@@ -145,8 +150,13 @@ const preventNoSQLInjection = (req, res, next) => {
   };
 
   const checkObject = (obj) => {
+    // Verificar que obj sea un objeto válido
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) {
+      return false;
+    }
+
     for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
+      if (obj.hasOwnProperty && obj.hasOwnProperty(key)) {
         if (checkValue(obj[key])) {
           return true;
         }

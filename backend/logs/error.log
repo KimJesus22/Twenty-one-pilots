@@ -1,0 +1,38 @@
+2025-09-19 17:06:06 [ERROR]: Error obteniendo álbumes: Album.paginate is not a function
+TypeError: Album.paginate is not a function
+    at getAlbums (C:\Users\gomez\Documents\TOP\backend\controllers\discographyController.js:28:34)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:157:13)
+    at middleware (C:\Users\gomez\Documents\TOP\backend\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-09-19 17:06:06 [ERROR]: Error obteniendo álbumes: Album.paginate is not a function
+TypeError: Album.paginate is not a function
+    at getAlbums (C:\Users\gomez\Documents\TOP\backend\controllers\discographyController.js:28:34)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:157:13)
+    at middleware (C:\Users\gomez\Documents\TOP\backend\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-09-19 17:06:12 [ERROR]: Error en sanitización de entrada: obj.hasOwnProperty is not a function
+TypeError: obj.hasOwnProperty is not a function
+    at sanitizeObject (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:59:13)
+    at sanitizeInput (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:16:7)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:342:13)
+    at C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:291:5)
+    at securityLogger (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:260:3)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:342:13)
+2025-09-19 17:06:12 [ERROR]: Error en sanitización de entrada: obj.hasOwnProperty is not a function
+TypeError: obj.hasOwnProperty is not a function
+    at sanitizeObject (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:59:13)
+    at sanitizeInput (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:16:7)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:342:13)
+    at C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:291:5)
+    at securityLogger (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:260:3)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:342:13)

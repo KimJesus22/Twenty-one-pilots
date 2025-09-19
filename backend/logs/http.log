@@ -1,2 +1,45 @@
 2025-09-19 16:09:32 [INFO]: Conectado a MongoDB | {"database":"twentyonepilots"}
 2025-09-19 17:02:48 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 17:05:40 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 17:06:06 [ERROR]: Error obteniendo álbumes: Album.paginate is not a function
+TypeError: Album.paginate is not a function
+    at getAlbums (C:\Users\gomez\Documents\TOP\backend\controllers\discographyController.js:28:34)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:157:13)
+    at middleware (C:\Users\gomez\Documents\TOP\backend\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-09-19 17:06:06 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 17:06:06 [ERROR]: Error obteniendo álbumes: Album.paginate is not a function
+TypeError: Album.paginate is not a function
+    at getAlbums (C:\Users\gomez\Documents\TOP\backend\controllers\discographyController.js:28:34)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:157:13)
+    at middleware (C:\Users\gomez\Documents\TOP\backend\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-09-19 17:06:06 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 17:06:12 [ERROR]: Error en sanitización de entrada: obj.hasOwnProperty is not a function
+TypeError: obj.hasOwnProperty is not a function
+    at sanitizeObject (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:59:13)
+    at sanitizeInput (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:16:7)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:342:13)
+    at C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:291:5)
+    at securityLogger (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:260:3)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:342:13)
+2025-09-19 17:06:12 [WARN]: Request sospechoso detectado: | {"path":"/api/concerts/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 17:06:12 [ERROR]: Error en sanitización de entrada: obj.hasOwnProperty is not a function
+TypeError: obj.hasOwnProperty is not a function
+    at sanitizeObject (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:59:13)
+    at sanitizeInput (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:16:7)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:342:13)
+    at C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:291:5)
+    at securityLogger (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:260:3)
+    at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:342:13)
+2025-09-19 17:06:12 [WARN]: Request sospechoso detectado: | {"path":"/api/concerts/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
