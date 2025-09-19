@@ -22,3 +22,11 @@
 2025-09-19 01:49:22 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
 2025-09-19 01:49:23 [ERROR]: Error conectando a MongoDB | {"error":"bad auth : authentication failed"}
 2025-09-19 01:49:25 [INFO]: SIGINT received, shutting down gracefully
+2025-09-19 01:52:15 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 01:52:16 [INFO]: Conectado a MongoDB | {"database":"twentyonepilots"}
+2025-09-19 02:01:21 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 12:23:00 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 12:23:01 [INFO]: Conectado a MongoDB | {"database":"twentyonepilots"}
+2025-09-19 13:09:59 [INFO]: SIGINT received, shutting down gracefully
+2025-09-19 13:10:33 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 13:10:34 [INFO]: Conectado a MongoDB | {"database":"twentyonepilots"}

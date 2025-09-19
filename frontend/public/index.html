@@ -1,43 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Aplicación completa para fans de Twenty One Pilots - discografía, videos, conciertos y comunidad" />
+    <meta name="author" content="Twenty One Pilots Fan App" />
+    <meta name="keywords" content="Twenty One Pilots, música, conciertos, videos, fans, comunidad" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Accesibilidad Meta Tags -->
+    <meta name="accessibility-features" content="keyboard-navigation, screen-reader-support, high-contrast-support, reduced-motion-support" />
+    <meta name="accessibility-hazards" content="none" />
+    <meta name="accessibility-summary" content="Esta aplicación web es completamente accesible con soporte para navegación por teclado, lectores de pantalla, alto contraste y movimiento reducido." />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Twenty One Pilots Fan App" />
+    <meta property="og:description" content="Aplicación completa para fans de Twenty One Pilots" />
+    <meta property="og:image" content="%PUBLIC_URL%/logo512.png" />
+    <meta property="og:url" content="https://twentyonepilots.app" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Twenty One Pilots Fan App" />
+    <meta name="twitter:description" content="Aplicación completa para fans de Twenty One Pilots" />
+    <meta name="twitter:image" content="%PUBLIC_URL%/logo512.png" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="TOP Fan App" />
+
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="msapplication-TileImage" content="%PUBLIC_URL%/logo192.png" />
+    <meta name="msapplication-config" content="%PUBLIC_URL%/browserconfig.xml" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Preconnect para optimización -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- DNS prefetch para APIs externas -->
+    <link rel="dns-prefetch" href="//www.googleapis.com" />
+    <link rel="dns-prefetch" href="//www.eventbriteapi.com" />
+
+    <title>Twenty One Pilots Fan App</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <!-- Skip to main content link (visible when focused) -->
+    <a href="#main-content" class="skip-link" id="skip-to-main">
+      Saltar al contenido principal
+    </a>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <!-- Screen reader announcements -->
+    <div id="sr-announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <noscript>
+      <div style="text-align: center; padding: 2rem; background: #ff0000; color: #000000; font-weight: bold;">
+        Esta aplicación requiere JavaScript para funcionar correctamente.
+        Por favor, habilita JavaScript en tu navegador.
+      </div>
+    </noscript>
+
+    <div id="root" role="application" aria-label="Twenty One Pilots Fan Application"></div>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+
+              // Check for updates
+              registration.addEventListener('updatefound', function() {
+                const newWorker = registration.installing;
+                if (newWorker) {
+                  newWorker.addEventListener('statechange', function() {
+                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                      // New version available
+                      const updateMessage = document.createElement('div');
+                      updateMessage.innerHTML = `
+                        <div style="position: fixed; top: 20px; right: 20px; background: #ff0000; color: #000000; padding: 1rem; border-radius: 0; z-index: 10000; max-width: 300px;">
+                          <p style="margin: 0 0 1rem 0; font-weight: bold;">¡Nueva versión disponible!</p>
+                          <button onclick="window.location.reload()" style="background: #000000; color: #ffffff; border: none; padding: 0.5rem 1rem; cursor: pointer;">Actualizar</button>
+                        </div>
+                      `;
+                      document.body.appendChild(updateMessage);
+                    }
+                  });
+                }
+              });
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+
+      // Handle PWA install prompt
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        deferredPrompt = e;
+
+        // Show install button or prompt
+        const installButton = document.createElement('button');
+        installButton.innerHTML = '📱 Instalar App';
+        installButton.style.cssText = `
+          position: fixed;
+          bottom: 20px;
+          left: 20px;
+          background: #ff0000;
+          color: #000000;
+          border: none;
+          padding: 0.75rem 1.5rem;
+          border-radius: 0;
+          font-weight: bold;
+          cursor: pointer;
+          z-index: 1000;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        `;
+
+        installButton.addEventListener('click', function() {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then(function(choiceResult) {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the install prompt');
+            }
+            deferredPrompt = null;
+            document.body.removeChild(installButton);
+          });
+        });
+
+        document.body.appendChild(installButton);
+
+        // Auto-hide after 10 seconds
+        setTimeout(() => {
+          if (document.body.contains(installButton)) {
+            document.body.removeChild(installButton);
+          }
+        }, 10000);
+      });
+
+      // Announce app ready to screen readers
+      window.addEventListener('load', function() {
+        setTimeout(() => {
+          const announcement = document.getElementById('sr-announcements');
+          if (announcement) {
+            announcement.textContent = 'Aplicación Twenty One Pilots cargada completamente. Navega usando Tab o los atajos de teclado.';
+          }
+        }, 1000);
+      });
+    </script>
   </body>
 </html>

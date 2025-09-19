@@ -36,38 +36,63 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
+    <main className="home">
       {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-overlay"></div>
+      <section
+        className="hero"
+        role="banner"
+        aria-labelledby="hero-title"
+      >
+        <div className="hero-overlay" aria-hidden="true"></div>
         <div className="hero-content">
-          <h1 className="hero-title">
+          <h1
+            id="hero-title"
+            className="hero-title"
+          >
             <span className="hero-title-main">Twenty One Pilots</span>
             <span className="hero-title-sub">Fan Experience</span>
           </h1>
-          <p className="hero-description">
+          <p
+            className="hero-description"
+            aria-describedby="hero-description"
+          >
             Sumérgete en el universo musical de Twenty One Pilots.
             Explora su discografía completa, descubre videos exclusivos,
             encuentra conciertos próximos y conecta con una comunidad apasionada.
           </p>
-          <div className="hero-buttons">
+          <div
+            className="hero-buttons"
+            role="group"
+            aria-label="Acciones principales"
+          >
             <button
               className="btn btn-primary btn-large"
               onClick={() => scrollToSection('features')}
+              aria-describedby="explore-description"
             >
               Explorar Ahora
             </button>
+            <span id="explore-description" className="sr-only">
+              Navegar a la sección de características principales
+            </span>
             <button
               className="btn btn-secondary btn-large"
               onClick={() => window.open('http://20.81.227.69/api-docs', '_blank')}
+              aria-describedby="api-description"
             >
               Ver API Docs
             </button>
+            <span id="api-description" className="sr-only">
+              Abrir documentación de la API en una nueva ventana
+            </span>
           </div>
         </div>
-        <div className="hero-scroll">
-          <span>Desplázate para explorar</span>
-          <div className="scroll-arrow">↓</div>
+        <div
+          className="hero-scroll"
+          aria-label="Indicador de desplazamiento"
+        >
+          <span aria-hidden="true">Desplázate para explorar</span>
+          <div className="scroll-arrow" aria-hidden="true">↓</div>
         </div>
       </section>
 
@@ -213,7 +238,7 @@ const Home = () => {
           </div>
         </div>
       </footer>
-    </div>
+    </main>
   );
 };
 
