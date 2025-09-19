@@ -63,7 +63,7 @@ jobs:
         npm run test:ci
 
     - name: 'Upload coverage reports'
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v5
       with:
         file: ./backend/coverage/lcov.info
         flags: backend
