@@ -1,5 +1,5 @@
 # Multi-stage build for Twenty One Pilots Backend
-FROM node:18-alpine AS base
+FROM node:24-alpine AS base
 
 # Install dumb-init for proper signal handling
 RUN apk add --no-cache dumb-init
