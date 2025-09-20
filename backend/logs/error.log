@@ -113,3 +113,47 @@ TypeError: Converting circular structure to JSON
   "method": "GET",
   "ip": "::ffff:127.0.0.1"
 }
+2025-09-20 11:30:12 [31m[31merror[31m[39m: [31m[31m❌ Error obteniendo detalles del video[31m[39m {
+  "videoId": "popular",
+  "error": "ID de video inválido",
+  "duration": 1
+}
+2025-09-20 11:30:23 [31m[31merror[31m[39m: [31m[31m❌ Error obteniendo detalles del video[31m[39m {
+  "videoId": "popular",
+  "error": "ID de video inválido",
+  "duration": 1
+}
+2025-09-20 11:30:24 [31m[31merror[31m[39m: [31m[31m❌ Error obteniendo detalles del video[31m[39m {
+  "videoId": "popular",
+  "error": "ID de video inválido",
+  "duration": 0
+}
+2025-09-20 11:31:21 [31m[31merror[31m[39m: [31m[31m❌ Error obteniendo detalles del video[31m[39m {
+  "videoId": "popular",
+  "error": "ID de video inválido",
+  "duration": 0
+}
+2025-09-20 11:31:22 [31m[31merror[31m[39m: [31m[31m❌ Error obteniendo detalles del video[31m[39m {
+  "videoId": "popular",
+  "error": "ID de video inválido",
+  "duration": 0
+}
+2025-09-20 11:37:55 [31m[31merror[31m[39m: [31m[31m❌ DIAGNÓSTICO: Se está llamando getVideoDetails con "popular" en lugar de getPopularVideos[31m[39m {
+  "videoId": "popular",
+  "stack": "Error\n    at getVideoDetails (c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\videoController.js:62:16)\n    at Layer.handleRequest (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at middleware (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-validator\\lib\\middlewares\\check.js:16:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+}
+2025-09-20 11:37:55 [31m[31merror[31m[39m: [31m[31m❌ Error obteniendo detalles del video[31m[39m {
+  "videoId": "popular",
+  "error": "ID de video inválido",
+  "duration": 1
+}
+2025-09-20 11:38:51 [31m[31merror[31m[39m: [31m[31m❌ DIAGNÓSTICO: Se está llamando getVideoDetails con "popular" en lugar de getPopularVideos[31m[39m {
+  "videoId": "popular",
+  "stack": "Error\n    at getVideoDetails (c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\videoController.js:62:16)\n    at Layer.handleRequest (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:157:13)\n    at middleware (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-validator\\lib\\middlewares\\check.js:16:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+}
+2025-09-20 11:38:51 [31m[31merror[31m[39m: [31m[31m❌ Error obteniendo detalles del video[31m[39m {
+  "videoId": "popular",
+  "error": "ID de video inválido",
+  "duration": 0
+}
+2025-09-20 11:42:12 [31m[31merror[31m[39m: [31m[31m❌ Error: Puerto 5000 ya está en uso[31m[39m

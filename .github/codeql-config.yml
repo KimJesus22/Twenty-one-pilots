@@ -1,0 +1,23 @@
+disable-default-queries: false
+queries:
+  - uses: security-and-quality
+  - uses: security-experimental
+
+paths-ignore:
+  - node_modules
+  - frontend/node_modules
+  - backend/node_modules
+  - .git
+  - dist
+  - build
+  - coverage
+  - logs
+
+paths:
+  - backend/src
+  - backend/controllers
+  - backend/routes
+  - backend/middleware
+  - frontend/src
+  - frontend/components
+  - frontend/pages

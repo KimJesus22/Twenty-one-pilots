@@ -3288,3 +3288,3090 @@ TypeError: nodemailer.createTransporter is not a function
     }
   ]
 }
+2025-09-20 12:10:23 [31merror[39m: [31muncaughtException: app.use() requires a middleware function[39m
+[31mTypeError: app.use() requires a middleware function[39m
+[31m    at Function.use (C:\Users\gomez\Documents\TOP\backend\node_modules\express\lib\application.js:213:11)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:242:5)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m {
+  "error": {},
+  "stack": "TypeError: app.use() requires a middleware function\n    at Function.use (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express\\lib\\application.js:213:11)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:242:5)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:10:23 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 12132,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80756736,
+      "heapTotal": 39636992,
+      "heapUsed": 25970112,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 67832.562
+  },
+  "trace": [
+    {
+      "column": 11,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express\\lib\\application.js",
+      "function": "Function.use",
+      "line": 213,
+      "method": "use",
+      "native": false
+    },
+    {
+      "column": 5,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 242,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:12:01 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:5:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:5:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:12:01 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 3592,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80953344,
+      "heapTotal": 39112704,
+      "heapUsed": 25619216,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 67930.812
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 5,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:12:22 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:5:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:5:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:12:22 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 20160,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 81211392,
+      "heapTotal": 40161280,
+      "heapUsed": 25390440,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 67951.406
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 5,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:12:34 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:5:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:5:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:12:34 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 11868,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 79794176,
+      "heapTotal": 38588416,
+      "heapUsed": 26147376,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 67963.875
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 5,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:12:48 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:5:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:5:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:12:48 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 9136,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 81141760,
+      "heapTotal": 40161280,
+      "heapUsed": 25578648,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 67977.125
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 5,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:13:02 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:5:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:5:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:13:02 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 8424,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80064512,
+      "heapTotal": 38850560,
+      "heapUsed": 26170816,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 67991.64
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 5,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:13:29 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:5:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:5:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:13:29 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 4836,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 79990784,
+      "heapTotal": 38596608,
+      "heapUsed": 26840880,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68018.39
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 5,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:13:47 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:5:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:5:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:13:47 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 15784,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 79929344,
+      "heapTotal": 38588416,
+      "heapUsed": 26212160,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68036.359
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 5,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:14:01 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:5:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:5:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:14:01 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 10848,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80084992,
+      "heapTotal": 38588416,
+      "heapUsed": 26031400,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68050.234
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 5,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:14:13 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:5:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:5:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:14:13 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 6680,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80191488,
+      "heapTotal": 38596608,
+      "heapUsed": 26789200,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68062.843
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 5,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:14:33 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:5:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:5:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:14:33 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 10852,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 79728640,
+      "heapTotal": 38588416,
+      "heapUsed": 26215608,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68082.796
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 5,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:15:50 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:145:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:145:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:15:50 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 2312,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80326656,
+      "heapTotal": 38588416,
+      "heapUsed": 26180904,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68159.296
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 145,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:16:05 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:145:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:145:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:16:05 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 4008,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80117760,
+      "heapTotal": 38588416,
+      "heapUsed": 26222072,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68174.062
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 145,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:16:20 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:145:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:145:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:16:20 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 18384,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 79757312,
+      "heapTotal": 38588416,
+      "heapUsed": 26200896,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68189.218
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 145,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:16:33 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:145:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:145:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:16:33 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 5932,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80044032,
+      "heapTotal": 38596608,
+      "heapUsed": 26743064,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68202.218
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 145,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:16:49 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:145:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:145:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:16:49 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 14700,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80359424,
+      "heapTotal": 38588416,
+      "heapUsed": 26211088,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68218.437
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 145,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:17:04 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:145:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:145:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:17:04 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 10372,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80146432,
+      "heapTotal": 38596608,
+      "heapUsed": 26808296,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68233.718
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 145,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:17:20 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:227:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:227:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:17:20 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 12684,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80031744,
+      "heapTotal": 38850560,
+      "heapUsed": 26196368,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68249.281
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 227,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:17:37 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:227:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:227:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:17:37 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 10492,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80199680,
+      "heapTotal": 38850560,
+      "heapUsed": 26222936,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68266.062
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 227,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:17:51 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:227:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:227:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:17:51 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 8500,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 80429056,
+      "heapTotal": 38850560,
+      "heapUsed": 26071592,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68280.25
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 227,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 12:18:10 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:227:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:227:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 12:18:10 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 16604,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 79867904,
+      "heapTotal": 38588416,
+      "heapUsed": 26245240,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 68299.203
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 227,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-20 13:54:27 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:227:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:227:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sat Sep 20 2025 13:54:27 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 18456,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 75735040,
+      "heapTotal": 38850560,
+      "heapUsed": 26481696,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 74076.39
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 227,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}

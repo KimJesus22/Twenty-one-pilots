@@ -1,0 +1,186 @@
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      target: development
+    container_name: twentyonepilots-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/twentyonepilots_dev
+      - REDIS_URL=redis://redis:6379
+      - ELASTICSEARCH_NODE=http://elasticsearch:9200
+      - JWT_SECRET=dev_jwt_secret_key
+      - YOUTUBE_API_KEY=${YOUTUBE_API_KEY}
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+      - redis
+      - elasticsearch
+    networks:
+      - twentyonepilots
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Frontend React App
+  frontend:
+    build:
+      context: ./frontend
+      target: development
+    container_name: twentyonepilots-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000/api
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - twentyonepilots
+    restart: unless-stopped
+
+  # MongoDB Database
+  mongodb:
+    image: mongo:6.0
+    container_name: twentyonepilots-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=twentyonepilots_dev
+    volumes:
+      - mongodb_data:/data/db
+      - ./backend/seed.js:/docker-entrypoint-initdb.d/seed.js:ro
+    networks:
+      - twentyonepilots
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: twentyonepilots-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - twentyonepilots
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # Elasticsearch for search
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: twentyonepilots-elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - ELASTIC_PASSWORD=changeme
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - twentyonepilots
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Kibana for Elasticsearch monitoring (optional)
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: twentyonepilots-kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - twentyonepilots
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+  # Prometheus for metrics collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: twentyonepilots-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - twentyonepilots
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+  # Grafana for dashboards
+  grafana:
+    image: grafana/grafana:latest
+    container_name: twentyonepilots-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      - prometheus
+    networks:
+      - twentyonepilots
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+volumes:
+  mongodb_data:
+  redis_data:
+  elasticsearch_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  twentyonepilots:
+    driver: bridge
