@@ -168,3 +168,63 @@ TypeError: Converting circular structure to JSON
 2025-09-19 18:43:40 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
 2025-09-19 18:44:06 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
 2025-09-19 18:44:06 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:45:04 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:45:04 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:45:29 [WARN]: Request sospechoso detectado: | {"path":"/health","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 18:46:03 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 18:46:29 [INFO]: External API YouTube search SUCCESS | {"query":"twenty one pilots","resultsCount":10}
+2025-09-19 18:46:29 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 18:47:34 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:47:34 [WARN]: Request sospechoso detectado: | {"path":"/favicon.ico","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:47:49 [INFO]: External API YouTube search SUCCESS | {"resultsCount":10}
+2025-09-19 18:47:49 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:49:24 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:49:24 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:49:36 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:49:36 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:49:47 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:49:47 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:49:59 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:49:59 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:50:26 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:50:26 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:50:47 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:50:47 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:51:00 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:51:00 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:52:10 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:52:10 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:53:11 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:53:11 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:53:43 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:53:50 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:54:22 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:57:03 [INFO]: SIGINT recibido, cerrando servidor gracefully
+2025-09-19 19:00:43 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 19:00:43 [INFO]: 📊 Sistema de métricas y monitoreo iniciado
+2025-09-19 19:00:43 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 19:01:13 [WARN]: 🚨 ALERTA WARNING: Uso de Memoria Alto Uso de heap: 88.34% (29.45MB de 33.34MB)
+2025-09-19 19:01:13 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:01:43 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 92.14% (29.79MB de 32.34MB)
+2025-09-19 19:01:43 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:02:04 [WARN]: Request sospechoso detectado: | {"path":"/health/detailed","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 19:02:21 [WARN]: Request sospechoso detectado: | {"path":"/metrics","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 19:02:32 [WARN]: Request sospechoso detectado: | {"path":"/api/forum/threads","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 19:02:43 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 91.81% (30.38MB de 33.09MB)
+2025-09-19 19:02:43 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:02:43 [INFO]: External API YouTube search SUCCESS | {"query":"twenty","resultsCount":10}
+2025-09-19 19:02:43 [WARN]: 🚨 ALERTA WARNING: Latencia Alta Detectada Endpoint GET /search excedió 500ms (594.66ms)
+2025-09-19 19:02:43 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:02:43 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 19:02:57 [WARN]: Request sospechoso detectado: | {"path":"/metrics","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 19:03:11 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 19:03:11 [INFO]: 📊 Sistema de métricas y monitoreo iniciado
+2025-09-19 19:03:11 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 19:03:22 [WARN]: Request sospechoso detectado: | {"path":"/metrics","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 19:03:35 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 19:03:36 [INFO]: 📊 Sistema de métricas y monitoreo iniciado
+2025-09-19 19:03:36 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 19:03:46 [WARN]: Request sospechoso detectado: | {"path":"/metrics","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 19:03:59 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 19:03:59 [INFO]: 📊 Sistema de métricas y monitoreo iniciado
+2025-09-19 19:03:59 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}

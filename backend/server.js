@@ -1,3 +1,4 @@
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -11,6 +12,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const logger = require('./utils/logger');
+const crypto = require('crypto');
 const {
   sanitizeInput,
   validateMongoId,
@@ -18,6 +20,16 @@ const {
   advancedRateLimit,
   securityLogger
 } = require('./middleware/security');
+const {
+  responseTimeMiddleware,
+  connectionMiddleware,
+  measureDatabaseQuery,
+  recordError,
+  getMetrics,
+  getMetricsJSON,
+  getHealthMetrics,
+  startPeriodicMonitoring
+} = require('./services/metricsService');
 // TODO: Implementar Swagger
 // const setupSwagger = require('./swagger');
 
@@ -28,7 +40,37 @@ const app = express();
 
 // Seguridad y Middleware
 app.use(helmet({
-  crossOriginResourcePolicy: { policy: "cross-origin" }
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  // Deshabilitar cabeceras que revelan información del servidor
+  poweredBy: false,
+  // Configurar CSP estricta
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:"],
+      fontSrc: ["'self'"],
+      connectSrc: ["'self'"],
+      objectSrc: ["'none'"],
+      frameSrc: ["'none'"],
+      baseUri: ["'self'"],
+      formAction: ["'self'"],
+      upgradeInsecureRequests: [],
+    },
+  },
+  // Prevenir clickjacking
+  frameguard: { action: 'deny' },
+  // Prevenir MIME sniffing
+  noSniff: true,
+  // Configurar referrer policy
+  referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+  // Configurar HSTS (solo en producción)
+  hsts: process.env.NODE_ENV === 'production' ? {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: true
+  } : false,
 }));
 
 // Rate limiting
@@ -52,10 +94,109 @@ const authLimiter = rateLimit({
 app.use('/api/auth/', authLimiter);
 
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'http://localhost:3000',
-  credentials: true
+  origin: function (origin, callback) {
+    // Permitir requests sin origin (como mobile apps o curl)
+    if (!origin) return callback(null, true);
+
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
+      'https://localhost:3000',
+      'https://127.0.0.1:3000'
+    ];
+
+    // En producción, agregar el dominio real
+    if (process.env.NODE_ENV === 'production' && process.env.FRONTEND_URL) {
+      allowedOrigins.push(process.env.FRONTEND_URL);
+    }
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      logger.warn('Origen no permitido detectado:', { origin, ip: origin });
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  exposedHeaders: ['X-Total-Count', 'X-Rate-Limit-Remaining'],
+  maxAge: 86400 // 24 horas
 }));
 app.use(express.json({ limit: '10mb' })); // Limitar tamaño de payload
+
+// Middleware CSRF personalizado (más ligero que csurf)
+const csrfProtection = (req, res, next) => {
+  // Solo aplicar CSRF a métodos que modifican datos
+  if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method)) {
+    const csrfToken = req.headers['x-csrf-token'] || req.body._csrf;
+
+    if (!csrfToken) {
+      logger.warn('Token CSRF faltante:', {
+        path: req.path,
+        method: req.method,
+        ip: req.ip
+      });
+      return res.status(403).json({
+        success: false,
+        message: 'Token CSRF requerido'
+      });
+    }
+
+    // En desarrollo, aceptar cualquier token (simplificado)
+    // En producción, validar contra token generado por el servidor
+    if (process.env.NODE_ENV === 'production') {
+      // Aquí iría la validación real del token CSRF
+      const expectedToken = crypto.createHash('sha256')
+        .update(process.env.CSRF_SECRET || 'default-secret')
+        .update(req.session?.id || 'no-session')
+        .digest('hex');
+
+      if (csrfToken !== expectedToken) {
+        logger.warn('Token CSRF inválido:', {
+          path: req.path,
+          method: req.method,
+          ip: req.ip
+        });
+        return res.status(403).json({
+          success: false,
+          message: 'Token CSRF inválido'
+        });
+      }
+    }
+  }
+
+  next();
+};
+
+// Aplicar CSRF solo a rutas sensibles
+app.use('/api/playlists', csrfProtection);
+app.use('/api/forum', csrfProtection);
+app.use('/api/store', csrfProtection);
+
+// Middleware adicional para reducir fingerprinting
+app.use((req, res, next) => {
+  // Remover cabeceras que revelan información del servidor
+  res.removeHeader('X-Powered-By');
+  res.removeHeader('Server');
+  res.removeHeader('X-AspNet-Version');
+
+  // Agregar cabeceras de seguridad adicionales
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+
+  // Cabeceras para prevenir MIME sniffing y otros ataques
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
+
+  next();
+});
+
+// Middleware de métricas y monitoreo
+app.use(responseTimeMiddleware); // Medir tiempo de respuesta
+app.use(connectionMiddleware); // Contar conexiones activas
 
 // Middleware de logging de requests
 app.use((req, res, next) => {
@@ -125,6 +266,39 @@ app.get('/health', (req, res) => {
   res.json(health);
 });
 
+// Métricas de Prometheus
+app.get('/metrics', async (req, res) => {
+  try {
+    res.set('Content-Type', 'text/plain; charset=utf-8');
+    const metrics = await getMetrics();
+    res.send(metrics);
+  } catch (error) {
+    logger.error('Error obteniendo métricas:', error);
+    res.status(500).send('# Error obteniendo métricas\n');
+  }
+});
+
+// Métricas en formato JSON
+app.get('/metrics/json', (req, res) => {
+  res.json(getMetricsJSON());
+});
+
+// Endpoint detallado de métricas de salud
+app.get('/health/detailed', (req, res) => {
+  const healthMetrics = getHealthMetrics();
+  const health = {
+    ...healthMetrics,
+    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
+    status: mongoose.connection.readyState === 1 ? 'healthy' : 'unhealthy'
+  };
+
+  if (health.status === 'unhealthy') {
+    res.status(503);
+  }
+
+  res.json(health);
+});
+
 // Usar rutas implementadas
 app.use('/api/auth', authRoutes);
 app.use('/api/discography', discographyRoutes);
@@ -164,6 +338,9 @@ app.use((req, res, next) => {
 
 // Middleware de manejo de errores global
 app.use((error, req, res, next) => {
+  // Registrar error en métricas
+  recordError('unhandled_error', req.path, error);
+
   logger.error('Error no manejado', {
     error: error.message,
     stack: error.stack,
@@ -365,6 +542,10 @@ function startServers() {
 
 // Iniciar servidores
 startServers();
+
+// Iniciar monitoreo periódico de métricas
+startPeriodicMonitoring();
+logger.info('📊 Sistema de métricas y monitoreo iniciado');
 
 // Manejo global de errores no capturados
 process.on('uncaughtException', (error) => {
