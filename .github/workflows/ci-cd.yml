@@ -383,7 +383,7 @@ jobs:
         images: ${{ env.DOCKER_REGISTRY }}/twentyonepilots-backend:${{ github.sha }}
 
     - name: 'Configure Application Insights'
-      uses: azure/CLI@v1
+      uses: azure/CLI@v2
       with:
         inlineScript: |
           az monitor app-insights component create \
@@ -394,7 +394,7 @@ jobs:
             --kind web
 
     - name: 'Setup monitoring and alerts'
-      uses: azure/CLI@v1
+      uses: azure/CLI@v2
       with:
         inlineScript: |
           # Crear alertas para métricas críticas
