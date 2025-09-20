@@ -159,7 +159,7 @@ jobs:
         echo "\`\`\`" >> ../DEPENDENCY_REPORT.md
 
     - name: 'Commit dependency report'
-      uses: stefanzweifel/git-auto-commit-action@v4
+      uses: stefanzweifel/git-auto-commit-action@v6
       with:
         commit_message: '📊 Update dependency security report'
         file_pattern: 'DEPENDENCY_REPORT.md'
