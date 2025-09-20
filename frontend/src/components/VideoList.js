@@ -31,8 +31,8 @@ const VideoList = ({ videos, onVideoSelect, selectedVideoId }) => {
             >
               <div className="video-thumbnail">
                 <img
-                  src={video.snippet?.thumbnails?.medium?.url || video.snippet?.thumbnails?.default?.url}
-                  alt={video.snippet?.title || 'Video'}
+                  src={video.thumbnail || video.snippet?.thumbnails?.medium?.url || video.snippet?.thumbnails?.default?.url}
+                  alt={video.title || video.snippet?.title || 'Video'}
                   onError={(e) => {
                     e.target.src = '/placeholder-video.png';
                   }}
@@ -43,11 +43,11 @@ const VideoList = ({ videos, onVideoSelect, selectedVideoId }) => {
               </div>
 
               <div className="video-info">
-                <h4 className="video-title">{video.snippet?.title || 'Título no disponible'}</h4>
-                <p className="video-channel">{video.snippet?.channelTitle || 'Canal desconocido'}</p>
+                <h4 className="video-title">{video.title || video.snippet?.title || 'Título no disponible'}</h4>
+                <p className="video-channel">{video.channelTitle || video.snippet?.channelTitle || 'Canal desconocido'}</p>
                 <div className="video-meta">
                   <span className="video-date">
-                    {formatPublishedDate(video.snippet?.publishedAt)}
+                    {formatPublishedDate(video.publishedAt || video.snippet?.publishedAt)}
                   </span>
                   {video.statistics && (
                     <div className="video-stats">

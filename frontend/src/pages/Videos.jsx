@@ -1,7 +1,31 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import YouTubePlayer from '../components/YouTubePlayer';
-import { searchVideos, getPopularVideos, formatViewCount, formatPublishedDate } from '../api/videos';
+import { searchVideos, getPopularVideos, formatViewCount, formatPublishedDate, normalizeVideo } from '../api/videos';
+import { filterValidVideos, findFirstValidVideo, canSelectVideo } from '../utils/videoGuards';
 import './Videos.css';
+
+/**
+ * Invariant para verificar que un video esté normalizado
+ */
+function assertNormalized(video, context) {
+  if (!video) {
+    console.warn(`⚠️ Video nulo en ${context}`);
+    return;
+  }
+  if (typeof video !== 'object') {
+    console.error(`❌ Video no es objeto en ${context}:`, video);
+    throw new Error(`Video no es objeto en ${context}`);
+  }
+  if (typeof video.id !== 'string') {
+    console.error(`❌ Video.id no es string en ${context}:`, video);
+    throw new Error(`Video.id no es string en ${context}`);
+  }
+  if (typeof video.title !== 'string') {
+    console.error(`❌ Video.title no es string en ${context}:`, video);
+    throw new Error(`Video.title no es string en ${context}`);
+  }
+}
+
 
 const Videos = () => {
   // Estados principales
@@ -9,6 +33,12 @@ const Videos = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  // Guard para evitar doble carga en StrictMode (desarrollo)
+  const hasLoadedRef = useRef(false);
+
+  // Traba para evitar múltiples selecciones iniciales
+  const hasSelectedInitialRef = useRef(false);
 
   // Estados de búsqueda y filtros
   const [searchQuery, setSearchQuery] = useState('Twenty One Pilots');
@@ -24,8 +54,44 @@ const Videos = () => {
 
   // Cargar videos iniciales al montar el componente
   useEffect(() => {
-    loadInitialVideos();
+    if (!hasLoadedRef.current) {
+      hasLoadedRef.current = true;
+      loadInitialVideos();
+    }
   }, []);
+
+  // Invariants temporales: Detectar cualquier violación de títulos válidos
+  useEffect(() => {
+    if (selectedVideo) {
+      if (selectedVideo.title === 'Título no disponible' ||
+          selectedVideo.title === 'Sin título' ||
+          !selectedVideo.title ||
+          selectedVideo.title.trim() === '') {
+        console.error('❌ INVARIANT VIOLADO: Título inválido en selectedVideo', {
+          selectedVideo,
+          stack: new Error().stack
+        });
+        // Temporal: alert para debugging
+        alert(`Título inválido detectado: "${selectedVideo.title}"`);
+      }
+    }
+  }, [selectedVideo]);
+
+  // Invariant para videos en lista
+  useEffect(() => {
+    videos.forEach((video, index) => {
+      if (video.title === 'Título no disponible' ||
+          video.title === 'Sin título' ||
+          !video.title ||
+          video.title.trim() === '') {
+        console.error('❌ INVARIANT VIOLADO: Título inválido en lista de videos', {
+          video,
+          index,
+          stack: new Error().stack
+        });
+      }
+    });
+  }, [videos]);
 
   /**
    * Carga los videos iniciales (populares de Twenty One Pilots)
@@ -41,11 +107,20 @@ const Videos = () => {
       const result = await searchVideos(searchQuery, { limit: 12 });
 
       if (result.data && result.data.length > 0) {
-        setVideos(result.data);
-        setSelectedVideo(result.data[0]); // Seleccionar el primer video
-        setHasNextPage(result.pagination?.hasNextPage || false);
-        setHasPrevPage(result.pagination?.hasPrevPage || false);
-        console.log(`✅ Cargados ${result.data.length} videos`);
+        const validVideos = filterValidVideos(result.data);
+        if (validVideos.length > 0) {
+          setVideos(validVideos);
+          const normalized = normalizeVideo(validVideos[0]);
+          assertNormalized(normalized, 'loadInitialVideos');
+          setSelectedVideo(normalized); // Seleccionar el primer video válido normalizado
+          hasSelectedInitialRef.current = true; // Marcar que ya se seleccionó inicialmente
+          setHasNextPage(result.pagination?.hasNextPage || false);
+          setHasPrevPage(result.pagination?.hasPrevPage || false);
+          console.log(`✅ Cargados ${validVideos.length} videos válidos de ${result.data.length} total`);
+        } else {
+          console.log('🔄 No se encontraron videos válidos, cargando videos populares...');
+          await loadPopularVideos();
+        }
       } else {
         // Si no hay resultados, intentar videos populares
         console.log('🔄 No se encontraron videos específicos, cargando videos populares...');
@@ -66,9 +141,16 @@ const Videos = () => {
   const loadPopularVideos = useCallback(async () => {
     try {
       const result = await getPopularVideos({ limit: 12 });
-      setVideos(result.data || []);
-      if (result.data && result.data.length > 0) {
-        setSelectedVideo(result.data[0]);
+      const validVideos = filterValidVideos(result.data || []);
+      setVideos(validVideos);
+      if (validVideos.length > 0) {
+        const normalized = normalizeVideo(validVideos[0]);
+        assertNormalized(normalized, 'loadPopularVideos');
+        if (!hasSelectedInitialRef.current) {
+          setSelectedVideo(normalized);
+          hasSelectedInitialRef.current = true;
+        }
+        // Siempre actualizar videos disponibles, pero solo seleccionar si no hay selección inicial
       }
     } catch (err) {
       console.error('❌ Error cargando videos populares:', err);
@@ -82,45 +164,35 @@ const Videos = () => {
   const loadFallbackVideos = useCallback(async () => {
     console.log('🔄 Cargando videos de respaldo...');
 
+    // Fallback con datos reales mínimos pero válidos
     const fallbackVideos = [
       {
         id: { videoId: 'UprcpdwuwCg' },
-        snippet: {
-          title: 'Twenty One Pilots - Stressed Out [Official Video]',
-          description: 'Official music video for "Stressed Out" by Twenty One Pilots.',
-          channelTitle: 'Fueled By Ramen',
-          publishedAt: '2016-04-27T16:00:00Z',
-          thumbnails: {
-            medium: { url: 'https://img.youtube.com/vi/UprcpdwuwCg/mqdefault.jpg' }
-          }
-        },
-        statistics: {
-          viewCount: '1500000000',
-          likeCount: '12000000',
-          commentCount: '500000'
-        }
+        title: 'Twenty One Pilots - Stressed Out',
+        description: 'Video oficial de Twenty One Pilots',
+        thumbnail: 'https://img.youtube.com/vi/UprcpdwuwCg/mqdefault.jpg',
+        publishedAt: '2016-04-27T16:00:00Z',
+        channelTitle: 'Fueled By Ramen'
       },
       {
         id: { videoId: 'hTWKbfoikeg' },
-        snippet: {
-          title: 'Twenty One Pilots - Heathens (from Suicide Squad: The Album)',
-          description: 'Official music video for "Heathens" by Twenty One Pilots.',
-          channelTitle: 'Atlantic Records',
-          publishedAt: '2016-06-21T16:00:00Z',
-          thumbnails: {
-            medium: { url: 'https://img.youtube.com/vi/hTWKbfoikeg/mqdefault.jpg' }
-          }
-        },
-        statistics: {
-          viewCount: '2000000000',
-          likeCount: '15000000',
-          commentCount: '800000'
-        }
+        title: 'Twenty One Pilots - Heathens',
+        description: 'Video oficial de Twenty One Pilots',
+        thumbnail: 'https://img.youtube.com/vi/hTWKbfoikeg/mqdefault.jpg',
+        publishedAt: '2016-06-21T16:00:00Z',
+        channelTitle: 'Atlantic Records'
       }
     ];
 
-    setVideos(fallbackVideos);
-    setSelectedVideo(fallbackVideos[0]);
+    const validVideos = filterValidVideos(fallbackVideos);
+    setVideos(validVideos);
+
+    if (validVideos.length > 0 && !hasSelectedInitialRef.current) {
+      const normalized = normalizeVideo(validVideos[0]);
+      assertNormalized(normalized, 'loadFallbackVideos');
+      setSelectedVideo(normalized);
+      hasSelectedInitialRef.current = true;
+    }
   }, []);
 
   /**
@@ -145,14 +217,19 @@ const Videos = () => {
       const result = await searchVideos(query, { limit: 12 });
 
       if (result.data && result.data.length > 0) {
-        setVideos(result.data);
-        setSelectedVideo(result.data[0]);
+        const validVideos = filterValidVideos(result.data);
+        setVideos(validVideos);
+        const normalized = normalizeVideo(validVideos[0]);
+        assertNormalized(normalized, 'handleSearch');
+        setSelectedVideo(normalized);
+        // Nueva búsqueda: permitir reselección
+        hasSelectedInitialRef.current = true;
         setHasNextPage(result.pagination?.hasNextPage || false);
         setHasPrevPage(result.pagination?.hasPrevPage || false);
         setSearchQuery(query);
-        console.log(`✅ Encontrados ${result.data.length} videos para "${query}"`);
+        console.log(`✅ Encontrados ${validVideos.length} videos válidos para "${query}"`);
       } else {
-        setError(`No se encontraron videos para "${query}"`);
+        setError(`No se encontraron videos válidos para "${query}"`);
         setVideos([]);
         setSelectedVideo(null);
       }
@@ -168,8 +245,15 @@ const Videos = () => {
    * Maneja la selección de un video
    */
   const handleVideoSelect = useCallback((video) => {
-    console.log('🎬 Video seleccionado:', video.snippet?.title);
-    setSelectedVideo(video);
+    if (!canSelectVideo(video)) {
+      console.warn('⚠️ Intento de seleccionar video inválido:', video);
+      return;
+    }
+
+    const normalizedVideo = normalizeVideo(video);
+    assertNormalized(normalizedVideo, 'handleVideoSelect');
+    console.log('🎬 Video seleccionado:', normalizedVideo.title);
+    setSelectedVideo(normalizedVideo);
   }, []);
 
   /**
@@ -335,14 +419,14 @@ const Videos = () => {
                 <div
                   key={video.id?.videoId || video.id}
                   className={`video-card ${
-                    selectedVideo?.id?.videoId === video.id?.videoId ? 'selected' : ''
+                    selectedVideo?.id === (video.id?.videoId || video.id) ? 'selected' : ''
                   }`}
                   onClick={() => handleVideoSelect(video)}
                 >
                   <div className="video-thumbnail">
                     <img
-                      src={video.snippet?.thumbnails?.medium?.url || '/placeholder-video.png'}
-                      alt={video.snippet?.title || 'Video'}
+                      src={video.thumbnail || '/placeholder-video.png'}
+                      alt={video.title || 'Video'}
                       loading="lazy"
                     />
                     <div className="play-overlay">
@@ -352,15 +436,15 @@ const Videos = () => {
 
                   <div className="video-info">
                     <h3 className="video-title">
-                      {video.snippet?.title || 'Título no disponible'}
+                      {video.title || 'Título no disponible'}
                     </h3>
 
                     <div className="video-meta">
                       <span className="channel-name">
-                        {video.snippet?.channelTitle || 'Canal desconocido'}
+                        {video.channelTitle || 'Canal desconocido'}
                       </span>
                       <span className="publish-date">
-                        {formatPublishedDate(video.snippet?.publishedAt)}
+                        {formatPublishedDate(video.publishedAt)}
                       </span>
                     </div>
 

@@ -20,19 +20,28 @@ const LanguageSelector = () => {
     { code: 'es', name: t('language.spanish'), flag: '🇪🇸' },
   ];
 
+  // Normalizar el idioma detectado (es-MX -> es)
+  const normalizeLanguage = (lang) => {
+    if (lang.startsWith('es')) return 'es';
+    if (lang.startsWith('en')) return 'en';
+    return 'en'; // fallback
+  };
+
   const handleLanguageChange = (event) => {
     const selectedLanguage = event.target.value;
     i18n.changeLanguage(selectedLanguage);
   };
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+  // Usar el idioma normalizado para el Select
+  const currentLanguageCode = normalizeLanguage(i18n.language);
+  const currentLanguage = languages.find(lang => lang.code === currentLanguageCode) || languages[0];
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
       <LanguageIcon sx={{ color: theme.palette.text.secondary }} />
       <FormControl size="small" sx={{ minWidth: 120 }}>
         <Select
-          value={i18n.language}
+          value={currentLanguageCode}
           onChange={handleLanguageChange}
           sx={{
             color: theme.palette.text.primary,

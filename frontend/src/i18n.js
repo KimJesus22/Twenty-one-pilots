@@ -13,6 +13,9 @@ const resources = {
   es: {
     translation: esTranslations,
   },
+  'es-MX': {
+    translation: esTranslations, // Usar las mismas traducciones que 'es'
+  },
 };
 
 i18n

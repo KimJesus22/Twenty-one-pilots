@@ -4,6 +4,22 @@ import { formatViewCount, formatPublishedDate } from '../api/videos';
 import './VideoPlayer.css';
 
 const VideoPlayer = ({ video }) => {
+
+  // Función helper para normalizar el acceso a propiedades del video
+  const getVideoProperty = (video, propertyPath) => {
+    if (!video) return null;
+
+    // Caso 1: Video de búsqueda (tiene propiedades directamente)
+    const directValue = propertyPath.split('.').reduce((obj, key) => obj?.[key], video);
+    if (directValue) return directValue;
+
+    // Caso 2: Video específico (viene de items[0])
+    const itemsValue = propertyPath.split('.').reduce((obj, key) => obj?.[key], video.items?.[0]);
+    if (itemsValue) return itemsValue;
+
+    return null;
+  };
+
   if (!video) {
     return (
       <div className="video-player">
@@ -15,7 +31,7 @@ const VideoPlayer = ({ video }) => {
     );
   }
 
-  const videoId = video.id?.videoId || video.id;
+  const videoId = getVideoProperty(video, 'id.videoId') || getVideoProperty(video, 'id') || video.id;
 
   const opts = {
     height: '390',
@@ -51,8 +67,8 @@ const VideoPlayer = ({ video }) => {
   return (
     <div className="video-player">
       <div className="video-player-header">
-        <h3>{video.snippet?.title || 'Reproduciendo video'}</h3>
-        <p className="video-channel">{video.snippet?.channelTitle || 'Canal desconocido'}</p>
+        <h3>{getVideoProperty(video, 'title') || getVideoProperty(video, 'snippet.title') || 'Reproduciendo video'}</h3>
+        <p className="video-channel">{getVideoProperty(video, 'channelTitle') || getVideoProperty(video, 'snippet.channelTitle') || 'Canal desconocido'}</p>
       </div>
 
       <div className="video-player-container">
@@ -67,22 +83,22 @@ const VideoPlayer = ({ video }) => {
 
       <div className="video-player-info">
         <p className="video-description">
-          {video.snippet?.description || 'Sin descripción disponible.'}
+          {getVideoProperty(video, 'description') || getVideoProperty(video, 'snippet.description') || 'Sin descripción disponible.'}
         </p>
 
-        {video.statistics && (
+        {(getVideoProperty(video, 'statistics') || getVideoProperty(video, 'items.0.statistics')) && (
           <div className="video-stats">
-            <span>👁 {formatViewCount(video.statistics.viewCount)} vistas</span>
-            <span>👍 {formatViewCount(video.statistics.likeCount)} likes</span>
-            {video.statistics.commentCount && (
-              <span>💬 {formatViewCount(video.statistics.commentCount)} comentarios</span>
+            <span>👁 {formatViewCount(getVideoProperty(video, 'statistics.viewCount') || getVideoProperty(video, 'items.0.statistics.viewCount'))} vistas</span>
+            <span>👍 {formatViewCount(getVideoProperty(video, 'statistics.likeCount') || getVideoProperty(video, 'items.0.statistics.likeCount'))} likes</span>
+            {(getVideoProperty(video, 'statistics.commentCount') || getVideoProperty(video, 'items.0.statistics.commentCount')) && (
+              <span>💬 {formatViewCount(getVideoProperty(video, 'statistics.commentCount') || getVideoProperty(video, 'items.0.statistics.commentCount'))} comentarios</span>
             )}
           </div>
         )}
 
         <div className="video-published">
           <span>
-            📅 Publicado: {formatPublishedDate(video.snippet?.publishedAt)}
+            📅 Publicado: {formatPublishedDate(getVideoProperty(video, 'publishedAt') || getVideoProperty(video, 'snippet.publishedAt') || getVideoProperty(video, 'items.0.snippet.publishedAt'))}
           </span>
         </div>
       </div>

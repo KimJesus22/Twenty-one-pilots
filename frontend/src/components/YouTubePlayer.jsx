@@ -20,6 +20,9 @@ const YouTubePlayer = ({
   useEffect(() => {
     // Reset states when video changes
     if (video) {
+      // Confirmar que el video está normalizado (no usa snippet)
+      console.assert(typeof video.id === 'string', 'YouTubePlayer: video.id debe ser string');
+      console.assert(typeof video.title === 'string', 'YouTubePlayer: video.title debe ser string');
       setIsLoading(true);
       setError(null);
       setPlayerReady(false);
@@ -113,10 +116,10 @@ const YouTubePlayer = ({
       {/* Header con información del video */}
       <div className="youtube-player-header">
         <h3 className="video-title">
-          {video.snippet?.title || 'Reproduciendo video'}
+          {video.title || 'Reproduciendo video'}
         </h3>
         <p className="video-channel">
-          {video.snippet?.channelTitle || 'Canal desconocido'}
+          {video.channelTitle || 'Canal desconocido'}
         </p>
       </div>
 
@@ -192,15 +195,15 @@ const YouTubePlayer = ({
         <div className="video-published">
           <span className="published-icon">📅</span>
           <span className="published-text">
-            Publicado: {formatPublishedDate(video.snippet?.publishedAt)}
+            Publicado: {formatPublishedDate(video.publishedAt)}
           </span>
         </div>
 
         {/* Descripción */}
-        {showDescription && video.snippet?.description && (
+        {showDescription && video.description && (
           <div className="video-description">
             <h4>Descripción</h4>
-            <p>{video.snippet.description}</p>
+            <p>{video.description}</p>
           </div>
         )}
       </div>

@@ -8,6 +8,7 @@
  * @since 2025-09-20
  */
 
+const express = require('express');
 const https = require('https');
 const http = require('http');
 const fs = require('fs');
@@ -19,6 +20,9 @@ dotenv.config({ quiet: true });
 
 // Importar aplicación configurada
 const app = require('./app');
+
+// Importar logger
+const logger = require('./utils/logger');
 
 // La configuración de la aplicación ahora está en app.js
 // Este archivo solo maneja la configuración SSL/TLS y el inicio de servidores
@@ -84,7 +88,7 @@ const DEV_PORT = parseInt(process.env.PORT) || 5000;
 function startServers() {
   // Servidor HTTP (solo para redirección a HTTPS en producción)
   if (isProduction && sslOptions && forceHttps) {
-    const httpApp = express();
+    const httpApp = require('express')();
 
     // Middleware mínimo para redirección
     httpApp.use((req, res) => {

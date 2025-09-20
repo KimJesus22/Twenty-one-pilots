@@ -638,3 +638,735 @@ TypeError: Converting circular structure to JSON
   "method": "GET",
   "ip": "::ffff:127.0.0.1"
 }
+2025-09-19 21:09:11 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 21:09:37 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:09:37 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:09:37 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:09:37 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:09:37 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 531
+}
+2025-09-19 21:09:37 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 519
+}
+2025-09-19 21:13:11 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 21:13:32 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:13:32 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:13:32 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:13:32 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:13:33 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 534
+}
+2025-09-19 21:13:33 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 587
+}
+2025-09-19 21:15:17 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 21:15:17 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-19 21:16:14 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 21:16:14 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-19 21:16:44 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:16:44 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:16:44 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:16:44 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:16:44 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 524
+}
+2025-09-19 21:16:44 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 529
+}
+2025-09-19 21:18:19 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 21:18:20 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-19 21:18:40 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": "1"
+}
+2025-09-19 21:18:40 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 1
+  }
+}
+2025-09-19 21:18:40 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 1,
+  "totalResults": 1000000,
+  "duration": 579
+}
+2025-09-19 21:22:20 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:22:20 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:22:20 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:22:20 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:22:20 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 485
+}
+2025-09-19 21:22:20 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 499
+}
+2025-09-19 21:23:26 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 21:23:26 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-19 21:23:55 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:23:55 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:23:55 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:23:55 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:23:55 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 445
+}
+2025-09-19 21:23:55 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 468
+}
+2025-09-19 21:28:57 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 21:28:57 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-19 21:29:23 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:29:23 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:29:23 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:29:23 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:29:23 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 536
+}
+2025-09-19 21:29:23 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 545
+}
+2025-09-19 21:32:26 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 21:32:26 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-19 21:32:49 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:32:49 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:32:49 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:32:49 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:32:49 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 573
+}
+2025-09-19 21:32:49 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 579
+}
+2025-09-19 21:35:21 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 21:35:21 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-19 21:37:06 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:37:06 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:37:06 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:37:06 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:37:07 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 492
+}
+2025-09-19 21:37:07 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 531
+}
+2025-09-19 21:37:56 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m
+2025-09-20 10:08:05 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-20 10:08:05 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-20 10:08:55 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:08:55 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:08:55 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:08:55 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:08:56 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 476
+}
+2025-09-20 10:08:56 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 460
+}
+2025-09-20 10:11:22 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m
+2025-09-20 10:11:30 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-20 10:11:30 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-20 10:11:49 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:11:49 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:11:49 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:11:49 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:11:50 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 494
+}
+2025-09-20 10:11:50 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 487
+}
+2025-09-20 10:13:52 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:13:52 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:13:52 [32m[32minfo[32m[39m: [32m[32m✅ Resultados obtenidos del cache[32m[39m {
+  "query": "Twenty One Pilots",
+  "count": 10,
+  "duration": 0
+}
+2025-09-20 10:13:52 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:13:52 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:13:52 [32m[32minfo[32m[39m: [32m[32m✅ Resultados obtenidos del cache[32m[39m {
+  "query": "Twenty One Pilots",
+  "count": 10,
+  "duration": 1
+}
+2025-09-20 10:17:03 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m
+2025-09-20 10:31:19 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-20 10:31:19 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-20 10:31:53 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:31:53 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:31:53 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:31:53 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:31:54 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 484
+}
+2025-09-20 10:31:54 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 477
+}
+2025-09-20 10:34:00 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m
+2025-09-20 10:41:17 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-20 10:41:17 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-20 10:41:59 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:41:59 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:41:59 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:41:59 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:42:00 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 511
+}
+2025-09-20 10:42:00 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 553
+}
+2025-09-20 10:43:00 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:43:00 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:43:00 [32m[32minfo[32m[39m: [32m[32m✅ Resultados obtenidos del cache[32m[39m {
+  "query": "Twenty One Pilots",
+  "count": 10,
+  "duration": 0
+}
+2025-09-20 10:45:35 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-20 10:45:35 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-20 10:46:02 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:46:02 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:46:02 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:46:02 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:46:03 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 425
+}
+2025-09-20 10:46:03 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 444
+}
+2025-09-20 10:52:36 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-20 10:52:36 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-20 10:53:20 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:53:20 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:53:21 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 575
+}
+2025-09-20 10:54:36 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-20 10:54:36 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-20 10:54:58 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 10:54:58 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 10:54:58 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 647
+}
+2025-09-20 11:03:10 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-20 11:03:10 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-20 11:03:38 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 11:03:38 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 11:03:38 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 542
+}
+2025-09-20 11:06:10 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m
+2025-09-20 11:12:31 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-20 11:12:31 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-20 11:13:07 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 11:13:07 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 11:13:07 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 552
+}
+2025-09-20 11:13:07 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-20 11:13:07 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-20 11:13:07 [32m[32minfo[32m[39m: [32m[32m✅ Resultados obtenidos del cache[32m[39m {
+  "query": "Twenty One Pilots",
+  "count": 10,
+  "duration": 1
+}
+2025-09-20 11:14:40 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m

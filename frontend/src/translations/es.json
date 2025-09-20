@@ -6,7 +6,12 @@
     "concerts": "Conciertos",
     "forum": "Foro",
     "playlists": "Playlists",
-    "store": "Tienda"
+    "store": "Tienda",
+    "mainNavigation": "Navegación principal",
+    "homePage": "Página de inicio",
+    "mainMenu": "Menú principal",
+    "goTo": "Ir a",
+    "userControls": "Controles de usuario"
   },
   "hero": {
     "title": "Twenty One Pilots",
@@ -150,7 +155,8 @@
   "theme": {
     "toggle": "Cambiar tema",
     "light": "Claro",
-    "dark": "Oscuro"
+    "dark": "Oscuro",
+    "toggleAria": "Cambiar entre tema claro y oscuro"
   },
   "language": {
     "select": "Seleccionar idioma",

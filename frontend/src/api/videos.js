@@ -1,4 +1,8 @@
 import axios from 'axios';
+import { normalizeVideo } from '../utils/videoShape';
+
+// Re-export para conveniencia
+export { normalizeVideo };
 
 // Configuración base de Axios para la API de videos
 const apiClient = axios.create({
@@ -176,25 +180,28 @@ export const getRelatedVideos = async (videoId, limit = 10) => {
 
 /**
  * Formatear datos de video para consistencia en el frontend
- * @param {Object} video - Datos del video desde la API
+ * @param {Object|string} video - Datos del video desde la API o ID del video
  * @returns {Object} Video formateado
  */
 const formatVideoData = (video) => {
   if (!video) return null;
 
+  // Primero normalizar la forma básica
+  const normalized = normalizeVideo(video);
+
+  // Luego agregar propiedades adicionales para display
   return {
-    ...video,
-    id: video.id?.videoId || video.id,
+    ...normalized,
     snippet: {
-      ...video.snippet,
-      title: video.snippet?.title || 'Título no disponible',
-      description: video.snippet?.description || 'Sin descripción',
-      channelTitle: video.snippet?.channelTitle || 'Canal desconocido',
-      publishedAt: video.snippet?.publishedAt || new Date().toISOString(),
+      ...normalized,
+      title: normalized.title,
+      description: normalized.description || 'Sin descripción',
+      channelTitle: normalized.channelTitle || 'Canal desconocido',
+      publishedAt: normalized.publishedAt || new Date().toISOString(),
       thumbnails: {
-        default: video.snippet?.thumbnails?.default || { url: '/placeholder-video.png' },
-        medium: video.snippet?.thumbnails?.medium || video.snippet?.thumbnails?.default || { url: '/placeholder-video.png' },
-        high: video.snippet?.thumbnails?.high || video.snippet?.thumbnails?.medium || video.snippet?.thumbnails?.default || { url: '/placeholder-video.png' },
+        default: { url: normalized.thumbnail || '/placeholder-video.png' },
+        medium: { url: normalized.thumbnail || '/placeholder-video.png' },
+        high: { url: normalized.thumbnail || '/placeholder-video.png' },
       },
     },
     statistics: {
@@ -204,7 +211,7 @@ const formatVideoData = (video) => {
       rawViewCount: video.statistics?.viewCount || '0',
       rawLikeCount: video.statistics?.likeCount || '0',
     },
-    formattedDate: formatPublishedDate(video.snippet?.publishedAt),
+    formattedDate: formatPublishedDate(normalized.publishedAt),
   };
 };
 
@@ -270,6 +277,7 @@ export const createVideosApiClient = () => {
     // Utilidades de formateo
     formatViewCount,
     formatPublishedDate,
+    normalizeVideo,
   };
 };
 
@@ -282,4 +290,5 @@ export default {
   formatViewCount,
   formatPublishedDate,
   createVideosApiClient,
+  normalizeVideo,
 };
