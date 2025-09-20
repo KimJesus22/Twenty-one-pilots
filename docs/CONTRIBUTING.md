@@ -1,437 +1,839 @@
-# Guía de Contribución
-
-¡Gracias por tu interés en contribuir a la plataforma Twenty One Pilots! 🎵 Esta guía te ayudará a entender cómo contribuir de manera efectiva al proyecto.
+# 🤝 Guía de Contribución - Twenty One Pilots
 
 ## 📋 Tabla de Contenidos
-- [Código de Conducta](#código-de-conducta)
-- [Cómo Contribuir](#cómo-contribuir)
-- [Configuración del Entorno de Desarrollo](#configuración-del-entorno-de-desarrollo)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Estándares de Código](#estándares-de-código)
-- [Proceso de Pull Request](#proceso-de-pull-request)
-- [Testing](#testing)
-- [Documentación](#documentación)
 
-## 🤝 Código de Conducta
+- [Visión General](#-visión-general)
+- [Configuración del Entorno](#-configuración-del-entorno)
+- [Estructura del Proyecto](#-estructura-del-proyecto)
+- [Estándares de Código](#-estándares-de-código)
+- [Proceso de Desarrollo](#-proceso-de-desarrollo)
+- [Testing](#-testing)
+- [Pull Requests](#-pull-requests)
+- [Gestión de Dependencias](#-gestión-de-dependencias)
+- [Seguridad](#-seguridad)
+- [Documentación](#-documentación)
 
-Este proyecto sigue un código de conducta para asegurar un ambiente inclusivo y respetuoso. Al participar, te comprometes a:
+## 🎯 Visión General
 
-- Ser respetuoso con todas las personas
-- Usar lenguaje inclusivo y no discriminatorio
-- Aceptar constructivamente críticas
-- Enfocarte en lo que es mejor para la comunidad
-- Mostrar empatía hacia otros contribuidores
-
-## 🚀 Cómo Contribuir
+¡Bienvenido al proyecto Twenty One Pilots! Esta guía te ayudará a contribuir efectivamente al desarrollo de la aplicación. Valoramos las contribuciones de la comunidad y nos esforzamos por mantener un proceso colaborativo y de alta calidad.
 
 ### Tipos de Contribuciones
 
-1. **🐛 Reportar Bugs**: Usa el template de issue para bugs
-2. **💡 Sugerir Features**: Usa el template de feature request
-3. **📝 Mejorar Documentación**: Actualiza README, docs, o comentarios
-4. **🔧 Escribir Código**: Implementa nuevas funcionalidades o arregla bugs
-5. **🧪 Escribir Tests**: Añade o mejora cobertura de tests
-6. **🎨 Mejorar UI/UX**: Mejora la interfaz de usuario
-7. **🌐 Traducciones**: Añade soporte para nuevos idiomas
+- 🐛 **Bug Fixes**: Corrección de errores
+- ✨ **Features**: Nuevas funcionalidades
+- 📚 **Documentation**: Mejoras en documentación
+- 🧪 **Tests**: Pruebas unitarias e integración
+- 🔒 **Security**: Mejoras de seguridad
+- 🎨 **UI/UX**: Mejoras en interfaz de usuario
+- ⚡ **Performance**: Optimizaciones de rendimiento
 
-### Primeros Pasos
-
-1. **Fork** el repositorio
-2. **Clona** tu fork: `git clone https://github.com/tu-usuario/twenty-one-pilots-platform.git`
-3. **Crea** una rama: `git checkout -b feature/nueva-funcionalidad`
-4. **Sigue** las instrucciones de instalación en `docs/INSTALLATION.md`
-5. **Desarrolla** tu contribución
-6. **Haz commit** de tus cambios
-7. **Push** a tu rama: `git push origin feature/nueva-funcionalidad`
-8. **Crea** un Pull Request
-
-## 🛠️ Configuración del Entorno de Desarrollo
+## 🛠️ Configuración del Entorno
 
 ### Prerrequisitos
-- Node.js 16+
-- MongoDB (local o Atlas)
-- Git
-- Editor de código (VS Code recomendado)
 
-### Configuración Rápida
+#### Sistema Operativo
+- **Windows**: 10/11 con WSL2 recomendado
+- **macOS**: 12.0 o superior
+- **Linux**: Ubuntu 20.04+, CentOS 8+, Fedora 33+
+
+#### Software Requerido
 ```bash
-# Clonar repositorio
-git clone https://github.com/tu-usuario/twenty-one-pilots-platform.git
-cd twenty-one-pilots-platform
+# Node.js (versión LTS recomendada)
+node --version  # Debe ser 18.x
+npm --version   # Debe ser 8.x+
 
-# Instalar dependencias
-npm run install:all
+# Docker y Docker Compose
+docker --version        # 20.10+
+docker-compose --version # 2.0+
 
-# Configurar variables de entorno
+# Git
+git --version # 2.30+
+
+# Opcional pero recomendado
+mongosh --version  # Para MongoDB local
+redis-cli --version # Para Redis local
+```
+
+### Instalación Paso a Paso
+
+#### 1. Clonar el Repositorio
+
+```bash
+# Clonar con submodules (si los hay)
+git clone https://github.com/twentyonepilots/app.git
+cd app
+
+# Si hay submodules
+git submodule update --init --recursive
+```
+
+#### 2. Configuración de Node.js
+
+```bash
+# Instalar dependencias del backend
+cd backend
+npm ci
+
+# Instalar dependencias del frontend
+cd ../frontend
+npm ci
+
+# Volver al directorio raíz
+cd ..
+```
+
+#### 3. Configuración de Variables de Entorno
+
+```bash
+# Copiar archivos de ejemplo
 cp backend/.env.example backend/.env
 cp frontend/.env.example frontend/.env
 
-# Ejecutar en modo desarrollo
-npm run dev
+# Editar variables de entorno
+# backend/.env
+NODE_ENV=development
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/twentyonepilots_dev
+REDIS_URL=redis://localhost:6379
+JWT_SECRET=your_super_secret_jwt_key_here
+YOUTUBE_API_KEY=your_youtube_api_key
+
+# frontend/.env
+REACT_APP_API_URL=http://localhost:5000/api/v2
+REACT_APP_ENVIRONMENT=development
 ```
 
-### Scripts Disponibles
-```json
-{
-  "install:all": "npm run install:backend && npm run install:frontend",
-  "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-  "build": "npm run build:backend && npm run build:frontend",
-  "test": "npm run test:backend && npm run test:frontend",
-  "lint": "npm run lint:backend && npm run lint:frontend"
-}
+#### 4. Configuración de Docker (Recomendado)
+
+```bash
+# Levantar todos los servicios
+docker-compose up -d
+
+# Verificar que los servicios estén corriendo
+docker-compose ps
+
+# Ver logs
+docker-compose logs -f
+```
+
+#### 5. Verificación de Instalación
+
+```bash
+# Backend
+cd backend
+npm run dev
+
+# Frontend (en otra terminal)
+cd frontend
+npm start
+
+# Verificar health check
+curl http://localhost:5000/health
+curl http://localhost:3000
+```
+
+### Configuración Avanzada
+
+#### MongoDB Local (sin Docker)
+
+```bash
+# Instalar MongoDB
+# Windows: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+# macOS: brew install mongodb-community
+# Linux: sudo apt-get install mongodb
+
+# Iniciar MongoDB
+mongod --dbpath /path/to/your/db
+
+# Crear base de datos de desarrollo
+mongosh
+use twentyonepilots_dev
+```
+
+#### Redis Local (sin Docker)
+
+```bash
+# Instalar Redis
+# Windows: https://redis.io/download (usar WSL)
+# macOS: brew install redis
+# Linux: sudo apt-get install redis-server
+
+# Iniciar Redis
+redis-server
+
+# Verificar conexión
+redis-cli ping  # Debe responder PONG
 ```
 
 ## 📁 Estructura del Proyecto
 
 ```
-twenty-one-pilots-platform/
-├── backend/
-│   ├── controllers/     # Lógica de negocio
-│   ├── models/         # Modelos de MongoDB
-│   ├── routes/         # Definición de rutas
-│   ├── services/       # Servicios externos
-│   ├── middleware/     # Middleware personalizado
-│   ├── utils/          # Utilidades
-│   ├── validations/    # Validaciones
-│   ├── tests/          # Tests
-│   └── config/         # Configuraciones
-├── frontend/
-│   ├── src/
-│   │   ├── components/ # Componentes React
-│   │   ├── pages/      # Páginas
-│   │   ├── services/   # Servicios API
-│   │   ├── hooks/      # Custom hooks
-│   │   ├── utils/      # Utilidades
-│   │   └── styles/     # Estilos
-│   └── public/         # Assets estáticos
-├── docs/               # Documentación
-└── .github/           # GitHub Actions y templates
+twentyonepilots-app/
+├── 📁 backend/                 # API Backend (Node.js)
+│   ├── 📁 src/
+│   │   ├── 📁 controllers/     # Controladores de API
+│   │   ├── 📁 models/         # Modelos de datos (MongoDB)
+│   │   ├── 📁 routes/         # Definición de rutas
+│   │   ├── 📁 services/       # Lógica de negocio
+│   │   ├── 📁 middleware/     # Middleware personalizado
+│   │   └── 📁 utils/          # Utilidades
+│   ├── 📁 tests/              # Pruebas backend
+│   ├── 📁 docs/               # Documentación API
+│   └── 📄 package.json
+├── 📁 frontend/                # Frontend React
+│   ├── 📁 src/
+│   │   ├── 📁 components/     # Componentes React
+│   │   ├── 📁 pages/         # Páginas de la aplicación
+│   │   ├── 📁 hooks/         # Custom hooks
+│   │   ├── 📁 utils/         # Utilidades frontend
+│   │   └── 📁 api/           # Cliente API
+│   ├── 📁 public/            # Assets estáticos
+│   └── 📄 package.json
+├── 📁 docs/                   # Documentación general
+├── 📁 scripts/                # Scripts de automatización
+├── 📁 monitoring/             # Configuración de monitoreo
+├── 📁 .github/                # GitHub Actions y configuración
+├── 🐳 docker-compose.yml      # Orquestación de servicios
+└── 📋 README.md
 ```
 
-## 🎯 Estándares de Código
+## 📏 Estándares de Código
 
-### Backend (Node.js)
+### JavaScript/Node.js
 
 #### ESLint Configuration
+
 ```javascript
-// .eslintrc.js
+// .eslintrc.js (backend)
 module.exports = {
   env: {
     node: true,
-    es2021: true,
+    es2022: true,
     jest: true
   },
   extends: [
     'eslint:recommended',
-    'plugin:node/recommended'
+    '@typescript-eslint/recommended',
+    'plugin:security/recommended'
   ],
-  parserOptions: {
-    ecmaVersion: 12,
-    sourceType: 'module'
-  },
+  plugins: ['security', '@typescript-eslint'],
   rules: {
-    'indent': ['error', 2],
-    'linebreak-style': ['error', 'unix'],
-    'quotes': ['error', 'single'],
-    'semi': ['error', 'always'],
-    'no-unused-vars': ['warn'],
-    'node/no-missing-require': 'off'
+    // Estándares del proyecto
+    'no-console': 'warn',
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'security/detect-eval-with-expression': 'error',
+    'security/detect-non-literal-regexp': 'error'
   }
 };
 ```
 
-#### Convenciones de Nombres
-- **Archivos**: `camelCase.js` o `PascalCase.js`
-- **Funciones**: `camelCase`
-- **Clases**: `PascalCase`
-- **Constantes**: `UPPER_SNAKE_CASE`
-- **Variables**: `camelCase`
+#### Estilos de Código
 
-#### Estructura de Controladores
 ```javascript
-class ExampleController {
-  async getAll(req, res) {
-    try {
-      // Validación
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({
-          success: false,
-          errors: errors.array()
-        });
-      }
-
-      // Lógica de negocio
-      const data = await this.service.getAll(req.query);
-
-      // Respuesta
-      res.json({
-        success: true,
-        data
-      });
-    } catch (error) {
-      logger.error('Error en getAll:', error);
-      res.status(500).json({
-        success: false,
-        message: 'Error interno del servidor'
-      });
+// ✅ Correcto
+const getUserById = async (userId) => {
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      throw new Error('User not found');
     }
+    return user;
+  } catch (error) {
+    logger.error('Error fetching user:', error);
+    throw error;
   }
-}
-```
+};
 
-### Frontend (React)
-
-#### ESLint Configuration
-```javascript
-// .eslintrc.js
-module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    jest: true
-  },
-  extends: [
-    'react-app',
-    'react-app/jest'
-  ],
-  plugins: ['react', 'jsx-a11y'],
-  rules: {
-    'react/prop-types': 'warn',
-    'react/react-in-jsx-scope': 'off',
-    'jsx-a11y/anchor-is-valid': 'warn'
-  }
+// ❌ Incorrecto
+const getuserbyid = async (userid) => {
+  const user = await User.findById(userid);
+  if (!user) throw new Error('User not found');
+  return user;
 };
 ```
 
-#### Estructura de Componentes
-```javascript
-// Componente funcional con hooks
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+### React/JavaScript
 
-const ExampleComponent = ({ prop1, prop2 }) => {
-  const [state, setState] = useState(initialState);
-  const navigate = useNavigate();
+#### Componentes
 
-  useEffect(() => {
-    // Efectos secundarios
-    fetchData();
-  }, [dependencies]);
+```jsx
+// ✅ Componente funcional con hooks
+const VideoCard = ({ video, onSelect }) => {
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleAction = async () => {
+  const handleClick = useCallback(async () => {
+    setIsLoading(true);
     try {
-      setLoading(true);
-      await performAction();
-      navigate('/success');
-    } catch (error) {
-      setError(error.message);
+      await onSelect(video);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
-  };
+  }, [video, onSelect]);
 
   return (
-    <div className="example-component">
-      {/* JSX aquí */}
+    <div className="video-card" onClick={handleClick}>
+      <img src={video.thumbnail} alt={video.title} />
+      <h3>{video.title}</h3>
+      {isLoading && <div className="loading-spinner" />}
     </div>
   );
 };
 
-export default ExampleComponent;
+// ❌ Antipatrón
+const VideoCard = (props) => {
+  return (
+    <div onClick={() => props.onSelect(props.video)}>
+      <img src={props.video.thumbnail} alt={props.video.title} />
+      <h3>{props.video.title}</h3>
+    </div>
+  );
+};
 ```
 
-## 📝 Proceso de Pull Request
+### Convenciones de Nombres
 
-### 1. Preparar tu PR
-- Asegúrate de que tu código pase todos los tests
-- Actualiza la documentación si es necesario
-- Escribe una descripción clara del cambio
-- Referencia issues relacionados
-
-### 2. Template de PR
-```markdown
-## Descripción
-Breve descripción de los cambios realizados.
-
-## Tipo de Cambio
-- [ ] 🐛 Bug fix
-- [ ] ✨ New feature
-- [ ] 💥 Breaking change
-- [ ] 📝 Documentation
-- [ ] 🎨 Style
-- [ ] ♻️ Refactor
-- [ ] ⚡ Performance
-- [ ] ✅ Test
-
-## Checklist
-- [ ] Tests pasan
-- [ ] Linting pasa
-- [ ] Documentación actualizada
-- [ ] Breaking changes documentados
-- [ ] Migraciones incluidas (si aplica)
-
-## Issues Relacionados
-- Closes #123
-- Related to #456
-
-## Capturas de Pantalla (si aplica)
-<!-- Agrega capturas antes/después -->
+#### Archivos y Directorios
+```
+✅ userController.js     // camelCase para archivos
+✅ UserService.js        // PascalCase para clases
+✅ get-user-details.js   // kebab-case para utilidades
+✅ video-player.css      // kebab-case para CSS
 ```
 
-### 3. Revisión de Código
-Tu PR será revisado por maintainers quienes pueden:
-- Aprobar los cambios
-- Solicitar modificaciones
-- Hacer preguntas sobre la implementación
-- Sugerir mejoras
+#### Variables y Funciones
+```javascript
+// ✅ Constantes
+const MAX_RETRY_ATTEMPTS = 3;
+const API_BASE_URL = 'http://localhost:5000';
 
-### 4. Merge
-Una vez aprobado, tu PR será merged usando:
-- **Squash and merge** para commits limpios
-- **Rebase and merge** para mantener historial lineal
-- **Merge commit** para preservar contexto
+// ✅ Variables
+let userData = null;
+const isAuthenticated = false;
+
+// ✅ Funciones
+const getUserById = (id) => { /* ... */ };
+const handleVideoSearch = async (query) => { /* ... */ };
+
+// ✅ Clases
+class VideoService {
+  async searchVideos(query) { /* ... */ }
+}
+```
+
+## 🔄 Proceso de Desarrollo
+
+### Git Flow
+
+```
+main (producción)
+├── develop (desarrollo)
+│   ├── feature/NEW-FEATURE
+│   ├── bugfix/BUG-FIX
+│   ├── hotfix/CRITICAL-FIX
+│   └── refactor/CODE-IMPROVEMENT
+```
+
+#### Ramas Principales
+
+- **`main`**: Código de producción estable
+- **`develop`**: Integración de nuevas funcionalidades
+
+#### Ramas de Trabajo
+
+```bash
+# Crear rama para nueva funcionalidad
+git checkout develop
+git pull origin develop
+git checkout -b feature/add-video-playlist
+
+# Crear rama para corrección de bug
+git checkout develop
+git checkout -b bugfix/fix-video-loading
+
+# Crear rama para hotfix (desde main)
+git checkout main
+git pull origin main
+git checkout -b hotfix/critical-security-fix
+```
+
+### Commits Convencionales
+
+```bash
+# Formato: type(scope): description
+git commit -m "feat(video): add playlist functionality"
+git commit -m "fix(auth): resolve JWT token expiration"
+git commit -m "docs(api): update authentication examples"
+git commit -m "refactor(components): optimize video player performance"
+git commit -m "test(auth): add unit tests for login service"
+```
+
+#### Tipos de Commit
+
+| Tipo | Descripción |
+|------|-------------|
+| `feat` | Nueva funcionalidad |
+| `fix` | Corrección de bug |
+| `docs` | Cambios en documentación |
+| `style` | Cambios de estilo (formato, etc.) |
+| `refactor` | Refactorización de código |
+| `test` | Agregar o corregir tests |
+| `chore` | Cambios en herramientas, configuración |
 
 ## 🧪 Testing
 
 ### Estrategia de Testing
-- **Unit Tests**: Funciones individuales y utilidades
-- **Integration Tests**: Interacciones entre componentes
-- **E2E Tests**: Flujos completos de usuario
-- **API Tests**: Endpoints y responses
+
+```
+📊 Cobertura Objetivo: 80%+
+├── 🧪 Unit Tests (70%)
+├── 🔗 Integration Tests (20%)
+└── 🎭 E2E Tests (10%)
+```
 
 ### Ejecutar Tests
-```bash
-# Backend
-cd backend
-npm test                    # Todos los tests
-npm run test:watch         # Modo watch
-npm run test:coverage      # Con cobertura
 
-# Frontend
+```bash
+# Backend tests
+cd backend
+npm test                    # Ejecutar todos los tests
+npm run test:watch         # Modo watch
+npm run test:coverage      # Con reporte de cobertura
+
+# Frontend tests
 cd frontend
-npm test                    # Todos los tests
-npm run test:coverage      # Con cobertura
+npm test                   # Ejecutar tests de React
+npm run test:coverage     # Con cobertura
+
+# Tests específicos
+npm test -- --testNamePattern="should authenticate user"
+npm test -- --testPathPattern="auth.test.js"
 ```
 
 ### Escribir Tests
-```javascript
-// Test de componente React
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import ExampleComponent from './ExampleComponent';
 
-describe('ExampleComponent', () => {
-  test('renders correctly', () => {
-    render(<ExampleComponent />);
-    expect(screen.getByText('Example')).toBeInTheDocument();
+#### Backend (Jest)
+
+```javascript
+// userController.test.js
+const request = require('supertest');
+const app = require('../app');
+const User = require('../models/User');
+
+describe('User Controller', () => {
+  beforeEach(async () => {
+    await User.deleteMany({});
   });
 
-  test('handles user interaction', async () => {
-    render(<ExampleComponent />);
-    const button = screen.getByRole('button', { name: /click me/i });
+  describe('POST /api/v2/auth/register', () => {
+    it('should create a new user', async () => {
+      const userData = {
+        email: 'test@example.com',
+        password: 'password123',
+        name: 'Test User'
+      };
 
-    fireEvent.click(button);
+      const response = await request(app)
+        .post('/api/v2/auth/register')
+        .send(userData)
+        .expect(201);
 
-    await waitFor(() => {
-      expect(screen.getByText('Clicked!')).toBeInTheDocument();
+      expect(response.body.success).toBe(true);
+      expect(response.body.data.user.email).toBe(userData.email);
+    });
+
+    it('should return error for duplicate email', async () => {
+      // Crear usuario primero
+      await User.create({
+        email: 'test@example.com',
+        password: 'hashedpassword',
+        name: 'Test User'
+      });
+
+      const response = await request(app)
+        .post('/api/v2/auth/register')
+        .send({
+          email: 'test@example.com',
+          password: 'password123',
+          name: 'Another User'
+        })
+        .expect(400);
+
+      expect(response.body.success).toBe(false);
     });
   });
 });
 ```
 
-### Cobertura Mínima Requerida
-- **Statements**: 80%
-- **Branches**: 75%
-- **Functions**: 85%
-- **Lines**: 80%
+#### Frontend (React Testing Library)
+
+```jsx
+// VideoCard.test.js
+import React from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import VideoCard from './VideoCard';
+
+const mockVideo = {
+  id: 'test-video-id',
+  title: 'Test Video',
+  thumbnail: 'test-thumbnail.jpg',
+  channelTitle: 'Test Channel',
+  description: 'Test description'
+};
+
+const mockOnSelect = jest.fn();
+
+describe('VideoCard', () => {
+  beforeEach(() => {
+    mockOnSelect.mockClear();
+  });
+
+  it('renders video information correctly', () => {
+    render(<VideoCard video={mockVideo} onSelect={mockOnSelect} />);
+
+    expect(screen.getByText('Test Video')).toBeInTheDocument();
+    expect(screen.getByText('Test Channel')).toBeInTheDocument();
+    expect(screen.getByAltText('Test Video')).toBeInTheDocument();
+  });
+
+  it('calls onSelect when clicked', async () => {
+    render(<VideoCard video={mockVideo} onSelect={mockOnSelect} />);
+
+    const card = screen.getByRole('button');
+    fireEvent.click(card);
+
+    await waitFor(() => {
+      expect(mockOnSelect).toHaveBeenCalledWith(mockVideo);
+    });
+  });
+
+  it('shows loading state during selection', async () => {
+    mockOnSelect.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 100)));
+
+    render(<VideoCard video={mockVideo} onSelect={mockOnSelect} />);
+
+    const card = screen.getByRole('button');
+    fireEvent.click(card);
+
+    expect(screen.getByText('Cargando...')).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.queryByText('Cargando...')).not.toBeInTheDocument();
+    });
+  });
+});
+```
+
+## 🔄 Pull Requests
+
+### Plantilla de PR
+
+```markdown
+## 📝 Descripción
+[Breve descripción de los cambios]
+
+## 🎯 Tipo de Cambio
+- [ ] 🐛 Bug fix
+- [ ] ✨ New feature
+- [ ] 📚 Documentation
+- [ ] 🎨 UI/UX improvement
+- [ ] ⚡ Performance improvement
+- [ ] 🔒 Security enhancement
+- [ ] 🧪 Tests
+
+## 🔍 Cambios Realizados
+- Cambio 1: [descripción]
+- Cambio 2: [descripción]
+- Cambio 3: [descripción]
+
+## 🧪 Testing
+- [ ] Tests unitarios pasan
+- [ ] Tests de integración pasan
+- [ ] Tests E2E pasan (si aplica)
+- [ ] Linting pasa
+- [ ] Security scan pasa
+
+## 📋 Checklist
+- [ ] Mi código sigue los estándares del proyecto
+- [ ] He agregado tests para mis cambios
+- [ ] He actualizado la documentación
+- [ ] He probado los cambios localmente
+- [ ] Los commits siguen el formato convencional
+
+## 🔗 Issues Relacionados
+- Closes #123
+- Relates to #456
+
+## 📸 Screenshots (si aplica)
+[Agregar screenshots de cambios visuales]
+
+## 🚀 Notas de Despliegue
+[Instrucciones especiales para despliegue]
+```
+
+### Proceso de Revisión
+
+#### Checklist del Revisor
+
+```markdown
+## ✅ Checklist de Revisión
+
+### Código
+- [ ] El código es legible y bien estructurado
+- [ ] Sigue las convenciones de nomenclatura
+- [ ] No hay código duplicado
+- [ ] Las funciones son pequeñas y enfocadas
+- [ ] Manejo adecuado de errores
+
+### Tests
+- [ ] Tests cubren los casos principales
+- [ ] Tests cubren casos edge
+- [ ] Cobertura de código adecuada
+- [ ] Tests pasan en CI/CD
+
+### Seguridad
+- [ ] No hay vulnerabilidades conocidas
+- [ ] Validación adecuada de inputs
+- [ ] Manejo seguro de datos sensibles
+- [ ] Headers de seguridad apropiados
+
+### Performance
+- [ ] No hay regresiones de performance
+- [ ] Consultas a BD optimizadas
+- [ ] Uso eficiente de memoria
+- [ ] Carga de página aceptable
+
+### Documentación
+- [ ] README actualizado si es necesario
+- [ ] Comentarios en código complejo
+- [ ] Documentación de API actualizada
+- [ ] Cambios breaking documentados
+```
+
+### Aprobación de PR
+
+#### Requisitos para Aprobación
+
+1. **✅ Tests pasan**: Todos los tests deben pasar en CI/CD
+2. **✅ Code review**: Al menos 1 aprobación de maintainer
+3. **✅ Security check**: No vulnerabilidades críticas
+4. **✅ Documentation**: Documentación actualizada si es necesario
+5. **✅ Breaking changes**: Documentados y justificados
+
+#### Merge Strategy
+
+```bash
+# Squash and merge para features pequeñas
+# Merge commit para features grandes con múltiples commits
+# Rebase and merge para hotfixes
+```
+
+## 📦 Gestión de Dependencias
+
+### Actualización de Dependencias
+
+```bash
+# Verificar dependencias desactualizadas
+npm outdated
+
+# Actualizar dependencias específicas
+npm update package-name
+
+# Actualizar todas las dependencias
+npm update
+
+# Verificar vulnerabilidades
+npm audit
+
+# Corregir vulnerabilidades automáticamente
+npm audit fix
+```
+
+### Dependabot Configuration
+
+```yaml
+# .github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/backend"
+    schedule:
+      interval: "daily"
+    groups:
+      security-updates:
+        applies-to: security-updates
+```
+
+## 🔒 Seguridad
+
+### Mejores Prácticas
+
+#### Autenticación y Autorización
+```javascript
+// ✅ Validar JWT correctamente
+const authenticateToken = (req, res, next) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+
+  if (!token) {
+    return res.status(401).json({ error: 'Token requerido' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (error) {
+    return res.status(403).json({ error: 'Token inválido' });
+  }
+};
+```
+
+#### Validación de Input
+```javascript
+// ✅ Usar validadores robustos
+const validateUserInput = (req, res, next) => {
+  const { email, password } = req.body;
+
+  // Validar email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: 'Email inválido' });
+  }
+
+  // Validar password
+  if (password.length < 8) {
+    return res.status(400).json({ error: 'Password debe tener al menos 8 caracteres' });
+  }
+
+  next();
+};
+```
+
+#### Manejo de Errores Seguro
+```javascript
+// ✅ No exponer información sensible en errores
+app.use((error, req, res, next) => {
+  logger.error('Error:', error);
+
+  // No enviar stack trace en producción
+  const isDevelopment = process.env.NODE_ENV === 'development';
+
+  res.status(error.status || 500).json({
+    success: false,
+    message: isDevelopment ? error.message : 'Error interno del servidor',
+    ...(isDevelopment && { stack: error.stack })
+  });
+});
+```
+
+### Reportar Vulnerabilidades
+
+Si encuentras una vulnerabilidad de seguridad:
+
+1. **NO** crear un issue público
+2. Enviar email a: security@twentyonepilots.com
+3. Incluir detalles de la vulnerabilidad
+4. Esperar confirmación antes de hacer público
 
 ## 📚 Documentación
 
-### Tipos de Documentación
-1. **README**: Información general del proyecto
-2. **API Docs**: Documentación de endpoints
-3. **Architecture**: Decisiones de arquitectura
-4. **Installation**: Guía de instalación
-5. **Contributing**: Esta guía
-
 ### Actualizar Documentación
-- Mantén la documentación actualizada con cambios de código
-- Usa ejemplos claros y concisos
-- Incluye capturas de pantalla cuando aplique
-- Documenta breaking changes
 
-### Comentarios en Código
+```bash
+# Generar documentación de API automáticamente
+cd backend
+npm run docs:generate
+
+# Construir sitio de documentación
+cd docs
+npm run build
+
+# Desplegar documentación
+npm run deploy
+```
+
+### Estructura de Documentación
+
+```
+docs/
+├── 📄 API_DOCUMENTATION.md    # Documentación de API
+├── 📄 ARCHITECTURE.md         # Arquitectura del sistema
+├── 📄 API_EXAMPLES.md         # Ejemplos de uso
+├── 📄 CONTRIBUTING.md         # Esta guía
+├── 📄 DEPENDENCY_MANAGEMENT.md # Gestión de dependencias
+└── 📄 INSTALLATION.md         # Guía de instalación
+```
+
+### Documentación de Código
+
 ```javascript
-// ❌ Mal comentario
-// Suma dos números
-function add(a, b) {
-  return a + b;
-}
-
-// ✅ Buen comentario
 /**
- * Suma dos números y retorna el resultado
- * @param {number} a - Primer número
- * @param {number} b - Segundo número
- * @returns {number} Suma de a y b
- * @throws {TypeError} Si los parámetros no son números
+ * Busca videos en YouTube y los almacena en cache
+ * @param {string} query - Término de búsqueda
+ * @param {Object} options - Opciones de búsqueda
+ * @param {number} options.limit - Número máximo de resultados
+ * @param {string} options.order - Orden de resultados
+ * @returns {Promise<Array>} Lista de videos encontrados
+ * @throws {Error} Si la búsqueda falla
+ *
+ * @example
+ * const videos = await searchVideos('Twenty One Pilots', { limit: 10 });
+ * console.log(videos[0].title); // "Stressed Out"
  */
-function add(a, b) {
-  if (typeof a !== 'number' || typeof b !== 'number') {
-    throw new TypeError('Ambos parámetros deben ser números');
-  }
-  return a + b;
+async function searchVideos(query, options = {}) {
+  // Implementation...
 }
 ```
 
-## 🎯 Mejores Prácticas
+## 🎯 Métricas de Contribución
 
-### Commits
-```bash
-# Formato recomendado
-git commit -m "feat: add user authentication system
+### Calidad de Código
+- **Cobertura de Tests**: > 80%
+- **Complejidad Ciclomática**: < 10
+- **Duplicación de Código**: < 5%
+- **Tiempo de Build**: < 5 minutos
 
-- Implement JWT authentication
-- Add login/register endpoints
-- Create user model with validation
-- Add password hashing with bcrypt
+### Performance
+- **Response Time**: < 500ms para API calls
+- **Bundle Size**: < 2MB para frontend
+- **Memory Usage**: < 512MB por instancia
+- **CPU Usage**: < 70% promedio
 
-Closes #123"
-```
-
-### Ramas
-```bash
-# Convenciones de nombres
-feature/nueva-funcionalidad
-bugfix/arreglar-error-login
-hotfix/critical-security-fix
-docs/actualizar-readme
-refactor/optimizacion-rendimiento
-```
-
-### Issues
-- Usa templates proporcionados
-- Incluye pasos para reproducir bugs
-- Proporciona contexto y entorno
-- Etiqueta apropiadamente
-
-## 🏆 Reconocimientos
-
-¡Tu contribución es valiosa! Los contribuidores serán:
-- Mencionados en el README
-- Agregados al archivo de contribuidores
-- Reconocidos en releases
-- Invitados a discusiones de roadmap
+### Disponibilidad
+- **Uptime**: > 99.5%
+- **Error Rate**: < 1%
+- **MTTR**: < 30 minutos
+- **MTTD**: < 5 minutos
 
 ## 📞 Soporte
 
-¿Necesitas ayuda?
-- 📧 **Email**: dev@twentyonepilots.com
-- 💬 **Discord**: [Servidor de contribuidores](https://discord.gg/top-dev)
-- 🐛 **Issues**: Para bugs y preguntas
-- 📖 **Discussions**: Para preguntas generales
+### Canales de Comunicación
+
+- **💬 Discord**: [Twenty One Pilots Dev Community](https://discord.gg/twentyonepilots)
+- **📧 Email**: dev@twentyonepilots.com
+- **🐛 Issues**: [GitHub Issues](https://github.com/twentyonepilots/app/issues)
+- **📖 Wiki**: [Project Wiki](https://github.com/twentyonepilots/app/wiki)
+
+### Tipos de Soporte
+
+| Tipo | Canal | Respuesta Esperada |
+|------|-------|-------------------|
+| 🐛 Bug Report | GitHub Issue | 24 horas |
+| ❓ Pregunta General | Discord | 4 horas |
+| 🚨 Security Issue | Email | 1 hora |
+| 💡 Feature Request | GitHub Discussion | 48 horas |
+
+## 🙏 Reconocimientos
+
+¡Gracias por contribuir al proyecto Twenty One Pilots! Tu trabajo ayuda a mejorar la experiencia de miles de fans de la banda.
+
+### Contribuidores Destacados
+
+- ⭐ **Top Contributors**: Lista de contribuidores activos
+- 🏆 **Hall of Fame**: Reconocimientos especiales
+- 📊 **Contribution Stats**: Estadísticas de contribución
 
 ---
 
-¡Gracias por contribuir a hacer la mejor plataforma para fans de Twenty One Pilots! 🎵✨
+**Última actualización**: $(date)
+**Versión de la guía**: 2.0.0
+**Mantenedor**: DevOps Team
