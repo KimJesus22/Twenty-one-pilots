@@ -29,6 +29,18 @@ const YouTubePlayer = ({
     }
   }, [video]);
 
+  // Forzar render inicial del reproductor
+  useEffect(() => {
+    if (video && videoId && !playerReady) {
+      console.log('🎬 Inicializando reproductor para video:', videoId);
+      // Dar tiempo para que el componente se monte antes de intentar renderizar
+      const timer = setTimeout(() => {
+        setPlayerReady(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [video, videoId, playerReady]);
+
   if (!video) {
     return (
       <div className={`youtube-player ${className}`}>
@@ -63,14 +75,13 @@ const YouTubePlayer = ({
       autoplay: autoplay ? 1 : 0,
       controls: 1,
       rel: 0, // No mostrar videos relacionados al final
-      showinfo: 1,
-      modestbranding: 1,
       iv_load_policy: 3, // Ocultar anotaciones
       fs: 1, // Permitir pantalla completa
       cc_load_policy: 0, // No cargar subtítulos automáticamente
       disablekb: 0, // Habilitar controles de teclado
       playsinline: 1, // Reproducción inline en móviles
       origin: window.location.origin, // Para evitar errores de CORS
+      // Remover parámetros deprecados: showinfo, modestbranding
     },
   };
 
@@ -86,8 +97,36 @@ const YouTubePlayer = ({
 
   const handleError = (error) => {
     console.error('❌ Error en YouTube Player:', error);
+    console.error('Detalles del error:', {
+      errorCode: error.data,
+      videoId: videoId,
+      origin: window.location.origin,
+      protocol: window.location.protocol
+    });
+
+    let errorMessage = 'Error al cargar el video. Inténtalo de nuevo.';
+
+    // Manejar errores específicos de YouTube
+    switch (error.data) {
+      case 2:
+        errorMessage = 'Error en la petición del video.';
+        break;
+      case 5:
+        errorMessage = 'Error de HTML5 en el reproductor.';
+        break;
+      case 100:
+        errorMessage = 'Video no encontrado o privado.';
+        break;
+      case 101:
+      case 150:
+        errorMessage = 'Video no disponible para embed.';
+        break;
+      default:
+        errorMessage = `Error del reproductor (${error.data}).`;
+    }
+
     setIsLoading(false);
-    setError('Error al cargar el video. Inténtalo de nuevo.');
+    setError(errorMessage);
 
     if (onError) {
       onError(error);
