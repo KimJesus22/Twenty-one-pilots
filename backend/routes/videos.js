@@ -5,6 +5,37 @@ const logger = require('../utils/logger');
 
 const router = express.Router();
 
+// Ruta para validar API key de YouTube
+router.get('/test-api',
+  async (req, res) => {
+    try {
+      const result = await youtubeService.validateApiKey();
+
+      if (result.valid) {
+        logger.externalApi('YouTube', 'validateApiKey', true);
+        res.json({
+          success: true,
+          message: 'API key de YouTube válida',
+          data: { valid: true }
+        });
+      } else {
+        logger.externalApi('YouTube', 'validateApiKey', false, { error: result.error });
+        res.status(500).json({
+          success: false,
+          message: 'API key de YouTube inválida',
+          error: result.error
+        });
+      }
+    } catch (error) {
+      logger.error('Error probando API de YouTube:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error interno del servidor'
+      });
+    }
+  }
+);
+
 // Ruta para buscar videos de YouTube
 router.get('/search',
   [

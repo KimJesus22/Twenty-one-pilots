@@ -24,10 +24,16 @@ const Discography = () => {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
 
-        const data = await response.json();
-        setAlbums(data || []);
-        setTotalPages(1);
-        setError(null);
+        const responseData = await response.json();
+
+        // El backend devuelve { success: true, data: { albums: [...], pagination: {...} } }
+        if (responseData.success && responseData.data && Array.isArray(responseData.data.albums)) {
+          setAlbums(responseData.data.albums);
+          setTotalPages(responseData.data.pagination?.pages || 1);
+          setError(null);
+        } else {
+          throw new Error('Estructura de respuesta del backend inválida');
+        }
       } catch (backendError) {
         console.warn('Backend no disponible, usando datos mock:', backendError.message);
 

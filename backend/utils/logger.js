@@ -29,7 +29,21 @@ const customFormat = winston.format.combine(
 
     // Agregar metadata si existe
     if (Object.keys(meta).length > 0) {
-      log += ` | ${JSON.stringify(meta)}`;
+      try {
+        log += ` | ${JSON.stringify(meta)}`;
+      } catch (stringifyError) {
+        // Manejar referencias circulares
+        const safeMeta = {};
+        for (const [key, value] of Object.entries(meta)) {
+          try {
+            JSON.stringify(value);
+            safeMeta[key] = value;
+          } catch (e) {
+            safeMeta[key] = String(value);
+          }
+        }
+        log += ` | ${JSON.stringify(safeMeta)}`;
+      }
     }
 
     // Agregar stack trace para errores
@@ -49,7 +63,20 @@ const consoleFormat = winston.format.combine(
     let log = `${timestamp} ${level}: ${message}`;
 
     if (Object.keys(meta).length > 0) {
-      log += ` ${JSON.stringify(meta)}`;
+      try {
+        log += ` ${JSON.stringify(meta)}`;
+      } catch (stringifyError) {
+        const safeMeta = {};
+        for (const [key, value] of Object.entries(meta)) {
+          try {
+            JSON.stringify(value);
+            safeMeta[key] = value;
+          } catch (e) {
+            safeMeta[key] = String(value);
+          }
+        }
+        log += ` ${JSON.stringify(safeMeta)}`;
+      }
     }
 
     return log;

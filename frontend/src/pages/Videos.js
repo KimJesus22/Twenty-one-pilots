@@ -23,11 +23,33 @@ const Videos = () => {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
 
-        const data = await response.json();
-        // Asegurarse de que data sea un array
-        const videosArray = Array.isArray(data) ? data : [];
-        setVideos(videosArray);
-        setError(null);
+        const responseData = await response.json();
+
+        // La API del backend devuelve { success: true, data: [...], totalResults: ... }
+        if (responseData.success && Array.isArray(responseData.data)) {
+          // Transformar los datos del backend al formato esperado por el frontend
+          const transformedVideos = responseData.data.map(video => ({
+            id: { videoId: video.id },
+            snippet: {
+              title: video.title,
+              description: video.description,
+              channelTitle: video.channelTitle,
+              publishedAt: video.publishedAt,
+              thumbnails: {
+                medium: { url: video.thumbnail }
+              }
+            },
+            statistics: {
+              viewCount: '0', // El backend no devuelve estadísticas por ahora
+              likeCount: '0'
+            }
+          }));
+
+          setVideos(transformedVideos);
+          setError(null);
+        } else {
+          throw new Error('Estructura de respuesta inválida de la API');
+        }
       } catch (backendError) {
         console.warn('Backend no disponible, usando datos mock:', backendError.message);
 
