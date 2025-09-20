@@ -1,5 +1,5 @@
 # Multi-stage build for Twenty One Pilots Frontend
-FROM node:18-alpine AS base
+FROM node:24-alpine AS base
 
 # Install dumb-init for proper signal handling
 RUN apk add --no-cache dumb-init
@@ -21,7 +21,7 @@ RUN npm ci --only=production && npm cache clean --force
 # =============================================================================
 # Build stage
 # =============================================================================
-FROM node:18-alpine AS build
+FROM node:24-alpine AS build
 
 # Set working directory
 WORKDIR /app
