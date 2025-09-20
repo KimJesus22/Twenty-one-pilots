@@ -178,7 +178,7 @@ if (process.env.MONGO_URI) {
 
 const discographyRoutes = require('./routes/discography');
 const authRoutes = require('./routes/auth');
-const videosRoutes = require('./routes/videos');
+const videosRoutes = require('./routes/videoRoutes');
 const concertsRoutes = require('./routes/concerts');
 // const forumRoutes = require('./routes/forum');
 // const playlistsRoutes = require('./routes/playlists');

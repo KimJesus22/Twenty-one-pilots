@@ -30,6 +30,32 @@ export function normalizeVideo(video) {
     };
   }
 
+  // Verificar si el video ya está en formato "normalizado" (del backend)
+  // Este formato tiene propiedades directas: title, description, thumbnail, etc.
+  if (video.title && video.description !== undefined && video.thumbnail) {
+    // Formato del backend - ya normalizado
+    return {
+      id: video.id,
+      title: video.title || 'Sin título',
+      description: video.description || 'Sin descripción',
+      thumbnail: video.thumbnail || '',
+      publishedAt: video.publishedAt || '',
+      channelTitle: video.channelTitle || 'Canal desconocido',
+      snippet: {
+        title: video.title || 'Sin título',
+        description: video.description || 'Sin descripción',
+        channelTitle: video.channelTitle || 'Canal desconocido',
+        publishedAt: video.publishedAt || '',
+        thumbnails: {
+          default: { url: video.thumbnail || '' },
+          medium: { url: video.thumbnail || '' },
+          high: { url: video.thumbnail || '' },
+        },
+      },
+    };
+  }
+
+  // Formato original de YouTube API con snippet
   const snippet = video.snippet || {};
   const thumbnails = snippet.thumbnails || {};
 

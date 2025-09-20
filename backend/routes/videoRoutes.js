@@ -100,6 +100,29 @@ router.get('/search',
 );
 
 /**
+ * @route GET /api/videos/popular
+ * @desc Obtener videos populares de la base de datos
+ * @access Public
+ * @query {number} [limit=10] - Número máximo de resultados
+ * @query {number} [page=1] - Página actual
+ */
+router.get('/popular',
+  [
+    query('limit')
+      .optional()
+      .isInt({ min: 1, max: 50 })
+      .withMessage('limit debe ser un número entre 1 y 50'),
+    query('page')
+      .optional()
+      .isInt({ min: 1 })
+      .withMessage('page debe ser un número positivo')
+  ],
+  handleValidationErrors,
+  videoController.getPopularVideos
+);
+
+
+/**
  * @route GET /api/videos/:id
  * @desc Obtener detalles de un video específico
  * @access Public
@@ -900,27 +923,6 @@ router.delete('/:videoId/album/:albumId',
 // RUTAS DE ESTADÍSTICAS Y UTILIDADES
 // =============================================================================
 
-/**
- * @route GET /api/videos/popular
- * @desc Obtener videos populares de la base de datos
- * @access Public
- * @query {number} [limit=10] - Número máximo de resultados
- * @query {number} [page=1] - Página actual
- */
-router.get('/popular',
-  [
-    query('limit')
-      .optional()
-      .isInt({ min: 1, max: 50 })
-      .withMessage('limit debe ser un número entre 1 y 50'),
-    query('page')
-      .optional()
-      .isInt({ min: 1 })
-      .withMessage('page debe ser un número positivo')
-  ],
-  handleValidationErrors,
-  videoController.getPopularVideos
-);
 
 /**
  * @route GET /api/videos/recent
