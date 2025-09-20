@@ -377,7 +377,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: 'Deploy to Azure Web App'
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         images: ${{ env.DOCKER_REGISTRY }}/twentyonepilots-backend:${{ github.sha }}
@@ -473,7 +473,7 @@ jobs:
 
     - name: 'Execute rollback'
       if: steps.get-deployment.outputs.previous_deployment != ''
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         images: ${{ steps.get-deployment.outputs.previous_deployment }}
