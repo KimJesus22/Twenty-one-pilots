@@ -17,6 +17,9 @@ const YouTubePlayer = ({
   const [error, setError] = useState(null);
   const [playerReady, setPlayerReady] = useState(false);
 
+  // Declarar videoId al inicio para evitar errores de inicialización
+  const videoId = video?.id?.videoId || video?.id;
+
   useEffect(() => {
     // Reset states when video changes
     if (video) {
@@ -52,8 +55,6 @@ const YouTubePlayer = ({
       </div>
     );
   }
-
-  const videoId = video.id?.videoId || video.id;
 
   if (!videoId) {
     return (
