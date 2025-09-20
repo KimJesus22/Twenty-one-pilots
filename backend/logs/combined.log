@@ -228,3 +228,413 @@ TypeError: Converting circular structure to JSON
 2025-09-19 19:03:59 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
 2025-09-19 19:03:59 [INFO]: 📊 Sistema de métricas y monitoreo iniciado
 2025-09-19 19:03:59 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 19:04:12 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 19:04:12 [INFO]: 📊 Sistema de métricas y monitoreo iniciado
+2025-09-19 19:04:12 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 19:04:26 [WARN]: Request sospechoso detectado: | {"path":"/metrics","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 19:04:42 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 91.88% (29.71MB de 32.34MB)
+2025-09-19 19:04:42 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:05:42 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.31% (30.17MB de 32.34MB)
+2025-09-19 19:05:42 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:06:42 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 91.18% (29.71MB de 32.59MB)
+2025-09-19 19:06:42 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:07:02 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 19:07:02 [INFO]: 📊 Sistema de métricas y monitoreo iniciado
+2025-09-19 19:07:02 [ERROR]: ❌ Error en servidor HTTPS:
+2025-09-19 19:07:32 [WARN]: 🚨 ALERTA WARNING: Uso de Memoria Alto Uso de heap: 87.11% (29.47MB de 33.84MB)
+2025-09-19 19:07:32 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:07:42 [WARN]: 🚨 ALERTA WARNING: Uso de Memoria Alto Uso de heap: 88.15% (29.83MB de 33.84MB)
+2025-09-19 19:07:42 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:08:12 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 90.90% (29.85MB de 32.84MB)
+2025-09-19 19:08:12 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:08:14 [INFO]: SIGINT recibido, cerrando servidor gracefully
+2025-09-19 19:14:40 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:14:40 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 19:14:40 [INFO]: 📊 Sistema de métricas y monitoreo iniciado
+2025-09-19 19:14:40 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 19:15:10 [WARN]: 🚨 ALERTA WARNING: Uso de Memoria Alto Uso de heap: 88.04% (29.57MB de 33.59MB)
+2025-09-19 19:15:10 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:15:26 [INFO]: SIGINT recibido, cerrando servidor gracefully
+2025-09-19 19:23:22 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:23:22 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 19:23:22 [INFO]: 📊 Sistema de métricas y monitoreo iniciado
+2025-09-19 19:23:22 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 19:23:52 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 91.91% (30.18MB de 32.84MB)
+2025-09-19 19:23:52 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:24:17 [INFO]: SIGINT recibido, cerrando servidor gracefully
+2025-09-19 19:31:41 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:32:23 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:32:25 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:35:30 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:35:30 [INFO]: 🚀 Inicializando aplicación Twenty One Pilots API v2.0.0
+2025-09-19 19:35:30 [INFO]: 🔗 Registrando rutas de la API...
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de autenticación registradas: /api/auth
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de videos registradas: /api/videos
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de discografía registradas: /api/discography
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de conciertos registradas: /api/concerts
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de foro registradas: /api/forum
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de playlists registradas: /api/playlists
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de tienda registradas: /api/store
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de administración registradas: /api/admin
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de notificaciones registradas: /api/notifications
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de ubicación registradas: /api/location
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de letras registradas: /api/lyrics
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de trivia de conciertos registradas: /api/concert-trivia
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de mapas registradas: /api/maps
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de cache registradas: /api/cache
+2025-09-19 19:35:30 [INFO]: ✅ Rutas de favoritos registradas: /api/favorites
+2025-09-19 19:35:30 [INFO]: 🎉 Todas las rutas han sido registradas exitosamente
+2025-09-19 19:35:30 [INFO]: 📊 Sistema de métricas y monitoreo iniciado
+2025-09-19 19:35:30 [INFO]: ✅ Aplicación inicializada exitosamente
+2025-09-19 19:35:35 [INFO]: Base de datos conectada exitosamente
+2025-09-19 19:35:51 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:36:00 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 90.16% (31.63MB de 35.09MB)
+2025-09-19 19:36:00 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:36:45 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:37:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 91.64% (31.47MB de 34.34MB)
+2025-09-19 19:37:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:37:10 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:37:28 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:37:47 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:38:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 92.17% (31.65MB de 34.34MB)
+2025-09-19 19:38:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:39:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 92.23% (31.67MB de 34.34MB)
+2025-09-19 19:39:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:39:32 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:39:57 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:39:58 [INFO]: 🚀 Inicializando aplicación Twenty One Pilots API v2.0.0
+2025-09-19 19:39:58 [INFO]: 🔗 Registrando rutas de la API...
+2025-09-19 19:39:58 [INFO]: ✅ Rutas de autenticación registradas: /api/auth
+2025-09-19 19:39:58 [INFO]: ✅ Rutas de videos registradas: /api/videos
+2025-09-19 19:39:58 [INFO]: ✅ Rutas de discografía registradas: /api/discography
+2025-09-19 19:39:58 [INFO]: ✅ Rutas de conciertos registradas: /api/concerts
+2025-09-19 19:39:58 [INFO]: 🎉 Rutas principales registradas exitosamente
+2025-09-19 19:39:58 [INFO]: ✅ Aplicación inicializada exitosamente
+2025-09-19 19:40:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.15% (32.33MB de 34.34MB)
+2025-09-19 19:40:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:40:02 [INFO]: Base de datos conectada exitosamente
+2025-09-19 19:40:24 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:40:24 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:40:30 [INFO]: 📊 Métricas del sistema | {"uptime":"0.08h","memoryUsage":"94.08%","activeConnections":0}
+2025-09-19 19:41:00 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:41:00 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":false,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:41:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.98% (32.27MB de 34.34MB)
+2025-09-19 19:41:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:42:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.46% (32.09MB de 34.34MB)
+2025-09-19 19:42:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:42:05 [INFO]: 🚀 Inicializando aplicación Twenty One Pilots API v2.0.0
+2025-09-19 19:42:05 [INFO]: 🚀 Inicializando aplicación Twenty One Pilots API v2.0.0
+2025-09-19 19:42:45 [INFO]: 🚀 Inicializando aplicación Twenty One Pilots API v2.0.0
+2025-09-19 19:42:45 [INFO]: 🚀 Inicializando aplicación Twenty One Pilots API v2.0.0
+2025-09-19 19:43:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.02% (31.94MB de 34.34MB)
+2025-09-19 19:43:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:43:03 [INFO]: 🚀 Inicializando aplicación Twenty One Pilots API v2.0.0
+2025-09-19 19:44:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 92.58% (31.79MB de 34.34MB)
+2025-09-19 19:44:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:45:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.09% (32.31MB de 34.34MB)
+2025-09-19 19:45:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:45:30 [INFO]: 📊 Métricas del sistema | {"uptime":"0.17h","memoryUsage":"93.70%","activeConnections":0}
+2025-09-19 19:46:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.52% (32.11MB de 34.34MB)
+2025-09-19 19:46:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:46:32 [INFO]: 🚀 Inicializando aplicación Twenty One Pilots API v2.0.0
+2025-09-19 19:46:32 [INFO]: 🚀 Inicializando aplicación Twenty One Pilots API v2.0.0
+2025-09-19 19:47:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.08% (31.96MB de 34.34MB)
+2025-09-19 19:47:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:47:20 [INFO]: 🚀 Inicializando aplicación Twenty One Pilots API v2.0.0
+2025-09-19 19:48:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.71% (32.52MB de 34.34MB)
+2025-09-19 19:48:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:49:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.24% (32.36MB de 34.34MB)
+2025-09-19 19:49:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:50:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.70% (32.17MB de 34.34MB)
+2025-09-19 19:50:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:50:30 [INFO]: 📊 Métricas del sistema | {"uptime":"0.25h","memoryUsage":"93.41%","activeConnections":0}
+2025-09-19 19:51:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.16% (31.99MB de 34.34MB)
+2025-09-19 19:51:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:52:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.76% (32.54MB de 34.34MB)
+2025-09-19 19:52:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:53:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.90% (32.24MB de 34.34MB)
+2025-09-19 19:53:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:54:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 95.32% (32.73MB de 34.34MB)
+2025-09-19 19:54:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:55:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.61% (32.49MB de 34.34MB)
+2025-09-19 19:55:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:55:31 [INFO]: 📊 Métricas del sistema | {"uptime":"0.33h","memoryUsage":"94.38%","activeConnections":0}
+2025-09-19 19:56:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.14% (32.32MB de 34.34MB)
+2025-09-19 19:56:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:57:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.89% (32.82MB de 34.59MB)
+2025-09-19 19:57:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:57:27 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:57:46 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:58:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.24% (32.60MB de 34.59MB)
+2025-09-19 19:58:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:58:53 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:59:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.47% (32.33MB de 34.59MB)
+2025-09-19 19:59:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 19:59:24 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 19:59:44 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:00:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.81% (32.79MB de 34.59MB)
+2025-09-19 20:00:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:00:04 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:00:23 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:00:31 [INFO]: 📊 Métricas del sistema | {"uptime":"0.42h","memoryUsage":"94.41%","activeConnections":0}
+2025-09-19 20:00:44 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:01:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.04% (32.52MB de 34.59MB)
+2025-09-19 20:01:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:01:04 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:02:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 92.75% (32.31MB de 34.84MB)
+2025-09-19 20:02:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:02:16 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:03:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.15% (32.80MB de 34.84MB)
+2025-09-19 20:03:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:03:09 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:04:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.32% (32.51MB de 34.84MB)
+2025-09-19 20:04:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:04:02 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:04:23 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:04:44 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:05:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.51% (32.92MB de 34.84MB)
+2025-09-19 20:05:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:05:06 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:05:31 [INFO]: 📊 Métricas del sistema | {"uptime":"0.50h","memoryUsage":"94.16%","activeConnections":0}
+2025-09-19 20:06:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.73% (32.65MB de 34.84MB)
+2025-09-19 20:06:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:06:58 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:07:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.39% (33.12MB de 35.09MB)
+2025-09-19 20:07:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:08:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.88% (32.94MB de 35.09MB)
+2025-09-19 20:08:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:09:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 90.63% (32.70MB de 36.09MB)
+2025-09-19 20:09:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:10:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.54% (33.17MB de 35.09MB)
+2025-09-19 20:10:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:10:31 [INFO]: 📊 Métricas del sistema | {"uptime":"0.58h","memoryUsage":"94.31%","activeConnections":0}
+2025-09-19 20:11:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.99% (32.98MB de 35.09MB)
+2025-09-19 20:11:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:12:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.13% (32.68MB de 35.09MB)
+2025-09-19 20:12:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:13:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.49% (33.15MB de 35.09MB)
+2025-09-19 20:13:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:14:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.71% (32.88MB de 35.09MB)
+2025-09-19 20:14:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:15:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.97% (33.32MB de 35.09MB)
+2025-09-19 20:15:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:15:31 [INFO]: 📊 Métricas del sistema | {"uptime":"0.67h","memoryUsage":"93.92%","activeConnections":0}
+2025-09-19 20:16:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.58% (33.07MB de 35.34MB)
+2025-09-19 20:16:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:17:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 93.04% (32.88MB de 35.34MB)
+2025-09-19 20:17:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:17:51 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:18:01 [WARN]: 🚨 ALERTA CRITICAL: Uso de Memoria Crítico Uso de heap: 94.16% (33.27MB de 35.34MB)
+2025-09-19 20:18:01 [INFO]: 📱 Alerta enviada a Slack (no implementado aún)
+2025-09-19 20:18:51 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:20:45 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:38:55 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:42:44 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:48:18 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:53:18 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:56:08 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:56:59 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:56:59 [INFO]: 🎥 YouTube Service inicializado | {"apiKeyConfigured":true,"cacheEnabled":true,"rateLimitingEnabled":true}
+2025-09-19 20:57:25 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 20:57:25 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 20:58:00 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 20:58:00 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 20:58:21 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 20:58:21 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 20:58:56 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 20:58:56 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 20:59:26 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 20:59:26 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 21:00:04 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:00:04 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:00:05 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 739
+}
+2025-09-19 21:00:14 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:00:14 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:00:14 [32m[32minfo[32m[39m: [32m[32m✅ Resultados obtenidos del cache[32m[39m {
+  "query": "Twenty One Pilots",
+  "count": 10,
+  "duration": 1
+}
+2025-09-19 21:01:44 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:01:44 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:01:44 [32m[32minfo[32m[39m: [32m[32m✅ Resultados obtenidos del cache[32m[39m {
+  "query": "Twenty One Pilots",
+  "count": 10,
+  "duration": 0
+}
+2025-09-19 21:01:44 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:01:44 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:01:44 [32m[32minfo[32m[39m: [32m[32m✅ Resultados obtenidos del cache[32m[39m {
+  "query": "Twenty One Pilots",
+  "count": 10,
+  "duration": 1
+}
+2025-09-19 21:02:25 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-19 21:02:51 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:02:51 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:02:51 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-19 21:02:51 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-19 21:02:51 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 566
+}
+2025-09-19 21:02:51 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 694
+}
+2025-09-19 21:03:44 [33m[33mwarn[33m[39m: [33m[33mOrigen no permitido detectado:[33m[39m {
+  "origin": "http://192.168.1.66:3000",
+  "ip": "http://192.168.1.66:3000"
+}
+2025-09-19 21:03:44 [31m[31merror[31m[39m: [31m[31mError no manejado[31m[39m {
+  "error": "Not allowed by CORS",
+  "stack": "Error: Not allowed by CORS\n    at origin (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:90:16)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handleRequest (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:342:13)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:297:9\n    at processParams (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:291:5)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-rate-limit\\dist\\index.cjs:899:7",
+  "path": "/api/videos/search",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1"
+}
+2025-09-19 21:03:44 [33m[33mwarn[33m[39m: [33m[33mOrigen no permitido detectado:[33m[39m {
+  "origin": "http://192.168.1.66:3000",
+  "ip": "http://192.168.1.66:3000"
+}
+2025-09-19 21:03:44 [31m[31merror[31m[39m: [31m[31mError no manejado[31m[39m {
+  "error": "Not allowed by CORS",
+  "stack": "Error: Not allowed by CORS\n    at origin (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:90:16)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handleRequest (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:342:13)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:297:9\n    at processParams (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:291:5)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-rate-limit\\dist\\index.cjs:899:7",
+  "path": "/api/videos/search",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1"
+}
+2025-09-19 21:03:50 [33m[33mwarn[33m[39m: [33m[33mOrigen no permitido detectado:[33m[39m {
+  "origin": "http://192.168.1.66:3000",
+  "ip": "http://192.168.1.66:3000"
+}
+2025-09-19 21:03:50 [31m[31merror[31m[39m: [31m[31mError no manejado[31m[39m {
+  "error": "Not allowed by CORS",
+  "stack": "Error: Not allowed by CORS\n    at origin (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:90:16)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handleRequest (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:342:13)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:297:9\n    at processParams (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:291:5)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-rate-limit\\dist\\index.cjs:899:7",
+  "path": "/api/videos/search",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1"
+}
+2025-09-19 21:03:51 [33m[33mwarn[33m[39m: [33m[33mOrigen no permitido detectado:[33m[39m {
+  "origin": "http://192.168.1.66:3000",
+  "ip": "http://192.168.1.66:3000"
+}
+2025-09-19 21:03:51 [31m[31merror[31m[39m: [31m[31mError no manejado[31m[39m {
+  "error": "Not allowed by CORS",
+  "stack": "Error: Not allowed by CORS\n    at origin (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:90:16)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handleRequest (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:342:13)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:297:9\n    at processParams (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:291:5)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-rate-limit\\dist\\index.cjs:899:7",
+  "path": "/api/videos/search",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1"
+}
+2025-09-19 21:03:51 [33m[33mwarn[33m[39m: [33m[33mOrigen no permitido detectado:[33m[39m {
+  "origin": "http://192.168.1.66:3000",
+  "ip": "http://192.168.1.66:3000"
+}
+2025-09-19 21:03:51 [31m[31merror[31m[39m: [31m[31mError no manejado[31m[39m {
+  "error": "Not allowed by CORS",
+  "stack": "Error: Not allowed by CORS\n    at origin (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:90:16)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handleRequest (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:342:13)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:297:9\n    at processParams (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:291:5)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-rate-limit\\dist\\index.cjs:899:7",
+  "path": "/api/videos/search",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1"
+}

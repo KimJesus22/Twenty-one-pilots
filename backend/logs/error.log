@@ -72,3 +72,44 @@ TypeError: Converting circular structure to JSON
     at doWrite (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:390:139)
     at writeOrBuffer (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:381:5)
     at Writable.write (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:302:11)
+2025-09-19 19:07:02 [ERROR]: ❌ Error en servidor HTTPS:
+2025-09-19 19:40:24 [ERROR]: ❌ Error: Puerto 5000 ya está en uso
+2025-09-19 19:41:00 [ERROR]: ❌ Error: Puerto 5000 ya está en uso
+2025-09-19 19:42:05 [ERROR]: ❌ Error: Puerto 5000 ya está en uso
+2025-09-19 19:42:45 [ERROR]: ❌ Error: Puerto 5000 ya está en uso
+2025-09-19 19:46:32 [ERROR]: ❌ Error: Puerto 5000 ya está en uso
+2025-09-19 21:03:44 [31m[31merror[31m[39m: [31m[31mError no manejado[31m[39m {
+  "error": "Not allowed by CORS",
+  "stack": "Error: Not allowed by CORS\n    at origin (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:90:16)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handleRequest (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:342:13)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:297:9\n    at processParams (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:291:5)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-rate-limit\\dist\\index.cjs:899:7",
+  "path": "/api/videos/search",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1"
+}
+2025-09-19 21:03:44 [31m[31merror[31m[39m: [31m[31mError no manejado[31m[39m {
+  "error": "Not allowed by CORS",
+  "stack": "Error: Not allowed by CORS\n    at origin (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:90:16)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handleRequest (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:342:13)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:297:9\n    at processParams (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:291:5)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-rate-limit\\dist\\index.cjs:899:7",
+  "path": "/api/videos/search",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1"
+}
+2025-09-19 21:03:50 [31m[31merror[31m[39m: [31m[31mError no manejado[31m[39m {
+  "error": "Not allowed by CORS",
+  "stack": "Error: Not allowed by CORS\n    at origin (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:90:16)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handleRequest (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:342:13)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:297:9\n    at processParams (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:291:5)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-rate-limit\\dist\\index.cjs:899:7",
+  "path": "/api/videos/search",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1"
+}
+2025-09-19 21:03:51 [31m[31merror[31m[39m: [31m[31mError no manejado[31m[39m {
+  "error": "Not allowed by CORS",
+  "stack": "Error: Not allowed by CORS\n    at origin (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:90:16)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handleRequest (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:342:13)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:297:9\n    at processParams (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:291:5)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-rate-limit\\dist\\index.cjs:899:7",
+  "path": "/api/videos/search",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1"
+}
+2025-09-19 21:03:51 [31m[31merror[31m[39m: [31m[31mError no manejado[31m[39m {
+  "error": "Not allowed by CORS",
+  "stack": "Error: Not allowed by CORS\n    at origin (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:90:16)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:219:13\n    at optionsCallback (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:199:9)\n    at corsMiddleware (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\cors\\lib\\index.js:204:7)\n    at Layer.handleRequest (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\layer.js:152:17)\n    at trimPrefix (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:342:13)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:297:9\n    at processParams (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:582:12)\n    at next (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:291:5)\n    at C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\express-rate-limit\\dist\\index.cjs:899:7",
+  "path": "/api/videos/search",
+  "method": "GET",
+  "ip": "::ffff:127.0.0.1"
+}

@@ -333,21 +333,29 @@ function getHealthMetrics() {
 
 // Iniciar monitoreo periódico
 function startPeriodicMonitoring() {
-  // Actualizar métricas cada 30 segundos
+  // Actualizar métricas cada 60 segundos (menos frecuente para evitar memory leaks)
   setInterval(() => {
-    updateMemoryMetrics();
-    updateCpuMetrics();
-  }, 30000);
+    try {
+      updateMemoryMetrics();
+      updateCpuMetrics();
+    } catch (error) {
+      logger.error('Error actualizando métricas:', error);
+    }
+  }, 60000);
 
-  // Log de métricas cada 5 minutos
+  // Log de métricas cada 10 minutos (menos frecuente)
   setInterval(() => {
-    const health = getHealthMetrics();
-    logger.info('📊 Métricas del sistema', {
-      uptime: `${(health.uptime / 3600).toFixed(2)}h`,
-      memoryUsage: `${health.memory.heapUsagePercent}%`,
-      activeConnections: health.activeConnections
-    });
-  }, 300000); // 5 minutos
+    try {
+      const health = getHealthMetrics();
+      logger.info('📊 Métricas del sistema', {
+        uptime: `${(health.uptime / 3600).toFixed(2)}h`,
+        memoryUsage: `${health.memory.heapUsagePercent}%`,
+        activeConnections: health.activeConnections
+      });
+    } catch (error) {
+      logger.error('Error obteniendo métricas de salud:', error);
+    }
+  }, 600000); // 10 minutos
 }
 
 module.exports = {

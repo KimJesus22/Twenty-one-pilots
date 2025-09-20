@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Discography from './pages/Discography';
-import Videos from './pages/Videos';
+import Videos from './pages/Videos.jsx';
 import Concerts from './pages/Concerts';
 import Forum from './pages/Forum';
 import Playlists from './pages/Playlists';

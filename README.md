@@ -1,274 +1,348 @@
-# Twenty One Pilots Fan Platform
+# 🎵 Twenty One Pilots Fan App
 
-Una plataforma web completa para fans de Twenty One Pilots que incluye discografía, videos, conciertos, foro de fans, playlists personalizadas y tienda de merchandize.
+Aplicación web full-stack dedicada a Twenty One Pilots con funcionalidades completas de videos, discografía, foro y tienda.
 
-## 🚀 Características
+## 📋 Tabla de Contenidos
 
-### 🎵 Discografía Completa
-- Exploración de todos los álbumes y canciones
-- Letras de canciones con búsqueda avanzada
-- Información detallada de cada track
+- [Características](#-características)
+- [Arquitectura](#-arquitectura)
+- [Instalación](#-instalación)
+- [Configuración](#-configuración)
+- [Uso](#-uso)
+- [API Documentation](#-api-documentation)
+- [Seguridad](#-seguridad)
+- [Desarrollo](#-desarrollo)
+- [Testing](#-testing)
+- [Despliegue](#-despliegue)
 
-### 📹 Videos Oficiales
-- Integración con YouTube API
-- Videos musicales y contenido oficial
-- Búsqueda y filtros por artista
+## ✨ Características
 
-### 🎪 Conciertos y Eventos
-- Integración con Eventbrite API
-- Calendario de conciertos próximos
-- Información de venues y tickets
-- Geolocalización y mapas interactivos
+### 🎥 Videos
+- **Integración completa con YouTube API v3**
+- **Búsqueda avanzada** de videos oficiales
+- **Reproductor integrado** con react-youtube
+- **Sistema de caché** para optimizar performance
+- **Rate limiting** para evitar sobrecarga de API
+- **Responsive design** para todos los dispositivos
 
-### 👥 Comunidad de Fans
-- Foro de discusión moderado
-- Sistema de usuarios con autenticación JWT
-- Perfiles de usuario personalizables
+### 🎵 Discografía
+- **CRUD completo** para álbumes y canciones
+- **Integración con MongoDB** para persistencia
+- **Validaciones robustas** con express-validator
+- **Relaciones entre modelos** (álbumes ↔ canciones)
 
-### 🎶 Playlists Personalizadas
-- Creación de playlists colaborativas
-- Sistema de recomendaciones
-- Compartir con otros fans
+### 🗣️ Foro
+- **Sistema de hilos y comentarios**
+- **Autenticación de usuarios**
+- **Moderación de contenido**
+- **Búsqueda y filtros**
 
-### 🛍️ Tienda de Merchandize
-- Catálogo de productos oficiales
-- Carrito de compras integrado
-- Sistema de pagos seguro
+### 🛒 Tienda
+- **Catálogo de productos**
+- **Carrito de compras**
+- **Integración con pasarelas de pago**
 
-## 🛠️ Tecnologías Utilizadas
+### 🔒 Seguridad
+- **Helmet.js** para headers de seguridad
+- **CORS configurado** con orígenes permitidos
+- **CSRF protection** personalizado
+- **Rate limiting** avanzado
+- **Validación de entrada** con Joi y express-validator
+- **Sanitización** de datos XSS
+- **Prevención de NoSQL injection**
 
-### Backend
-- **Node.js** con **Express.js**
-- **MongoDB** con **Mongoose**
-- **JWT** para autenticación
-- **Winston** para logging
-- **Swagger/OpenAPI** para documentación
+### 📊 Monitoreo
+- **Sistema de logging** completo con Winston
+- **Métricas de performance**
+- **Health checks** automáticos
+- **Alertas configurables**
 
-### Frontend
-- **React** con **React Router**
-- **Material-UI** para componentes
-- **Axios** para llamadas HTTP
-- **PWA** (Progressive Web App)
+## 🏗️ Arquitectura
 
-### APIs Externas
-- **YouTube Data API v3**
-- **Eventbrite API**
-- **Google Maps API** (opcional)
-
-### DevOps & Calidad
-- **Docker** para contenerización
-- **Jest** para testing
-- **ESLint** para linting
-- **GitHub Actions** para CI/CD
-
-## 📋 Requisitos Previos
-
-- Node.js 16+
-- MongoDB (local o Atlas)
-- NPM o Yarn
-- Git
-
-## 🚀 Instalación y Configuración
-
-### 1. Clonar el repositorio
-```bash
-git clone https://github.com/tu-usuario/twenty-one-pilots-platform.git
-cd twenty-one-pilots-platform
+```
+├── backend/
+│   ├── controllers/          # Controladores de negocio
+│   │   ├── videoController.js
+│   │   └── discographyController.js
+│   ├── models/              # Modelos de MongoDB
+│   │   ├── Discography.js
+│   │   ├── User.js
+│   │   └── Forum.js
+│   ├── routes/              # Definición de rutas
+│   │   ├── videos.js
+│   │   ├── discography.js
+│   │   └── forum.js
+│   ├── services/            # Servicios externos
+│   │   ├── youtubeService.js
+│   │   └── cacheService.js
+│   ├── middleware/          # Middlewares personalizados
+│   │   ├── security.js
+│   │   ├── validation.js
+│   │   └── auth.js
+│   ├── utils/               # Utilidades
+│   │   └── logger.js
+│   ├── config/              # Configuraciones
+│   ├── tests/               # Tests automatizados
+│   └── ssl/                 # Certificados SSL
+├── frontend/
+│   ├── src/
+│   │   ├── components/      # Componentes reutilizables
+│   │   │   ├── YouTubePlayer.jsx
+│   │   │   └── CustomCard.js
+│   │   ├── pages/           # Páginas principales
+│   │   │   ├── Videos.jsx
+│   │   │   └── Discography.jsx
+│   │   ├── api/             # Cliente API
+│   │   │   └── videos.js
+│   │   ├── hooks/           # Custom hooks
+│   │   └── utils/           # Utilidades frontend
+│   └── public/              # Assets estáticos
+└── docs/                    # Documentación
 ```
 
-### 2. Configurar el Backend
+## 🚀 Instalación
 
+### Prerrequisitos
+- Node.js 18+
+- MongoDB 6+
+- npm o yarn
+- YouTube Data API v3 key
+
+### Backend
 ```bash
 cd backend
 npm install
 ```
 
-Crear archivo `.env` en la carpeta backend:
+### Frontend
+```bash
+cd frontend
+npm install
+```
+
+## ⚙️ Configuración
+
+### Variables de Entorno (.env)
+
 ```env
 # Base de datos
 MONGO_URI=mongodb://localhost:27017/twentyonepilots
-# O para MongoDB Atlas:
-# MONGO_URI=mongodb+srv://usuario:password@cluster.mongodb.net/twentyonepilots
 
 # JWT
-JWT_SECRET=tu_jwt_secret_muy_seguro_aqui
-JWT_EXPIRES_IN=7d
+JWT_SECRET=your_jwt_secret_key_here
 
-# APIs Externas
-YOUTUBE_API_KEY=tu_youtube_api_key
-EVENTBRITE_API_KEY=tu_eventbrite_api_key
+# YouTube API
+YOUTUBE_API_KEY=your_youtube_api_key_here
 
 # Servidor
 PORT=5000
 NODE_ENV=development
 
-# Frontend URL (para CORS)
+# CORS
 FRONTEND_URL=http://localhost:3000
+
+# SSL (opcional)
+SSL_KEY_PATH=./ssl/private.key
+SSL_CERT_PATH=./ssl/certificate.crt
+
+# Rate Limiting
+RATE_LIMIT_WINDOW=15
+RATE_LIMIT_MAX_REQUESTS=100
+
+# Logging
+LOG_LEVEL=info
 ```
 
-### 3. Configurar el Frontend
+### YouTube API Setup
+1. Ve a [Google Cloud Console](https://console.cloud.google.com/)
+2. Crea un proyecto o selecciona uno existente
+3. Habilita la **YouTube Data API v3**
+4. Crea credenciales (API Key)
+5. Agrega la key al archivo `.env`
 
-```bash
-cd ../frontend
-npm install
-```
-
-### 4. Ejecutar la aplicación
-
-#### Backend:
-```bash
-cd backend
-npm run dev
-```
-
-#### Frontend:
-```bash
-cd frontend
-npm start
-```
-
-La aplicación estará disponible en:
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:5000
-- **Documentación API**: http://localhost:5000/api-docs
-
-## 📖 Documentación de la API
-
-### Endpoints Principales
-
-#### Autenticación
-- `POST /api/auth/register` - Registro de usuario
-- `POST /api/auth/login` - Inicio de sesión
-- `GET /api/auth/profile` - Obtener perfil (requiere auth)
-- `PUT /api/auth/profile` - Actualizar perfil (requiere auth)
-
-#### Discografía
-- `GET /api/discography/albums` - Lista de álbumes con paginación
-- `GET /api/discography/albums/:id` - Detalles de álbum específico
-- `GET /api/discography/songs` - Lista de canciones
-- `GET /api/discography/songs/:id` - Detalles de canción específica
-
-#### Videos
-- `GET /api/videos/search` - Buscar videos en YouTube
-- `GET /api/videos/:id` - Detalles de video específico
-- `GET /api/videos/:id/related` - Videos relacionados
-
-#### Conciertos
-- `GET /api/concerts/search` - Buscar conciertos
-- `GET /api/concerts/:id` - Detalles de concierto específico
-- `GET /api/concerts/location/search` - Buscar por ubicación
-
-### Autenticación
-
-La API utiliza JWT (JSON Web Tokens) para autenticación. Para acceder a endpoints protegidos:
-
-1. Obtener token mediante login: `POST /api/auth/login`
-2. Incluir token en header: `Authorization: Bearer <token>`
-
-## 🏗️ Arquitectura
-
-```
-twenty-one-pilots-platform/
-├── backend/
-│   ├── controllers/     # Lógica de negocio
-│   ├── models/         # Modelos de MongoDB
-│   ├── routes/         # Definición de rutas
-│   ├── services/       # Servicios externos (APIs)
-│   ├── middleware/     # Middleware personalizado
-│   ├── utils/          # Utilidades (logger, etc.)
-│   ├── validations/    # Validaciones con Joi
-│   └── tests/          # Tests automatizados
-├── frontend/
-│   ├── src/
-│   │   ├── components/ # Componentes React
-│   │   ├── pages/      # Páginas de la aplicación
-│   │   ├── services/   # Servicios para llamadas API
-│   │   └── utils/      # Utilidades del frontend
-│   └── public/         # Archivos estáticos
-└── docs/               # Documentación adicional
-```
-
-## 🧪 Testing
-
-### Ejecutar Tests
-```bash
-# Backend
-cd backend
-npm test
-
-# Frontend
-cd frontend
-npm test
-```
-
-### Cobertura de Tests
-```bash
-# Backend
-npm run test:coverage
-
-# Frontend
-npm run test:coverage
-```
-
-## 🚀 Despliegue
+## 🎯 Uso
 
 ### Desarrollo
 ```bash
 # Backend
-npm run dev
+cd backend && npm run dev
 
-# Frontend
-npm start
+# Frontend (nueva terminal)
+cd frontend && npm start
 ```
 
 ### Producción
 ```bash
 # Backend
-npm run build
-npm start
+cd backend && npm start
 
 # Frontend
-npm run build
-npm run serve
+cd frontend && npm run build && npm run serve
 ```
 
-### Docker
-```bash
-# Construir imágenes
-docker-compose build
+### Acceder a la aplicación
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:5000
+- **Health Check:** http://localhost:5000/health
 
-# Ejecutar servicios
-docker-compose up
+## 📚 API Documentation
 
-# Ejecutar en background
-docker-compose up -d
+### Videos Endpoints
+
+#### GET /api/videos/search
+Buscar videos en YouTube
+```javascript
+GET /api/videos/search?q=Twenty One Pilots&maxResults=10
+```
+
+#### GET /api/videos/:id
+Obtener detalles de un video específico
+```javascript
+GET /api/videos/VIDEO_ID
+```
+
+#### GET /api/videos/popular
+Obtener videos populares
+```javascript
+GET /api/videos/popular?limit=10&page=1
+```
+
+### Discografía Endpoints
+
+#### GET /api/discography/albums
+Obtener todos los álbumes
+```javascript
+GET /api/discography/albums
+```
+
+#### POST /api/discography/albums
+Crear nuevo álbum
+```javascript
+POST /api/discography/albums
+{
+  "title": "Blurryface",
+  "releaseYear": 2015,
+  "coverImage": "url_to_image"
+}
+```
+
+### Foro Endpoints
+
+#### GET /api/forum/threads
+Obtener hilos del foro
+```javascript
+GET /api/forum/threads?page=1&limit=10
+```
+
+#### POST /api/forum/threads
+Crear nuevo hilo
+```javascript
+POST /api/forum/threads
+{
+  "title": "Nuevo hilo",
+  "content": "Contenido del hilo",
+  "authorId": "user_id"
+}
 ```
 
 ## 🔒 Seguridad
 
-- **Autenticación JWT** con expiración configurable
-- **Rate limiting** para prevenir ataques DoS
-- **Helmet** para headers de seguridad HTTP
-- **Validación de entrada** con express-validator
-- **Encriptación de contraseñas** con bcrypt
-- **CORS** configurado para orígenes específicos
+### Headers de Seguridad (Helmet.js)
+- **X-Powered-By:** Deshabilitado
+- **X-Frame-Options:** DENY (previene clickjacking)
+- **X-Content-Type-Options:** nosniff
+- **Referrer-Policy:** strict-origin-when-cross-origin
+- **CSP (Content Security Policy):** Políticas estrictas
 
-## 📱 PWA (Progressive Web App)
+### Rate Limiting
+- **General:** 100 requests por 15 minutos
+- **Auth:** 5 requests por 15 minutos
+- **API específica:** Configurable por endpoint
 
-La aplicación incluye características PWA:
-- **Service Worker** para caching offline
-- **Manifest.json** para instalación
-- **Notificaciones push** (opcional)
-- **Responsive design** para móviles
+### Validación de Entrada
+- **express-validator:** Validaciones server-side
+- **Joi schemas:** Validaciones complejas
+- **Sanitización:** Prevención XSS
+- **NoSQL Injection:** Protección automática
 
-## ♿ Accesibilidad (WCAG 2.1 AA)
+### Autenticación y Autorización
+- **JWT tokens** para sesiones
+- **bcryptjs** para hash de passwords
+- **Role-based access control**
+- **Session management** seguro
 
-- **Navegación por teclado** completa
-- **Lectores de pantalla** soportados
-- **Alto contraste** disponible
-- **Etiquetas ARIA** en componentes
-- **Skip links** para navegación rápida
-- **Focus management** adecuado
+## 🧪 Testing
+
+### Backend Tests
+```bash
+cd backend
+npm test                    # Ejecutar todos los tests
+npm run test:watch         # Tests en modo watch
+npm run test:coverage      # Coverage report
+```
+
+### Frontend Tests
+```bash
+cd frontend
+npm test                   # Ejecutar tests de React
+npm run test:e2e          # Tests end-to-end (si configurados)
+```
+
+### Tests de API
+```bash
+# Health check
+curl http://localhost:5000/health
+
+# Test YouTube API
+curl "http://localhost:5000/api/videos/search?q=Twenty One Pilots"
+```
+
+## 🚢 Despliegue
+
+### PM2 (Producción)
+```bash
+cd backend
+npm install -g pm2
+pm2 start ecosystem.config.js --env production
+```
+
+### Docker
+```bash
+# Construir imagen
+docker build -t twentyonepilots-app .
+
+# Ejecutar contenedor
+docker run -p 5000:5000 -p 3000:3000 twentyonepilots-app
+```
+
+### SSL/HTTPS
+Para producción, configura certificados SSL:
+```bash
+# Generar certificados de desarrollo
+cd backend/ssl
+node generate-dev-certs.js
+
+# Para producción, usa Let's Encrypt o certificados válidos
+```
+
+## 📈 Monitoreo
+
+### Logs
+- **Winston logger** con múltiples transportes
+- **Rotación automática** de archivos de log
+- **Niveles configurables:** error, warn, info, debug
+- **Formato JSON** para análisis
+
+### Métricas
+- **Health checks** en `/health`
+- **Performance monitoring**
+- **API usage tracking**
+- **Error rate monitoring**
+
+### Alertas
+- **Configurables** para diferentes eventos
+- **Integración** con servicios externos
+- **Thresholds** personalizables
 
 ## 🤝 Contribución
 
@@ -278,32 +352,25 @@ La aplicación incluye características PWA:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-### Guías de Contribución
-- Seguir estándares de código ESLint
-- Escribir tests para nuevas funcionalidades
-- Actualizar documentación según cambios
-- Usar commits convencionales
-
-## 📄 Licencia
+## 📝 Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 
-## 👥 Autores
-
-- **Tu Nombre** - *Desarrollo inicial* - [Tu GitHub](https://github.com/tu-usuario)
-
 ## 🙏 Agradecimientos
 
-- Twenty One Pilots por la inspiración
-- Comunidad de fans por el apoyo
-- Contribuidores de código abierto utilizados
+- **Twenty One Pilots** por la inspiración musical
+- **Google YouTube API** por la integración de videos
+- **MongoDB** por la base de datos
+- **React** por el framework frontend
+- **Express.js** por el framework backend
 
-## 📞 Contacto
+## 📞 Soporte
 
-- **Email**: tu-email@ejemplo.com
-- **GitHub**: [https://github.com/tu-usuario/twenty-one-pilots-platform](https://github.com/tu-usuario)
-- **Discord**: [Servidor de la comunidad](https://discord.gg/ejemplo)
+Para soporte técnico:
+- 📧 Email: support@twentyonepilots-app.com
+- 🐛 Issues: [GitHub Issues](https://github.com/username/twentyonepilots-app/issues)
+- 📖 Docs: [Documentación completa](docs/)
 
 ---
 
-⭐ Si te gusta este proyecto, ¡dale una estrella en GitHub!
+**Desarrollado con ❤️ para la comunidad de fans de Twenty One Pilots**
