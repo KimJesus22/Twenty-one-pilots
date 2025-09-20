@@ -7,12 +7,15 @@ module.exports = {
     env: {
       NODE_ENV: 'development',
       PORT: 5000,
-      LOG_LEVEL: 'debug'
+      LOG_LEVEL: 'debug',
+      FORCE_HTTPS: 'false'
     },
     env_production: {
       NODE_ENV: 'production',
-      PORT: 5000,
+      HTTPS_PORT: 443,
+      HTTP_PORT: 80,
       LOG_LEVEL: 'info',
+      FORCE_HTTPS: 'true',
       // Variables de producción se cargan desde .env
     },
     // Configuración de logs
@@ -39,10 +42,18 @@ module.exports = {
     // Configuración de health checks
     health_check: {
       enabled: true,
-      url: 'http://localhost:5000/health',
+      url: process.env.NODE_ENV === 'production'
+        ? 'https://localhost:443/health'
+        : 'http://localhost:5000/health',
       interval: 30000, // 30 segundos
       timeout: 5000,   // 5 segundos
-      fails: 3         // 3 fallos para reiniciar
+      fails: 3,        // 3 fallos para reiniciar
+      // Configuración SSL para health checks en producción
+      ...(process.env.NODE_ENV === 'production' && {
+        tls: {
+          rejectUnauthorized: false // Para certificados auto-firmados en desarrollo
+        }
+      })
     }
   }],
 

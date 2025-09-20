@@ -43,3 +43,128 @@ TypeError: obj.hasOwnProperty is not a function
     at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
     at trimPrefix (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:342:13)
 2025-09-19 17:06:12 [WARN]: Request sospechoso detectado: | {"path":"/api/concerts/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 17:10:05 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 17:10:23 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 17:10:23 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:02:31 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:03:04 [WARN]: Request sospechoso detectado: | {"path":"/","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:03:04 [WARN]: Request sospechoso detectado: | {"path":"/favicon.ico","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:04:20 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:04:20 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:04:52 [INFO]: External API YouTube search SUCCESS | {"query":"Twenty One Pilots","resultsCount":10}
+2025-09-19 18:04:52 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:04:52 [INFO]: External API YouTube search SUCCESS | {"query":"Twenty One Pilots","resultsCount":10}
+2025-09-19 18:04:52 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:04:56 [INFO]: External API YouTube search SUCCESS | {"query":"","resultsCount":0}
+2025-09-19 18:04:56 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:04:59 [INFO]: External API YouTube search SUCCESS | {"query":"b","resultsCount":10}
+2025-09-19 18:04:59 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:05:01 [INFO]: External API YouTube search SUCCESS | {"query":"br","resultsCount":10}
+2025-09-19 18:05:01 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:05:02 [INFO]: External API YouTube search SUCCESS | {"query":"bre","resultsCount":10}
+2025-09-19 18:05:02 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:05:03 [INFO]: External API YouTube search SUCCESS | {"query":"brea","resultsCount":10}
+2025-09-19 18:05:03 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:05:05 [INFO]: External API YouTube search SUCCESS | {"query":"breac","resultsCount":10}
+2025-09-19 18:05:05 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:05:07 [INFO]: External API YouTube search SUCCESS | {"query":"breach","resultsCount":10}
+2025-09-19 18:05:07 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:05:09 [ERROR]: Error en ruta /concerts/search: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at Printf.template (C:\Users\gomez\Documents\TOP\backend\utils\logger.js:32:25)
+    at Printf.transform (C:\Users\gomez\Documents\TOP\backend\node_modules\logform\printf.js:11:26)
+    at Format.transform (C:\Users\gomez\Documents\TOP\backend\node_modules\logform\combine.js:20:24)
+    at DerivedLogger._transform (C:\Users\gomez\Documents\TOP\backend\node_modules\winston\lib\winston\logger.js:314:29)
+    at Transform._read (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_transform.js:166:10)
+    at Transform._write (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_transform.js:155:83)
+    at doWrite (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:390:139)
+    at writeOrBuffer (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:381:5)
+    at Writable.write (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:302:11)
+2025-09-19 18:05:09 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:05:09 [ERROR]: Error en ruta /concerts/search: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at Printf.template (C:\Users\gomez\Documents\TOP\backend\utils\logger.js:32:25)
+    at Printf.transform (C:\Users\gomez\Documents\TOP\backend\node_modules\logform\printf.js:11:26)
+    at Format.transform (C:\Users\gomez\Documents\TOP\backend\node_modules\logform\combine.js:20:24)
+    at DerivedLogger._transform (C:\Users\gomez\Documents\TOP\backend\node_modules\winston\lib\winston\logger.js:314:29)
+    at Transform._read (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_transform.js:166:10)
+    at Transform._write (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_transform.js:155:83)
+    at doWrite (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:390:139)
+    at writeOrBuffer (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:381:5)
+    at Writable.write (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:302:11)
+2025-09-19 18:05:09 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:06:12 [INFO]: SIGINT recibido, cerrando servidor gracefully
+2025-09-19 18:13:24 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:13:30 [INFO]: External API YouTube validateApiKey SUCCESS
+2025-09-19 18:13:30 [WARN]: Request sospechoso detectado: | {"path":"/test-api","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:13:30 [WARN]: Request sospechoso detectado: | {"path":"/favicon.ico","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:14:00 [INFO]: External API YouTube search SUCCESS | {"query":"bt","resultsCount":10}
+2025-09-19 18:14:00 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:14:02 [INFO]: External API YouTube search SUCCESS | {"query":"bts","resultsCount":10}
+2025-09-19 18:14:02 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:16:52 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:17:09 [INFO]: External API YouTube validateApiKey SUCCESS
+2025-09-19 18:17:09 [WARN]: Request sospechoso detectado: | {"path":"/test-api","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:18:12 [INFO]: External API YouTube validateApiKey SUCCESS
+2025-09-19 18:18:12 [WARN]: Request sospechoso detectado: | {"path":"/test-api","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:18:34 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:18:34 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:18:44 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; es-MX) WindowsPowerShell/5.1.26100.6584"}
+2025-09-19 18:18:59 [INFO]: External API YouTube search SUCCESS | {"query":"Twenty One Pilots","resultsCount":10}
+2025-09-19 18:18:59 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:18:59 [INFO]: External API YouTube search SUCCESS | {"query":"Twenty One Pilots","resultsCount":10}
+2025-09-19 18:18:59 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:19:48 [INFO]: External API YouTube search SUCCESS | {"query":"twenty one pilots","resultsCount":10}
+2025-09-19 18:19:48 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 18:20:22 [INFO]: External API YouTube search SUCCESS | {"query":"twenty one pilots","resultsCount":10}
+2025-09-19 18:20:22 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT; Windows NT 10.0; es-MX) WindowsPowerShell/5.1.26100.6584"}
+2025-09-19 18:20:40 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 18:21:20 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:21:25 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:21:54 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"curl/8.14.1"}
+2025-09-19 18:24:33 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:24:34 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:24:38 [INFO]: External API YouTube search SUCCESS | {"query":"Twenty One Pilots","resultsCount":10}
+2025-09-19 18:24:38 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:24:39 [INFO]: External API YouTube search SUCCESS | {"query":"Twenty One Pilots","resultsCount":10}
+2025-09-19 18:24:39 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36 Edg/140.0.0.0"}
+2025-09-19 18:28:04 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+2025-09-19 18:28:05 [WARN]: Request sospechoso detectado: | {"path":"/albums","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+2025-09-19 18:28:06 [INFO]: External API YouTube search SUCCESS | {"query":"Twenty One Pilots","resultsCount":10}
+2025-09-19 18:28:06 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+2025-09-19 18:28:07 [INFO]: External API YouTube search SUCCESS | {"query":"Twenty One Pilots","resultsCount":10}
+2025-09-19 18:28:07 [WARN]: Request sospechoso detectado: | {"path":"/search","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+2025-09-19 18:30:02 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:30:09 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:32:04 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:32:58 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:33:59 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:35:00 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:38:24 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:38:29 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:39:17 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:39:21 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:39:47 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:40:10 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:40:13 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:42:20 [INFO]: Servidor corriendo en puerto 5000 | {"port":"5000","environment":"development"}
+2025-09-19 18:42:54 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:42:54 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:43:40 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:43:40 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}
+2025-09-19 18:44:06 [INFO]: ✅ Configuración SSL/TLS cargada exitosamente
+2025-09-19 18:44:06 [INFO]: 🔒 Servidor HTTPS corriendo en puerto 443 | {"port":443,"environment":"development","sslEnabled":true}

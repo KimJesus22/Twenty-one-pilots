@@ -36,3 +36,39 @@ TypeError: obj.hasOwnProperty is not a function
     at securityLogger (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:260:3)
     at Layer.handleRequest (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\layer.js:152:17)
     at trimPrefix (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:342:13)
+2025-09-19 18:05:09 [ERROR]: Error en ruta /concerts/search: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at Printf.template (C:\Users\gomez\Documents\TOP\backend\utils\logger.js:32:25)
+    at Printf.transform (C:\Users\gomez\Documents\TOP\backend\node_modules\logform\printf.js:11:26)
+    at Format.transform (C:\Users\gomez\Documents\TOP\backend\node_modules\logform\combine.js:20:24)
+    at DerivedLogger._transform (C:\Users\gomez\Documents\TOP\backend\node_modules\winston\lib\winston\logger.js:314:29)
+    at Transform._read (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_transform.js:166:10)
+    at Transform._write (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_transform.js:155:83)
+    at doWrite (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:390:139)
+    at writeOrBuffer (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:381:5)
+    at Writable.write (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:302:11)
+2025-09-19 18:05:09 [ERROR]: Error en ruta /concerts/search: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at Printf.template (C:\Users\gomez\Documents\TOP\backend\utils\logger.js:32:25)
+    at Printf.transform (C:\Users\gomez\Documents\TOP\backend\node_modules\logform\printf.js:11:26)
+    at Format.transform (C:\Users\gomez\Documents\TOP\backend\node_modules\logform\combine.js:20:24)
+    at DerivedLogger._transform (C:\Users\gomez\Documents\TOP\backend\node_modules\winston\lib\winston\logger.js:314:29)
+    at Transform._read (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_transform.js:166:10)
+    at Transform._write (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_transform.js:155:83)
+    at doWrite (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:390:139)
+    at writeOrBuffer (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:381:5)
+    at Writable.write (C:\Users\gomez\Documents\TOP\backend\node_modules\readable-stream\lib\_stream_writable.js:302:11)
