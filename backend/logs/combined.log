@@ -1942,3 +1942,60 @@ TypeError: Converting circular structure to JSON
   "environment": "development",
   "sslEnabled": false
 }
+2025-09-21 16:05:39 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": false,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-21 16:05:39 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-21 16:11:32 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-21 16:11:32 [31m[31merror[31m[39m: [31m[31m❌ Error: Puerto 5000 ya está en uso[31m[39m
+2025-09-21 16:11:32 [32m[32minfo[32m[39m: [32m[32m💡 Sugerencia: Mata el proceso usando el puerto 5000 o cambia el puerto[32m[39m
+2025-09-21 16:11:34 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m
+2025-09-21 16:11:42 [32m[32minfo[32m[39m: [32m[32m🎥 YouTube Service inicializado[32m[39m {
+  "apiKeyConfigured": true,
+  "cacheEnabled": true,
+  "rateLimitingEnabled": true
+}
+2025-09-21 16:11:42 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-21 16:13:02 [32m[32minfo[32m[39m: [32m[32m🔍 Buscando videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "maxResults": 10
+}
+2025-09-21 16:13:02 [32m[32minfo[32m[39m: [32m[32m🔍 Iniciando búsqueda de videos[32m[39m {
+  "query": "Twenty One Pilots",
+  "options": {
+    "maxResults": 10
+  }
+}
+2025-09-21 16:13:02 [32m[32minfo[32m[39m: [32m[32m✅ Búsqueda de videos completada[32m[39m {
+  "query": "Twenty One Pilots",
+  "resultsCount": 10,
+  "totalResults": 1000000,
+  "duration": 716
+}
+2025-09-21 16:13:17 [31m[31merror[31m[39m: [31m[31mError en ruta /concerts/search: Converting circular structure to JSON[31m[39m
+[31m[31m    --> starting at object with constructor 'TLSSocket'[31m[39m
+[31m[31m    |     property 'parser' -> object with constructor 'HTTPParser'[31m[39m
+[31m[31m    --- property 'socket' closes the circle[31m[39m {
+  "stack": "TypeError: Converting circular structure to JSON\n    --> starting at object with constructor 'TLSSocket'\n    |     property 'parser' -> object with constructor 'HTTPParser'\n    --- property 'socket' closes the circle\n    at JSON.stringify (<anonymous>)\n    at Printf.template (C:\\Users\\gomez\\Documents\\TOP\\backend\\utils\\logger.js:34:23)\n    at Printf.transform (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\logform\\printf.js:11:26)\n    at Format.transform (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\logform\\combine.js:20:24)\n    at DerivedLogger._transform (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\winston\\lib\\winston\\logger.js:314:29)\n    at Transform._read (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\readable-stream\\lib\\_stream_transform.js:166:10)\n    at Transform._write (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\readable-stream\\lib\\_stream_transform.js:155:83)\n    at doWrite (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\readable-stream\\lib\\_stream_writable.js:390:139)\n    at writeOrBuffer (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\readable-stream\\lib\\_stream_writable.js:381:5)\n    at Writable.write (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\readable-stream\\lib\\_stream_writable.js:302:11)"
+}
+2025-09-21 16:13:17 [31m[31merror[31m[39m: [31m[31mError en ruta /concerts/search: Converting circular structure to JSON[31m[39m
+[31m[31m    --> starting at object with constructor 'ClientRequest'[31m[39m
+[31m[31m    |     property 'res' -> object with constructor 'IncomingMessage'[31m[39m
+[31m[31m    --- property 'req' closes the circle[31m[39m {
+  "stack": "TypeError: Converting circular structure to JSON\n    --> starting at object with constructor 'ClientRequest'\n    |     property 'res' -> object with constructor 'IncomingMessage'\n    --- property 'req' closes the circle\n    at JSON.stringify (<anonymous>)\n    at Printf.template (C:\\Users\\gomez\\Documents\\TOP\\backend\\utils\\logger.js:34:23)\n    at Printf.transform (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\logform\\printf.js:11:26)\n    at Format.transform (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\logform\\combine.js:20:24)\n    at DerivedLogger._transform (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\winston\\lib\\winston\\logger.js:314:29)\n    at Transform._read (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\readable-stream\\lib\\_stream_transform.js:166:10)\n    at Transform._write (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\readable-stream\\lib\\_stream_transform.js:155:83)\n    at doWrite (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\readable-stream\\lib\\_stream_writable.js:390:139)\n    at writeOrBuffer (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\readable-stream\\lib\\_stream_writable.js:381:5)\n    at Writable.write (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\readable-stream\\lib\\_stream_writable.js:302:11)"
+}
+2025-09-21 16:13:30 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m

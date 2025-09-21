@@ -19,7 +19,8 @@ import {
   Event,
   Forum,
   QueueMusic,
-  ShoppingCart
+  ShoppingCart,
+  LibraryMusic
 } from '@mui/icons-material';
 import { useTheme as useCustomTheme } from '../ThemeProvider';
 import LanguageSelector from './LanguageSelector';
@@ -37,6 +38,7 @@ const Navbar = () => {
     { path: '/concerts', label: t('nav.concerts'), icon: Event },
     { path: '/forum', label: t('nav.forum'), icon: Forum },
     { path: '/playlists', label: t('nav.playlists'), icon: QueueMusic },
+    { path: '/spotify', label: 'Spotify', icon: LibraryMusic },
     { path: '/store', label: t('nav.store'), icon: ShoppingCart },
   ];
 

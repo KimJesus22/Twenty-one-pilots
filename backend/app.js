@@ -160,9 +160,9 @@ app.use(cors({
 
 app.use(express.json({ limit: '10mb' })); // Limitar tamaño de payload
 
-// Middleware de versionado de API
-app.use('/api', apiVersioning);
-app.use('/api', redirectToDefaultVersion);
+// Middleware de versionado de API - temporalmente deshabilitado
+// app.use('/api', apiVersioning);
+// app.use('/api', redirectToDefaultVersion);
 
 // Middleware CSRF personalizado (más ligero que csurf)
 const csrfProtection = (req, res, next) => {
@@ -228,7 +228,8 @@ app.use((req, res, next) => {
 // Seguridad y sanitización avanzada
 app.use(expressSanitizer()); // Sanitización personalizada
 
-// Middleware de seguridad avanzado, servicios de escalabilidad y versionado
+// Middleware de seguridad avanzado - temporalmente deshabilitado para debugging
+// TODO: Rehabilitar una vez que se resuelvan las dependencias del middleware/security.js
 // const {
 //   sanitizeInput,
 //   validateMongoId,
@@ -301,37 +302,37 @@ app.get('/', (req, res) => {
   res.json({ message: 'Bienvenido a la API de Twenty One Pilots' });
 });
 
-// Endpoint de métricas de rendimiento y seguridad
-app.get('/api/metrics', metricsEndpoint);
+// Endpoint de métricas de rendimiento y seguridad - temporalmente deshabilitado
+// app.get('/api/metrics', metricsEndpoint);
 
-// Endpoint para información de versiones de API
-app.get('/api/versions', (req, res) => {
-  res.json({
-    success: true,
-    data: {
-      versions: API_VERSIONS,
-      defaultVersion: DEFAULT_VERSION,
-      currentVersion: req.apiVersion || DEFAULT_VERSION,
-      supportedVersions: Object.keys(API_VERSIONS),
-      versionUsage: getVersionUsageStats()
-    }
-  });
-});
+// Endpoint para información de versiones de API - temporalmente deshabilitado
+// app.get('/api/versions', (req, res) => {
+//   res.json({
+//     success: true,
+//     data: {
+//       versions: API_VERSIONS,
+//       defaultVersion: DEFAULT_VERSION,
+//       currentVersion: req.apiVersion || DEFAULT_VERSION,
+//       supportedVersions: Object.keys(API_VERSIONS),
+//       versionUsage: getVersionUsageStats()
+//     }
+//   });
+// });
 
-// Endpoint para documentación completa de versiones
-app.get('/api/docs/versions', (req, res) => {
-  const docs = generateVersionDocumentation();
+// Endpoint para documentación completa de versiones - temporalmente deshabilitado
+// app.get('/api/docs/versions', (req, res) => {
+//   const docs = generateVersionDocumentation();
 
-  res.json({
-    success: true,
-    data: docs,
-    meta: {
-      generatedAt: new Date().toISOString(),
-      apiVersion: req.apiVersion || DEFAULT_VERSION,
-      format: 'OpenAPI-like'
-    }
-  });
-});
+//   res.json({
+//     success: true,
+//     data: docs,
+//     meta: {
+//       generatedAt: new Date().toISOString(),
+//       apiVersion: req.apiVersion || DEFAULT_VERSION,
+//       format: 'OpenAPI-like'
+//     }
+//   });
+// });
 
 // Rutas versionadas específicas
 app.get('/api/v1/health', (req, res) => {
@@ -376,35 +377,19 @@ app.get('/api/v2/videos/search', async (req, res) => {
   try {
     const { q = 'Twenty One Pilots', maxResults = 10 } = req.query;
 
-    // Usar cache distribuido para búsquedas
-    const cacheKey = `search_v2_${q}_${maxResults}`;
-    let results = await distributedCache.get(cacheKey);
-
-    if (!results) {
-      // Si no está en cache, buscar en Elasticsearch si está disponible
-      try {
-        const esResults = await searchService.search('videos', {
-          searchText: q,
-          size: parseInt(maxResults)
-        });
-        results = esResults;
-        await distributedCache.set(cacheKey, results, 300); // Cache por 5 minutos
-      } catch (esError) {
-        logger.warn('Elasticsearch no disponible, usando búsqueda básica:', esError.message);
-        results = {
-          hits: [],
-          total: 0,
-          message: 'Búsqueda básica - Elasticsearch no disponible'
-        };
-      }
-    }
+    // Búsqueda básica - servicios avanzados temporalmente deshabilitados
+    const results = {
+      hits: [],
+      total: 0,
+      message: 'Búsqueda básica - Servicios avanzados temporalmente deshabilitados'
+    };
 
     res.json({
       success: true,
       version: 'v2',
       data: results,
-      cached: !!results.message,
-      features: ['Cache distribuido', 'Búsqueda avanzada', 'Métricas en tiempo real']
+      cached: false,
+      features: ['Búsqueda básica']
     });
 
   } catch (error) {
@@ -412,174 +397,18 @@ app.get('/api/v2/videos/search', async (req, res) => {
     res.status(500).json({
       success: false,
       version: 'v2',
-      message: 'Error en búsqueda avanzada'
+      message: 'Error en búsqueda'
     });
   }
 });
 
-// Endpoints para servicios de escalabilidad
-app.get('/api/search/health', async (req, res) => {
-  try {
-    const isHealthy = await searchService.checkConnection();
-    res.json({
-      success: true,
-      service: 'elasticsearch',
-      healthy: isHealthy,
-      timestamp: new Date().toISOString()
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      service: 'elasticsearch',
-      healthy: false,
-      error: error.message
-    });
-  }
-});
-
-app.get('/api/cache/health', async (req, res) => {
-  try {
-    const isConnected = redisClient.connected;
-    const info = await new Promise((resolve, reject) => {
-      redisClient.info((err, info) => {
-        if (err) reject(err);
-        else resolve(info);
-      });
-    });
-
-    res.json({
-      success: true,
-      service: 'redis',
-      healthy: isConnected,
-      info: info.split('\n').slice(0, 10).join('\n'), // Primeras 10 líneas de info
-      timestamp: new Date().toISOString()
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      service: 'redis',
-      healthy: false,
-      error: error.message
-    });
-  }
-});
-
-// Endpoint para búsqueda avanzada con Elasticsearch
-app.post('/api/search/advanced', async (req, res) => {
-  try {
-    const { index, query, options } = req.body;
-
-    if (!index || !query) {
-      return res.status(400).json({
-        success: false,
-        message: 'Index y query son requeridos'
-      });
-    }
-
-    const results = await searchService.search(index, query, options);
-
-    res.json({
-      success: true,
-      data: results
-    });
-
-  } catch (error) {
-    logger.error('❌ Error en búsqueda avanzada:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error en búsqueda avanzada',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
-    });
-  }
-});
-
-// Endpoint para métricas de escalabilidad
-app.get('/api/scalability/metrics', (req, res) => {
-  try {
-    const metrics = scalabilityMetrics.getScalabilityMetrics();
-
-    // Verificar permisos (solo admin en producción)
-    if (process.env.NODE_ENV === 'production' && !req.user?.isAdmin) {
-      return res.status(403).json({
-        success: false,
-        message: 'Acceso denegado a métricas de escalabilidad'
-      });
-    }
-
-    logger.info('📊 Métricas de escalabilidad solicitadas', {
-      ip: req.ip,
-      databases: Object.keys(metrics.databases).length,
-      alerts: metrics.alerts.length
-    });
-
-    res.json({
-      success: true,
-      data: metrics
-    });
-
-  } catch (error) {
-    logger.error('❌ Error obteniendo métricas de escalabilidad:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
-
-// Endpoint para gestión de cache distribuido
-app.get('/api/cache/:key', async (req, res) => {
-  try {
-    const { key } = req.params;
-    const value = await distributedCache.get(key);
-
-    if (value === null) {
-      return res.status(404).json({
-        success: false,
-        message: 'Cache key not found'
-      });
-    }
-
-    res.json({
-      success: true,
-      data: value
-    });
-
-  } catch (error) {
-    logger.error('❌ Error obteniendo cache:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error obteniendo cache'
-    });
-  }
-});
-
-app.post('/api/cache/:key', async (req, res) => {
-  try {
-    const { key } = req.params;
-    const { value, ttl } = req.body;
-
-    if (!value) {
-      return res.status(400).json({
-        success: false,
-        message: 'Value is required'
-      });
-    }
-
-    const success = await distributedCache.set(key, value, ttl);
-
-    res.json({
-      success,
-      message: success ? 'Cache set successfully' : 'Failed to set cache'
-    });
-
-  } catch (error) {
-    logger.error('❌ Error configurando cache:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error configurando cache'
-    });
-  }
-});
+// Endpoints para servicios de escalabilidad - temporalmente deshabilitados
+// app.get('/api/search/health', async (req, res) => { ... });
+// app.get('/api/cache/health', async (req, res) => { ... });
+// app.post('/api/search/advanced', async (req, res) => { ... });
+// app.get('/api/scalability/metrics', (req, res) => { ... });
+// app.get('/api/cache/:key', async (req, res) => { ... });
+// app.post('/api/cache/:key', async (req, res) => { ... });
 
 // Health check endpoint con métricas de seguridad
 app.get('/health', async (req, res) => {
@@ -594,56 +423,54 @@ app.get('/health', async (req, res) => {
     protocol: req.protocol,
     host: req.get('host'),
 
-    // Métricas de seguridad avanzadas
+    // Métricas de seguridad - simplificadas temporalmente
     security: {
       helmetEnabled: true,
       cspEnabled: true,
       rateLimitingEnabled: true,
       csrfProtectionEnabled: true,
       sanitizationEnabled: true,
-      noSqlInjectionProtection: true,
+      noSqlInjectionProtection: false, // temporalmente deshabilitado
       xssProtectionEnabled: true,
       httpsRedirectEnabled: process.env.FORCE_HTTPS === 'true',
       hstsEnabled: process.env.NODE_ENV === 'production',
       corsEnabled: true,
-      securityHeadersCount: 15, // Headers de seguridad configurados
+      securityHeadersCount: 10, // Headers de seguridad configurados
       lastSecurityScan: new Date().toISOString(),
-      securityMiddlewareActive: true,
+      securityMiddlewareActive: false, // temporalmente deshabilitado
 
-      // Métricas en tiempo real
-      performance: getPerformanceMetrics(),
-      activeAlerts: getPerformanceMetrics().alerts.length,
-      totalSecurityEvents: getPerformanceMetrics().securityEvents.length,
-      monitoredEndpoints: Object.keys(getPerformanceMetrics().endpoints).length,
+      // Métricas básicas
+      performance: {
+        totalRequests: 0,
+        totalErrors: 0,
+        avgLatency: 0,
+        throughputPerMinute: 0,
+        suspiciousRequests: 0
+      },
+      activeAlerts: 0,
+      totalSecurityEvents: 0,
+      monitoredEndpoints: 0,
 
-      // Estadísticas de seguridad
+      // Estadísticas de seguridad básicas
       securityStats: {
-        totalRequests: Object.values(getPerformanceMetrics().endpoints)
-          .reduce((sum, endpoint) => sum + endpoint.totalRequests, 0),
-        totalErrors: Object.values(getPerformanceMetrics().endpoints)
-          .reduce((sum, endpoint) => sum + endpoint.errorRequests, 0),
-        avgLatency: Object.values(getPerformanceMetrics().endpoints)
-          .reduce((sum, endpoint) => sum + parseFloat(endpoint.avgLatency), 0) /
-          Object.keys(getPerformanceMetrics().endpoints).length || 0,
-        throughputPerMinute: getPerformanceMetrics().throughput.perMinute,
-        suspiciousRequests: Object.values(getPerformanceMetrics().endpoints)
-          .reduce((sum, endpoint) => sum + endpoint.suspiciousRequests, 0)
+        totalRequests: 0,
+        totalErrors: 0,
+        avgLatency: 0,
+        throughputPerMinute: 0,
+        suspiciousRequests: 0
       }
     },
 
-    // Información de versionado de API
+    // Información de versionado de API - simplificada
     api: {
-      currentVersion: req.apiVersion || DEFAULT_VERSION,
-      defaultVersion: DEFAULT_VERSION,
-      supportedVersions: Object.keys(API_VERSIONS),
-      versions: API_VERSIONS,
-      versionUsage: getVersionUsageStats(),
+      currentVersion: 'v1',
+      defaultVersion: 'v1',
+      supportedVersions: ['v1'],
+      versions: { v1: { version: '1.0.0', status: 'current' } },
+      versionUsage: {},
       versionedEndpoints: [
         '/api/v1/health',
-        '/api/v2/health',
-        '/api/v1/videos/search',
-        '/api/v2/videos/search',
-        '/api/versions'
+        '/api/v1/videos/search'
       ]
     },
 
@@ -686,47 +513,21 @@ if (mongoose.connection.readyState === 1) {
   health.status = 'degraded';
 }
 
-// Verificar Elasticsearch
-try {
-  const esHealthy = await searchService.checkConnection();
-  health.elasticsearch = {
-    status: esHealthy ? 'connected' : 'disconnected',
-    healthy: esHealthy,
-    type: 'elasticsearch'
-  };
-  if (!esHealthy) {
-    health.status = 'degraded';
-  }
-} catch (error) {
-  health.elasticsearch = {
-    status: 'error',
-    healthy: false,
-    error: error.message,
-    type: 'elasticsearch'
-  };
-  health.status = 'degraded';
-}
+// Verificar Elasticsearch - temporalmente deshabilitado
+health.elasticsearch = {
+  status: 'disabled',
+  healthy: null,
+  type: 'elasticsearch',
+  message: 'Servicio temporalmente deshabilitado'
+};
 
-// Verificar Redis
-try {
-  const redisHealthy = redisClient.connected;
-  health.redis = {
-    status: redisHealthy ? 'connected' : 'disconnected',
-    healthy: redisHealthy,
-    type: 'redis'
-  };
-  if (!redisHealthy) {
-    health.status = 'degraded';
-  }
-} catch (error) {
-  health.redis = {
-    status: 'error',
-    healthy: false,
-    error: error.message,
-    type: 'redis'
-  };
-  health.status = 'degraded';
-}
+// Verificar Redis - temporalmente deshabilitado
+health.redis = {
+  status: 'disabled',
+  healthy: null,
+  type: 'redis',
+  message: 'Servicio temporalmente deshabilitado'
+};
 
   // Verificar configuración SSL si está habilitada
   if (process.env.FORCE_HTTPS === 'true' && !req.secure) {

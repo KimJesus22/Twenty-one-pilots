@@ -7,6 +7,7 @@ import Videos from './pages/Videos.jsx';
 import Concerts from './pages/Concerts';
 import Forum from './pages/Forum';
 import Playlists from './pages/Playlists';
+import Spotify from './pages/Spotify';
 import Store from './pages/Store';
 import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/concerts" element={<Concerts />} />
             <Route path="/forum" element={<Forum />} />
             <Route path="/playlists" element={<Playlists />} />
+            <Route path="/spotify" element={<Spotify />} />
             <Route path="/store" element={<Store />} />
           </Routes>
         </main>
