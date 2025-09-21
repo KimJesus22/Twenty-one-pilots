@@ -24,7 +24,7 @@ RUN npm ci --only=production && npm cache clean --force
 FROM base AS build
 
 # Install all dependencies (including dev dependencies)
-RUN npm ci
+RUN npm install
 
 # Copy source code
 COPY . .
