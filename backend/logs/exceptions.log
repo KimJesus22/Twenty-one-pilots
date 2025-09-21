@@ -6936,3 +6936,2691 @@ TypeError: nodemailer.createTransporter is not a function
     }
   ]
 }
+2025-09-21 15:51:29 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- C:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\middleware\security.js:227:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:227:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:51:29 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 916,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 78020608,
+      "heapTotal": 38588416,
+      "heapUsed": 26213896,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 1863.781
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 227,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:52:08 [31merror[39m: [31muncaughtException: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- c:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- c:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- c:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31mError: Cannot find module '@elastic/elasticsearch'[39m
+[31mRequire stack:[39m
+[31m- c:\Users\gomez\Documents\TOP\backend\middleware\security.js[39m
+[31m- c:\Users\gomez\Documents\TOP\backend\app.js[39m
+[31m- c:\Users\gomez\Documents\TOP\backend\server.js[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\middleware\security.js:227:20)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m {
+  "error": {
+    "code": "MODULE_NOT_FOUND",
+    "requireStack": [
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ]
+  },
+  "stack": "Error: Cannot find module '@elastic/elasticsearch'\nRequire stack:\n- c:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js\n- c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js\n- c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1365:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js:227:20)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:52:08 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 2508,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 77725696,
+      "heapTotal": 38326272,
+      "heapUsed": 26255968,
+      "external": 20550978,
+      "arrayBuffers": 18264303
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 1902.906
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1365,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\middleware\\security.js",
+      "function": null,
+      "line": 227,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:52:49 [31merror[39m: [31muncaughtException: Cannot access 'apiVersioning' before initialization[39m
+[31mReferenceError: Cannot access 'apiVersioning' before initialization[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:173:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'apiVersioning' before initialization\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:173:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:52:49 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 17064,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 119656448,
+      "heapTotal": 82206720,
+      "heapUsed": 43883096,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 1943.156
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 173,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:52:56 [31merror[39m: [31muncaughtException: Cannot access 'apiVersioning' before initialization[39m
+[31mReferenceError: Cannot access 'apiVersioning' before initialization[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:173:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'apiVersioning' before initialization\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:173:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:52:56 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 2432,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 117014528,
+      "heapTotal": 80371712,
+      "heapUsed": 43969680,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 1950.578
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 173,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:53:17 [31merror[39m: [31muncaughtException: Cannot access 'apiVersioning' before initialization[39m
+[31mReferenceError: Cannot access 'apiVersioning' before initialization[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'apiVersioning' before initialization\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:53:17 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 16420,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 116924416,
+      "heapTotal": 83255296,
+      "heapUsed": 44281872,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 1971.875
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:53:17 [31merror[39m: [31muncaughtException: Cannot access 'apiVersioning' before initialization[39m
+[31mReferenceError: Cannot access 'apiVersioning' before initialization[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'apiVersioning' before initialization\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:53:17 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 15092,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 116838400,
+      "heapTotal": 82468864,
+      "heapUsed": 44343576,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 1971.953
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:54:02 [31merror[39m: [31muncaughtException: Cannot access 'apiVersioning' before initialization[39m
+[31mReferenceError: Cannot access 'apiVersioning' before initialization[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'apiVersioning' before initialization\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:54:02 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 19016,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 114126848,
+      "heapTotal": 74342400,
+      "heapUsed": 50094712,
+      "external": 21619790,
+      "arrayBuffers": 18313382
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2016.359
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:54:27 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:54:27 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 14644,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 116822016,
+      "heapTotal": 82993152,
+      "heapUsed": 44207144,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2041.75
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:54:27 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:54:27 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 10612,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 116912128,
+      "heapTotal": 82468864,
+      "heapUsed": 43995288,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2041.765
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:55:08 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mc:\Users\gomez\Documents\TOP\backend\app.js:178[39m
+[31mapp.use('/api', apiVersioning);[39m
+[31m                ^[39m
+
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at [eval]:1:1[39m {
+  "error": {},
+  "stack": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178\napp.use('/api', apiVersioning);\n                ^\n\nReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at [eval]:1:1",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:55:08 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 10072,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe"
+    ],
+    "memoryUsage": {
+      "rss": 113733632,
+      "heapTotal": 74342400,
+      "heapUsed": 49227632,
+      "external": 21695340,
+      "arrayBuffers": 18313382
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2082.203
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 1,
+      "file": "[eval]",
+      "function": null,
+      "line": 1,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:55:18 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:55:18 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 14724,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 116912128,
+      "heapTotal": 80896000,
+      "heapUsed": 44198456,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2092.109
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:55:18 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:55:18 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 18556,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 116752384,
+      "heapTotal": 83517440,
+      "heapUsed": 44156448,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2092.109
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:55:32 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mc:\Users\gomez\Documents\TOP\backend\app.js:178[39m
+[31mapp.use('/api', apiVersioning);[39m
+[31m                ^[39m
+
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at [eval]:1:1[39m {
+  "error": {},
+  "stack": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178\napp.use('/api', apiVersioning);\n                ^\n\nReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at [eval]:1:1",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:55:32 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 18188,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe"
+    ],
+    "memoryUsage": {
+      "rss": 114712576,
+      "heapTotal": 74080256,
+      "heapUsed": 50128824,
+      "external": 21695340,
+      "arrayBuffers": 18313382
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2106.328
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 1,
+      "file": "[eval]",
+      "function": null,
+      "line": 1,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:55:42 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:55:42 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 11680,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 125919232,
+      "heapTotal": 84566016,
+      "heapUsed": 48993856,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2116.515
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:55:42 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:55:42 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 19004,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 117096448,
+      "heapTotal": 82731008,
+      "heapUsed": 44448072,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2116.531
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:56:00 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mc:\Users\gomez\Documents\TOP\backend\app.js:178[39m
+[31mapp.use('/api', apiVersioning);[39m
+[31m                ^[39m
+
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:178:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at [eval]:1:1[39m {
+  "error": {},
+  "stack": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178\napp.use('/api', apiVersioning);\n                ^\n\nReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:178:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at [eval]:1:1",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:56:00 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 18032,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe"
+    ],
+    "memoryUsage": {
+      "rss": 114855936,
+      "heapTotal": 74080256,
+      "heapUsed": 50194888,
+      "external": 21695340,
+      "arrayBuffers": 18313382
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2134.125
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 178,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 1,
+      "file": "[eval]",
+      "function": null,
+      "line": 1,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:56:15 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:164:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:164:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:56:14 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 18108,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 125767680,
+      "heapTotal": 84303872,
+      "heapUsed": 49387752,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2149.062
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 164,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:56:15 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:164:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:164:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:56:15 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 14296,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 125456384,
+      "heapTotal": 84041728,
+      "heapUsed": 49251544,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2149.078
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 164,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:56:30 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mc:\Users\gomez\Documents\TOP\backend\app.js:164[39m
+[31mapp.use('/api', apiVersioning);[39m
+[31m                ^[39m
+
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:164:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at [eval]:1:1[39m {
+  "error": {},
+  "stack": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:164\napp.use('/api', apiVersioning);\n                ^\n\nReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:164:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at [eval]:1:1",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:56:30 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 16596,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe"
+    ],
+    "memoryUsage": {
+      "rss": 116543488,
+      "heapTotal": 81944576,
+      "heapUsed": 43643888,
+      "external": 21695340,
+      "arrayBuffers": 18313382
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2164.343
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 164,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 1,
+      "file": "[eval]",
+      "function": null,
+      "line": 1,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:56:40 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:164:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:164:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:56:40 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 11200,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 117075968,
+      "heapTotal": 83517440,
+      "heapUsed": 44170648,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2174.875
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 164,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 15:56:40 [31merror[39m: [31muncaughtException: apiVersioning is not defined[39m
+[31mReferenceError: apiVersioning is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:164:17)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: apiVersioning is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:164:17)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 15:56:40 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 9224,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 116719616,
+      "heapTotal": 81944576,
+      "heapUsed": 44169832,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 2174.906
+  },
+  "trace": [
+    {
+      "column": 17,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 164,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}

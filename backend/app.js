@@ -102,16 +102,7 @@ const limiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   // Skip rate limiting para health checks
-  skip: (req) => req.path === '/health' || req.path === '/api/health',
-  // Log cuando se acerca al límite
-  onLimitReached: (req) => {
-    logger.warn('Rate limit alcanzado:', {
-      ip: req.ip,
-      path: req.path,
-      method: req.method,
-      userAgent: req.get('User-Agent')
-    });
-  }
+  skip: (req) => req.path === '/health' || req.path === '/api/health'
 });
 
 app.use('/api/', limiter);
@@ -238,29 +229,29 @@ app.use((req, res, next) => {
 app.use(expressSanitizer()); // Sanitización personalizada
 
 // Middleware de seguridad avanzado, servicios de escalabilidad y versionado
-const {
-  sanitizeInput,
-  validateMongoId,
-  preventNoSQLInjection,
-  securityLogger,
-  metricsEndpoint,
-  getPerformanceMetrics,
-  validationMonitor,
-  distributedCache,
-  searchService,
-  scalabilityMetrics,
-  apiVersioning,
-  redirectToDefaultVersion,
-  getVersionUsageStats,
-  generateVersionDocumentation,
-  API_VERSIONS,
-  DEFAULT_VERSION
-} = require('./middleware/security');
-app.use(sanitizeInput);
-app.use(validateMongoId);
-app.use(preventNoSQLInjection);
-app.use(securityLogger);
-app.use(validationMonitor); // Monitoreo de validaciones
+// const {
+//   sanitizeInput,
+//   validateMongoId,
+//   preventNoSQLInjection,
+//   securityLogger,
+//   metricsEndpoint,
+//   getPerformanceMetrics,
+//   validationMonitor,
+//   distributedCache,
+//   searchService,
+//   scalabilityMetrics,
+//   apiVersioning,
+//   redirectToDefaultVersion,
+//   getVersionUsageStats,
+//   generateVersionDocumentation,
+//   API_VERSIONS,
+//   DEFAULT_VERSION
+// } = require('./middleware/security');
+// app.use(sanitizeInput);
+// app.use(validateMongoId);
+// app.use(preventNoSQLInjection);
+// app.use(securityLogger);
+// app.use(validationMonitor); // Monitoreo de validaciones
 
 // Endpoint para reportar violaciones de CSP
 app.post('/api/security/csp-report', (req, res) => {
@@ -760,7 +751,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/discography', discographyRoutes);
 app.use('/api/videos', videosRoutes);
 app.use('/api/concerts', concertsRoutes);
-app.use('/api/spotify', spotifyRoutes);
+// app.use('/api/spotify', spotifyRoutes);
 // app.use('/api/forum', forumRoutes);
 // app.use('/api/playlists', playlistsRoutes);
 // app.use('/api/store', storeRoutes);
