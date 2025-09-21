@@ -21,13 +21,7 @@ RUN npm ci --only=production && npm cache clean --force
 # =============================================================================
 # Build stage
 # =============================================================================
-FROM node:22-alpine AS base
-
-# Set working directory
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
+FROM base AS build
 
 # Install all dependencies (including dev dependencies)
 RUN npm ci
@@ -41,7 +35,7 @@ RUN npm run build
 # =============================================================================
 # Production stage
 # =============================================================================
-FROM nginx:alpine AS production
+FROM docker.io/library/nginx:alpine AS production
 
 # Install dumb-init
 RUN apk add --no-cache dumb-init
