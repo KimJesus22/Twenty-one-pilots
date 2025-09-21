@@ -24,7 +24,7 @@ RUN npm ci --only=production && npm cache clean --force
 FROM base AS build
 
 # Install all dependencies (including dev dependencies)
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Copy source code
 COPY . .
