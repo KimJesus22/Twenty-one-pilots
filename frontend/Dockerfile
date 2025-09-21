@@ -8,7 +8,7 @@ RUN apk add --no-cache dumb-init
 WORKDIR /app
 
 # Copy package files
-COPY package*.json ./
+COPY package*.json package-lock.json ./
 
 # =============================================================================
 # Dependencies stage
