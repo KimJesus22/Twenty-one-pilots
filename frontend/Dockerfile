@@ -23,6 +23,9 @@ RUN npm ci --only=production && npm cache clean --force
 # =============================================================================
 FROM base AS build
 
+# Increase Node.js heap size for low-memory environments
+ENV NODE_OPTIONS="--max-old-space-size=1024"
+
 # Install all dependencies (including dev dependencies)
 RUN npm install --legacy-peer-deps
 
