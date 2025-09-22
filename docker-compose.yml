@@ -21,9 +21,12 @@ services:
       - ./backend:/app
       - /app/node_modules
     depends_on:
-      - mongodb
-      - redis
-      - elasticsearch
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
     networks:
       - twentyonepilots
     restart: unless-stopped
