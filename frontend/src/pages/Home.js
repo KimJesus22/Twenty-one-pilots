@@ -77,7 +77,7 @@ const Home = () => {
             </span>
             <button
               className="btn btn-secondary btn-large"
-              onClick={() => window.open('http://20.81.227.69/api-docs', '_blank')}
+              onClick={() => window.open('http://34.51.90.100/api-docs', '_blank')}
               aria-describedby="api-description"
             >
               Ver API Docs
