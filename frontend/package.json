@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "build": "DISABLE_ESLINT_PLUGIN=true REACT_APP_API_URL=http://34.51.90.100/api react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "test:watch": "react-scripts test --watchAll=false",
