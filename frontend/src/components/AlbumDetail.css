@@ -1,0 +1,292 @@
+.album-detail-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.album-detail-modal .modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.album-detail-modal .modal-content {
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  max-width: 900px;
+  width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.album-header {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.album-cover-large {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.album-cover-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.no-cover-large {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: white;
+}
+
+.album-info-detailed {
+  flex: 1;
+}
+
+.album-meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.album-type, .album-year, .album-genre {
+  background: #f0f0f0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.album-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 8px 0;
+  color: #333;
+}
+
+.album-artist {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.album-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.album-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.album-actions .btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #1db954;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1aa34a;
+}
+
+.btn-success {
+  background: #ff6b35;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #e55a2b;
+}
+
+.btn-secondary {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background: #e0e0e0;
+}
+
+.album-tracks {
+  padding: 24px;
+}
+
+.album-tracks h3 {
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.tracks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.track-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.track-item:hover {
+  background: #f8f8f8;
+}
+
+.track-number {
+  width: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: #666;
+}
+
+.track-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.track-title {
+  font-weight: 500;
+  color: #333;
+}
+
+.track-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #666;
+}
+
+.track-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.track-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.track-actions button:hover {
+  background: #e0e0e0;
+}
+
+.like-track-btn.liked {
+  color: #ff4757;
+}
+
+.album-footer {
+  padding: 24px;
+  border-top: 1px solid #eee;
+  text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .album-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .album-cover-large {
+    width: 150px;
+    height: 150px;
+    align-self: center;
+  }
+
+  .album-title {
+    font-size: 24px;
+  }
+
+  .album-actions {
+    justify-content: center;
+  }
+
+  .track-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .track-actions {
+    align-self: flex-end;
+  }
+}
+
+/* Modal de playlist */
+.playlist-modal .modal-content {
+  max-width: 400px;
+}
+
+.playlist-modal .playlists-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.playlist-option {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.playlist-option:hover {
+  background: #f8f8f8;
+}
+
+.playlist-option:first-child {
+  margin-top: 16px;
+}
+
+.playlist-option:not(:last-child) {
+  margin-bottom: 8px;
+}

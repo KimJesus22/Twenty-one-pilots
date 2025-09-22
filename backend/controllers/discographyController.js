@@ -3,26 +3,55 @@ const logger = require('../utils/logger');
 const { validationResult } = require('express-validator');
 
 class DiscographyController {
-  // Obtener todos los álbumes con paginación y filtros
+  // Obtener todos los álbumes con paginación y filtros avanzados
   async getAlbums(req, res) {
     try {
       const {
         page = 1,
-        limit = 10,
+        limit = 12,
         sort = 'releaseYear',
         order = 'desc',
-        search = ''
+        search = '',
+        genre,
+        type,
+        minYear,
+        maxYear,
+        minPopularity,
+        maxPopularity
       } = req.query;
 
-      const query = search
-        ? { title: { $regex: search, $options: 'i' } }
-        : {};
+      const query = { isAvailable: true };
+
+      // Búsqueda por título o artista
+      if (search) {
+        query.$or = [
+          { title: { $regex: search, $options: 'i' } },
+          { artist: { $regex: search, $options: 'i' } }
+        ];
+      }
+
+      // Filtros adicionales
+      if (genre && genre !== 'all') query.genre = genre;
+      if (type && type !== 'all') query.type = type;
+      if (minYear || maxYear) {
+        query.releaseYear = {};
+        if (minYear) query.releaseYear.$gte = parseInt(minYear);
+        if (maxYear) query.releaseYear.$lte = parseInt(maxYear);
+      }
+      if (minPopularity || maxPopularity) {
+        query.popularity = {};
+        if (minPopularity) query.popularity.$gte = parseInt(minPopularity);
+        if (maxPopularity) query.popularity.$lte = parseInt(maxPopularity);
+      }
 
       const options = {
         page: parseInt(page),
         limit: parseInt(limit),
         sort: { [sort]: order === 'desc' ? -1 : 1 },
-        populate: 'songs'
+        populate: {
+          path: 'songs',
+          options: { sort: { trackNumber: 1 } }
+        }
       };
 
       const result = await Album.paginate(query, options);
@@ -345,6 +374,149 @@ class DiscographyController {
       res.status(500).json({
         success: false,
         message: 'Error eliminando canción'
+      });
+    }
+  }
+
+  // Dar/quitar like a un álbum
+  async toggleAlbumLike(req, res) {
+    try {
+      const { id } = req.params;
+      const { userId } = req.body;
+
+      const album = await Album.findById(id);
+      if (!album) {
+        return res.status(404).json({
+          success: false,
+          message: 'Álbum no encontrado'
+        });
+      }
+
+      const userIndex = album.likes.indexOf(userId);
+      if (userIndex > -1) {
+        album.likes.splice(userIndex, 1);
+      } else {
+        album.likes.push(userId);
+      }
+
+      await album.save();
+
+      res.json({
+        success: true,
+        data: {
+          likes: album.likes.length,
+          isLiked: userIndex === -1
+        }
+      });
+    } catch (error) {
+      logger.error('Error toggling album like:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error procesando like'
+      });
+    }
+  }
+
+  // Dar/quitar like a una canción
+  async toggleSongLike(req, res) {
+    try {
+      const { id } = req.params;
+      const { userId } = req.body;
+
+      const song = await Song.findById(id);
+      if (!song) {
+        return res.status(404).json({
+          success: false,
+          message: 'Canción no encontrada'
+        });
+      }
+
+      const userIndex = song.likes.indexOf(userId);
+      if (userIndex > -1) {
+        song.likes.splice(userIndex, 1);
+      } else {
+        song.likes.push(userId);
+      }
+
+      await song.save();
+
+      res.json({
+        success: true,
+        data: {
+          likes: song.likes.length,
+          isLiked: userIndex === -1
+        }
+      });
+    } catch (error) {
+      logger.error('Error toggling song like:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error procesando like'
+      });
+    }
+  }
+
+  // Incrementar contador de reproducciones
+  async incrementPlayCount(req, res) {
+    try {
+      const { id } = req.params;
+      const { type } = req.body; // 'album' or 'song'
+
+      if (type === 'album') {
+        await Album.findByIdAndUpdate(id, { $inc: { views: 1 } });
+      } else if (type === 'song') {
+        await Song.findByIdAndUpdate(id, { $inc: { playCount: 1 } });
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      logger.error('Error incrementing play count:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error actualizando contador'
+      });
+    }
+  }
+
+  // Obtener estadísticas de popularidad
+  async getPopularityStats(req, res) {
+    try {
+      const albumStats = await Album.aggregate([
+        {
+          $group: {
+            _id: null,
+            totalAlbums: { $sum: 1 },
+            totalViews: { $sum: '$views' },
+            totalLikes: { $sum: { $size: '$likes' } },
+            avgPopularity: { $avg: '$popularity' }
+          }
+        }
+      ]);
+
+      const songStats = await Song.aggregate([
+        {
+          $group: {
+            _id: null,
+            totalSongs: { $sum: 1 },
+            totalPlays: { $sum: '$playCount' },
+            totalLikes: { $sum: { $size: '$likes' } },
+            avgPopularity: { $avg: '$popularity' }
+          }
+        }
+      ]);
+
+      res.json({
+        success: true,
+        data: {
+          albums: albumStats[0] || {},
+          songs: songStats[0] || {}
+        }
+      });
+    } catch (error) {
+      logger.error('Error getting popularity stats:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error obteniendo estadísticas'
       });
     }
   }

@@ -1,6 +1,6 @@
 const express = require('express');
 const { body, param, query, validationResult } = require('express-validator');
-const { Playlist } = require('../models/Playlist');
+const Playlist = require('../models/Playlist');
 const User = require('../models/User');
 const { validateMongoId } = require('../middleware/security');
 const logger = require('../utils/logger');
@@ -451,6 +451,78 @@ router.get('/public/all', [
     });
   } catch (error) {
     logger.error('Error obteniendo playlists públicas:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error interno del servidor'
+    });
+  }
+});
+
+// Clonar playlist pública
+router.post('/:id/clone', [
+  requireAuth,
+  param('id').isMongoId().withMessage('ID de playlist inválido'),
+  body('userId').isMongoId().withMessage('ID de usuario inválido'),
+  body('name').optional().trim().isLength({ min: 1, max: 100 }).withMessage('Nombre inválido'),
+  handleValidationErrors
+], async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { userId, name } = req.body;
+
+    // Verificar que la playlist original existe y es pública
+    const originalPlaylist = await Playlist.findById(id).populate('songs');
+    if (!originalPlaylist) {
+      return res.status(404).json({
+        success: false,
+        message: 'Playlist no encontrada'
+      });
+    }
+
+    if (!originalPlaylist.isPublic) {
+      return res.status(403).json({
+        success: false,
+        message: 'No puedes clonar una playlist privada'
+      });
+    }
+
+    // Verificar que el usuario existe
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'Usuario no encontrado'
+      });
+    }
+
+    // Crear la nueva playlist clonada
+    const clonedPlaylist = new Playlist({
+      name: name || `${originalPlaylist.name} (Copia)`,
+      description: originalPlaylist.description,
+      user: userId,
+      songs: originalPlaylist.songs,
+      isPublic: false, // Las copias son privadas por defecto
+      tags: originalPlaylist.tags || []
+    });
+
+    await clonedPlaylist.save();
+    await clonedPlaylist.populate('user', 'username');
+    await clonedPlaylist.populate('songs');
+
+    logger.info('Playlist clonada:', {
+      originalId: id,
+      clonedId: clonedPlaylist._id,
+      userId,
+      name: clonedPlaylist.name
+    });
+
+    res.status(201).json({
+      success: true,
+      data: clonedPlaylist,
+      message: 'Playlist clonada exitosamente'
+    });
+  } catch (error) {
+    logger.error('Error clonando playlist:', error);
     res.status(500).json({
       success: false,
       message: 'Error interno del servidor'

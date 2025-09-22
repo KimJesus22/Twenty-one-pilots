@@ -190,4 +190,66 @@ router.delete('/songs/:id',
   discographyController.deleteSong
 );
 
+// Dar/quitar like a álbum
+router.post('/albums/:id/like',
+  [
+    param('id').isMongoId().withMessage('ID de álbum inválido'),
+    body('userId').isMongoId().withMessage('ID de usuario inválido'),
+  ],
+  discographyController.toggleAlbumLike
+);
+
+// Dar/quitar like a canción
+router.post('/songs/:id/like',
+  [
+    param('id').isMongoId().withMessage('ID de canción inválido'),
+    body('userId').isMongoId().withMessage('ID de usuario inválido'),
+  ],
+  discographyController.toggleSongLike
+);
+
+// Incrementar contador de reproducciones
+router.post('/:type/:id/play',
+  [
+    param('type').isIn(['albums', 'songs']).withMessage('Tipo debe ser albums o songs'),
+    param('id').isMongoId().withMessage('ID inválido'),
+  ],
+  discographyController.incrementPlayCount
+);
+
+// Obtener estadísticas de popularidad
+router.get('/stats/popularity', discographyController.getPopularityStats);
+
+// Obtener géneros disponibles
+router.get('/genres', async (req, res) => {
+  try {
+    const genres = await require('../models/Discography').Album.distinct('genre');
+    res.json({
+      success: true,
+      data: { genres }
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error obteniendo géneros'
+    });
+  }
+});
+
+// Obtener tipos disponibles
+router.get('/types', async (req, res) => {
+  try {
+    const types = await require('../models/Discography').Album.distinct('type');
+    res.json({
+      success: true,
+      data: { types }
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error obteniendo tipos'
+    });
+  }
+});
+
 module.exports = router;

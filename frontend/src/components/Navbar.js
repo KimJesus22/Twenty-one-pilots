@@ -1,6 +1,8 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../contexts/AuthContext';
+import { useCart } from '../contexts/CartContext';
 import {
   AppBar,
   Toolbar,
@@ -8,7 +10,9 @@ import {
   Button,
   Box,
   IconButton,
-  useTheme
+  useTheme,
+  Menu,
+  MenuItem
 } from '@mui/material';
 import {
   Brightness4,
@@ -20,27 +24,66 @@ import {
   Forum,
   QueueMusic,
   ShoppingCart,
-  LibraryMusic
+  LibraryMusic,
+  AccountCircle,
+  ExitToApp
 } from '@mui/icons-material';
 import { useTheme as useCustomTheme } from '../ThemeProvider';
 import LanguageSelector from './LanguageSelector';
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const muiTheme = useTheme();
   const { isDarkMode, toggleTheme } = useCustomTheme();
+  const { user, logout, isAuthenticated, isAdmin } = useAuth();
+  const { itemCount } = useCart();
   const { t } = useTranslation();
 
-  const menuItems = [
-    { path: '/', label: t('nav.home'), icon: MusicNote },
-    { path: '/discography', label: t('nav.discography'), icon: Album },
-    { path: '/videos', label: t('nav.videos'), icon: VideoLibrary },
-    { path: '/concerts', label: t('nav.concerts'), icon: Event },
-    { path: '/forum', label: t('nav.forum'), icon: Forum },
-    { path: '/playlists', label: t('nav.playlists'), icon: QueueMusic },
-    { path: '/spotify', label: 'Spotify', icon: LibraryMusic },
-    { path: '/store', label: t('nav.store'), icon: ShoppingCart },
-  ];
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  // Menú items dinámicos basado en el rol del usuario
+  const getMenuItems = () => {
+    const baseItems = [
+      { path: '/', label: t('nav.home'), icon: MusicNote },
+      { path: '/discography', label: t('nav.discography'), icon: Album },
+      { path: '/videos', label: t('nav.videos'), icon: VideoLibrary },
+      { path: '/concerts', label: t('nav.concerts'), icon: Event },
+      { path: '/forum', label: t('nav.forum'), icon: Forum },
+      { path: '/spotify', label: 'Spotify', icon: LibraryMusic },
+      { path: '/store', label: t('nav.store'), icon: ShoppingCart },
+    ];
+
+    // Agregar playlists solo si está autenticado
+    if (isAuthenticated()) {
+      baseItems.splice(5, 0, { path: '/playlists', label: t('nav.playlists'), icon: QueueMusic });
+    }
+
+    // Agregar admin solo si es admin
+    if (isAdmin()) {
+      baseItems.push({ path: '/admin', label: 'Admin', icon: '⚙️' });
+    }
+
+    return baseItems;
+  };
+
+  const menuItems = getMenuItems();
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    logout();
+    handleClose();
+    navigate('/');
+  };
+
 
   return (
     <AppBar
@@ -124,6 +167,85 @@ const Navbar = () => {
           aria-label={t('nav.userControls')}
         >
           <LanguageSelector />
+
+          {/* Carrito - solo mostrar si hay items */}
+          {itemCount > 0 && (
+            <Button
+              component={Link}
+              to="/store"
+              startIcon={<ShoppingCart aria-hidden="true" />}
+              sx={{
+                color: muiTheme.palette.text.primary,
+                '&:hover': {
+                  color: muiTheme.palette.primary.main,
+                },
+              }}
+              aria-label={`Carrito de compras (${itemCount} items)`}
+            >
+              {itemCount}
+            </Button>
+          )}
+
+          {/* Autenticación */}
+          {isAuthenticated() ? (
+            <div>
+              <IconButton
+                onClick={handleMenu}
+                sx={{
+                  color: muiTheme.palette.text.primary,
+                  '&:hover': {
+                    color: muiTheme.palette.primary.main,
+                  },
+                }}
+                aria-label="Cuenta de usuario"
+                aria-controls="user-menu"
+                aria-haspopup="true"
+              >
+                <AccountCircle aria-hidden="true" />
+              </IconButton>
+              <Menu
+                id="user-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
+                <MenuItem disabled>
+                  <Typography variant="body2">
+                    {user.username} {user.role === 'admin' && '(Admin)'}
+                  </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  <ExitToApp sx={{ mr: 1 }} aria-hidden="true" />
+                  Cerrar sesión
+                </MenuItem>
+              </Menu>
+            </div>
+          ) : (
+            <Button
+              component={Link}
+              to="/login"
+              variant="outlined"
+              sx={{
+                color: muiTheme.palette.primary.main,
+                borderColor: muiTheme.palette.primary.main,
+                '&:hover': {
+                  backgroundColor: muiTheme.palette.primary.main,
+                  color: muiTheme.palette.primary.contrastText,
+                },
+              }}
+            >
+              Iniciar sesión
+            </Button>
+          )}
+
           <IconButton
             onClick={toggleTheme}
             sx={{

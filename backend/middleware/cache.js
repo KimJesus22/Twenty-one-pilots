@@ -1,95 +1,168 @@
 const cacheService = require('../services/cacheService');
+const logger = require('../utils/logger');
 
 /**
- * Middleware para cachear respuestas de rutas
- * @param {string} keyPrefix - Prefijo para la clave de caché
- * @param {number} ttl - Tiempo de vida en segundos
- * @param {function} keyGenerator - Función opcional para generar clave personalizada
+ * Middleware de caché para Express
+ * Cachea respuestas JSON de rutas específicas
  */
-const cacheResponse = (keyPrefix, ttl = 3600, keyGenerator = null) => {
+const cacheMiddleware = (options = {}) => {
+  const {
+    ttl = 300, // 5 minutos por defecto
+    keyGenerator = null,
+    condition = null,
+    invalidateOnUpdate = false
+  } = options;
+
   return async (req, res, next) => {
+    // Solo cachear GET requests
+    if (req.method !== 'GET') {
+      return next();
+    }
+
+    // Verificar condición personalizada
+    if (condition && !condition(req)) {
+      return next();
+    }
+
+    // Generar clave de caché
+    const cacheKey = keyGenerator
+      ? keyGenerator(req)
+      : generateDefaultCacheKey(req);
+
     try {
-      // Generar clave de caché
-      let cacheKey;
-      if (keyGenerator) {
-        cacheKey = keyGenerator(req);
-      } else {
-        // Clave por defecto basada en ruta y parámetros
-        const params = {
-          ...req.params,
-          ...req.query,
-          userId: req.user?.userId
-        };
-        cacheKey = cacheService.generateKey(keyPrefix, params);
-      }
-
       // Intentar obtener del caché
-      const cachedData = await cacheService.get(cacheKey);
-      if (cachedData) {
-        console.log(`📋 Cache hit: ${cacheKey}`);
-        return res.json({
-          ...cachedData,
-          _cached: true,
-          _cacheKey: cacheKey
-        });
-      }
+      const cachedResponse = await cacheService.get(cacheKey);
 
-      // Si no está en caché, interceptar la respuesta
-      console.log(`💾 Cache miss: ${cacheKey}`);
+      if (cachedResponse) {
+        logger.debug(`Cache hit for ${req.originalUrl}`);
 
-      // Guardar referencia original de json
-      const originalJson = res.json;
-
-      // Sobrescribir res.json para cachear la respuesta
-      res.json = function(data) {
-        // Solo cachear respuestas exitosas
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          cacheService.set(cacheKey, data, ttl).catch(err =>
-            console.error('Error guardando en caché:', err)
-          );
+        // Restaurar headers y enviar respuesta cacheada
+        if (cachedResponse.headers) {
+          Object.entries(cachedResponse.headers).forEach(([key, value]) => {
+            res.setHeader(key, value);
+          });
         }
 
-        // Restaurar y llamar el método original
-        res.json = originalJson;
-        return res.json(data);
+        // Agregar header indicando que viene del caché
+        res.setHeader('X-Cache-Status', 'HIT');
+        res.setHeader('X-Cache-TTL', ttl);
+
+        return res.status(cachedResponse.status || 200).json(cachedResponse.data);
+      }
+
+      logger.debug(`Cache miss for ${req.originalUrl}`);
+
+      // Interceptar la respuesta para cachearla
+      const originalJson = res.json;
+      const originalStatus = res.status;
+
+      let responseData = null;
+      let responseStatus = 200;
+      let responseHeaders = {};
+
+      // Override res.json para capturar la respuesta
+      res.json = function(data) {
+        responseData = data;
+        return originalJson.call(this, data);
       };
 
+      // Override res.status para capturar el status
+      res.status = function(code) {
+        responseStatus = code;
+        return originalStatus.call(this, code);
+      };
+
+      // Hook para después de que se envíe la respuesta
+      res.on('finish', async () => {
+        // Solo cachear respuestas exitosas
+        if (responseStatus >= 200 && responseStatus < 300 && responseData) {
+          try {
+            // Capturar headers importantes
+            const importantHeaders = ['content-type', 'cache-control', 'etag'];
+            importantHeaders.forEach(header => {
+              const value = res.getHeader(header);
+              if (value) {
+                responseHeaders[header] = value;
+              }
+            });
+
+            const cacheData = {
+              data: responseData,
+              status: responseStatus,
+              headers: responseHeaders,
+              cachedAt: new Date().toISOString(),
+              ttl
+            };
+
+            await cacheService.set(cacheKey, cacheData, ttl);
+            logger.debug(`Response cached for ${req.originalUrl} with key ${cacheKey}`);
+          } catch (error) {
+            logger.error('Error caching response:', error);
+          }
+        }
+      });
+
+      // Agregar header indicando cache miss
+      res.setHeader('X-Cache-Status', 'MISS');
+
       next();
+
     } catch (error) {
-      console.error('Error en middleware de caché:', error);
+      logger.error('Cache middleware error:', error);
+      // En caso de error del caché, continuar normalmente
+      res.setHeader('X-Cache-Status', 'ERROR');
       next();
     }
   };
 };
 
 /**
- * Middleware para invalidar caché
- * @param {string|string[]} patterns - Patrones de claves a invalidar
+ * Genera una clave de caché por defecto basada en la URL y parámetros
  */
-const invalidateCache = (patterns) => {
+function generateDefaultCacheKey(req) {
+  const { originalUrl, query, user } = req;
+
+  // Incluir user ID si está autenticado para cache personalizado
+  const userId = user ? user._id : 'anonymous';
+
+  // Crear hash de los parámetros de query ordenados
+  const queryString = Object.keys(query)
+    .sort()
+    .map(key => `${key}=${query[key]}`)
+    .join('&');
+
+  return `route:${userId}:${originalUrl}:${queryString}`;
+}
+
+/**
+ * Middleware para invalidar caché cuando se actualizan datos
+ */
+const cacheInvalidationMiddleware = (patterns) => {
   return async (req, res, next) => {
-    // Guardar referencia original de json
+    // Almacenar el estado original para comparación
     const originalJson = res.json;
 
-    // Sobrescribir res.json para invalidar caché después de respuesta exitosa
-    res.json = function(data) {
+    res.json = async function(data) {
+      const result = originalJson.call(this, data);
+
       // Solo invalidar en respuestas exitosas
       if (res.statusCode >= 200 && res.statusCode < 300) {
-        const patternArray = Array.isArray(patterns) ? patterns : [patterns];
-
-        patternArray.forEach(async (pattern) => {
-          try {
-            await cacheService.clearPattern(pattern);
-            console.log(`🗑️  Cache invalidado: ${pattern}`);
-          } catch (error) {
-            console.error(`Error invalidando caché ${pattern}:`, error);
+        try {
+          if (Array.isArray(patterns)) {
+            for (const pattern of patterns) {
+              await cacheService.invalidatePattern(pattern);
+            }
+          } else {
+            await cacheService.invalidatePattern(patterns);
           }
-        });
+
+          logger.info(`Cache invalidated for patterns: ${Array.isArray(patterns) ? patterns.join(', ') : patterns}`);
+        } catch (error) {
+          logger.error('Error invalidating cache:', error);
+        }
       }
 
-      // Restaurar y llamar el método original
-      res.json = originalJson;
-      return res.json(data);
+      return result;
     };
 
     next();
@@ -97,37 +170,117 @@ const invalidateCache = (patterns) => {
 };
 
 /**
- * Middleware para cachear por usuario
+ * Función helper para crear middleware de caché con configuración específica
  */
-const cachePerUser = (keyPrefix, ttl = 1800) => {
-  return cacheResponse(keyPrefix, ttl, (req) => {
-    return `${keyPrefix}:user:${req.user?.userId || 'anonymous'}:${req.originalUrl}`;
-  });
+const createCacheMiddleware = (config) => {
+  return cacheMiddleware(config);
 };
 
 /**
- * Middleware para cachear búsquedas
+ * Función helper para crear middleware de invalidación
  */
-const cacheSearch = (keyPrefix, ttl = 600) => {
-  return cacheResponse(keyPrefix, ttl, (req) => {
-    const query = req.query.q || req.query.query || '';
-    return `${keyPrefix}:search:${query.toLowerCase()}:${JSON.stringify(req.query)}`;
-  });
+const createInvalidationMiddleware = (patterns) => {
+  return cacheInvalidationMiddleware(patterns);
 };
 
 /**
- * Middleware para cachear datos públicos
+ * Middleware para rutas específicas de la aplicación
  */
-const cachePublic = (keyPrefix, ttl = 3600) => {
-  return cacheResponse(keyPrefix, ttl, (req) => {
-    return `${keyPrefix}:public:${req.originalUrl}`;
-  });
+
+// Cache para búsquedas de conciertos
+const concertsCache = createCacheMiddleware({
+  ttl: 600, // 10 minutos
+  keyGenerator: (req) => {
+    const { city, date, artist, page = 1, limit = 10 } = req.query;
+    return `concerts:search:${city || 'all'}:${date || 'all'}:${artist || 'all'}:${page}:${limit}`;
+  },
+  condition: (req) => !req.query.refresh // No cachear si se solicita refresh
+});
+
+// Cache para letras de canciones
+const lyricsCache = createCacheMiddleware({
+  ttl: 1800, // 30 minutos
+  keyGenerator: (req) => {
+    const { query, artist, song, page = 1, limit = 10 } = req.query;
+    return `lyrics:search:${query || 'all'}:${artist || 'all'}:${song || 'all'}:${page}:${limit}`;
+  }
+});
+
+// Cache para productos de tienda
+const productsCache = createCacheMiddleware({
+  ttl: 900, // 15 minutos
+  keyGenerator: (req) => {
+    const { category, search, page = 1, limit = 12 } = req.query;
+    return `products:search:${category || 'all'}:${search || 'all'}:${page}:${limit}`;
+  }
+});
+
+// Cache para recomendaciones
+const recommendationsCache = createCacheMiddleware({
+  ttl: 3600, // 1 hora
+  keyGenerator: (req) => {
+    const userId = req.user ? req.user._id : 'anonymous';
+    const { type = 'general' } = req.query;
+    return `recommendations:${userId}:${type}`;
+  }
+});
+
+/**
+ * Middlewares de invalidación para cuando se actualizan datos
+ */
+
+// Invalidar caché de conciertos cuando se crea/actualiza/elimina un concierto
+const concertsInvalidation = createInvalidationMiddleware('concerts:*');
+
+// Invalidar caché de letras cuando se actualizan
+const lyricsInvalidation = createInvalidationMiddleware('lyrics:*');
+
+// Invalidar caché de productos cuando se actualizan
+const productsInvalidation = createInvalidationMiddleware('products:*');
+
+// Invalidar recomendaciones de usuario específico
+const userRecommendationsInvalidation = (req, res, next) => {
+  const originalJson = res.json;
+
+  res.json = async function(data) {
+    const result = originalJson.call(this, data);
+
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      try {
+        const userId = req.user ? req.user._id : req.params.userId;
+        if (userId) {
+          await cacheService.invalidatePattern(`recommendations:${userId}:*`);
+          logger.info(`User recommendations cache invalidated for user: ${userId}`);
+        }
+      } catch (error) {
+        logger.error('Error invalidating user recommendations cache:', error);
+      }
+    }
+
+    return result;
+  };
+
+  next();
 };
 
 module.exports = {
-  cacheResponse,
-  invalidateCache,
-  cachePerUser,
-  cacheSearch,
-  cachePublic
+  cacheMiddleware,
+  cacheInvalidationMiddleware,
+  createCacheMiddleware,
+  createInvalidationMiddleware,
+
+  // Middlewares preconfigurados
+  concertsCache,
+  lyricsCache,
+  productsCache,
+  recommendationsCache,
+
+  // Middlewares de invalidación
+  concertsInvalidation,
+  lyricsInvalidation,
+  productsInvalidation,
+  userRecommendationsInvalidation,
+
+  // Utilidades
+  generateDefaultCacheKey
 };

@@ -1,48 +1,10 @@
 const express = require('express');
-const { body, param, validationResult } = require('express-validator');
-const { Thread } = require('../models/Forum');
-const User = require('../models/User');
-const { validateMongoId } = require('../middleware/security');
+const { body, param, query, validationResult } = require('express-validator');
+const forumController = require('../controllers/forumController');
+const authService = require('../services/authService');
 const logger = require('../utils/logger');
 
 const router = express.Router();
-
-// Middleware para verificar autenticación (simplificado)
-const requireAuth = (req, res, next) => {
-  // En producción, verificar JWT token
-  next();
-};
-
-// Validaciones para crear hilo
-const createThreadValidations = [
-  body('title')
-    .trim()
-    .isLength({ min: 5, max: 200 })
-    .withMessage('El título debe tener entre 5 y 200 caracteres')
-    .matches(/^[a-zA-Z0-9\s\-_.,!?()]+$/)
-    .withMessage('El título contiene caracteres no permitidos'),
-  body('content')
-    .trim()
-    .isLength({ min: 10, max: 5000 })
-    .withMessage('El contenido debe tener entre 10 y 5000 caracteres'),
-  body('authorId')
-    .isMongoId()
-    .withMessage('ID de autor inválido')
-];
-
-// Validaciones para crear comentario
-const createCommentValidations = [
-  param('id')
-    .isMongoId()
-    .withMessage('ID de hilo inválido'),
-  body('content')
-    .trim()
-    .isLength({ min: 1, max: 1000 })
-    .withMessage('El comentario debe tener entre 1 y 1000 caracteres'),
-  body('authorId')
-    .isMongoId()
-    .withMessage('ID de autor inválido')
-];
 
 // Middleware para manejar errores de validación
 const handleValidationErrors = (req, res, next) => {
@@ -63,171 +25,167 @@ const handleValidationErrors = (req, res, next) => {
   next();
 };
 
-// Obtener todos los hilos
-router.get('/threads', async (req, res) => {
-  try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = Math.min(parseInt(req.query.limit) || 10, 50);
-    const skip = (page - 1) * limit;
+// Validaciones para crear hilo
+const createThreadValidations = [
+  body('title')
+    .trim()
+    .isLength({ min: 5, max: 200 })
+    .withMessage('El título debe tener entre 5 y 200 caracteres'),
+  body('content')
+    .trim()
+    .isLength({ min: 10, max: 10000 })
+    .withMessage('El contenido debe tener entre 10 y 10000 caracteres'),
+  body('category')
+    .optional()
+    .isIn(['general', 'music', 'concerts', 'merchandise', 'fan-art', 'questions', 'announcements'])
+    .withMessage('Categoría inválida'),
+  body('tags')
+    .optional()
+    .isString()
+    .withMessage('Tags deben ser una cadena de texto')
+];
 
-    const threads = await Thread.find()
-      .populate('author', 'username')
-      .sort({ isPinned: -1, updatedAt: -1 })
-      .skip(skip)
-      .limit(limit);
+// Validaciones para actualizar hilo
+const updateThreadValidations = [
+  param('id')
+    .isMongoId()
+    .withMessage('ID de hilo inválido'),
+  body('title')
+    .optional()
+    .trim()
+    .isLength({ min: 5, max: 200 })
+    .withMessage('El título debe tener entre 5 y 200 caracteres'),
+  body('content')
+    .optional()
+    .trim()
+    .isLength({ min: 10, max: 10000 })
+    .withMessage('El contenido debe tener entre 10 y 10000 caracteres'),
+  body('category')
+    .optional()
+    .isIn(['general', 'music', 'concerts', 'merchandise', 'fan-art', 'questions', 'announcements'])
+    .withMessage('Categoría inválida'),
+  body('tags')
+    .optional()
+    .isString()
+    .withMessage('Tags deben ser una cadena de texto')
+];
 
-    const total = await Thread.countDocuments();
+// Validaciones para crear comentario
+const createCommentValidations = [
+  param('id')
+    .isMongoId()
+    .withMessage('ID de hilo inválido'),
+  body('content')
+    .trim()
+    .isLength({ min: 1, max: 2000 })
+    .withMessage('El comentario debe tener entre 1 y 2000 caracteres'),
+  body('parentCommentId')
+    .optional()
+    .isMongoId()
+    .withMessage('ID de comentario padre inválido')
+];
 
-    res.json({
-      success: true,
-      data: threads,
-      pagination: {
-        currentPage: page,
-        totalPages: Math.ceil(total / limit),
-        totalItems: total,
-        itemsPerPage: limit,
-        hasNextPage: page * limit < total,
-        hasPrevPage: page > 1
-      }
-    });
-  } catch (error) {
-    logger.error('Error obteniendo hilos:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
+// Validaciones para actualizar comentario
+const updateCommentValidations = [
+  param('commentId')
+    .isMongoId()
+    .withMessage('ID de comentario inválido'),
+  body('content')
+    .trim()
+    .isLength({ min: 1, max: 2000 })
+    .withMessage('El comentario debe tener entre 1 y 2000 caracteres')
+];
 
-// Obtener un hilo específico
+// Validaciones para votar
+const voteValidations = [
+  body('voteType')
+    .isIn(['like', 'dislike'])
+    .withMessage('Tipo de voto debe ser "like" o "dislike"')
+];
+
+// Estadísticas del foro
+router.get('/stats', forumController.getStats);
+
+// Categorías disponibles
+router.get('/categories', forumController.getCategories);
+
+// Obtener hilos con filtros avanzados
+router.get('/threads', [
+  query('page').optional().isInt({ min: 1 }).withMessage('Page debe ser un entero positivo'),
+  query('limit').optional().isInt({ min: 1, max: 50 }).withMessage('Limit debe estar entre 1 y 50'),
+  query('category').optional().isIn(['general', 'music', 'concerts', 'merchandise', 'fan-art', 'questions', 'announcements']).withMessage('Categoría inválida'),
+  query('tags').optional().isString().withMessage('Tags deben ser una cadena'),
+  query('author').optional().isMongoId().withMessage('ID de autor inválido'),
+  query('search').optional().isString().withMessage('Search debe ser una cadena'),
+  query('sort').optional().isIn(['createdAt', 'popularity', 'comments', 'views', 'lastActivity']).withMessage('Sort inválido'),
+  query('order').optional().isIn(['asc', 'desc']).withMessage('Order debe ser asc o desc'),
+  query('minDate').optional().isISO8601().withMessage('minDate debe ser una fecha ISO válida'),
+  query('maxDate').optional().isISO8601().withMessage('maxDate debe ser una fecha ISO válida'),
+  handleValidationErrors
+], forumController.getThreads);
+
+// Obtener hilo específico
 router.get('/threads/:id', [
   param('id').isMongoId().withMessage('ID de hilo inválido'),
   handleValidationErrors
-], async (req, res) => {
-  try {
-    const thread = await Thread.findById(req.params.id)
-      .populate('author', 'username')
-      .populate('comments.author', 'username');
-
-    if (!thread) {
-      return res.status(404).json({
-        success: false,
-        message: 'Hilo no encontrado'
-      });
-    }
-
-    res.json({
-      success: true,
-      data: thread
-    });
-  } catch (error) {
-    logger.error('Error obteniendo hilo específico:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
+], forumController.getThreadById);
 
 // Crear nuevo hilo
 router.post('/threads', [
-  requireAuth,
+  authService.authenticateToken,
   createThreadValidations,
   handleValidationErrors
-], async (req, res) => {
-  try {
-    const { title, content, authorId } = req.body;
+], forumController.createThread);
 
-    const author = await User.findById(authorId);
-    if (!author) {
-      return res.status(404).json({
-        success: false,
-        message: 'Usuario no encontrado'
-      });
-    }
+// Actualizar hilo
+router.put('/threads/:id', [
+  authService.authenticateToken,
+  updateThreadValidations,
+  handleValidationErrors
+], forumController.updateThread);
 
-    const thread = new Thread({
-      title,
-      content,
-      author: authorId,
-    });
+// Eliminar hilo
+router.delete('/threads/:id', [
+  authService.authenticateToken,
+  param('id').isMongoId().withMessage('ID de hilo inválido'),
+  handleValidationErrors
+], forumController.deleteThread);
 
-    await thread.save();
-    await thread.populate('author', 'username');
+// Votar en hilo
+router.post('/threads/:id/vote', [
+  authService.authenticateToken,
+  param('id').isMongoId().withMessage('ID de hilo inválido'),
+  voteValidations,
+  handleValidationErrors
+], forumController.voteThread);
 
-    logger.info('Nuevo hilo creado:', {
-      threadId: thread._id,
-      authorId,
-      title: title.substring(0, 50)
-    });
-
-    res.status(201).json({
-      success: true,
-      data: thread,
-      message: 'Hilo creado exitosamente'
-    });
-  } catch (error) {
-    logger.error('Error creando hilo:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
-
-// Agregar comentario a un hilo
+// Crear comentario
 router.post('/threads/:id/comments', [
-  requireAuth,
+  authService.authenticateToken,
   createCommentValidations,
   handleValidationErrors
-], async (req, res) => {
-  try {
-    const { content, authorId } = req.body;
+], forumController.createComment);
 
-    const author = await User.findById(authorId);
-    if (!author) {
-      return res.status(404).json({
-        success: false,
-        message: 'Usuario no encontrado'
-      });
-    }
+// Actualizar comentario
+router.put('/comments/:commentId', [
+  authService.authenticateToken,
+  updateCommentValidations,
+  handleValidationErrors
+], forumController.updateComment);
 
-    const thread = await Thread.findById(req.params.id);
-    if (!thread) {
-      return res.status(404).json({
-        success: false,
-        message: 'Hilo no encontrado'
-      });
-    }
+// Eliminar comentario
+router.delete('/comments/:commentId', [
+  authService.authenticateToken,
+  param('commentId').isMongoId().withMessage('ID de comentario inválido'),
+  handleValidationErrors
+], forumController.deleteComment);
 
-    thread.comments.push({
-      content,
-      author: authorId,
-    });
-
-    await thread.save();
-    await thread.populate('comments.author', 'username');
-
-    const newComment = thread.comments[thread.comments.length - 1];
-
-    logger.info('Nuevo comentario agregado:', {
-      threadId: req.params.id,
-      commentId: newComment._id,
-      authorId
-    });
-
-    res.status(201).json({
-      success: true,
-      data: newComment,
-      message: 'Comentario agregado exitosamente'
-    });
-  } catch (error) {
-    logger.error('Error agregando comentario:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
+// Votar en comentario
+router.post('/comments/:commentId/vote', [
+  authService.authenticateToken,
+  param('commentId').isMongoId().withMessage('ID de comentario inválido'),
+  voteValidations,
+  handleValidationErrors
+], forumController.voteComment);
 
 module.exports = router;

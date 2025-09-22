@@ -9750,3 +9750,2523 @@ TypeError: nodemailer.createTransporter is not a function
     }
   ]
 }
+2025-09-21 18:07:23 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as get] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as get] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\auth.js:190:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as get] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as get] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\auth.js:190:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:07:23 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 18236,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 121937920,
+      "heapTotal": 83722240,
+      "heapUsed": 50971392,
+      "external": 21755241,
+      "arrayBuffers": 18313874
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10015.89
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as get]",
+      "line": 228,
+      "method": "<computed> [as get]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as get]",
+      "line": 448,
+      "method": "<computed> [as get]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\auth.js",
+      "function": null,
+      "line": 190,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:08:22 [31merror[39m: [31muncaughtException: Neither apiKey nor config.authenticator provided[39m
+[31mError: Neither apiKey nor config.authenticator provided[39m
+[31m    at Stripe._setAuthenticator (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:156:23)[39m
+[31m    at new Stripe (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:94:14)[39m
+[31m    at Stripe (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:50:20)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\controllers\storeController.js:4:33)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {},
+  "stack": "Error: Neither apiKey nor config.authenticator provided\n    at Stripe._setAuthenticator (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:156:23)\n    at new Stripe (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:94:14)\n    at Stripe (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:50:20)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js:4:33)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:08:22 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 9188,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 131088384,
+      "heapTotal": 91353088,
+      "heapUsed": 56522448,
+      "external": 21758798,
+      "arrayBuffers": 18313760
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10075.14
+  },
+  "trace": [
+    {
+      "column": 23,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe._setAuthenticator",
+      "line": 156,
+      "method": "_setAuthenticator",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "new Stripe",
+      "line": 94,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js",
+      "function": null,
+      "line": 4,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:08:38 [31merror[39m: [31muncaughtException: Neither apiKey nor config.authenticator provided[39m
+[31mError: Neither apiKey nor config.authenticator provided[39m
+[31m    at Stripe._setAuthenticator (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:156:23)[39m
+[31m    at new Stripe (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:94:14)[39m
+[31m    at Stripe (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:50:20)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\controllers\storeController.js:4:33)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {},
+  "stack": "Error: Neither apiKey nor config.authenticator provided\n    at Stripe._setAuthenticator (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:156:23)\n    at new Stripe (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:94:14)\n    at Stripe (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:50:20)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js:4:33)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:08:38 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 16816,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 127246336,
+      "heapTotal": 84275200,
+      "heapUsed": 59463096,
+      "external": 21758798,
+      "arrayBuffers": 18313760
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10090.546
+  },
+  "trace": [
+    {
+      "column": 23,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe._setAuthenticator",
+      "line": 156,
+      "method": "_setAuthenticator",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "new Stripe",
+      "line": 94,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js",
+      "function": null,
+      "line": 4,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:08:49 [31merror[39m: [31muncaughtException: Neither apiKey nor config.authenticator provided[39m
+[31mError: Neither apiKey nor config.authenticator provided[39m
+[31m    at Stripe._setAuthenticator (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:156:23)[39m
+[31m    at new Stripe (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:94:14)[39m
+[31m    at Stripe (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:50:20)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\controllers\storeController.js:4:33)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {},
+  "stack": "Error: Neither apiKey nor config.authenticator provided\n    at Stripe._setAuthenticator (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:156:23)\n    at new Stripe (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:94:14)\n    at Stripe (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:50:20)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js:4:33)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:08:49 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 3332,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 135069696,
+      "heapTotal": 89518080,
+      "heapUsed": 63913656,
+      "external": 21732318,
+      "arrayBuffers": 18313584
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10102.187
+  },
+  "trace": [
+    {
+      "column": 23,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe._setAuthenticator",
+      "line": 156,
+      "method": "_setAuthenticator",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "new Stripe",
+      "line": 94,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js",
+      "function": null,
+      "line": 4,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:09:14 [31merror[39m: [31muncaughtException: Neither apiKey nor config.authenticator provided[39m
+[31mError: Neither apiKey nor config.authenticator provided[39m
+[31m    at Stripe._setAuthenticator (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:156:23)[39m
+[31m    at new Stripe (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:94:14)[39m
+[31m    at Stripe (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:50:20)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\controllers\storeController.js:4:33)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {},
+  "stack": "Error: Neither apiKey nor config.authenticator provided\n    at Stripe._setAuthenticator (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:156:23)\n    at new Stripe (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:94:14)\n    at Stripe (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:50:20)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js:4:33)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:09:14 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 17000,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 127225856,
+      "heapTotal": 84013056,
+      "heapUsed": 59686240,
+      "external": 21758798,
+      "arrayBuffers": 18313760
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10126.781
+  },
+  "trace": [
+    {
+      "column": 23,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe._setAuthenticator",
+      "line": 156,
+      "method": "_setAuthenticator",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "new Stripe",
+      "line": 94,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js",
+      "function": null,
+      "line": 4,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:11:08 [31merror[39m: [31muncaughtException: Neither apiKey nor config.authenticator provided[39m
+[31mError: Neither apiKey nor config.authenticator provided[39m
+[31m    at Stripe._setAuthenticator (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:156:23)[39m
+[31m    at new Stripe (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:94:14)[39m
+[31m    at Stripe (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:50:20)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\controllers\storeController.js:4:33)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {},
+  "stack": "Error: Neither apiKey nor config.authenticator provided\n    at Stripe._setAuthenticator (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:156:23)\n    at new Stripe (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:94:14)\n    at Stripe (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:50:20)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js:4:33)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:11:08 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 7976,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js"
+    ],
+    "memoryUsage": {
+      "rss": 124911616,
+      "heapTotal": 83750912,
+      "heapUsed": 58270600,
+      "external": 21721224,
+      "arrayBuffers": 18313384
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10241.328
+  },
+  "trace": [
+    {
+      "column": 23,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe._setAuthenticator",
+      "line": 156,
+      "method": "_setAuthenticator",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "new Stripe",
+      "line": 94,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js",
+      "function": null,
+      "line": 4,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:11:25 [31merror[39m: [31muncaughtException: forumRoutes is not defined[39m
+[31mReferenceError: forumRoutes is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:556:23)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: forumRoutes is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:556:23)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:11:25 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 2432,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 122929152,
+      "heapTotal": 83873792,
+      "heapUsed": 61529520,
+      "external": 21758798,
+      "arrayBuffers": 18313876
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10257.5
+  },
+  "trace": [
+    {
+      "column": 23,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 556,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:11:25 [31merror[39m: [31muncaughtException: forumRoutes is not defined[39m
+[31mReferenceError: forumRoutes is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:556:23)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: forumRoutes is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:556:23)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:11:25 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 17260,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 122769408,
+      "heapTotal": 84922368,
+      "heapUsed": 61432240,
+      "external": 21758798,
+      "arrayBuffers": 18313876
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10257.5
+  },
+  "trace": [
+    {
+      "column": 23,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 556,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:11:45 [31merror[39m: [31muncaughtException: discographyRoutes is not defined[39m
+[31mReferenceError: discographyRoutes is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:552:29)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: discographyRoutes is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:552:29)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:11:45 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 14028,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 122957824,
+      "heapTotal": 83873792,
+      "heapUsed": 59610944,
+      "external": 21758798,
+      "arrayBuffers": 18313876
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10277.562
+  },
+  "trace": [
+    {
+      "column": 29,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 552,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:11:45 [31merror[39m: [31muncaughtException: discographyRoutes is not defined[39m
+[31mReferenceError: discographyRoutes is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:552:29)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: discographyRoutes is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:552:29)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:11:45 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 14648,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 132378624,
+      "heapTotal": 86233088,
+      "heapUsed": 63852136,
+      "external": 21758682,
+      "arrayBuffers": 18313760
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10277.578
+  },
+  "trace": [
+    {
+      "column": 29,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 552,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:12:03 [31merror[39m: [31muncaughtException: authRoutes is not defined[39m
+[31mReferenceError: authRoutes is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:551:22)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: authRoutes is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:551:22)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:12:03 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 16988,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 122253312,
+      "heapTotal": 85970944,
+      "heapUsed": 57998264,
+      "external": 21758798,
+      "arrayBuffers": 18313876
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10295.718
+  },
+  "trace": [
+    {
+      "column": 22,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 551,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:12:03 [31merror[39m: [31muncaughtException: authRoutes is not defined[39m
+[31mReferenceError: authRoutes is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:551:22)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: authRoutes is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:551:22)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:12:03 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 15524,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 122433536,
+      "heapTotal": 80990208,
+      "heapUsed": 58373656,
+      "external": 21758798,
+      "arrayBuffers": 18313876
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10295.718
+  },
+  "trace": [
+    {
+      "column": 22,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 551,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:12:23 [31merror[39m: [31muncaughtException: authRoutes is not defined[39m
+[31mReferenceError: authRoutes is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:551:22)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: authRoutes is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:551:22)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:12:23 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 18976,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 128753664,
+      "heapTotal": 83779584,
+      "heapUsed": 49929456,
+      "external": 21755241,
+      "arrayBuffers": 18313874
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10315.593
+  },
+  "trace": [
+    {
+      "column": 22,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 551,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:12:23 [31merror[39m: [31muncaughtException: authRoutes is not defined[39m
+[31mReferenceError: authRoutes is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:551:22)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: authRoutes is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:551:22)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:12:23 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 11280,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 129421312,
+      "heapTotal": 84303872,
+      "heapUsed": 49988264,
+      "external": 21755241,
+      "arrayBuffers": 18313874
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10315.593
+  },
+  "trace": [
+    {
+      "column": 22,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 551,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:14:34 [31merror[39m: [31muncaughtException: videosRoutes is not defined[39m
+[31mReferenceError: videosRoutes is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:553:24)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: videosRoutes is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:553:24)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:14:34 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 18176,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 120188928,
+      "heapTotal": 82731008,
+      "heapUsed": 44998968,
+      "external": 21755241,
+      "arrayBuffers": 18313874
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10446.453
+  },
+  "trace": [
+    {
+      "column": 24,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 553,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:14:34 [31merror[39m: [31muncaughtException: videosRoutes is not defined[39m
+[31mReferenceError: videosRoutes is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:553:24)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:22:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: videosRoutes is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:553:24)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:22:13)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:14:34 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 9168,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 128245760,
+      "heapTotal": 82993152,
+      "heapUsed": 50266056,
+      "external": 21755241,
+      "arrayBuffers": 18313874
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 10446.468
+  },
+  "trace": [
+    {
+      "column": 24,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 553,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 22,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:48:35 [31merror[39m: [31muncaughtException: Neither apiKey nor config.authenticator provided[39m
+[31mError: Neither apiKey nor config.authenticator provided[39m
+[31m    at Stripe._setAuthenticator (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:156:23)[39m
+[31m    at new Stripe (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:94:14)[39m
+[31m    at Stripe (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:50:20)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\controllers\storeController.js:4:33)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {},
+  "stack": "Error: Neither apiKey nor config.authenticator provided\n    at Stripe._setAuthenticator (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:156:23)\n    at new Stripe (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:94:14)\n    at Stripe (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:50:20)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js:4:33)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:48:35 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 12904,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 134684672,
+      "heapTotal": 89518080,
+      "heapUsed": 64981584,
+      "external": 21758682,
+      "arrayBuffers": 18313760
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 12487.468
+  },
+  "trace": [
+    {
+      "column": 23,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe._setAuthenticator",
+      "line": 156,
+      "method": "_setAuthenticator",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "new Stripe",
+      "line": 94,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js",
+      "function": null,
+      "line": 4,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:48:51 [31merror[39m: [31muncaughtException: Neither apiKey nor config.authenticator provided[39m
+[31mError: Neither apiKey nor config.authenticator provided[39m
+[31m    at Stripe._setAuthenticator (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:156:23)[39m
+[31m    at new Stripe (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:94:14)[39m
+[31m    at Stripe (C:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:50:20)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\controllers\storeController.js:4:33)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {},
+  "stack": "Error: Neither apiKey nor config.authenticator provided\n    at Stripe._setAuthenticator (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:156:23)\n    at new Stripe (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:94:14)\n    at Stripe (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:50:20)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js:4:33)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:48:51 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 13948,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 135073792,
+      "heapTotal": 89518080,
+      "heapUsed": 64978192,
+      "external": 21758798,
+      "arrayBuffers": 18313760
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 12504.093
+  },
+  "trace": [
+    {
+      "column": 23,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe._setAuthenticator",
+      "line": 156,
+      "method": "_setAuthenticator",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "new Stripe",
+      "line": 94,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js",
+      "function": null,
+      "line": 4,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:49:06 [31merror[39m: [31muncaughtException: Neither apiKey nor config.authenticator provided[39m
+[31mError: Neither apiKey nor config.authenticator provided[39m
+[31m    at Stripe._setAuthenticator (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:156:23)[39m
+[31m    at new Stripe (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:94:14)[39m
+[31m    at Stripe (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:50:20)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\controllers\storeController.js:4:33)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {},
+  "stack": "Error: Neither apiKey nor config.authenticator provided\n    at Stripe._setAuthenticator (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:156:23)\n    at new Stripe (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:94:14)\n    at Stripe (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:50:20)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js:4:33)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:49:06 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 9040,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 134860800,
+      "heapTotal": 89255936,
+      "heapUsed": 64329688,
+      "external": 21732318,
+      "arrayBuffers": 18313584
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 12518.828
+  },
+  "trace": [
+    {
+      "column": 23,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe._setAuthenticator",
+      "line": 156,
+      "method": "_setAuthenticator",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "new Stripe",
+      "line": 94,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js",
+      "function": null,
+      "line": 4,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-21 18:50:13 [31merror[39m: [31muncaughtException: Neither apiKey nor config.authenticator provided[39m
+[31mError: Neither apiKey nor config.authenticator provided[39m
+[31m    at Stripe._setAuthenticator (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:156:23)[39m
+[31m    at new Stripe (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:94:14)[39m
+[31m    at Stripe (c:\Users\gomez\Documents\TOP\backend\node_modules\stripe\cjs\stripe.core.js:50:20)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\controllers\storeController.js:4:33)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {},
+  "stack": "Error: Neither apiKey nor config.authenticator provided\n    at Stripe._setAuthenticator (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:156:23)\n    at new Stripe (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:94:14)\n    at Stripe (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js:50:20)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js:4:33)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Sun Sep 21 2025 18:50:13 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 19296,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 125788160,
+      "heapTotal": 83750912,
+      "heapUsed": 59190552,
+      "external": 21758798,
+      "arrayBuffers": 18313760
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 12586.062
+  },
+  "trace": [
+    {
+      "column": 23,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe._setAuthenticator",
+      "line": 156,
+      "method": "_setAuthenticator",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "new Stripe",
+      "line": 94,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\stripe\\cjs\\stripe.core.js",
+      "function": "Stripe",
+      "line": 50,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 33,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js",
+      "function": null,
+      "line": 4,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}

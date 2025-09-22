@@ -154,3 +154,142 @@
     gap: 0.5rem;
   }
 }
+
+/* Estadísticas de popularidad */
+.popularity-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: #111111;
+  border: 1px solid #333333;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.stat-card:hover {
+  border-color: #ff0000;
+}
+
+.stat-card h4 {
+  margin: 0 0 8px 0;
+  color: #cccccc;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ff0000;
+  margin: 0;
+}
+
+.stat-detail {
+  font-size: 12px;
+  color: #cccccc;
+  margin-top: 4px;
+}
+
+/* Nuevos elementos de tarjeta de álbum */
+.album-type-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 0, 0, 0.9);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.album-title {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+
+.album-artist {
+  color: #cccccc;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.album-meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.genre, .album-year {
+  background: #333333;
+  color: #cccccc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.album-stats {
+  display: flex;
+  gap: 12px;
+  font-size: 0.8rem;
+  color: #cccccc;
+  margin-bottom: 0.5rem;
+}
+
+.views::before {
+  content: "👁️ ";
+}
+
+.likes::before {
+  content: "❤️ ";
+}
+
+.popularity-bar {
+  width: 100%;
+  height: 4px;
+  background: #333333;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.popularity-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff0000, #ff4444);
+  transition: width 0.3s ease;
+}
+
+.popularity-text {
+  font-size: 0.7rem;
+  color: #cccccc;
+  text-align: right;
+  margin-top: 2px;
+}
+
+/* Responsive adicional */
+@media (max-width: 480px) {
+  .popularity-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .album-meta {
+    justify-content: center;
+  }
+
+  .album-stats {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2025-09-22T07:53:21.789Z",
+  "generatedWith": "node-crypto",
+  "config": {
+    "country": "MX",
+    "state": "Mexico City",
+    "locality": "Mexico City",
+    "organization": "Twenty One Pilots Dev",
+    "organizationalUnit": "Development",
+    "commonName": "localhost",
+    "email": "dev@twentyonepilots.local",
+    "validityDays": 365,
+    "keySize": 2048,
+    "serialNumber": "C00F6FBE43C0C4A566799BC356458D59",
+    "domains": [
+      "localhost",
+      "127.0.0.1",
+      "::1",
+      "*.localhost",
+      "twentyonepilots.local",
+      "*.twentyonepilots.local"
+    ]
+  },
+  "files": {
+    "privateKey": "private.key",
+    "certificate": "certificate.crt",
+    "caBundle": "ca-bundle.crt",
+    "fingerprint": "fingerprint.txt"
+  },
+  "usage": {
+    "node": {
+      "key": "backend\\ssl\\private.key",
+      "cert": "backend\\ssl\\certificate.crt",
+      "ca": "backend\\ssl\\ca-bundle.crt"
+    }
+  },
+  "warnings": [
+    "Este certificado es auto-firmado y solo debe usarse para desarrollo",
+    "No usar en producción - obtener certificado válido de CA reconocida",
+    "Instalar el certificado CA en el sistema para evitar warnings del navegador",
+    "Generado con Node.js crypto - puede no ser compatible con todos los navegadores"
+  ]
+}

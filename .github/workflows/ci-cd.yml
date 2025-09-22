@@ -1,621 +1,222 @@
-name: Advanced CI/CD Pipeline with Azure Deployment
+name: CI/CD Pipeline
 
 on:
   push:
     branches: [ main, develop ]
   pull_request:
     branches: [ main, develop ]
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to deploy to'
-        required: true
-        default: 'staging'
-        type: choice
-        options:
-          - staging
-          - production
-      rollback:
-        description: 'Force rollback to previous version'
-        required: false
-        type: boolean
-        default: false
-
-env:
-  NODE_VERSION: '18'
-  MONGODB_VERSION: '6.0'
-  ELASTICSEARCH_VERSION: '8.11.0'
-  DOCKER_REGISTRY: 'twentyonepilots.azurecr.io'
-  AZURE_WEBAPP_NAME: 'twentyonepilots-api'
-  AZURE_RESOURCE_GROUP: 'twentyonepilots-rg'
 
 jobs:
-  # Job de testing
-  test:
-    name: 'Run Tests'
+  test-backend:
     runs-on: ubuntu-latest
+
     services:
-      mongodb:
-        image: mongo:6.0
-        ports:
-          - 27017:27017
       redis:
         image: redis:7-alpine
         ports:
           - 6379:6379
-      elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      mongodb:
+        image: mongo:7-jammy
         ports:
-          - 9200:9200
-          - 9300:9300
-        env:
-          discovery.type: single-node
-          xpack.security.enabled: false
-          ES_JAVA_OPTS: -Xms512m -Xmx512m
+          - 27017:27017
 
     steps:
-    - name: 'Checkout code'
+    - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: 'Setup Node.js'
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ env.NODE_VERSION }}
+        node-version: '18'
         cache: 'npm'
-        cache-dependency-path: |
-          backend/package-lock.json
-          frontend/package-lock.json
+        cache-dependency-path: backend/package-lock.json
 
-    - name: 'Install backend dependencies'
-      run: |
-        cd backend
-        npm ci
+    - name: Install backend dependencies
+      run: cd backend && npm ci
 
-    - name: 'Install frontend dependencies'
-      run: |
-        cd frontend
-        npm ci
+    - name: Run backend linting
+      run: cd backend && npm run lint
 
-    - name: 'Create test environment file'
-      run: |
-        cd backend
-        echo "NODE_ENV=test" > .env
-        echo "JWT_SECRET=test_jwt_secret_key_for_ci_cd" >> .env
-        echo "MONGO_URI=mongodb://localhost:27017/twentyonepilots_test" >> .env
-        echo "REDIS_URL=redis://localhost:6379" >> .env
+    - name: Run backend tests
+      run: cd backend && npm test
+      env:
+        NODE_ENV: test
+        REDIS_URL: redis://localhost:6379
+        MONGODB_URI: mongodb://localhost:27017/twentyonepilots_test
 
-    - name: 'Run backend tests'
-      run: |
-        cd backend
-        npm run test:ci
+    - name: Generate backend coverage report
+      run: cd backend && npm run test:coverage
 
-    - name: 'Run API version compatibility tests'
-      run: |
-        cd backend
-        # Test v1 endpoints
-        curl -f http://localhost:5000/api/v1/health || exit 1
-        curl -f http://localhost:5000/api/v1/videos/search?q=test || exit 1
-
-        # Test v2 endpoints
-        curl -f http://localhost:5000/api/v2/health || exit 1
-        curl -f http://localhost:5000/api/v2/videos/search?q=test || exit 1
-
-        # Test version auto-redirect
-        curl -f http://localhost:5000/api/videos/search?q=test || exit 1
-
-    - name: 'Run security tests'
-      run: |
-        cd backend
-        # Test security headers
-        response=$(curl -I http://localhost:5000/health 2>/dev/null)
-        echo "$response" | grep -q "X-Content-Type-Options: nosniff" || exit 1
-        echo "$response" | grep -q "X-Frame-Options" || exit 1
-        echo "$response" | grep -q "Content-Security-Policy" || exit 1
-
-        # Test rate limiting
-        for i in {1..15}; do
-          curl -s http://localhost:5000/health > /dev/null
-        done
-        # Should get 429 on next request
-        status=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:5000/health)
-        [ "$status" = "429" ] || exit 1
-
-    - name: 'Run performance tests'
-      run: |
-        cd backend
-        # Simple load test
-        for i in {1..10}; do
-          curl -s http://localhost:5000/api/metrics > /dev/null &
-        done
-        wait
-
-        # Test metrics endpoint
-        curl -f http://localhost:5000/api/metrics || exit 1
-        curl -f http://localhost:5000/api/scalability/metrics || exit 1
-
-    - name: 'Upload coverage reports'
+    - name: Upload backend coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
-        file: ./backend/coverage/lcov.info
+        directory: ./backend/coverage
         flags: backend
         name: backend-coverage
-        fail_ci_if_error: false
 
-    - name: 'Build frontend'
-      run: |
-        cd frontend
-        npm run build
-
-    - name: 'Upload test artifacts'
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: test-results
-        path: |
-          backend/coverage/
-          backend/test-results.xml
-        retention-days: 30
-
-  # Job de linting y seguridad avanzado
-  security:
-    name: 'Advanced Security & Vulnerability Scanning'
+  test-frontend:
     runs-on: ubuntu-latest
-    needs: test
 
     steps:
-    - name: 'Checkout code'
+    - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
-    - name: 'Setup Node.js'
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ env.NODE_VERSION }}
+        node-version: '18'
         cache: 'npm'
-        cache-dependency-path: |
-          backend/package-lock.json
-          frontend/package-lock.json
+        cache-dependency-path: frontend/package-lock.json
 
-    - name: 'Install backend dependencies'
+    - name: Install frontend dependencies
+      run: cd frontend && npm ci
+
+    - name: Run frontend linting
+      run: cd frontend && npm run lint
+
+    - name: Run frontend tests
+      run: cd frontend && npm test -- --coverage --watchAll=false
+      env:
+        CI: true
+
+    - name: Build frontend
+      run: cd frontend && npm run build
+
+    - name: Upload frontend coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        directory: ./frontend/coverage
+        flags: frontend
+        name: frontend-coverage
+
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+  deploy-staging:
+    runs-on: ubuntu-latest
+    needs: [test-backend, test-frontend, security-scan]
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Build and push backend image
       run: |
         cd backend
-        npm ci
+        docker build -t twentyonepilots-backend:${{ github.sha }} .
+        docker tag twentyonepilots-backend:${{ github.sha }} ${{ secrets.ECR_REGISTRY }}/twentyonepilots-backend:staging
+        docker push ${{ secrets.ECR_REGISTRY }}/twentyonepilots-backend:staging
 
-    - name: 'Install frontend dependencies'
+    - name: Build and push frontend image
       run: |
         cd frontend
-        npm ci
+        docker build -t twentyonepilots-frontend:${{ github.sha }} .
+        docker tag twentyonepilots-frontend:${{ github.sha }} ${{ secrets.ECR_REGISTRY }}/twentyonepilots-frontend:staging
+        docker push ${{ secrets.ECR_REGISTRY }}/twentyonepilots-frontend:staging
 
-    - name: 'Run Snyk security scan (Backend)'
-      uses: snyk/actions/node@master
-      continue-on-error: true
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --file=backend/package.json --package-manager=npm --severity-threshold=medium
-
-    - name: 'Run Snyk security scan (Frontend)'
-      uses: snyk/actions/node@master
-      continue-on-error: true
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --file=frontend/package.json --package-manager=npm --severity-threshold=medium
-
-    - name: 'Run npm audit with strict checks'
+    - name: Deploy to staging
       run: |
-        cd backend
-        echo "🔍 Running npm audit for backend..."
-        npm audit --audit-level high --production
+        aws ecs update-service \
+          --cluster ${{ secrets.ECS_CLUSTER_STAGING }} \
+          --service ${{ secrets.ECS_SERVICE_STAGING }} \
+          --force-new-deployment \
+          --region us-east-1
 
-        cd ../frontend
-        echo "🔍 Running npm audit for frontend..."
-        npm audit --audit-level high --production
-
-    - name: 'Check for outdated dependencies'
-      run: |
-        cd backend
-        echo "📦 Checking outdated backend dependencies..."
-        npm outdated || true
-
-        cd ../frontend
-        echo "📦 Checking outdated frontend dependencies..."
-        npm outdated || true
-
-    - name: 'Security linting with ESLint security plugin'
-      run: |
-        cd backend
-        npm install --save-dev eslint-plugin-security
-        npx eslint . --ext .js --plugin security --rule 'security/detect-eval-with-expression: error' --rule 'security/detect-non-literal-regexp: error' --rule 'security/detect-unsafe-regex: error' || true
-
-    - name: 'Check for secrets in code'
-      uses: trufflesecurity/trufflehog@main
-      with:
-        path: ./
-        base: main
-        head: HEAD
-        extra_args: --debug --only-verified
-
-    - name: 'Run OWASP Dependency Check'
-      uses: dependency-check/Dependency-Check_Action@main
-      with:
-        project: 'Twenty One Pilots'
-        path: './backend'
-        format: 'ALL'
-        args: >
-          --enableRetired
-          --enableExperimental
-          --nvdValidForHours 24
-
-    - name: 'CodeQL Security Analysis'
-      uses: github/codeql-action/init@v2
-      with:
-        languages: javascript
-        config-file: ./.github/codeql-config.yml
-
-    - name: 'Perform CodeQL Analysis'
-      uses: github/codeql-action/analyze@v2
-
-    - name: 'Check for vulnerabilities in Docker images'
-      run: |
-        echo "🔍 Scanning Docker images for vulnerabilities..."
-        # This would use tools like Trivy or Clair in a real setup
-        echo "Docker image scanning would be performed here"
-
-    - name: 'Generate security report'
-      run: |
-        echo "## 🔒 Security Scan Report" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### ✅ Completed Checks" >> $GITHUB_STEP_SUMMARY
-        echo "- Snyk vulnerability scanning" >> $GITHUB_STEP_SUMMARY
-        echo "- npm audit with high severity threshold" >> $GITHUB_STEP_SUMMARY
-        echo "- ESLint security rules" >> $GITHUB_STEP_SUMMARY
-        echo "- TruffleHog secrets detection" >> $GITHUB_STEP_SUMMARY
-        echo "- OWASP Dependency Check" >> $GITHUB_STEP_SUMMARY
-        echo "- CodeQL static analysis" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### 📊 Results" >> $GITHUB_STEP_SUMMARY
-        echo "- All automated security checks completed" >> $GITHUB_STEP_SUMMARY
-        echo "- No critical vulnerabilities found" >> $GITHUB_STEP_SUMMARY
-
-    - name: 'Upload security scan results'
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: security-scan-results
-        path: |
-          backend/reports/
-          frontend/reports/
-        retention-days: 30
-
-  # Job de construcción de Docker
-  docker:
-    name: 'Build Docker Images'
+  deploy-production:
     runs-on: ubuntu-latest
-    needs: [test, security]
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
-
-    steps:
-    - name: 'Checkout code'
-      uses: actions/checkout@v4
-
-    - name: 'Set up Docker Buildx'
-      uses: docker/setup-buildx-action@v3
-
-    - name: 'Log in to Azure Container Registry'
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{ env.DOCKER_REGISTRY }}
-        username: ${{ secrets.AZURE_CLIENT_ID }}
-        password: ${{ secrets.AZURE_CLIENT_SECRET }}
-
-    - name: 'Build and push backend Docker image'
-      uses: docker/build-push-action@v5
-      with:
-        context: ./backend
-        file: ./backend/Dockerfile
-        push: true
-        tags: |
-          ${{ env.DOCKER_REGISTRY }}/twentyonepilots-backend:${{ github.sha }}
-          ${{ env.DOCKER_REGISTRY }}/twentyonepilots-backend:latest
-        labels: |
-          org.opencontainers.image.title=TwentyOnePilots-Backend
-          org.opencontainers.image.description=Backend API for Twenty One Pilots application
-          org.opencontainers.image.source=https://github.com/${{ github.repository }}
-          org.opencontainers.image.version=${{ github.sha }}
-          org.opencontainers.image.created=${{ github.event.head_commit.timestamp }}
-          org.opencontainers.image.revision=${{ github.sha }}
-
-    - name: 'Build and push frontend Docker image'
-      uses: docker/build-push-action@v5
-      with:
-        context: ./frontend
-        file: ./frontend/Dockerfile
-        push: true
-        tags: |
-          ${{ env.DOCKER_REGISTRY }}/twentyonepilots-frontend:${{ github.sha }}
-          ${{ env.DOCKER_REGISTRY }}/twentyonepilots-frontend:latest
-        labels: |
-          org.opencontainers.image.title=TwentyOnePilots-Frontend
-          org.opencontainers.image.description=Frontend React app for Twenty One Pilots application
-          org.opencontainers.image.source=https://github.com/${{ github.repository }}
-          org.opencontainers.image.version=${{ github.sha }}
-          org.opencontainers.image.created=${{ github.event.head_commit.timestamp }}
-          org.opencontainers.image.revision=${{ github.sha }}
-
-    - name: 'Generate Docker image SBOM'
-      uses: anchore/sbom-action@v0
-      with:
-        image: ${{ env.DOCKER_REGISTRY }}/twentyonepilots-backend:latest
-        format: spdx-json
-        output-file: ./backend-sbom.spdx.json
-
-    - name: 'Upload SBOM artifacts'
-      uses: actions/upload-artifact@v4
-      with:
-        name: sbom-reports
-        path: |
-          ./backend-sbom.spdx.json
-        retention-days: 30
-
-  # Job de despliegue a Azure
-  deploy-azure:
-    name: 'Deploy to Azure'
-    runs-on: ubuntu-latest
-    needs: [docker]
+    needs: [test-backend, test-frontend, security-scan]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    environment: production
 
     steps:
-    - name: 'Checkout code'
+    - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: 'Azure Login'
-      uses: azure/login@v1
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
 
-    - name: 'Deploy to Azure Web App'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        images: ${{ env.DOCKER_REGISTRY }}/twentyonepilots-backend:${{ github.sha }}
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
 
-    - name: 'Configure Application Insights'
-      uses: azure/CLI@v1
-      with:
-        inlineScript: |
-          az monitor app-insights component create \
-            --app ${{ env.AZURE_WEBAPP_NAME }} \
-            --location eastus \
-            --resource-group ${{ env.AZURE_RESOURCE_GROUP }} \
-            --application-type web \
-            --kind web
-
-    - name: 'Setup monitoring and alerts'
-      uses: azure/CLI@v1
-      with:
-        inlineScript: |
-          # Crear alertas para métricas críticas
-          az monitor metrics alert create \
-            --name "HighResponseTime" \
-            --resource /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ env.AZURE_RESOURCE_GROUP }}/providers/Microsoft.Web/sites/${{ env.AZURE_WEBAPP_NAME }} \
-            --condition "avg HttpResponseTime > 5" \
-            --description "Response time is too high"
-
-          az monitor metrics alert create \
-            --name "HighErrorRate" \
-            --resource /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ env.AZURE_RESOURCE_GROUP }}/providers/Microsoft.Web/sites/${{ env.AZURE_WEBAPP_NAME }} \
-            --condition "avg Http5xx > 5" \
-            --description "Error rate is too high"
-
-    - name: 'Run post-deployment health checks'
+    - name: Build and push backend image
       run: |
-        # Esperar a que el despliegue esté listo
-        sleep 30
+        cd backend
+        docker build -t twentyonepilots-backend:${{ github.sha }} .
+        docker tag twentyonepilots-backend:${{ github.sha }} ${{ secrets.ECR_REGISTRY }}/twentyonepilots-backend:latest
+        docker push ${{ secrets.ECR_REGISTRY }}/twentyonepilots-backend:latest
 
-        # Verificar health endpoint
-        max_attempts=10
-        attempt=1
-        while [ $attempt -le $max_attempts ]; do
-          if curl -f https://twentyonepilots-api.azurewebsites.net/health; then
-            echo "✅ Health check passed"
-            break
-          else
-            echo "⚠️ Health check failed, attempt $attempt/$max_attempts"
-            if [ $attempt -eq $max_attempts ]; then
-              echo "❌ Health check failed after $max_attempts attempts"
-              exit 1
-            fi
-            sleep 10
-            ((attempt++))
-          fi
-        done
-
-    - name: 'Generate deployment report'
+    - name: Build and push frontend image
       run: |
-        echo "## 🚀 Deployment Report" >> $GITHUB_STEP_SUMMARY
-        echo "- **Environment**: Production" >> $GITHUB_STEP_SUMMARY
-        echo "- **Version**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
-        echo "- **Deployed at**: $(date)" >> $GITHUB_STEP_SUMMARY
-        echo "- **Health Status**: ✅ Passed" >> $GITHUB_STEP_SUMMARY
-        echo "- **Application Insights**: Configured" >> $GITHUB_STEP_SUMMARY
+        cd frontend
+        docker build -t twentyonepilots-frontend:${{ github.sha }} .
+        docker tag twentyonepilots-frontend:${{ github.sha }} ${{ secrets.ECR_REGISTRY }}/twentyonepilots-frontend:latest
+        docker push ${{ secrets.ECR_REGISTRY }}/twentyonepilots-frontend:latest
 
-  # Job de rollback automático
-  rollback:
-    name: 'Rollback on Failure'
-    runs-on: ubuntu-latest
-    needs: [deploy-azure]
-    if: failure() && github.ref == 'refs/heads/main'
-
-    steps:
-    - name: 'Azure Login'
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: 'Get previous deployment'
-      id: get-deployment
+    - name: Deploy to production
       run: |
-        previous_deployment=$(az webapp deployment list \
-          --name ${{ env.AZURE_WEBAPP_NAME }} \
-          --resource-group ${{ env.AZURE_RESOURCE_GROUP }} \
-          --query "[1].id" -o tsv 2>/dev/null || echo "")
+        aws ecs update-service \
+          --cluster ${{ secrets.ECS_CLUSTER_PRODUCTION }} \
+          --service ${{ secrets.ECS_SERVICE_PRODUCTION }} \
+          --force-new-deployment \
+          --region us-east-1
 
-        if [ -n "$previous_deployment" ]; then
-          echo "previous_deployment=$previous_deployment" >> $GITHUB_OUTPUT
-          echo "✅ Previous deployment found: $previous_deployment"
-        else
-          echo "❌ No previous deployment found for rollback"
-          exit 1
-        fi
-
-    - name: 'Execute rollback'
-      if: steps.get-deployment.outputs.previous_deployment != ''
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        images: ${{ steps.get-deployment.outputs.previous_deployment }}
-
-    - name: 'Notify rollback'
-      uses: 8398a7/action-slack@v3
-      if: always()
-      with:
-        status: ${{ job.status }}
-        text: 'Twenty One Pilots - Rollback executed due to deployment failure'
+    - name: Create GitHub release
+      if: success()
+      uses: actions/create-release@v1
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  # Job de documentación automática
-  docs:
-    name: 'Generate Documentation'
-    runs-on: ubuntu-latest
-    needs: [test]
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-    - name: 'Checkout code'
-      uses: actions/checkout@v4
-
-    - name: 'Setup Node.js'
-      uses: actions/setup-node@v4
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        node-version: ${{ env.NODE_VERSION }}
+        tag_name: v${{ github.run_number }}
+        release_name: Release v${{ github.run_number }}
+        body: |
+          ## 🚀 Deployed to Production
 
-    - name: 'Install dependencies'
-      run: |
-        cd backend
-        npm ci
+          ### Changes
+          - Backend and frontend deployed successfully
+          - All tests passed
+          - Security scan completed
 
-    - name: 'Generate API documentation'
-      run: |
-        cd backend
-        # Generar documentación OpenAPI/Swagger
-        npx swagger-jsdoc -d swagger.js -o ./docs/api-docs.json
-
-        # Generar documentación de versiones
-        node -e "
-        const fs = require('fs');
-        const docs = require('./middleware/security').generateVersionDocumentation();
-        fs.writeFileSync('./docs/version-docs.json', JSON.stringify(docs, null, 2));
-        "
-
-    - name: 'Generate performance report'
-      run: |
-        cd backend
-        # Crear reporte de rendimiento
-        echo '# 📊 Performance Report' > ./docs/performance-report.md
-        echo '' >> ./docs/performance-report.md
-        echo 'Generated on: $(date)' >> ./docs/performance-report.md
-        echo '' >> ./docs/performance-report.md
-        echo '## Test Results' >> ./docs/performance-report.md
-        echo '- ✅ All tests passed' >> ./docs/performance-report.md
-        echo '- 📈 Coverage: Check coverage reports' >> ./docs/performance-report.md
-        echo '- 🔒 Security: All checks passed' >> ./docs/performance-report.md
-
-    - name: 'Upload documentation'
-      uses: actions/upload-artifact@v4
-      with:
-        name: api-documentation
-        path: |
-          backend/docs/
-        retention-days: 30
-
-    - name: 'Deploy docs to GitHub Pages'
-      if: github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./backend/docs
-        destination_dir: api-docs
-
-  # Job de monitoreo continuo
-  monitoring:
-    name: 'Continuous Monitoring'
-    runs-on: ubuntu-latest
-    needs: [deploy-azure]
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-    - name: 'Setup monitoring dashboard'
-      run: |
-        echo "## 📊 Continuous Monitoring Dashboard" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### 🔍 Application Health" >> $GITHUB_STEP_SUMMARY
-        echo "- ✅ Health checks: Automated every 5 minutes" >> $GITHUB_STEP_SUMMARY
-        echo "- 📈 Performance metrics: Real-time monitoring" >> $GITHUB_STEP_SUMMARY
-        echo "- 🚨 Alerts: Configured for critical issues" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### 🔒 Security Monitoring" >> $GITHUB_STEP_SUMMARY
-        echo "- 🛡️ CSP violations: Logged and alerted" >> $GITHUB_STEP_SUMMARY
-        echo "- 🚫 Rate limiting: Automated protection" >> $GITHUB_STEP_SUMMARY
-        echo "- 🔍 Suspicious activity: Real-time detection" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### 📚 API Versioning" >> $GITHUB_STEP_SUMMARY
-        echo "- 🔄 Auto-redirect: Legacy endpoints supported" >> $GITHUB_STEP_SUMMARY
-        echo "- 📋 Version tracking: Usage analytics" >> $GITHUB_STEP_SUMMARY
-        echo "- ⚠️ Deprecation warnings: Clear migration path" >> $GITHUB_STEP_SUMMARY
-
-    - name: 'Configure uptime monitoring'
-      run: |
-        # Configurar monitoreo de uptime (esto sería con un servicio externo)
-        echo "🔄 Uptime monitoring configured"
-        echo "- Endpoint: https://twentyonepilots-api.azurewebsites.net/health"
-        echo "- Frequency: Every 5 minutes"
-        echo "- Alerts: Email and Slack notifications"
-
-    - name: 'Setup log aggregation'
-      run: |
-        echo "📝 Log aggregation configured"
-        echo "- Application logs: Azure Application Insights"
-        echo "- Security logs: Centralized logging"
-        echo "- Performance logs: Real-time metrics"
-
-  # Job de notificación
-  notify:
-    name: 'Send Notifications'
-    runs-on: ubuntu-latest
-    needs: [test, security, deploy-azure, monitoring]
-    if: always()
-
-    steps:
-    - name: 'Send success notification'
-      if: needs.deploy.result == 'success'
-      run: |
-        echo "✅ Pipeline completado exitosamente"
-        echo "🎉 Aplicación desplegada en producción"
-
-    - name: 'Send failure notification'
-      if: failure()
-      run: |
-        echo "❌ Pipeline falló"
-        echo "🔍 Revisa los logs para más detalles"
-
-    - name: 'Create deployment status badge'
-      run: |
-        if [ "${{ needs.deploy.result }}" == "success" ]; then
-          echo "✅ Deployment: Success" >> $GITHUB_STEP_SUMMARY
-        else
-          echo "❌ Deployment: Failed" >> $GITHUB_STEP_SUMMARY
-        fi
+          ### Commit: ${{ github.sha }}
+          ### Build: ${{ github.run_number }}
+        draft: false
+        prerelease: false

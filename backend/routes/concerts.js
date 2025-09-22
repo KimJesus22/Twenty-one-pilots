@@ -1,12 +1,15 @@
 const express = require('express');
 const { query, param } = require('express-validator');
 const eventbriteService = require('../services/eventbriteService');
+const { concertsCache } = require('../middleware/cache');
+const queueService = require('../services/queueService');
 const logger = require('../utils/logger');
 
 const router = express.Router();
 
 // Ruta para buscar conciertos
 router.get('/search',
+  concertsCache, // Aplicar caché
   [
     query('q').optional().isString().withMessage('Query debe ser un string'),
     query('location').optional().isString().withMessage('Location debe ser un string'),
@@ -32,6 +35,21 @@ router.get('/search',
         location,
         resultsCount: result.data.length
       });
+
+      // Enviar métricas de búsqueda a la cola de analytics (asíncrono)
+      try {
+        await queueService.addAnalyticsJob('search-analytics', {
+          query: q,
+          location,
+          results: result.data.length,
+          userId: req.user?.id,
+          filters: { location, maxResults },
+          searchType: 'concerts'
+        });
+      } catch (analyticsError) {
+        logger.error('Error sending search analytics:', analyticsError);
+        // No fallar la respuesta por error en analytics
+      }
 
       res.json({
         success: true,

@@ -191,6 +191,110 @@ class AuthController {
       });
     }
   }
+
+  // Verificar token
+  async verifyToken(req, res) {
+    try {
+      // Si llega aquí, el token ya fue verificado por el middleware
+      const user = await User.findById(req.user.userId).select('-password');
+
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: 'Usuario no encontrado'
+        });
+      }
+
+      res.json({
+        success: true,
+        message: 'Token válido',
+        data: {
+          user: {
+            id: user._id,
+            username: user.username,
+            email: user.email,
+            role: user.role
+          }
+        }
+      });
+    } catch (error) {
+      console.error('Error verificando token:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error interno del servidor'
+      });
+    }
+  }
+
+  // Cambiar contraseña
+  async changePassword(req, res) {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({
+          success: false,
+          errors: errors.array()
+        });
+      }
+
+      const { currentPassword, newPassword } = req.body;
+      const userId = req.user.userId;
+
+      const user = await User.findById(userId).select('+password');
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: 'Usuario no encontrado'
+        });
+      }
+
+      // Verificar contraseña actual
+      const isMatch = await user.comparePassword(currentPassword);
+      if (!isMatch) {
+        return res.status(400).json({
+          success: false,
+          message: 'Contraseña actual incorrecta'
+        });
+      }
+
+      // Actualizar contraseña
+      user.password = newPassword;
+      await user.save();
+
+      res.json({
+        success: true,
+        message: 'Contraseña cambiada exitosamente'
+      });
+    } catch (error) {
+      console.error('Error cambiando contraseña:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error interno del servidor'
+      });
+    }
+  }
+
+  // Logout
+  async logout(req, res) {
+    try {
+      // En una implementación real, aquí podrías:
+      // - Invalidar el token en una lista negra
+      // - Limpiar sesiones activas
+      // - Registrar el logout para auditoría
+
+      // Por ahora, simplemente confirmamos el logout
+      res.json({
+        success: true,
+        message: 'Logout exitoso'
+      });
+    } catch (error) {
+      console.error('Error en logout:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error interno del servidor'
+      });
+    }
+  }
 }
 
 module.exports = new AuthController();

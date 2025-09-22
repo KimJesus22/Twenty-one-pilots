@@ -170,6 +170,12 @@ router.post('/login',
   authController.login
 );
 
+// Verificar token (requiere autenticación)
+router.get('/verify',
+  authService.authenticateToken,
+  authController.verifyToken
+);
+
 // Obtener perfil de usuario (requiere autenticación)
 router.get('/profile',
   authService.authenticateToken,
@@ -184,6 +190,26 @@ router.put('/profile',
     body('email').optional().isEmail().normalizeEmail().withMessage('Email inválido'),
   ],
   authController.updateProfile
+);
+
+// Cambiar contraseña (requiere autenticación)
+router.put('/change-password',
+  authService.authenticateToken,
+  [
+    body('currentPassword').notEmpty().withMessage('Contraseña actual requerida'),
+    body('newPassword')
+      .isLength({ min: 8, max: 128 })
+      .withMessage('Nueva contraseña debe tener entre 8 y 128 caracteres')
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
+      .withMessage('Nueva contraseña debe contener al menos una letra minúscula, una mayúscula y un número'),
+  ],
+  authController.changePassword
+);
+
+// Logout (requiere autenticación)
+router.post('/logout',
+  authService.authenticateToken,
+  authController.logout
 );
 
 module.exports = router;

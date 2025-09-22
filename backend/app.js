@@ -160,53 +160,15 @@ app.use(cors({
 
 app.use(express.json({ limit: '10mb' })); // Limitar tamaño de payload
 
+// Enviar token CSRF en respuestas
+app.use(sendCSRFToken);
+
 // Middleware de versionado de API - temporalmente deshabilitado
 // app.use('/api', apiVersioning);
 // app.use('/api', redirectToDefaultVersion);
 
-// Middleware CSRF personalizado (más ligero que csurf)
-const csrfProtection = (req, res, next) => {
-  // Solo aplicar CSRF a métodos que modifican datos
-  if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(req.method)) {
-    const csrfToken = req.headers['x-csrf-token'] || req.body._csrf;
-
-    if (!csrfToken) {
-      logger.warn('Token CSRF faltante:', {
-        path: req.path,
-        method: req.method,
-        ip: req.ip
-      });
-      return res.status(403).json({
-        success: false,
-        message: 'Token CSRF requerido'
-      });
-    }
-
-    // En desarrollo, aceptar cualquier token (simplificado)
-    // En producción, validar contra token generado por el servidor
-    if (process.env.NODE_ENV === 'production') {
-      // Aquí iría la validación real del token CSRF
-      const expectedToken = crypto.createHash('sha256')
-        .update(process.env.CSRF_SECRET || 'default-secret')
-        .update(req.session?.id || 'no-session')
-        .digest('hex');
-
-      if (csrfToken !== expectedToken) {
-        logger.warn('Token CSRF inválido:', {
-          path: req.path,
-          method: req.method,
-          ip: req.ip
-        });
-        return res.status(403).json({
-          success: false,
-          message: 'Token CSRF inválido'
-        });
-      }
-    }
-  }
-
-  next();
-};
+// Importar middleware CSRF
+const { csrfProtection, sendCSRFToken } = require('./middleware/csrf');
 
 // Aplicar CSRF solo a rutas sensibles
 app.use('/api/playlists', csrfProtection);
@@ -287,15 +249,21 @@ if (process.env.MONGO_URI) {
   console.log('MongoDB no configurado - ejecutando sin base de datos');
 }
 
-const discographyRoutes = require('./routes/discography');
 const authRoutes = require('./routes/auth');
 const videosRoutes = require('./routes/videoRoutes');
 const concertsRoutes = require('./routes/concerts');
 const spotifyRoutes = require('./routes/spotify');
-// const forumRoutes = require('./routes/forum');
-// const playlistsRoutes = require('./routes/playlists');
-// const storeRoutes = require('./routes/store');
-// const adminRoutes = require('./routes/admin');
+const discographyRoutes = require('./routes/discography');
+const forumRoutes = require('./routes/forum');
+const playlistsRoutes = require('./routes/playlists');
+const storeRoutes = require('./routes/store');
+const eventsRoutes = require('./routes/events');
+const adminRoutes = require('./routes/admin');
+const monitoringRoutes = require('./routes/monitoring');
+const favoritesRoutes = require('./routes/favorites');
+const notificationsRoutes = require('./routes/notifications');
+const lyricsRoutes = require('./routes/lyrics');
+const mapsRoutes = require('./routes/maps');
 
 // Rutas básicas
 app.get('/', (req, res) => {
@@ -552,11 +520,20 @@ app.use('/api/auth', authRoutes);
 app.use('/api/discography', discographyRoutes);
 app.use('/api/videos', videosRoutes);
 app.use('/api/concerts', concertsRoutes);
-// app.use('/api/spotify', spotifyRoutes);
-// app.use('/api/forum', forumRoutes);
-// app.use('/api/playlists', playlistsRoutes);
-// app.use('/api/store', storeRoutes);
-// app.use('/api/admin', adminRoutes);
+app.use('/api/spotify', spotifyRoutes);
+app.use('/api/forum', forumRoutes);
+app.use('/api/playlists', playlistsRoutes);
+app.use('/api/store', storeRoutes);
+app.use('/api/events', eventsRoutes);
+app.use('/api/favorites', favoritesRoutes);
+app.use('/api/notifications', notificationsRoutes);
+app.use('/api/lyrics', lyricsRoutes);
+app.use('/api/maps', mapsRoutes);
+app.use('/api/monitoring', monitoringRoutes);
+app.use('/api/admin', (req, res) => res.json({
+  success: false,
+  message: 'Panel de administración próximamente - funcionalidad en desarrollo'
+}));
 
 // Middleware para manejar errores de validación
 app.use((req, res, next) => {

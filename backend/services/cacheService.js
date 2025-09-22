@@ -1,21 +1,16 @@
 const Redis = require('ioredis');
+const logger = require('../utils/logger');
 
 class CacheService {
   constructor() {
     this.client = null;
     this.isConnected = false;
-    this.defaultTTL = 3600; // 1 hora por defecto
-    // No inicializar automáticamente para evitar errores en desarrollo
+    this.init();
   }
 
-  // Inicializar conexión Redis (llamar manualmente cuando sea necesario)
   async init() {
-    // Solo intentar conectar si no hay una conexión existente
-    if (this.client && this.isConnected) {
-      return;
-    }
-
     try {
+      // Configuración de Redis con opciones de conexión robustas
       this.client = new Redis({
         host: process.env.REDIS_HOST || 'localhost',
         port: process.env.REDIS_PORT || 6379,
@@ -24,285 +19,317 @@ class CacheService {
         retryDelayOnFailover: 100,
         maxRetriesPerRequest: 3,
         lazyConnect: true,
-        connectTimeout: 5000, // Timeout de 5 segundos
-        commandTimeout: 3000,
-        enableReadyCheck: false
+        reconnectOnError: (err) => {
+          logger.warn('Redis reconnection on error:', err.message);
+          return err.message.includes('READONLY');
+        },
+        retryDelayOnClusterDown: 1000,
+        clusterRetryDelay: 1000
       });
 
+      // Eventos de conexión
       this.client.on('connect', () => {
-        console.log('✅ Conectado a Redis');
         this.isConnected = true;
-      });
-
-      this.client.on('error', (err) => {
-        console.error('❌ Error de Redis:', err.message);
-        this.isConnected = false;
+        logger.info('Redis connected successfully');
       });
 
       this.client.on('ready', () => {
-        console.log('🚀 Redis listo para usar');
+        logger.info('Redis client ready');
       });
 
-      // Intentar conectar con timeout
-      const connectPromise = this.client.connect();
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Redis connection timeout')), 5000)
-      );
+      this.client.on('error', (err) => {
+        this.isConnected = false;
+        logger.error('Redis connection error:', err);
+      });
 
-      await Promise.race([connectPromise, timeoutPromise]);
+      this.client.on('close', () => {
+        this.isConnected = false;
+        logger.warn('Redis connection closed');
+      });
+
+      await this.client.connect();
 
     } catch (error) {
-      console.warn('⚠️  Redis no disponible, funcionando sin caché:', error.message);
+      logger.error('Failed to initialize Redis:', error);
+      // Fallback: continuar sin caché pero loggear
       this.isConnected = false;
-      this.client = null; // Limpiar cliente fallido
     }
   }
 
-  // Verificar si Redis está disponible
-  isAvailable() {
-    return this.isConnected && this.client && this.client.status === 'ready';
-  }
+  // Verificar conexión
+  async ping() {
+    if (!this.isConnected || !this.client) return false;
 
-  // Generar clave de caché
-  generateKey(prefix, params = {}) {
-    const sortedParams = Object.keys(params)
-      .sort()
-      .map(key => `${key}:${params[key]}`)
-      .join(':');
-
-    return `${prefix}:${sortedParams || 'default'}`;
-  }
-
-  // Obtener valor del caché
-  async get(key) {
     try {
-      if (!this.isAvailable()) return null;
+      const result = await this.client.ping();
+      return result === 'PONG';
+    } catch (error) {
+      logger.error('Redis ping failed:', error);
+      return false;
+    }
+  }
 
+  // Operaciones básicas de caché
+
+  /**
+   * Obtener valor del caché
+   * @param {string} key - Clave del caché
+   * @returns {Promise<any>} Valor almacenado o null
+   */
+  async get(key) {
+    if (!this.isConnected || !this.client) return null;
+
+    try {
       const value = await this.client.get(key);
       if (value) {
+        logger.debug(`Cache hit for key: ${key}`);
         return JSON.parse(value);
       }
+      logger.debug(`Cache miss for key: ${key}`);
       return null;
     } catch (error) {
-      console.error('Error obteniendo de caché:', error);
+      logger.error(`Error getting cache key ${key}:`, error);
       return null;
     }
   }
 
-  // Establecer valor en caché
-  async set(key, value, ttl = this.defaultTTL) {
-    try {
-      if (!this.isAvailable()) return false;
+  /**
+   * Establecer valor en caché con expiración
+   * @param {string} key - Clave del caché
+   * @param {any} value - Valor a almacenar
+   * @param {number} ttl - Tiempo de vida en segundos (opcional)
+   */
+  async set(key, value, ttl = null) {
+    if (!this.isConnected || !this.client) return false;
 
-      await this.client.setex(key, ttl, JSON.stringify(value));
+    try {
+      const serializedValue = JSON.stringify(value);
+
+      if (ttl) {
+        await this.client.setex(key, ttl, serializedValue);
+        logger.debug(`Cache set with TTL ${ttl}s for key: ${key}`);
+      } else {
+        await this.client.set(key, serializedValue);
+        logger.debug(`Cache set for key: ${key}`);
+      }
+
       return true;
     } catch (error) {
-      console.error('Error guardando en caché:', error);
+      logger.error(`Error setting cache key ${key}:`, error);
       return false;
     }
   }
 
-  // Eliminar clave del caché
+  /**
+   * Eliminar clave del caché
+   * @param {string} key - Clave a eliminar
+   */
   async del(key) {
-    try {
-      if (!this.isAvailable()) return false;
+    if (!this.isConnected || !this.client) return false;
 
-      await this.client.del(key);
-      return true;
+    try {
+      const result = await this.client.del(key);
+      logger.debug(`Cache deleted for key: ${key}`);
+      return result > 0;
     } catch (error) {
-      console.error('Error eliminando de caché:', error);
+      logger.error(`Error deleting cache key ${key}:`, error);
       return false;
     }
   }
 
-  // Limpiar todas las claves con un patrón
-  async clearPattern(pattern) {
-    try {
-      if (!this.isAvailable()) return false;
+  /**
+   * Verificar si existe una clave
+   * @param {string} key - Clave a verificar
+   */
+  async exists(key) {
+    if (!this.isConnected || !this.client) return false;
 
-      const keys = await this.client.keys(pattern);
-      if (keys.length > 0) {
-        await this.client.del(keys);
-      }
-      return true;
+    try {
+      const result = await this.client.exists(key);
+      return result === 1;
     } catch (error) {
-      console.error('Error limpiando patrón de caché:', error);
+      logger.error(`Error checking cache key ${key}:`, error);
       return false;
     }
   }
 
-  // Obtener o establecer (cache miss)
-  async getOrSet(key, fetchFunction, ttl = this.defaultTTL) {
+  /**
+   * Incrementar contador
+   * @param {string} key - Clave del contador
+   * @param {number} ttl - TTL opcional
+   */
+  async incr(key, ttl = null) {
+    if (!this.isConnected || !this.client) return null;
+
     try {
-      // Intentar obtener del caché
-      const cached = await this.get(key);
-      if (cached !== null) {
-        return cached;
+      const result = await this.client.incr(key);
+      if (ttl) {
+        await this.client.expire(key, ttl);
       }
-
-      // Si no está en caché, ejecutar función y guardar
-      const result = await fetchFunction();
-      if (result !== null && result !== undefined) {
-        await this.set(key, result, ttl);
-      }
-
       return result;
     } catch (error) {
-      console.error('Error en getOrSet:', error);
-      // En caso de error, intentar ejecutar la función sin caché
-      try {
-        return await fetchFunction();
-      } catch (fetchError) {
-        console.error('Error ejecutando función de fallback:', fetchError);
-        return null;
-      }
+      logger.error(`Error incrementing cache key ${key}:`, error);
+      return null;
     }
   }
 
-  // Métodos específicos para diferentes tipos de datos
+  // Operaciones avanzadas de caché
 
-  // Caché para álbumes
-  async getAlbums(params = {}) {
-    const key = this.generateKey('albums', params);
-    return this.getOrSet(key, async () => {
-      // Aquí iría la lógica para obtener álbumes de la DB
-      return { message: 'Albums from cache' };
-    }, 1800); // 30 minutos
-  }
+  /**
+   * Obtener o establecer (cache miss)
+   * @param {string} key - Clave del caché
+   * @param {Function} fetcher - Función para obtener datos si no están en caché
+   * @param {number} ttl - Tiempo de vida en segundos
+   */
+  async getOrSet(key, fetcher, ttl = 300) {
+    // Intentar obtener del caché primero
+    const cached = await this.get(key);
+    if (cached !== null) {
+      return cached;
+    }
 
-  // Caché para conciertos
-  async getConcerts(params = {}) {
-    const key = this.generateKey('concerts', params);
-    return this.getOrSet(key, async () => {
-      // Aquí iría la lógica para obtener conciertos
-      return { message: 'Concerts from cache' };
-    }, 900); // 15 minutos
-  }
-
-  // Caché para letras
-  async getLyrics(songId) {
-    const key = `lyrics:song:${songId}`;
-    return this.getOrSet(key, async () => {
-      // Aquí iría la lógica para obtener letras
-      return { message: `Lyrics for song ${songId} from cache` };
-    }, 3600); // 1 hora
-  }
-
-  // Caché para datos de usuario
-  async getUserData(userId) {
-    const key = `user:${userId}:data`;
-    return this.getOrSet(key, async () => {
-      // Aquí iría la lógica para obtener datos de usuario
-      return { message: `User ${userId} data from cache` };
-    }, 1800); // 30 minutos
-  }
-
-  // Caché para búsquedas
-  async getSearchResults(query, type) {
-    const key = `search:${type}:${query.toLowerCase()}`;
-    return this.getOrSet(key, async () => {
-      // Aquí iría la lógica de búsqueda
-      return { message: `Search results for "${query}" from cache` };
-    }, 600); // 10 minutos
-  }
-
-  // Invalidar caché relacionado con un concierto
-  async invalidateConcertCache(concertId) {
+    // Si no está en caché, ejecutar fetcher
     try {
-      const patterns = [
-        `concert:${concertId}:*`,
-        `concerts:*`,
-        `maps:concert:${concertId}`,
-        `search:*:*concert*`
-      ];
-
-      for (const pattern of patterns) {
-        await this.clearPattern(pattern);
+      const data = await fetcher();
+      if (data !== null && data !== undefined) {
+        await this.set(key, data, ttl);
       }
-
-      console.log(`Caché invalidado para concierto ${concertId}`);
-      return true;
+      return data;
     } catch (error) {
-      console.error('Error invalidando caché de concierto:', error);
-      return false;
+      logger.error(`Error in cache fetcher for key ${key}:`, error);
+      throw error;
     }
   }
 
-  // Invalidar caché relacionado con un usuario
-  async invalidateUserCache(userId) {
+  /**
+   * Invalidar patrones de claves
+   * @param {string} pattern - Patrón de claves (ej: "concerts:*")
+   */
+  async invalidatePattern(pattern) {
+    if (!this.isConnected || !this.client) return 0;
+
     try {
-      const patterns = [
-        `user:${userId}:*`,
-        `playlists:user:${userId}:*`,
-        `notifications:user:${userId}:*`
-      ];
-
-      for (const pattern of patterns) {
-        await this.clearPattern(pattern);
+      const keys = await this.client.keys(pattern);
+      if (keys.length > 0) {
+        const result = await this.client.del(...keys);
+        logger.info(`Invalidated ${result} cache keys matching pattern: ${pattern}`);
+        return result;
       }
-
-      console.log(`Caché invalidado para usuario ${userId}`);
-      return true;
+      return 0;
     } catch (error) {
-      console.error('Error invalidando caché de usuario:', error);
-      return false;
+      logger.error(`Error invalidating cache pattern ${pattern}:`, error);
+      return 0;
     }
   }
 
-  // Estadísticas de caché
+  /**
+   * Obtener estadísticas del caché
+   */
   async getStats() {
-    try {
-      if (!this.isAvailable()) {
-        return { status: 'disconnected' };
-      }
+    if (!this.isConnected || !this.client) {
+      return { connected: false };
+    }
 
+    try {
       const info = await this.client.info();
       const dbSize = await this.client.dbsize();
 
       return {
-        status: 'connected',
+        connected: true,
         dbSize,
-        info: info.split('\r\n').reduce((acc, line) => {
-          if (line.includes(':')) {
-            const [key, value] = line.split(':');
-            acc[key] = value;
-          }
-          return acc;
-        }, {}),
-        uptime: process.uptime()
+        info: this.parseRedisInfo(info)
       };
     } catch (error) {
-      console.error('Error obteniendo estadísticas de caché:', error);
-      return { status: 'error', error: error.message };
+      logger.error('Error getting cache stats:', error);
+      return { connected: false, error: error.message };
     }
   }
 
-  // Limpiar todo el caché
-  async clearAll() {
-    try {
-      if (!this.isAvailable()) return false;
+  parseRedisInfo(info) {
+    const lines = info.split('\r\n');
+    const parsed = {};
 
+    lines.forEach(line => {
+      if (line.includes(':')) {
+        const [key, value] = line.split(':');
+        parsed[key] = value;
+      }
+    });
+
+    return parsed;
+  }
+
+  // Estrategias específicas de caché para la aplicación
+
+  /**
+   * Generar clave de caché para búsquedas de conciertos
+   */
+  getConcertsSearchKey(params) {
+    const { city, date, artist, page = 1, limit = 10 } = params;
+    return `concerts:search:${city || 'all'}:${date || 'all'}:${artist || 'all'}:${page}:${limit}`;
+  }
+
+  /**
+   * Generar clave de caché para letras de canciones
+   */
+  getLyricsSearchKey(params) {
+    const { query, artist, song, page = 1, limit = 10 } = params;
+    return `lyrics:search:${query || 'all'}:${artist || 'all'}:${song || 'all'}:${page}:${limit}`;
+  }
+
+  /**
+   * Generar clave de caché para recomendaciones
+   */
+  getRecommendationsKey(userId, type = 'general') {
+    return `recommendations:${userId}:${type}`;
+  }
+
+  /**
+   * Invalidar caché de conciertos cuando se actualizan
+   */
+  async invalidateConcertsCache() {
+    await this.invalidatePattern('concerts:*');
+  }
+
+  /**
+   * Invalidar caché de letras cuando se actualizan
+   */
+  async invalidateLyricsCache() {
+    await this.invalidatePattern('lyrics:*');
+  }
+
+  /**
+   * Invalidar recomendaciones de usuario
+   */
+  async invalidateUserRecommendations(userId) {
+    await this.invalidatePattern(`recommendations:${userId}:*`);
+  }
+
+  /**
+   * Limpiar todo el caché
+   */
+  async clearAll() {
+    if (!this.isConnected || !this.client) return false;
+
+    try {
       await this.client.flushdb();
-      console.log('Todo el caché limpiado');
+      logger.info('All cache cleared');
       return true;
     } catch (error) {
-      console.error('Error limpiando caché:', error);
+      logger.error('Error clearing all cache:', error);
       return false;
     }
   }
 
-  // Cerrar conexión
+  // Cleanup
   async close() {
-    try {
-      if (this.client) {
-        await this.client.quit();
-        this.isConnected = false;
-        console.log('Conexión Redis cerrada');
-      }
-    } catch (error) {
-      console.error('Error cerrando conexión Redis:', error);
+    if (this.client) {
+      await this.client.quit();
+      this.isConnected = false;
+      logger.info('Redis connection closed');
     }
   }
 }
 
+// Exportar instancia singleton
 module.exports = new CacheService();

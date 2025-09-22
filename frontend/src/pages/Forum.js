@@ -1,278 +1,474 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, memo, Suspense, lazy } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useAuth } from '../contexts/AuthContext';
+import forumAPI from '../api/forum';
 import './Forum.css';
 
+// Lazy loading de componentes
+const ThreadList = lazy(() => import('../components/forum/ThreadList'));
+const ThreadDetail = lazy(() => import('../components/forum/ThreadDetail'));
+const CreateThreadForm = lazy(() => import('../components/forum/CreateThreadForm'));
+const ForumFilters = lazy(() => import('../components/forum/ForumFilters'));
+
+// Componente de carga
+const LoadingSpinner = () => (
+  <div className="forum-loading">
+    <div className="spinner"></div>
+    <p>Cargando...</p>
+  </div>
+);
+
+// Componente de estadísticas del foro
+const ForumStats = memo(({ stats, t }) => (
+  <div className="forum-stats">
+    <h3>{t('forum.stats')}</h3>
+    <div className="stats-grid">
+      <div className="stat-item">
+        <div className="stat-number">{stats.totalThreads}</div>
+        <div className="stat-label">{t('forum.totalThreads')}</div>
+      </div>
+      <div className="stat-item">
+        <div className="stat-number">{stats.totalComments}</div>
+        <div className="stat-label">{t('forum.totalComments')}</div>
+      </div>
+      <div className="stat-item">
+        <div className="stat-number">{stats.totalUsers}</div>
+        <div className="stat-label">{t('forum.totalUsers')}</div>
+      </div>
+    </div>
+  </div>
+));
+
 const Forum = () => {
-  const [posts, setPosts] = useState([]);
+  const { t } = useTranslation();
+  const { user, isAuthenticated } = useAuth();
+
+  // Estados principales
+  const [currentView, setCurrentView] = useState('list'); // 'list', 'detail', 'create'
+  const [selectedThread, setSelectedThread] = useState(null);
+  const [threads, setThreads] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showCreateModal, setShowCreateModal] = useState(false);
-  const [newPost, setNewPost] = useState({
-    title: '',
-    content: '',
-    category: 'general'
+
+  // Estados de filtros
+  const [filters, setFilters] = useState({
+    page: 1,
+    limit: 20,
+    category: 'all',
+    search: '',
+    sort: 'lastActivity',
+    order: 'desc',
+    tags: [],
+    author: '',
+    minDate: '',
+    maxDate: ''
   });
 
+  const [pagination, setPagination] = useState({
+    page: 1,
+    pages: 1,
+    total: 0,
+    limit: 20
+  });
+
+  // Estados de UI
+  const [showFilters, setShowFilters] = useState(false);
+  const [notification, setNotification] = useState(null);
+
+  // Cargar datos iniciales
   useEffect(() => {
-    fetchPosts();
+    loadInitialData();
   }, []);
 
-  const fetchPosts = async () => {
+  // Cargar hilos cuando cambian los filtros
+  useEffect(() => {
+    if (currentView === 'list') {
+      loadThreads();
+    }
+  }, [filters, currentView]);
+
+  const loadInitialData = useCallback(async () => {
     try {
       setLoading(true);
-      // Simular datos por ahora
-      const mockPosts = [
-        {
-          _id: '1',
-          title: '¿Cuál es tu canción favorita de Twenty One Pilots?',
-          content: 'Me gustaría saber cuál es la canción que más les gusta de la banda. La mía es "Stressed Out".',
-          category: 'general',
-          author: { username: 'fan123' },
-          createdAt: new Date().toISOString(),
-          replies: 5,
-          lastReply: new Date().toISOString()
-        },
-        {
-          _id: '2',
-          title: 'Nuevo álbum - ¿Qué opinan?',
-          content: 'Acabo de escuchar el nuevo álbum y me parece increíble. ¿Qué les parece a ustedes?',
-          category: 'music',
-          author: { username: 'musiclover' },
-          createdAt: new Date().toISOString(),
-          replies: 12,
-          lastReply: new Date().toISOString()
-        }
-      ];
-      setPosts(mockPosts);
-      setError(null);
+      const [categoriesResponse, statsResponse] = await Promise.all([
+        forumAPI.getCategories(),
+        forumAPI.getStats()
+      ]);
+
+      if (categoriesResponse.success) {
+        setCategories(categoriesResponse.data.categories);
+      }
+
+      if (statsResponse.success) {
+        setStats(statsResponse.data.stats);
+      }
     } catch (err) {
-      console.error('Error cargando posts:', err);
+      console.error('Error loading initial data:', err);
       setError(err.message);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const handleCreatePost = async (e) => {
-    e.preventDefault();
+  const loadThreads = useCallback(async () => {
     try {
-      // Aquí iría la llamada al backend
-      const newPostData = {
-        ...newPost,
-        _id: Date.now().toString(),
-        author: { username: 'fan123' },
-        createdAt: new Date().toISOString(),
-        replies: 0,
-        lastReply: new Date().toISOString()
-      };
+      setLoading(true);
+      const params = { ...filters };
+      if (params.category === 'all') delete params.category;
+      if (params.tags.length === 0) delete params.tags;
 
-      setPosts(prev => [newPostData, ...prev]);
-      setNewPost({ title: '', content: '', category: 'general' });
-      setShowCreateModal(false);
+      const response = await forumAPI.getThreads(params);
+
+      if (response.success) {
+        setThreads(response.data.threads);
+        setPagination(response.data.pagination);
+        setError(null);
+      } else {
+        throw new Error(response.message || 'Error loading threads');
+      }
     } catch (err) {
-      console.error('Error creando post:', err);
+      console.error('Error loading threads:', err);
       setError(err.message);
+      // Fallback a datos mock
+      setThreads([
+        {
+          _id: '1',
+          title: 'Welcome to the Twenty One Pilots Forum!',
+          content: 'This is the official community forum for Twenty One Pilots fans.',
+          author: { username: 'admin' },
+          category: 'announcements',
+          tags: ['welcome', 'community'],
+          voteCount: { likes: 15, dislikes: 0 },
+          viewCount: 150,
+          commentCount: 8,
+          isPinned: true,
+          createdAt: new Date().toISOString(),
+          lastActivity: new Date().toISOString()
+        }
+      ]);
+    } finally {
+      setLoading(false);
     }
-  };
+  }, [filters]);
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('es-ES', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  };
+  // Funciones de navegación
+  const handleViewThread = useCallback((thread) => {
+    setSelectedThread(thread);
+    setCurrentView('detail');
+  }, []);
 
-  const getCategoryBadge = (category) => {
-    const categories = {
-      general: { text: 'General', color: '#ff0000' },
-      music: { text: 'Música', color: '#ff6600' },
-      concerts: { text: 'Conciertos', color: '#ffcc00' },
-      merch: { text: 'Merchandise', color: '#66ff00' }
-    };
-    return categories[category] || categories.general;
-  };
+  const handleBackToList = useCallback(() => {
+    setSelectedThread(null);
+    setCurrentView('list');
+  }, []);
 
-  if (loading) {
-    return (
-      <div className="forum">
-        <div className="loading">Cargando foro...</div>
-      </div>
-    );
-  }
+  const handleCreateThread = useCallback(() => {
+    setCurrentView('create');
+  }, []);
 
-  if (error) {
-    return (
-      <div className="forum">
-        <div className="error">
-          <h2>Error al cargar el foro</h2>
-          <p>{error}</p>
-          <button onClick={fetchPosts} className="btn btn-primary">
-            Reintentar
-          </button>
-        </div>
-      </div>
-    );
+  const handleCancelCreate = useCallback(() => {
+    setCurrentView('list');
+  }, []);
+
+  // Funciones de filtros
+  const handleFilterChange = useCallback((newFilters) => {
+    setFilters(prev => ({ ...prev, ...newFilters, page: 1 }));
+  }, []);
+
+  const handlePageChange = useCallback((newPage) => {
+    setFilters(prev => ({ ...prev, page: newPage }));
+  }, []);
+
+  // Funciones de acciones del foro
+  const handleThreadCreated = useCallback(async (threadData) => {
+    try {
+      const response = await forumAPI.createThread(threadData);
+
+      if (response.success) {
+        showNotification(t('forum.threadCreated'), 'success');
+        setCurrentView('list');
+        loadThreads(); // Recargar lista
+      } else {
+        throw new Error(response.message || 'Error creating thread');
+      }
+    } catch (err) {
+      console.error('Error creating thread:', err);
+      showNotification(err.message, 'error');
+    }
+  }, [t, loadThreads]);
+
+  const handleThreadUpdated = useCallback(async (threadId, threadData) => {
+    try {
+      const response = await forumAPI.updateThread(threadId, threadData);
+
+      if (response.success) {
+        showNotification(t('forum.threadUpdated'), 'success');
+        // Actualizar el hilo en la lista
+        setThreads(prev => prev.map(thread =>
+          thread._id === threadId ? response.data.thread : thread
+        ));
+        if (selectedThread && selectedThread._id === threadId) {
+          setSelectedThread(response.data.thread);
+        }
+      } else {
+        throw new Error(response.message || 'Error updating thread');
+      }
+    } catch (err) {
+      console.error('Error updating thread:', err);
+      showNotification(err.message, 'error');
+    }
+  }, [t, selectedThread]);
+
+  const handleThreadDeleted = useCallback(async (threadId) => {
+    if (!window.confirm(t('forum.deleteThreadConfirm'))) return;
+
+    try {
+      const response = await forumAPI.deleteThread(threadId);
+
+      if (response.success) {
+        showNotification(t('forum.threadDeleted'), 'success');
+        if (selectedThread && selectedThread._id === threadId) {
+          handleBackToList();
+        }
+        loadThreads(); // Recargar lista
+      } else {
+        throw new Error(response.message || 'Error deleting thread');
+      }
+    } catch (err) {
+      console.error('Error deleting thread:', err);
+      showNotification(err.message, 'error');
+    }
+  }, [t, selectedThread, handleBackToList, loadThreads]);
+
+  const handleVoteThread = useCallback(async (threadId, voteType) => {
+    try {
+      const response = await forumAPI.voteThread(threadId, voteType);
+
+      if (response.success) {
+        // Actualizar votos en la lista
+        setThreads(prev => prev.map(thread =>
+          thread._id === threadId
+            ? { ...thread, voteCount: response.data.voteCount, userVote: voteType }
+            : thread
+        ));
+
+        if (selectedThread && selectedThread._id === threadId) {
+          setSelectedThread(prev => ({
+            ...prev,
+            voteCount: response.data.voteCount,
+            userVote: voteType
+          }));
+        }
+      }
+    } catch (err) {
+      console.error('Error voting on thread:', err);
+      showNotification(err.message, 'error');
+    }
+  }, [selectedThread]);
+
+  const handleCommentCreated = useCallback(async (threadId, commentData) => {
+    try {
+      const response = await forumAPI.createComment(threadId, commentData);
+
+      if (response.success) {
+        showNotification(t('forum.commentCreated'), 'success');
+
+        // Actualizar contador de comentarios
+        setThreads(prev => prev.map(thread =>
+          thread._id === threadId
+            ? { ...thread, commentCount: thread.commentCount + 1, lastActivity: new Date().toISOString() }
+            : thread
+        ));
+
+        if (selectedThread && selectedThread._id === threadId) {
+          setSelectedThread(prev => ({
+            ...prev,
+            comments: [...prev.comments, response.data.comment],
+            commentCount: prev.commentCount + 1,
+            lastActivity: new Date().toISOString()
+          }));
+        }
+      } else {
+        throw new Error(response.message || 'Error creating comment');
+      }
+    } catch (err) {
+      console.error('Error creating comment:', err);
+      showNotification(err.message, 'error');
+    }
+  }, [t, selectedThread]);
+
+  const handleCommentUpdated = useCallback(async (commentId, commentData) => {
+    try {
+      const response = await forumAPI.updateComment(commentId, commentData);
+
+      if (response.success) {
+        showNotification(t('forum.commentUpdated'), 'success');
+
+        if (selectedThread) {
+          setSelectedThread(prev => ({
+            ...prev,
+            comments: prev.comments.map(comment =>
+              comment._id === commentId ? response.data.comment : comment
+            )
+          }));
+        }
+      } else {
+        throw new Error(response.message || 'Error updating comment');
+      }
+    } catch (err) {
+      console.error('Error updating comment:', err);
+      showNotification(err.message, 'error');
+    }
+  }, [t, selectedThread]);
+
+  const handleCommentDeleted = useCallback(async (commentId) => {
+    if (!window.confirm(t('forum.deleteCommentConfirm'))) return;
+
+    try {
+      const response = await forumAPI.deleteComment(commentId);
+
+      if (response.success) {
+        showNotification(t('forum.commentDeleted'), 'success');
+
+        // Actualizar contador de comentarios
+        setThreads(prev => prev.map(thread =>
+          thread._id === selectedThread?._id
+            ? { ...thread, commentCount: Math.max(0, thread.commentCount - 1) }
+            : thread
+        ));
+
+        if (selectedThread) {
+          setSelectedThread(prev => ({
+            ...prev,
+            comments: prev.comments.filter(comment => comment._id !== commentId),
+            commentCount: Math.max(0, prev.commentCount - 1)
+          }));
+        }
+      } else {
+        throw new Error(response.message || 'Error deleting comment');
+      }
+    } catch (err) {
+      console.error('Error deleting comment:', err);
+      showNotification(err.message, 'error');
+    }
+  }, [t, selectedThread]);
+
+  const handleVoteComment = useCallback(async (commentId, voteType) => {
+    try {
+      const response = await forumAPI.voteComment(commentId, voteType);
+
+      if (response.success && selectedThread) {
+        setSelectedThread(prev => ({
+          ...prev,
+          comments: prev.comments.map(comment =>
+            comment._id === commentId
+              ? { ...comment, voteCount: response.data.voteCount, userVote: voteType }
+              : comment
+          )
+        }));
+      }
+    } catch (err) {
+      console.error('Error voting on comment:', err);
+      showNotification(err.message, 'error');
+    }
+  }, [selectedThread]);
+
+  // Función para mostrar notificaciones
+  const showNotification = useCallback((message, type = 'info') => {
+    setNotification({ message, type });
+    setTimeout(() => setNotification(null), 5000);
+  }, []);
+
+  if (loading && threads.length === 0) {
+    return <LoadingSpinner />;
   }
 
   return (
     <div className="forum">
       <div className="forum-header">
-        <div className="forum-title">
-          <h1>Foro de Fans</h1>
-          <p>Conecta con otros fans de Twenty One Pilots</p>
-        </div>
-        <button
-          onClick={() => setShowCreateModal(true)}
-          className="btn btn-primary create-thread-btn"
-        >
-          Nuevo Post
-        </button>
-      </div>
+        <h1>{t('forum.title')}</h1>
+        <p>{t('forum.subtitle')}</p>
 
-      <div className="forum-stats">
-        <div className="stat-item">
-          <div className="stat-number">{posts.length}</div>
-          <div className="stat-label">Posts</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-number">
-            {posts.reduce((total, post) => total + post.replies, 0)}
-          </div>
-          <div className="stat-label">Respuestas</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-number">
-            {new Set(posts.map(p => p.author.username)).size}
-          </div>
-          <div className="stat-label">Miembros</div>
-        </div>
-      </div>
-
-      <div className="posts-list">
-        {posts.length === 0 ? (
-          <div className="no-posts">
-            <h3>No hay posts aún</h3>
-            <p>Sé el primero en crear un post en el foro.</p>
-            <button
-              onClick={() => setShowCreateModal(true)}
-              className="btn btn-primary"
-            >
-              Crear Primer Post
-            </button>
-          </div>
-        ) : (
-          posts.map(post => {
-            const categoryInfo = getCategoryBadge(post.category);
-            return (
-              <div key={post._id} className="post-card">
-                <div className="post-header">
-                  <div className="post-category">
-                    <span
-                      className="category-badge"
-                      style={{ backgroundColor: categoryInfo.color }}
-                    >
-                      {categoryInfo.text}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="post-content">
-                  <h3 className="post-title">{post.title}</h3>
-                  <p className="post-text">{post.content}</p>
-                </div>
-
-                <div className="post-meta">
-                  <span className="post-author">Por: {post.author.username}</span>
-                  <span className="post-date">{formatDate(post.createdAt)}</span>
-                </div>
-
-                <div className="post-footer">
-                  <div className="post-stats">
-                    <span className="replies-count">{post.replies} respuestas</span>
-                    <span className="last-reply">
-                      Última respuesta: {formatDate(post.lastReply)}
-                    </span>
-                  </div>
-                  <button className="btn btn-secondary">Ver Post</button>
-                </div>
-              </div>
-            );
-          })
+        {currentView === 'list' && isAuthenticated() && (
+          <button
+            onClick={handleCreateThread}
+            className="btn btn-primary create-thread-btn"
+          >
+            {t('forum.createThread')}
+          </button>
         )}
       </div>
 
-      {showCreateModal && (
-        <div className="create-post-modal">
-          <div className="modal-overlay" onClick={() => setShowCreateModal(false)}></div>
-          <div className="modal-content">
-            <div className="modal-header">
-              <h2>Crear Nuevo Post</h2>
-              <button
-                onClick={() => setShowCreateModal(false)}
-                className="close-btn"
-              >
-                ✕
-              </button>
-            </div>
-
-            <form onSubmit={handleCreatePost} className="create-post-form">
-              <div className="form-group">
-                <label htmlFor="title">Título</label>
-                <input
-                  type="text"
-                  id="title"
-                  value={newPost.title}
-                  onChange={(e) => setNewPost(prev => ({ ...prev, title: e.target.value }))}
-                  required
-                  placeholder="Escribe un título descriptivo..."
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="category">Categoría</label>
-                <select
-                  id="category"
-                  value={newPost.category}
-                  onChange={(e) => setNewPost(prev => ({ ...prev, category: e.target.value }))}
-                >
-                  <option value="general">General</option>
-                  <option value="music">Música</option>
-                  <option value="concerts">Conciertos</option>
-                  <option value="merch">Merchandise</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="content">Contenido</label>
-                <textarea
-                  id="content"
-                  value={newPost.content}
-                  onChange={(e) => setNewPost(prev => ({ ...prev, content: e.target.value }))}
-                  required
-                  placeholder="Escribe tu mensaje..."
-                  rows="6"
-                />
-              </div>
-
-              <div className="form-actions">
-                <button
-                  type="button"
-                  onClick={() => setShowCreateModal(false)}
-                  className="btn btn-secondary"
-                >
-                  Cancelar
-                </button>
-                <button type="submit" className="btn btn-primary">
-                  Publicar Post
-                </button>
-              </div>
-            </form>
-          </div>
+      {/* Notificaciones */}
+      {notification && (
+        <div className={`notification notification-${notification.type}`}>
+          {notification.message}
+          <button onClick={() => setNotification(null)}>×</button>
         </div>
       )}
+
+      {/* Estadísticas */}
+      {stats && currentView === 'list' && (
+        <ForumStats stats={stats} t={t} />
+      )}
+
+      {/* Contenido principal */}
+      <div className="forum-content">
+        <Suspense fallback={<LoadingSpinner />}>
+          {currentView === 'list' && (
+            <>
+              <ForumFilters
+                filters={filters}
+                categories={categories}
+                onFilterChange={handleFilterChange}
+                showFilters={showFilters}
+                onToggleFilters={() => setShowFilters(!showFilters)}
+                t={t}
+              />
+
+              <ThreadList
+                threads={threads}
+                pagination={pagination}
+                onViewThread={handleViewThread}
+                onVoteThread={handleVoteThread}
+                onDeleteThread={handleThreadDeleted}
+                onPageChange={handlePageChange}
+                currentUser={user}
+                loading={loading}
+                error={error}
+                t={t}
+              />
+            </>
+          )}
+
+          {currentView === 'detail' && selectedThread && (
+            <ThreadDetail
+              thread={selectedThread}
+              onBack={handleBackToList}
+              onVoteThread={handleVoteThread}
+              onDeleteThread={handleThreadDeleted}
+              onCommentCreated={handleCommentCreated}
+              onCommentUpdated={handleCommentUpdated}
+              onCommentDeleted={handleCommentDeleted}
+              onVoteComment={handleVoteComment}
+              currentUser={user}
+              t={t}
+            />
+          )}
+
+          {currentView === 'create' && (
+            <CreateThreadForm
+              categories={categories}
+              onSubmit={handleThreadCreated}
+              onCancel={handleCancelCreate}
+              currentUser={user}
+              t={t}
+            />
+          )}
+        </Suspense>
+      </div>
     </div>
   );
 };

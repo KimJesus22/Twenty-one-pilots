@@ -1,9 +1,39 @@
+/* Importar estilos de accesibilidad */
+@import './styles/accessibility.css';
+
 /* Global minimalista negro/rojo */
 .App {
   min-height: 100vh;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
   font-family: 'Arial', sans-serif;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Aplicar clases de accesibilidad dinámicamente */
+.App.accessibility-high-contrast {
+  --color-background: #000000;
+  --color-surface: #000000;
+  --color-border: #ffffff;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #ffffff;
+}
+
+.App.accessibility-reduced-motion {
+  --transition-fast: 0s;
+  --transition-normal: 0s;
+  --transition-slow: 0s;
+}
+
+.App.accessibility-reduced-motion *,
+.App.accessibility-reduced-motion *::before,
+.App.accessibility-reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+.App.accessibility-large-text {
+  font-size: 1.2em;
 }
 
 main {

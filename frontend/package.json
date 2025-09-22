@@ -9,13 +9,17 @@
     "@mui/lab": "^6.0.0-beta.10",
     "@mui/material": "^6.1.1",
     "axios": "^1.12.2",
+    "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.63.0",
     "react-i18next": "^15.0.2",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.30.1",
     "react-scripts": "5.0.1",
     "react-youtube": "^10.1.0",
-    "web-vitals": "^5.1.0"
+    "web-vitals": "^5.1.0",
+    "yup": "^1.7.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,7 +27,14 @@
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "test:watch": "react-scripts test --watchAll=false",
-    "eject": "react-scripts eject"
+    "lint": "eslint src --ext .js,.jsx",
+    "lint:fix": "eslint src --ext .js,.jsx --fix",
+    "eject": "react-scripts eject",
+    "accessibility": "node ../scripts/accessibility-check.js",
+    "accessibility:ci": "npm run accessibility && npm run test:a11y",
+    "test:a11y": "react-scripts test --testPathPattern=accessibility --watchAll=false",
+    "lighthouse": "lighthouse http://localhost:3000 --output=json --output-path=./reports/lighthouse-report.json --only-categories=accessibility",
+    "axe": "axe http://localhost:3000 --exit"
   },
   "eslintConfig": {
     "extends": [
@@ -45,9 +56,14 @@
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.5.0",
-    "@testing-library/react": "^16.0.1",
-    "@testing-library/user-event": "^14.5.2",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "eslint": "^9.36.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "i18next": "^25.5.2",
     "i18next-browser-languagedetector": "^8.0.0",
     "jest-environment-jsdom": "^29.7.0"

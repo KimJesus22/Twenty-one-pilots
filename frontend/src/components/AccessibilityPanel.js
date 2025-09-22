@@ -1,249 +1,195 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  AccessibilityNew,
-  Contrast,
-  TextFields,
-  Visibility,
-  Close
-} from '@mui/icons-material';
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Switch,
-  Typography,
-  Box,
-  IconButton,
-  Tooltip
-} from '@mui/material';
-import { useTheme } from '../ThemeProvider';
-import useAccessibility from '../hooks/useAccessibility';
+import { useAccessibilityPreferences } from '../hooks/useAccessibility';
+import './AccessibilityPanel.css';
 
-const AccessibilityPanel = ({ open, onClose }) => {
-  const { t } = useTranslation();
-  const { isDarkMode, toggleTheme } = useTheme();
+const AccessibilityPanel = ({ isOpen, onClose }) => {
   const {
-    highContrast,
-    reducedMotion,
-    fontSize,
+    preferences,
     toggleHighContrast,
     toggleReducedMotion,
-    changeFontSize
-  } = useAccessibility();
+    toggleLargeText,
+    toggleScreenReader
+  } = useAccessibilityPreferences();
 
-  const [tempSettings, setTempSettings] = useState({
-    highContrast,
-    reducedMotion,
-    fontSize,
-    darkMode: isDarkMode
-  });
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleSave = () => {
-    if (tempSettings.highContrast !== highContrast) {
-      toggleHighContrast();
-    }
-    if (tempSettings.reducedMotion !== reducedMotion) {
-      toggleReducedMotion();
-    }
-    if (tempSettings.fontSize !== fontSize) {
-      changeFontSize(tempSettings.fontSize);
-    }
-    if (tempSettings.darkMode !== isDarkMode) {
-      toggleTheme();
-    }
-    onClose();
-  };
+  if (!isOpen) return null;
 
-  const handleCancel = () => {
-    setTempSettings({
-      highContrast,
-      reducedMotion,
-      fontSize,
-      darkMode: isDarkMode
-    });
-    onClose();
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      onClose();
+    }
   };
 
   return (
-    <Dialog
-      open={open}
-      onClose={handleCancel}
-      maxWidth="sm"
-      fullWidth
-      aria-labelledby="accessibility-dialog-title"
-      aria-describedby="accessibility-dialog-description"
+    <div
+      className="accessibility-panel-overlay"
+      onClick={onClose}
+      onKeyDown={handleKeyDown}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="accessibility-title"
+      aria-describedby="accessibility-description"
     >
-      <DialogTitle id="accessibility-dialog-title">
-        <Box display="flex" alignItems="center" gap={1}>
-          <AccessibilityNew />
-          <Typography variant="h6" component="span">
-            Configuración de Accesibilidad
-          </Typography>
-        </Box>
-        <IconButton
-          aria-label="Cerrar panel de accesibilidad"
-          onClick={handleCancel}
-          sx={{ position: 'absolute', right: 8, top: 8 }}
-        >
-          <Close />
-        </IconButton>
-      </DialogTitle>
+      <div
+        className="accessibility-panel"
+        onClick={(e) => e.stopPropagation()}
+        role="region"
+        aria-labelledby="accessibility-title"
+      >
+        <div className="accessibility-header">
+          <h2 id="accessibility-title">Configuración de Accesibilidad</h2>
+          <p id="accessibility-description">
+            Personaliza la aplicación según tus necesidades de accesibilidad
+          </p>
+          <button
+            className="accessibility-close"
+            onClick={onClose}
+            aria-label="Cerrar panel de accesibilidad"
+            data-close
+          >
+            ✕
+          </button>
+        </div>
 
-      <DialogContent id="accessibility-dialog-description">
-        <Box sx={{ mt: 2 }}>
-          {/* Tema Oscuro/Claro */}
-          <FormControl component="fieldset" sx={{ mb: 3 }}>
-            <FormLabel component="legend">
-              <Box display="flex" alignItems="center" gap={1}>
-                <Visibility />
-                <Typography variant="subtitle1">Tema</Typography>
-              </Box>
-            </FormLabel>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={tempSettings.darkMode}
-                  onChange={(e) => setTempSettings(prev => ({
-                    ...prev,
-                    darkMode: e.target.checked
-                  }))}
-                  aria-describedby="theme-description"
+        <div className="accessibility-content">
+          <div className="accessibility-section">
+            <h3>Preferencias Visuales</h3>
+
+            <div className="accessibility-option">
+              <label className="accessibility-toggle">
+                <input
+                  type="checkbox"
+                  checked={preferences.highContrast}
+                  onChange={toggleHighContrast}
+                  aria-describedby="high-contrast-desc"
                 />
-              }
-              label={tempSettings.darkMode ? "Tema Oscuro" : "Tema Claro"}
-            />
-            <Typography id="theme-description" variant="body2" color="text.secondary">
-              Cambia entre tema claro y oscuro para mayor comodidad visual
-            </Typography>
-          </FormControl>
+                <span className="toggle-slider"></span>
+                <span className="toggle-label">Alto Contraste</span>
+              </label>
+              <p id="high-contrast-desc" className="option-description">
+                Mejora el contraste entre texto y fondo para mejor legibilidad
+              </p>
+            </div>
 
-          {/* Alto Contraste */}
-          <FormControl component="fieldset" sx={{ mb: 3 }}>
-            <FormLabel component="legend">
-              <Box display="flex" alignItems="center" gap={1}>
-                <Contrast />
-                <Typography variant="subtitle1">Alto Contraste</Typography>
-              </Box>
-            </FormLabel>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={tempSettings.highContrast}
-                  onChange={(e) => setTempSettings(prev => ({
-                    ...prev,
-                    highContrast: e.target.checked
-                  }))}
-                  aria-describedby="contrast-description"
+            <div className="accessibility-option">
+              <label className="accessibility-toggle">
+                <input
+                  type="checkbox"
+                  checked={preferences.reducedMotion}
+                  onChange={toggleReducedMotion}
+                  aria-describedby="reduced-motion-desc"
                 />
-              }
-              label={tempSettings.highContrast ? "Activado" : "Desactivado"}
-            />
-            <Typography id="contrast-description" variant="body2" color="text.secondary">
-              Aumenta el contraste para mejor legibilidad
-            </Typography>
-          </FormControl>
+                <span className="toggle-slider"></span>
+                <span className="toggle-label">Reducir Movimiento</span>
+              </label>
+              <p id="reduced-motion-desc" className="option-description">
+                Minimiza animaciones y transiciones para evitar mareos
+              </p>
+            </div>
 
-          {/* Tamaño de Fuente */}
-          <FormControl component="fieldset" sx={{ mb: 3 }}>
-            <FormLabel component="legend">
-              <Box display="flex" alignItems="center" gap={1}>
-                <TextFields />
-                <Typography variant="subtitle1">Tamaño de Fuente</Typography>
-              </Box>
-            </FormLabel>
-            <RadioGroup
-              value={tempSettings.fontSize}
-              onChange={(e) => setTempSettings(prev => ({
-                ...prev,
-                fontSize: e.target.value
-              }))}
-              aria-describedby="font-size-description"
-            >
-              <FormControlLabel
-                value="small"
-                control={<Radio />}
-                label="Pequeño"
-              />
-              <FormControlLabel
-                value="medium"
-                control={<Radio />}
-                label="Mediano"
-              />
-              <FormControlLabel
-                value="large"
-                control={<Radio />}
-                label="Grande"
-              />
-            </RadioGroup>
-            <Typography id="font-size-description" variant="body2" color="text.secondary">
-              Ajusta el tamaño del texto para mejor legibilidad
-            </Typography>
-          </FormControl>
-
-          {/* Movimiento Reducido */}
-          <FormControl component="fieldset" sx={{ mb: 3 }}>
-            <FormLabel component="legend">
-              <Typography variant="subtitle1">Movimiento Reducido</Typography>
-            </FormLabel>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={tempSettings.reducedMotion}
-                  onChange={(e) => setTempSettings(prev => ({
-                    ...prev,
-                    reducedMotion: e.target.checked
-                  }))}
-                  aria-describedby="motion-description"
+            <div className="accessibility-option">
+              <label className="accessibility-toggle">
+                <input
+                  type="checkbox"
+                  checked={preferences.largeText}
+                  onChange={toggleLargeText}
+                  aria-describedby="large-text-desc"
                 />
-              }
-              label={tempSettings.reducedMotion ? "Activado" : "Desactivado"}
-            />
-            <Typography id="motion-description" variant="body2" color="text.secondary">
-              Reduce animaciones y transiciones para evitar mareos
-            </Typography>
-          </FormControl>
+                <span className="toggle-slider"></span>
+                <span className="toggle-label">Texto Grande</span>
+              </label>
+              <p id="large-text-desc" className="option-description">
+                Aumenta el tamaño del texto en toda la aplicación
+              </p>
+            </div>
+          </div>
 
-          {/* Información de accesibilidad */}
-          <Box sx={{ mt: 3, p: 2, bgcolor: 'background.paper', borderRadius: 1 }}>
-            <Typography variant="h6" gutterBottom>
-              Atajos de Teclado
-            </Typography>
-            <Typography variant="body2" component="div">
-              <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
-                <li><strong>Ctrl/Cmd + 1-5:</strong> Navegar a secciones principales</li>
-                <li><strong>Tab:</strong> Navegar entre elementos interactivos</li>
-                <li><strong>Enter/Espacio:</strong> Activar elementos</li>
-                <li><strong>Escape:</strong> Cerrar menús y modales</li>
+          <div className="accessibility-section">
+            <h3>Asistencia Técnica</h3>
+
+            <div className="accessibility-option">
+              <label className="accessibility-toggle">
+                <input
+                  type="checkbox"
+                  checked={preferences.screenReader}
+                  onChange={toggleScreenReader}
+                  aria-describedby="screen-reader-desc"
+                />
+                <span className="toggle-slider"></span>
+                <span className="toggle-label">Modo Lector de Pantalla</span>
+              </label>
+              <p id="screen-reader-desc" className="option-description">
+                Optimiza la navegación para usuarios de lectores de pantalla
+              </p>
+            </div>
+          </div>
+
+          <div className="accessibility-section">
+            <h3>Información de Accesibilidad</h3>
+            <div className="accessibility-info">
+              <p>
+                Esta aplicación cumple con las pautas WCAG 2.1 AA para accesibilidad web.
+                Para más información sobre nuestras características de accesibilidad:
+              </p>
+              <ul>
+                <li>Navegación completa por teclado</li>
+                <li>Soporte para lectores de pantalla</li>
+                <li>Contraste de colores optimizado</li>
+                <li>Textos alternativos en imágenes</li>
+                <li>Formularios accesibles con validación clara</li>
               </ul>
-            </Typography>
-          </Box>
-        </Box>
-      </DialogContent>
+            </div>
+          </div>
 
-      <DialogActions>
-        <Button
-          onClick={handleCancel}
-          aria-label="Cancelar cambios y cerrar panel"
-        >
-          Cancelar
-        </Button>
-        <Button
-          onClick={handleSave}
-          variant="contained"
-          aria-label="Guardar configuración de accesibilidad"
-        >
-          Guardar Cambios
-        </Button>
-      </DialogActions>
-    </Dialog>
+          <div className="accessibility-actions">
+            <button
+              className="btn btn-secondary"
+              onClick={() => setIsExpanded(!isExpanded)}
+              aria-expanded={isExpanded}
+              aria-controls="advanced-options"
+            >
+              {isExpanded ? 'Ocultar' : 'Mostrar'} Opciones Avanzadas
+            </button>
+
+            {isExpanded && (
+              <div id="advanced-options" className="advanced-options">
+                <h4>Accesos Directos de Teclado</h4>
+                <dl className="keyboard-shortcuts">
+                  <dt>Tab</dt>
+                  <dd>Navegar entre elementos interactivos</dd>
+                  <dt>Shift + Tab</dt>
+                  <dd>Navegar hacia atrás</dd>
+                  <dt>Enter / Espacio</dt>
+                  <dd>Activar botones y enlaces</dd>
+                  <dt>Escape</dt>
+                  <dd>Cerrar menús y modales</dd>
+                  <dt>Alt + A</dt>
+                  <dd>Abrir panel de accesibilidad</dd>
+                </dl>
+
+                <h4>Compatibilidad</h4>
+                <ul>
+                  <li>Navegadores modernos (Chrome, Firefox, Safari, Edge)</li>
+                  <li>Lectores de pantalla (NVDA, JAWS, VoiceOver)</li>
+                  <li>Dispositivos móviles y tablets</li>
+                  <li>Teclados alternativos y switches</li>
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="accessibility-footer">
+          <p>
+            ¿Necesitas ayuda adicional?{' '}
+            <a href="/support" aria-label="Contactar soporte técnico">
+              Contacta nuestro soporte
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
