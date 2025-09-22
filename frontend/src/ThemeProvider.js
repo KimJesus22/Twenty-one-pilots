@@ -1,9 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
-import { twentyOnePilotsTheme, lightTheme } from './theme';
+import React, { createContext, useContext, useState } from 'react';
 
-// Contexto para el tema
 const ThemeContext = createContext();
 
 export const useTheme = () => {
@@ -15,46 +11,26 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  // Estado para el modo del tema (dark/light)
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // Cargar preferencia del usuario del localStorage
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('twentyOnePilots-theme');
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
-    } else {
-      // Detectar preferencia del sistema
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setIsDarkMode(prefersDark);
-    }
-  }, []);
-
-  // Guardar preferencia en localStorage cuando cambie
-  useEffect(() => {
-    localStorage.setItem('twentyOnePilots-theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
-
-  // Función para alternar entre modos
   const toggleTheme = () => {
     setIsDarkMode(prev => !prev);
   };
 
-  // Tema actual basado en el estado
-  const theme = isDarkMode ? twentyOnePilotsTheme : lightTheme;
-
   const value = {
     isDarkMode,
-    toggleTheme,
-    theme,
+    toggleTheme
   };
 
   return (
     <ThemeContext.Provider value={value}>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
+      <div style={{
+        backgroundColor: isDarkMode ? '#000000' : '#ffffff',
+        color: isDarkMode ? '#ffffff' : '#000000',
+        minHeight: '100vh'
+      }}>
         {children}
-      </MuiThemeProvider>
+      </div>
     </ThemeContext.Provider>
   );
 };
