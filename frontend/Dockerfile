@@ -16,7 +16,7 @@ COPY package*.json package-lock.json ./
 FROM base AS development
 
 # Install all dependencies (including dev dependencies)
-RUN echo "Installing dependencies for frontend development stage" && npm ci
+RUN echo "Installing dependencies for frontend development stage" && npm ci --legacy-peer-deps
 
 # Copy source code
 COPY . .
