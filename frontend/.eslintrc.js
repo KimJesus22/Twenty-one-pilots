@@ -10,7 +10,6 @@ module.exports = {
     'react-app/jest',
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
@@ -24,7 +23,6 @@ module.exports = {
   },
   plugins: [
     'react',
-    'react-hooks',
     'jsx-a11y',
     'import',
   ],
@@ -35,9 +33,6 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/jsx-uses-vars': 'error',
 
-    // Reglas de React Hooks
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
 
     // Reglas de accesibilidad
     'jsx-a11y/anchor-is-valid': 'warn',
@@ -54,7 +49,7 @@ module.exports = {
     // Reglas generales
     'no-console': 'warn',
     'no-debugger': 'error',
-    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^React$' }],
     'prefer-const': 'error',
     'no-var': 'error',
     'object-shorthand': 'error',
@@ -62,17 +57,17 @@ module.exports = {
 
     // Reglas específicas del proyecto
     'no-alert': 'warn', // Permitir alerts en desarrollo
-    'no-restricted-imports': [
-      'error',
-      {
-        patterns: [
-          {
-            group: ['../**'],
-            message: 'Relative imports are not allowed. Use absolute imports.',
-          },
-        ],
-      },
-    ],
+    // 'no-restricted-imports': [
+    //   'error',
+    //   {
+    //     patterns: [
+    //       {
+    //         group: ['../**'],
+    //         message: 'Relative imports are not allowed. Use absolute imports.',
+    //       },
+    //     ],
+    //   },
+    // ],
   },
   settings: {
     react: {

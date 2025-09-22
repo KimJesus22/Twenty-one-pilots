@@ -18,6 +18,8 @@ const dotenv = require('dotenv');
 // solo aquí, al tope de server.js
 dotenv.config({ quiet: true });
 
+console.log('🚀 Iniciando server.js...');
+
 // Importar aplicación configurada
 const app = require('./app');
 
@@ -85,6 +87,8 @@ const DEV_PORT = parseInt(process.env.PORT) || 5000;
 
 // Función para iniciar servidores
 function startServers() {
+  console.log('🔧 Iniciando servidores...');
+
   // Servidor HTTP (solo para redirección a HTTPS en producción)
   if (isProduction && sslOptions && forceHttps) {
     const httpApp = require('express')();
@@ -99,6 +103,7 @@ function startServers() {
 
     const httpServer = http.createServer(httpApp);
     httpServer.listen(HTTP_PORT, () => {
+      console.log(`🌐 Servidor HTTP corriendo en puerto ${HTTP_PORT} (redirección a HTTPS)`);
       logger.info(`🌐 Servidor HTTP corriendo en puerto ${HTTP_PORT} (redirección a HTTPS)`);
     });
 
@@ -125,6 +130,7 @@ function startServers() {
     protocol = 'HTTPS';
 
     server.listen(port, () => {
+      console.log(`🔒 Servidor ${protocol} corriendo en puerto ${port}`);
       logger.info(`🔒 Servidor ${protocol} corriendo en puerto ${port}`, {
         port,
         environment: process.env.NODE_ENV || 'development',
@@ -153,6 +159,7 @@ function startServers() {
     protocol = 'HTTP';
 
     server.listen(port, () => {
+      console.log(`🌐 Servidor ${protocol} corriendo en puerto ${port}`);
       logger.info(`🌐 Servidor ${protocol} corriendo en puerto ${port}`, {
         port,
         environment: process.env.NODE_ENV || 'development',
@@ -173,6 +180,7 @@ function startServers() {
 
   // Graceful shutdown para ambos servidores
   const gracefulShutdown = (signal) => {
+    console.log(`🛑 Recibida señal ${signal}, cerrando servidor gracefully`);
     logger.info(`${signal} recibido, cerrando servidor gracefully`);
 
     if (server) {

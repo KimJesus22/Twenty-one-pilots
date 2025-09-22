@@ -12270,3 +12270,1140 @@ TypeError: nodemailer.createTransporter is not a function
     }
   ]
 }
+2025-09-22 15:16:42 [31merror[39m: [31muncaughtException: Cannot access 'sendCSRFToken' before initialization[39m
+[31mReferenceError: Cannot access 'sendCSRFToken' before initialization[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:166:9)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:24:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'sendCSRFToken' before initialization\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:166:9)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:24:13)",
+  "exception": true,
+  "date": "Mon Sep 22 2025 15:16:42 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 14400,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 117190656,
+      "heapTotal": 81420288,
+      "heapUsed": 44162768,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 86173.89
+  },
+  "trace": [
+    {
+      "column": 9,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 166,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 24,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-22 15:17:00 [31merror[39m: [31muncaughtException: Cannot access 'sendCSRFToken' before initialization[39m
+[31mReferenceError: Cannot access 'sendCSRFToken' before initialization[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:166:9)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\server.js:24:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'sendCSRFToken' before initialization\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:166:9)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:24:13)",
+  "exception": true,
+  "date": "Mon Sep 22 2025 15:17:00 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 2508,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 116912128,
+      "heapTotal": 82468864,
+      "heapUsed": 44064528,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 86192.296
+  },
+  "trace": [
+    {
+      "column": 9,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 166,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 24,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-22 15:18:13 [31merror[39m: [31muncaughtException: Cannot access 'sendCSRFToken' before initialization[39m
+[31mc:\Users\gomez\Documents\TOP\backend\app.js:166[39m
+[31mapp.use(sendCSRFToken);[39m
+[31m        ^[39m
+
+[31mReferenceError: Cannot access 'sendCSRFToken' before initialization[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:166:9)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at [eval]:1:40[39m {
+  "error": {},
+  "stack": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:166\napp.use(sendCSRFToken);\n        ^\n\nReferenceError: Cannot access 'sendCSRFToken' before initialization\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:166:9)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at [eval]:1:40",
+  "exception": true,
+  "date": "Mon Sep 22 2025 15:18:13 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 5924,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe"
+    ],
+    "memoryUsage": {
+      "rss": 114929664,
+      "heapTotal": 74080256,
+      "heapUsed": 50210024,
+      "external": 21695340,
+      "arrayBuffers": 18313382
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 86265.281
+  },
+  "trace": [
+    {
+      "column": 9,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 166,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 40,
+      "file": "[eval]",
+      "function": null,
+      "line": 1,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-22 15:18:31 [31merror[39m: [31muncaughtException: Cannot access 'sendCSRFToken' before initialization[39m
+[31mReferenceError: Cannot access 'sendCSRFToken' before initialization[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:166:9)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:24:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'sendCSRFToken' before initialization\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:166:9)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:24:13)",
+  "exception": true,
+  "date": "Mon Sep 22 2025 15:18:31 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 3276,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 116682752,
+      "heapTotal": 82993152,
+      "heapUsed": 44208592,
+      "external": 21744031,
+      "arrayBuffers": 18313558
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 86282.359
+  },
+  "trace": [
+    {
+      "column": 9,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 166,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 24,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-22 15:18:55 [31merror[39m: [31muncaughtException: advancedRateLimit is not defined[39m
+[31mReferenceError: advancedRateLimit is not defined[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:128:5)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:24:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: advancedRateLimit is not defined\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:128:5)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:24:13)",
+  "exception": true,
+  "date": "Mon Sep 22 2025 15:18:55 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 11780,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 78299136,
+      "heapTotal": 38850560,
+      "heapUsed": 26055488,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 86306.562
+  },
+  "trace": [
+    {
+      "column": 5,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 128,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 24,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-22 15:19:09 [31merror[39m: [31muncaughtException: Cannot access 'sendCSRFToken' before initialization[39m
+[31mReferenceError: Cannot access 'sendCSRFToken' before initialization[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:166:9)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:24:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'sendCSRFToken' before initialization\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:166:9)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:24:13)",
+  "exception": true,
+  "date": "Mon Sep 22 2025 15:19:09 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 12804,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 78356480,
+      "heapTotal": 38588416,
+      "heapUsed": 26225888,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 86320.89
+  },
+  "trace": [
+    {
+      "column": 9,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 166,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 24,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-22 15:19:25 [31merror[39m: [31muncaughtException: Cannot access 'sendCSRFToken' before initialization[39m
+[31mReferenceError: Cannot access 'sendCSRFToken' before initialization[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:166:9)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:24:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'sendCSRFToken' before initialization\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:166:9)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:24:13)",
+  "exception": true,
+  "date": "Mon Sep 22 2025 15:19:25 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 9324,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 78086144,
+      "heapTotal": 38588416,
+      "heapUsed": 26198664,
+      "external": 20675219,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 86336.484
+  },
+  "trace": [
+    {
+      "column": 9,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 166,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 24,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-22 15:20:35 [31merror[39m: [31muncaughtException: Cannot access 'sendCSRFToken' before initialization[39m
+[31mReferenceError: Cannot access 'sendCSRFToken' before initialization[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:93:9)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:24:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'sendCSRFToken' before initialization\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:93:9)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:24:13)",
+  "exception": true,
+  "date": "Mon Sep 22 2025 15:20:35 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 1900,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 77991936,
+      "heapTotal": 38588416,
+      "heapUsed": 26066624,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 86406.984
+  },
+  "trace": [
+    {
+      "column": 9,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 93,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 24,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-22 15:20:51 [31merror[39m: [31muncaughtException: Cannot access 'sendCSRFToken' before initialization[39m
+[31mReferenceError: Cannot access 'sendCSRFToken' before initialization[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\app.js:94:9)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\server.js:24:13)[39m {
+  "error": {},
+  "stack": "ReferenceError: Cannot access 'sendCSRFToken' before initialization\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:94:9)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js:24:13)",
+  "exception": true,
+  "date": "Mon Sep 22 2025 15:20:51 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 18784,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 77705216,
+      "heapTotal": 38588416,
+      "heapUsed": 26048640,
+      "external": 20675218,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 86422.937
+  },
+  "trace": [
+    {
+      "column": 9,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 94,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 13,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js",
+      "function": null,
+      "line": 24,
+      "method": null,
+      "native": false
+    }
+  ]
+}

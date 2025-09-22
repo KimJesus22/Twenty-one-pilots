@@ -16,22 +16,19 @@ services:
       - REDIS_URL=redis://redis:6379
       - ELASTICSEARCH_NODE=http://elasticsearch:9200
       - JWT_SECRET=dev_jwt_secret_key
-      - YOUTUBE_API_KEY=${YOUTUBE_API_KEY}
+      - YOUTUBE_API_KEY=${YOUTUBE_API_KEY:-}
     volumes:
       - ./backend:/app
       - /app/node_modules
     depends_on:
-      mongodb:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-      elasticsearch:
-        condition: service_healthy
+      - mongodb
+      - redis
+      - elasticsearch
     networks:
       - twentyonepilots
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      test: ["CMD", "node", "-e", "require(\"http\").get(\"http://0.0.0.0:5000/health\", (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }).on(\"error\", () => process.exit(1))"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -52,11 +49,16 @@ services:
       - ./frontend:/app
       - /app/node_modules
     depends_on:
-      backend:
-        condition: service_healthy
+      - backend
     networks:
       - twentyonepilots
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require(\"http\").get(\"http://0.0.0.0:3000\", (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }).on(\"error\", () => process.exit(1))"]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      start_period: 60s
 
   # MongoDB Database
   mongodb:

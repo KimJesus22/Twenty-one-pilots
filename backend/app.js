@@ -9,86 +9,15 @@ const { validationResult } = require('express-validator');
 const logger = require('./utils/logger');
 const crypto = require('crypto');
 
+console.log('🚀 Iniciando app.js...');
+
 const app = express();
 
-// Seguridad y Middleware Avanzado
-app.use(helmet({
-  // Deshabilitar cabeceras que revelan información del servidor
-  poweredBy: false,
+// Seguridad y Middleware Avanzado - temporalmente deshabilitado para debugging
+// Helmet deshabilitado
 
-  // Configurar CSP estricta para prevenir XSS
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"], // Solo para desarrollo
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:", "https:", "blob:"],
-      fontSrc: ["'self'", "https:", "data:"],
-      connectSrc: ["'self'", "https://www.googleapis.com", "https://www.youtube.com"],
-      mediaSrc: ["'self'", "https:", "blob:"],
-      objectSrc: ["'none'"],
-      frameSrc: ["'none'"], // Bloquear iframes completamente
-      frameAncestors: ["'none'"], // Prevenir clickjacking
-      baseUri: ["'self'"],
-      formAction: ["'self'"],
-      upgradeInsecureRequests: process.env.NODE_ENV === 'production' ? [] : null,
-      // Report URI para logging de violaciones CSP
-      reportUri: '/api/security/csp-report',
-      reportTo: 'csp-endpoint',
-    },
-  },
-
-  // Prevenir MIME sniffing
-  noSniff: true,
-
-  // Configurar referrer policy estricta
-  referrerPolicy: { policy: "strict-origin-when-cross-origin" },
-
-  // Configurar HSTS (solo en producción)
-  hsts: process.env.NODE_ENV === 'production' ? {
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true
-  } : false,
-
-  // Prevenir DNS rebinding attacks
-  dnsPrefetchControl: { allow: false },
-
-  // Configurar Expect-CT (solo en producción)
-  expectCt: process.env.NODE_ENV === 'production' ? {
-    enforce: true,
-    maxAge: 86400,
-    reportUri: '/api/security/ct-report'
-  } : false,
-
-  // Configurar Feature Policy para reducir superficie de ataque
-  featurePolicy: {
-    features: {
-      camera: ["'none'"],
-      microphone: ["'none'"],
-      geolocation: ["'none'"],
-      accelerometer: ["'none'"],
-      gyroscope: ["'none'"],
-      magnetometer: ["'none'"],
-      payment: ["'none'"],
-      usb: ["'none'"]
-    }
-  },
-
-  // Configurar Cross-Origin policies
-  crossOriginResourcePolicy: { policy: "cross-origin" },
-  crossOriginOpenerPolicy: { policy: "same-origin" },
-  crossOriginEmbedderPolicy: { policy: "require-corp" },
-
-  // Remover cabeceras innecesarias para reducir fingerprinting
-  hidePoweredBy: true,
-  xssFilter: true,
-  ieNoOpen: true,
-  noCache: false
-}));
-
-// Rate limiting avanzado con middleware personalizado
-const { advancedRateLimit } = require('./middleware/security');
+// Rate limiting avanzado con middleware personalizado - temporalmente deshabilitado para debugging
+// const { advancedRateLimit } = require('./middleware/security');
 
 // Rate limiting general mejorado
 const limiter = rateLimit({
@@ -122,58 +51,59 @@ const authLimiter = rateLimit({
 
 app.use('/api/auth/', authLimiter);
 
-// Rate limiting específico para endpoints sensibles
-app.use('/api/videos/search', advancedRateLimit(10 * 60 * 1000, 50)); // 50 búsquedas por 10 min
-app.use('/api/forum', advancedRateLimit(5 * 60 * 1000, 20)); // 20 requests por 5 min
-app.use('/api/store', advancedRateLimit(5 * 60 * 1000, 10)); // 10 requests por 5 min
+// Rate limiting específico para endpoints sensibles - temporalmente deshabilitado
+// app.use('/api/videos/search', advancedRateLimit(10 * 60 * 1000, 50)); // 50 búsquedas por 10 min
+// app.use('/api/forum', advancedRateLimit(5 * 60 * 1000, 20)); // 20 requests por 5 min
+// app.use('/api/store', advancedRateLimit(5 * 60 * 1000, 10)); // 10 requests por 5 min
 
-app.use(cors({
-  origin: function (origin, callback) {
-    // Permitir requests sin origin (como mobile apps o curl)
-    if (!origin) return callback(null, true);
+// CORS - temporalmente deshabilitado
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     // Permitir requests sin origin (como mobile apps o curl)
+//     if (!origin) return callback(null, true);
 
-    const allowedOrigins = [
-      'http://localhost:3000',
-      'http://127.0.0.1:3000',
-      'https://localhost:3000',
-      'https://127.0.0.1:3000'
-    ];
+//     const allowedOrigins = [
+//       'http://localhost:3000',
+//       'http://127.0.0.1:3000',
+//       'https://localhost:3000',
+//       'https://127.0.0.1:3000'
+//     ];
 
-    // En producción, agregar el dominio real
-    if (process.env.NODE_ENV === 'production' && process.env.FRONTEND_URL) {
-      allowedOrigins.push(process.env.FRONTEND_URL);
-    }
+//     // En producción, agregar el dominio real
+//     if (process.env.NODE_ENV === 'production' && process.env.FRONTEND_URL) {
+//       allowedOrigins.push(process.env.FRONTEND_URL);
+//     }
 
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      logger.warn('Origen no permitido detectado:', { origin, ip: origin });
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  exposedHeaders: ['X-Total-Count', 'X-Rate-Limit-Remaining'],
-  maxAge: 86400 // 24 horas
-}));
+//     if (allowedOrigins.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       logger.warn('Origen no permitido detectado:', { origin, ip: origin });
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+//   exposedHeaders: ['X-Total-Count', 'X-Rate-Limit-Remaining'],
+//   maxAge: 86400 // 24 horas
+// }));
 
 app.use(express.json({ limit: '10mb' })); // Limitar tamaño de payload
 
-// Enviar token CSRF en respuestas
-app.use(sendCSRFToken);
+// Enviar token CSRF en respuestas - temporalmente deshabilitado
+// app.use(sendCSRFToken);
 
 // Middleware de versionado de API - temporalmente deshabilitado
 // app.use('/api', apiVersioning);
 // app.use('/api', redirectToDefaultVersion);
 
-// Importar middleware CSRF
-const { csrfProtection, sendCSRFToken } = require('./middleware/csrf');
+// Importar middleware CSRF - temporalmente deshabilitado
+// const { csrfProtection, sendCSRFToken } = require('./middleware/csrf');
 
-// Aplicar CSRF solo a rutas sensibles
-app.use('/api/playlists', csrfProtection);
-app.use('/api/forum', csrfProtection);
-app.use('/api/store', csrfProtection);
+// Aplicar CSRF solo a rutas sensibles - temporalmente deshabilitado
+// app.use('/api/playlists', csrfProtection);
+// app.use('/api/forum', csrfProtection);
+// app.use('/api/store', csrfProtection);
 
 // Middleware de logging de requests
 app.use((req, res, next) => {
@@ -236,34 +166,36 @@ app.post('/api/security/ct-report', (req, res) => {
   res.status(204).end();
 });
 
-// Conectar a MongoDB (opcional para desarrollo)
-if (process.env.MONGO_URI) {
-  mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log('Conectado a MongoDB');
-  })
-  .catch(err => {
-    console.error('Error conectando a MongoDB:', err.message);
-  });
-} else {
-  console.log('MongoDB no configurado - ejecutando sin base de datos');
-}
+// Conectar a MongoDB (opcional para desarrollo) - temporalmente deshabilitado para debugging
+// if (process.env.MONGO_URI) {
+//   mongoose.connect(process.env.MONGO_URI)
+//   .then(() => {
+//     console.log('Conectado a MongoDB');
+//   })
+//   .catch(err => {
+//     console.error('Error conectando a MongoDB:', err.message);
+//   });
+// } else {
+//   console.log('MongoDB no configurado - ejecutando sin base de datos');
+// }
+console.log('Conexión a MongoDB deshabilitada temporalmente');
 
-const authRoutes = require('./routes/auth');
-const videosRoutes = require('./routes/videoRoutes');
-const concertsRoutes = require('./routes/concerts');
-const spotifyRoutes = require('./routes/spotify');
-const discographyRoutes = require('./routes/discography');
-const forumRoutes = require('./routes/forum');
-const playlistsRoutes = require('./routes/playlists');
-const storeRoutes = require('./routes/store');
-const eventsRoutes = require('./routes/events');
-const adminRoutes = require('./routes/admin');
-const monitoringRoutes = require('./routes/monitoring');
-const favoritesRoutes = require('./routes/favorites');
-const notificationsRoutes = require('./routes/notifications');
-const lyricsRoutes = require('./routes/lyrics');
-const mapsRoutes = require('./routes/maps');
+// Rutas - temporalmente deshabilitadas para debugging
+// const authRoutes = require('./routes/auth');
+// const videosRoutes = require('./routes/videoRoutes');
+// const concertsRoutes = require('./routes/concerts');
+// const spotifyRoutes = require('./routes/spotify');
+// const discographyRoutes = require('./routes/discography');
+// const forumRoutes = require('./routes/forum');
+// const playlistsRoutes = require('./routes/playlists');
+// const storeRoutes = require('./routes/store');
+// const eventsRoutes = require('./routes/events');
+// const adminRoutes = require('./routes/admin');
+// const monitoringRoutes = require('./routes/monitoring');
+// const favoritesRoutes = require('./routes/favorites');
+// const notificationsRoutes = require('./routes/notifications');
+// const lyricsRoutes = require('./routes/lyrics');
+// const mapsRoutes = require('./routes/maps');
 
 // Rutas básicas
 app.get('/', (req, res) => {
@@ -515,21 +447,21 @@ health.redis = {
   res.json(health);
 });
 
-// Usar rutas
-app.use('/api/auth', authRoutes);
-app.use('/api/discography', discographyRoutes);
-app.use('/api/videos', videosRoutes);
-app.use('/api/concerts', concertsRoutes);
-app.use('/api/spotify', spotifyRoutes);
-app.use('/api/forum', forumRoutes);
-app.use('/api/playlists', playlistsRoutes);
-app.use('/api/store', storeRoutes);
-app.use('/api/events', eventsRoutes);
-app.use('/api/favorites', favoritesRoutes);
-app.use('/api/notifications', notificationsRoutes);
-app.use('/api/lyrics', lyricsRoutes);
-app.use('/api/maps', mapsRoutes);
-app.use('/api/monitoring', monitoringRoutes);
+// Usar rutas - temporalmente deshabilitadas
+// app.use('/api/auth', authRoutes);
+// app.use('/api/discography', discographyRoutes);
+// app.use('/api/videos', videosRoutes);
+// app.use('/api/concerts', concertsRoutes);
+// app.use('/api/spotify', spotifyRoutes);
+// app.use('/api/forum', forumRoutes);
+// app.use('/api/playlists', playlistsRoutes);
+// app.use('/api/store', storeRoutes);
+// app.use('/api/events', eventsRoutes);
+// app.use('/api/favorites', favoritesRoutes);
+// app.use('/api/notifications', notificationsRoutes);
+// app.use('/api/lyrics', lyricsRoutes);
+// app.use('/api/maps', mapsRoutes);
+// app.use('/api/monitoring', monitoringRoutes);
 app.use('/api/admin', (req, res) => res.json({
   success: false,
   message: 'Panel de administración próximamente - funcionalidad en desarrollo'
@@ -582,5 +514,7 @@ app.use((req, res) => {
     message: 'Ruta no encontrada'
   });
 });
+
+console.log('✅ App.js cargado exitosamente');
 
 module.exports = app;

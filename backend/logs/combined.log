@@ -12044,3 +12044,31 @@ TypeError: Converting circular structure to JSON
 }
 2025-09-22 01:33:40 [33m[33mwarn[33m[39m: [33m[33mRedis connection closed[33m[39m
 2025-09-22 01:33:41 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m
+2025-09-22 15:21:04 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-22 15:22:14 [31m[31merror[31m[39m: [31m[31m❌ Error: Puerto 5000 ya está en uso[31m[39m
+2025-09-22 15:22:14 [32m[32minfo[32m[39m: [32m[32m💡 Sugerencia: Mata el proceso usando el puerto 5000 o cambia el puerto[32m[39m
+2025-09-22 15:22:28 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-22 15:29:39 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-22 15:32:47 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-22 15:34:57 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-22 15:37:52 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m
