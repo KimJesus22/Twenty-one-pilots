@@ -31,7 +31,9 @@ const limiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   // Skip rate limiting para health checks
-  skip: (req) => req.path === '/health' || req.path === '/api/health'
+  skip: (req) => req.path === '/health' || req.path === '/api/health',
+  // Configuración para headers proxy
+  trustProxy: true
 });
 
 app.use('/api/', limiter);
@@ -56,8 +58,15 @@ app.use('/api/auth/', authLimiter);
 // app.use('/api/forum', advancedRateLimit(5 * 60 * 1000, 20)); // 20 requests por 5 min
 // app.use('/api/store', advancedRateLimit(5 * 60 * 1000, 10)); // 10 requests por 5 min
 
-// CORS - temporalmente deshabilitado
-// app.use(cors({
+// CORS habilitado para desarrollo
+app.use(cors({
+  origin: true, // Permitir todos los orígenes por ahora
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  exposedHeaders: ['X-Total-Count', 'X-Rate-Limit-Remaining'],
+  maxAge: 86400 // 24 horas
+}));
 //   origin: function (origin, callback) {
 //     // Permitir requests sin origin (como mobile apps o curl)
 //     if (!origin) return callback(null, true);
@@ -311,6 +320,19 @@ app.get('/api/v2/videos/search', async (req, res) => {
 
 // Health check endpoint simplificado
 app.get('/health', (req, res) => {
+  res.json({
+    success: true,
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    version: process.version,
+    environment: process.env.NODE_ENV || 'development',
+    message: 'API funcionando correctamente'
+  });
+});
+
+// Health check endpoint para API
+app.get('/api/health', (req, res) => {
   res.json({
     success: true,
     status: 'healthy',
