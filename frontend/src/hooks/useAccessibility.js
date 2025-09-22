@@ -13,7 +13,6 @@ export function useAccessibilityPreferences() {
     // Detectar preferencias del sistema
     const mediaQueryHighContrast = window.matchMedia('(prefers-contrast: high)');
     const mediaQueryReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const mediaQueryLargeText = window.matchMedia('(min-resolution: 2dppx)');
 
     const updatePreferences = () => {
       setPreferences({

@@ -12072,3 +12072,20 @@ TypeError: Converting circular structure to JSON
   "sslEnabled": false
 }
 2025-09-22 15:37:52 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m
+2025-09-22 16:17:19 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-22 16:19:53 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m
+2025-09-22 16:23:54 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-22 16:27:57 [32m[32minfo[32m[39m: [32m[32m🌐 Servidor HTTP corriendo en puerto 5000[32m[39m {
+  "port": 5000,
+  "environment": "development",
+  "sslEnabled": false
+}
+2025-09-22 16:28:52 [32m[32minfo[32m[39m: [32m[32mSIGINT recibido, cerrando servidor gracefully[32m[39m

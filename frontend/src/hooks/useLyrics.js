@@ -4,7 +4,7 @@ import { useFavorites } from './useFavorites';
 import lyricsAPI from '../api/lyrics';
 
 export function useLyrics() {
-  const { user, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { addToFavorites: addToFavoritesGeneral, hasFavorite } = useFavorites();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

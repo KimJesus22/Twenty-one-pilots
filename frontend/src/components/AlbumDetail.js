@@ -7,7 +7,7 @@ import AudioPlayer from './AudioPlayer';
 import Spinner from './Spinner';
 import './AlbumDetail.css';
 
-const AlbumDetail = ({ albumId, onClose, onAddToPlaylist }) => {
+const AlbumDetail = ({ albumId, onClose, _onAddToPlaylist }) => {
   const { user, isAuthenticated } = useAuth();
   const { addItem } = useCart();
   const [album, setAlbum] = useState(null);
@@ -16,7 +16,7 @@ const AlbumDetail = ({ albumId, onClose, onAddToPlaylist }) => {
   const [currentSong, setCurrentSong] = useState(null);
   const [currentPlaylist, setCurrentPlaylist] = useState(null);
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
-  const [userPlaylists, setUserPlaylists] = useState([]);
+  const [userPlaylists] = useState([]);
   const [selectedSongForPlaylist, setSelectedSongForPlaylist] = useState(null);
   const [albumLiked, setAlbumLiked] = useState(false);
   const [songLikes, setSongLikes] = useState({});

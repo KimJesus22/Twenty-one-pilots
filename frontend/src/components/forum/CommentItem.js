@@ -3,7 +3,7 @@ import CommentForm from './CommentForm';
 
 const CommentItem = memo(({
   comment,
-  threadId,
+  _threadId,
   onEdit,
   onDelete,
   onVote,

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import './AccessibilityAuditor.css';
 
-const AccessibilityAuditor = ({ isOpen, onClose, targetElement = document }) => {
+const AccessibilityAuditor = ({ isOpen, onClose }) => {
   const [auditResults, setAuditResults] = useState(null);
   const [isAuditing, setIsAuditing] = useState(false);
   const [selectedTool, setSelectedTool] = useState('lighthouse');

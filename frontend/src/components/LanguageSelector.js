@@ -34,7 +34,6 @@ const LanguageSelector = () => {
 
   // Usar el idioma normalizado para el Select
   const currentLanguageCode = normalizeLanguage(i18n.language);
-  const currentLanguage = languages.find(lang => lang.code === currentLanguageCode) || languages[0];
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>

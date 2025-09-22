@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import authAPI from '../api/auth';
-import { setEncryptedItem, getEncryptedItem, removeEncryptedItem } from '../utils/encryption';
+import { setEncryptedItem } from '../utils/encryption';
 
 const AuthContext = createContext();
 

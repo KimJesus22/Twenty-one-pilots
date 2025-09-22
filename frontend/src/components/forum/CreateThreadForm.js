@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-const CreateThreadForm = memo(({ categories, onSubmit, onCancel, currentUser, t }) => {
+const CreateThreadForm = memo(({ categories, onSubmit, onCancel, _currentUser, t }) => {
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState('');
 
