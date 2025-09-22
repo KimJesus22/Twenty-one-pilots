@@ -166,36 +166,35 @@ app.post('/api/security/ct-report', (req, res) => {
   res.status(204).end();
 });
 
-// Conectar a MongoDB (opcional para desarrollo) - temporalmente deshabilitado para debugging
-// if (process.env.MONGO_URI) {
-//   mongoose.connect(process.env.MONGO_URI)
-//   .then(() => {
-//     console.log('Conectado a MongoDB');
-//   })
-//   .catch(err => {
-//     console.error('Error conectando a MongoDB:', err.message);
-//   });
-// } else {
-//   console.log('MongoDB no configurado - ejecutando sin base de datos');
-// }
-console.log('Conexión a MongoDB deshabilitada temporalmente');
+// Conectar a MongoDB (opcional para desarrollo)
+if (process.env.MONGO_URI) {
+  mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log('Conectado a MongoDB');
+  })
+  .catch(err => {
+    console.error('Error conectando a MongoDB:', err.message);
+  });
+} else {
+  console.log('MongoDB no configurado - ejecutando sin base de datos');
+}
 
-// Rutas - temporalmente deshabilitadas para debugging
-// const authRoutes = require('./routes/auth');
-// const videosRoutes = require('./routes/videoRoutes');
-// const concertsRoutes = require('./routes/concerts');
-// const spotifyRoutes = require('./routes/spotify');
-// const discographyRoutes = require('./routes/discography');
-// const forumRoutes = require('./routes/forum');
-// const playlistsRoutes = require('./routes/playlists');
-// const storeRoutes = require('./routes/store');
-// const eventsRoutes = require('./routes/events');
-// const adminRoutes = require('./routes/admin');
-// const monitoringRoutes = require('./routes/monitoring');
-// const favoritesRoutes = require('./routes/favorites');
-// const notificationsRoutes = require('./routes/notifications');
-// const lyricsRoutes = require('./routes/lyrics');
-// const mapsRoutes = require('./routes/maps');
+// Rutas
+const authRoutes = require('./routes/auth');
+const videosRoutes = require('./routes/videoRoutes');
+const concertsRoutes = require('./routes/concerts');
+const spotifyRoutes = require('./routes/spotify');
+const discographyRoutes = require('./routes/discography');
+const forumRoutes = require('./routes/forum');
+const playlistsRoutes = require('./routes/playlists');
+const storeRoutes = require('./routes/store');
+const eventsRoutes = require('./routes/events');
+const adminRoutes = require('./routes/admin');
+const monitoringRoutes = require('./routes/monitoring');
+const favoritesRoutes = require('./routes/favorites');
+const notificationsRoutes = require('./routes/notifications');
+const lyricsRoutes = require('./routes/lyrics');
+const mapsRoutes = require('./routes/maps');
 
 // Rutas básicas
 app.get('/', (req, res) => {
@@ -447,21 +446,21 @@ health.redis = {
   res.json(health);
 });
 
-// Usar rutas - temporalmente deshabilitadas
-// app.use('/api/auth', authRoutes);
-// app.use('/api/discography', discographyRoutes);
-// app.use('/api/videos', videosRoutes);
-// app.use('/api/concerts', concertsRoutes);
-// app.use('/api/spotify', spotifyRoutes);
-// app.use('/api/forum', forumRoutes);
-// app.use('/api/playlists', playlistsRoutes);
-// app.use('/api/store', storeRoutes);
-// app.use('/api/events', eventsRoutes);
-// app.use('/api/favorites', favoritesRoutes);
-// app.use('/api/notifications', notificationsRoutes);
-// app.use('/api/lyrics', lyricsRoutes);
-// app.use('/api/maps', mapsRoutes);
-// app.use('/api/monitoring', monitoringRoutes);
+// Usar rutas
+app.use('/api/auth', authRoutes);
+app.use('/api/discography', discographyRoutes);
+app.use('/api/videos', videosRoutes);
+app.use('/api/concerts', concertsRoutes);
+app.use('/api/spotify', spotifyRoutes);
+app.use('/api/forum', forumRoutes);
+app.use('/api/playlists', playlistsRoutes);
+app.use('/api/store', storeRoutes);
+app.use('/api/events', eventsRoutes);
+app.use('/api/favorites', favoritesRoutes);
+app.use('/api/notifications', notificationsRoutes);
+app.use('/api/lyrics', lyricsRoutes);
+app.use('/api/maps', mapsRoutes);
+app.use('/api/monitoring', monitoringRoutes);
 app.use('/api/admin', (req, res) => res.json({
   success: false,
   message: 'Panel de administración próximamente - funcionalidad en desarrollo'

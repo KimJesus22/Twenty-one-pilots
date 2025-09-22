@@ -35,7 +35,8 @@ const isProduction = process.env.NODE_ENV === 'production';
 const forceHttps = process.env.FORCE_HTTPS === 'true';
 
 // Configurar SSL solo si estamos en producción o si se fuerza HTTPS
-if (isProduction || forceHttps) {
+// En desarrollo, nunca cargar SSL aunque se force
+if (isProduction && forceHttps) {
   try {
     const sslKeyPath = path.resolve(process.env.SSL_KEY_PATH || './ssl/private.key');
     const sslCertPath = path.resolve(process.env.SSL_CERT_PATH || './ssl/certificate.crt');
