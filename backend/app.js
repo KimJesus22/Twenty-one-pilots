@@ -309,141 +309,17 @@ app.get('/api/v2/videos/search', async (req, res) => {
 // app.get('/api/cache/:key', async (req, res) => { ... });
 // app.post('/api/cache/:key', async (req, res) => { ... });
 
-// Health check endpoint con métricas de seguridad
-app.get('/health', async (req, res) => {
-  const health = {
+// Health check endpoint simplificado
+app.get('/health', (req, res) => {
+  res.json({
+    success: true,
     status: 'healthy',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    memory: process.memoryUsage(),
     version: process.version,
     environment: process.env.NODE_ENV || 'development',
-    ssl: !!req.secure,
-    protocol: req.protocol,
-    host: req.get('host'),
-
-    // Métricas de seguridad - simplificadas temporalmente
-    security: {
-      helmetEnabled: true,
-      cspEnabled: true,
-      rateLimitingEnabled: true,
-      csrfProtectionEnabled: true,
-      sanitizationEnabled: true,
-      noSqlInjectionProtection: false, // temporalmente deshabilitado
-      xssProtectionEnabled: true,
-      httpsRedirectEnabled: process.env.FORCE_HTTPS === 'true',
-      hstsEnabled: process.env.NODE_ENV === 'production',
-      corsEnabled: true,
-      securityHeadersCount: 10, // Headers de seguridad configurados
-      lastSecurityScan: new Date().toISOString(),
-      securityMiddlewareActive: false, // temporalmente deshabilitado
-
-      // Métricas básicas
-      performance: {
-        totalRequests: 0,
-        totalErrors: 0,
-        avgLatency: 0,
-        throughputPerMinute: 0,
-        suspiciousRequests: 0
-      },
-      activeAlerts: 0,
-      totalSecurityEvents: 0,
-      monitoredEndpoints: 0,
-
-      // Estadísticas de seguridad básicas
-      securityStats: {
-        totalRequests: 0,
-        totalErrors: 0,
-        avgLatency: 0,
-        throughputPerMinute: 0,
-        suspiciousRequests: 0
-      }
-    },
-
-    // Información de versionado de API - simplificada
-    api: {
-      currentVersion: 'v1',
-      defaultVersion: 'v1',
-      supportedVersions: ['v1'],
-      versions: { v1: { version: '1.0.0', status: 'current' } },
-      versionUsage: {},
-      versionedEndpoints: [
-        '/api/v1/health',
-        '/api/v1/videos/search'
-      ]
-    },
-
-    // Información del servidor (limitada para reducir fingerprinting)
-    server: {
-      platform: process.platform,
-      arch: process.arch,
-      nodeVersion: process.version.split('.')[0], // Solo major version
-      uptime: Math.floor(process.uptime()),
-      memoryUsage: {
-        rss: Math.floor(process.memoryUsage().rss / 1024 / 1024) + 'MB',
-        heapTotal: Math.floor(process.memoryUsage().heapTotal / 1024 / 1024) + 'MB',
-        heapUsed: Math.floor(process.memoryUsage().heapUsed / 1024 / 1024) + 'MB'
-      }
-    },
-
-    // Estado de dependencias críticas
-    dependencies: {
-      express: require('express/package.json').version,
-      mongoose: require('mongoose/package.json').version,
-      helmet: require('helmet/package.json').version,
-      cors: require('cors/package.json').version
-    }
-  };
-
-  // Verificar conexiones a bases de datos y servicios
-if (mongoose.connection.readyState === 1) {
-  health.database = {
-    status: 'connected',
-    name: mongoose.connection.name,
-    host: mongoose.connection.host,
-    type: 'mongodb'
-  };
-} else {
-  health.database = {
-    status: 'disconnected',
-    readyState: mongoose.connection.readyState,
-    type: 'mongodb'
-  };
-  health.status = 'degraded';
-}
-
-// Verificar Elasticsearch - temporalmente deshabilitado
-health.elasticsearch = {
-  status: 'disabled',
-  healthy: null,
-  type: 'elasticsearch',
-  message: 'Servicio temporalmente deshabilitado'
-};
-
-// Verificar Redis - temporalmente deshabilitado
-health.redis = {
-  status: 'disabled',
-  healthy: null,
-  type: 'redis',
-  message: 'Servicio temporalmente deshabilitado'
-};
-
-  // Verificar configuración SSL si está habilitada
-  if (process.env.FORCE_HTTPS === 'true' && !req.secure) {
-    health.security.sslWarning = 'Request no segura en entorno HTTPS obligatorio';
-    health.status = 'warning';
-  }
-
-  // Verificar que las variables críticas de seguridad estén configuradas
-  const criticalEnvVars = ['JWT_SECRET', 'YOUTUBE_API_KEY'];
-  const missingVars = criticalEnvVars.filter(varName => !process.env[varName]);
-
-  if (missingVars.length > 0) {
-    health.security.missingCriticalVars = missingVars;
-    health.status = 'warning';
-  }
-
-  res.json(health);
+    message: 'API funcionando correctamente'
+  });
 });
 
 // Usar rutas
