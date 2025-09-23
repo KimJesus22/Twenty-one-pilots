@@ -12,6 +12,8 @@ const AudioPlayer = ({ song, onClose, onNext, onPrevious, hasNext, hasPrevious }
   useEffect(() => {
     if (song) {
       loadSong();
+    } else {
+      setIsLoading(false);
     }
   }, [song]);
 
@@ -47,13 +49,22 @@ const AudioPlayer = ({ song, onClose, onNext, onPrevious, hasNext, hasPrevious }
       } else {
         // Simular reproducción para demo
         console.log(`Simulando reproducción de: ${song.title}`);
-        setDuration(30); // 30 segundos por defecto
+
+        // Calcular duración real de la canción si está disponible
+        let songDuration = 30; // por defecto
+        if (song.duration) {
+          const [minutes, seconds] = song.duration.split(':').map(Number);
+          songDuration = (minutes * 60) + seconds;
+        }
+
+        setDuration(songDuration);
       }
     } catch (error) {
       console.error('Error loading song:', error);
-    } finally {
-      setIsLoading(false);
     }
+
+    // Asegurar que isLoading se ponga a false
+    setIsLoading(false);
   };
 
   const togglePlay = () => {
@@ -63,11 +74,11 @@ const AudioPlayer = ({ song, onClose, onNext, onPrevious, hasNext, hasPrevious }
       } else {
         audioRef.current.play();
       }
+      setIsPlaying(!isPlaying);
     } else {
       // Simulación para demo
       setIsPlaying(!isPlaying);
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleTimeUpdate = () => {
@@ -113,7 +124,9 @@ const AudioPlayer = ({ song, onClose, onNext, onPrevious, hasNext, hasPrevious }
 
   return (
     <div className="audio-player-modal">
-      <div className="modal-overlay" onClick={onClose}></div>
+      <div className="modal-overlay">
+        <div onClick={onClose} style={{ width: '100%', height: '100%' }}></div>
+      </div>
       <div className="audio-player">
         <div className="player-header">
           <div className="song-info">
@@ -125,8 +138,8 @@ const AudioPlayer = ({ song, onClose, onNext, onPrevious, hasNext, hasPrevious }
 
         <div className="player-body">
           <div className="album-art">
-            {song?.album?.coverImage ? (
-              <img src={song.album.coverImage} alt="Album cover" />
+            {(song?.album?.coverImage || song?.albumArt) ? (
+              <img src={song.album.coverImage || song.albumArt} alt="Album cover" />
             ) : (
               <div className="no-art">
                 <span>🎵</span>

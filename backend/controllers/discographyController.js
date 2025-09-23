@@ -481,13 +481,25 @@ class DiscographyController {
   // Obtener estadísticas de popularidad
   async getPopularityStats(req, res) {
     try {
+      // Verificar conexión a MongoDB
+      if (!require('mongoose').connection.readyState) {
+        logger.warn('MongoDB no conectado, devolviendo estadísticas por defecto');
+        return res.json({
+          success: true,
+          data: {
+            albums: { totalAlbums: 0, totalViews: 0, totalLikes: 0, avgPopularity: 0 },
+            songs: { totalSongs: 0, totalPlays: 0, totalLikes: 0, avgPopularity: 0 }
+          }
+        });
+      }
+
       const albumStats = await Album.aggregate([
         {
           $group: {
             _id: null,
             totalAlbums: { $sum: 1 },
             totalViews: { $sum: '$views' },
-            totalLikes: { $sum: { $size: '$likes' } },
+            totalLikes: { $sum: { $size: { $ifNull: ['$likes', []] } } },
             avgPopularity: { $avg: '$popularity' }
           }
         }
@@ -499,7 +511,7 @@ class DiscographyController {
             _id: null,
             totalSongs: { $sum: 1 },
             totalPlays: { $sum: '$playCount' },
-            totalLikes: { $sum: { $size: '$likes' } },
+            totalLikes: { $sum: { $size: { $ifNull: ['$likes', []] } } },
             avgPopularity: { $avg: '$popularity' }
           }
         }
@@ -508,15 +520,19 @@ class DiscographyController {
       res.json({
         success: true,
         data: {
-          albums: albumStats[0] || {},
-          songs: songStats[0] || {}
+          albums: albumStats[0] || { totalAlbums: 0, totalViews: 0, totalLikes: 0, avgPopularity: 0 },
+          songs: songStats[0] || { totalSongs: 0, totalPlays: 0, totalLikes: 0, avgPopularity: 0 }
         }
       });
     } catch (error) {
       logger.error('Error getting popularity stats:', error);
-      res.status(500).json({
-        success: false,
-        message: 'Error obteniendo estadísticas'
+      // En caso de error, devolver estadísticas por defecto
+      res.json({
+        success: true,
+        data: {
+          albums: { totalAlbums: 0, totalViews: 0, totalLikes: 0, avgPopularity: 0 },
+          songs: { totalSongs: 0, totalPlays: 0, totalLikes: 0, avgPopularity: 0 }
+        }
       });
     }
   }

@@ -5,6 +5,7 @@ import { CartProvider } from './contexts/CartContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
 import './App.css';
+import './i18n'; // Asegurar que i18n se importe
 
 // Importar componentes directamente (sin lazy loading para evitar problemas)
 import Home from './pages/Home';

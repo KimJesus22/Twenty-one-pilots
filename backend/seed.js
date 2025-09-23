@@ -6,7 +6,7 @@ const albumsData = [
   {
     title: 'Twenty One Pilots',
     releaseYear: 2009,
-    coverImage: null,
+    coverImage: null, // Se obtendrá dinámicamente
     songs: [
       { title: 'Implicit Demand for Proof', duration: '4:51' },
       { title: 'Fall Away', duration: '3:58' },
@@ -45,8 +45,8 @@ const albumsData = [
     coverImage: null,
     songs: [
       { title: 'Heavydirtysoul', duration: '4:54' },
-      { title: 'Stressed Out', duration: '3:22' },
-      { title: 'Ride', duration: '3:34' },
+      { title: 'Stressed Out', duration: '3:22', spotifyId: '3CRDbSIZ4r5MsZ0YwxuEkn' },
+      { title: 'Ride', duration: '3:34', spotifyId: '2Z8WuEywRWYTKe1NybPxwc' },
       { title: 'Fairly Local', duration: '3:27' },
       { title: 'Tear in My Heart', duration: '3:08' }
     ]
@@ -60,7 +60,7 @@ const albumsData = [
       { title: 'Levitate', duration: '2:33' },
       { title: 'Morph', duration: '4:19' },
       { title: 'My Blood', duration: '3:49' },
-      { title: 'Chlorine', duration: '5:24' }
+      { title: 'Chlorine', duration: '5:24', spotifyId: '5LyRtsQLhcXtkQF3VywPi8' }
     ]
   },
   {

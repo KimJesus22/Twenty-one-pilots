@@ -22,6 +22,7 @@ const LanguageSelector = () => {
 
   // Normalizar el idioma detectado (es-MX -> es)
   const normalizeLanguage = (lang) => {
+    if (!lang) return 'en'; // fallback si es undefined
     if (lang.startsWith('es')) return 'es';
     if (lang.startsWith('en')) return 'en';
     return 'en'; // fallback

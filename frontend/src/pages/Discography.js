@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import discographyAPI from '../api/discography';
 import AlbumDetail from '../components/AlbumDetail';
 import AdvancedFilters from '../components/AdvancedFilters';
-import SkeletonLoader from '../components/SkeletonLoader';
+import { getAlbumArt } from '../utils/albumArt';
 import './Discography.css';
 
 const Discography = () => {
@@ -32,6 +32,7 @@ const Discography = () => {
   const [genres, setGenres] = useState([]);
   const [types, setTypes] = useState([]);
   const [popularityStats, setPopularityStats] = useState(null);
+  const [albumArts, setAlbumArts] = useState({});
 
   useEffect(() => {
     fetchAlbums();
@@ -49,6 +50,9 @@ const Discography = () => {
         setAlbums(response.data.albums);
         setPagination(response.data.pagination);
         setError(null);
+
+        // Cargar carátulas
+        loadAlbumArts(response.data.albums);
       } else {
         throw new Error(response.message || 'Error al cargar álbumes');
       }
@@ -71,7 +75,9 @@ const Discography = () => {
           songs: [
             { _id: '1', title: 'Implicit Demand for Proof', duration: '4:51', trackNumber: 1, playCount: 45000, likes: [] },
             { _id: '2', title: 'Fall Away', duration: '3:58', trackNumber: 2, playCount: 52000, likes: [] },
-            { _id: '3', title: 'The Pantaloon', duration: '3:33', trackNumber: 3, playCount: 38000, likes: [] }
+            { _id: '3', title: 'The Pantaloon', duration: '3:33', trackNumber: 3, playCount: 38000, likes: [] },
+            { _id: '4', title: 'Addict with a Pen', duration: '4:45', trackNumber: 4, playCount: 41000, likes: [] },
+            { _id: '5', title: 'Friend, Please', duration: '4:13', trackNumber: 5, playCount: 39000, likes: [] }
           ]
         },
         {
@@ -88,7 +94,9 @@ const Discography = () => {
           songs: [
             { _id: '4', title: 'Guns for Hands', duration: '4:33', trackNumber: 1, playCount: 67000, likes: [] },
             { _id: '5', title: 'Holding on to You', duration: '4:23', trackNumber: 2, playCount: 89000, likes: [] },
-            { _id: '6', title: 'Ode to Sleep', duration: '5:08', trackNumber: 3, playCount: 56000, likes: [] }
+            { _id: '6', title: 'Ode to Sleep', duration: '5:08', trackNumber: 3, playCount: 56000, likes: [] },
+            { _id: '7', title: 'Slowtown', duration: '4:32', trackNumber: 4, playCount: 48000, likes: [] },
+            { _id: '8', title: 'Car Radio', duration: '4:27', trackNumber: 5, playCount: 72000, likes: [] }
           ]
         },
         {
@@ -105,7 +113,9 @@ const Discography = () => {
           songs: [
             { _id: '7', title: 'Ode to Sleep', duration: '5:08', trackNumber: 1, playCount: 120000, likes: [] },
             { _id: '8', title: 'Holding on to You', duration: '4:23', trackNumber: 2, playCount: 150000, likes: [] },
-            { _id: '9', title: 'Migraine', duration: '4:10', trackNumber: 3, playCount: 98000, likes: [] }
+            { _id: '9', title: 'Migraine', duration: '4:10', trackNumber: 3, playCount: 98000, likes: [] },
+            { _id: '10', title: 'House of Gold', duration: '2:43', trackNumber: 4, playCount: 85000, likes: [] },
+            { _id: '11', title: 'Car Radio', duration: '4:27', trackNumber: 5, playCount: 110000, likes: [] }
           ]
         },
         {
@@ -121,8 +131,10 @@ const Discography = () => {
           likes: [],
           songs: [
             { _id: '10', title: 'Heavydirtysoul', duration: '4:54', trackNumber: 1, playCount: 200000, likes: [] },
-            { _id: '11', title: 'Stressed Out', duration: '3:22', trackNumber: 2, playCount: 500000, likes: [] },
-            { _id: '12', title: 'Ride', duration: '3:34', trackNumber: 3, playCount: 350000, likes: [] }
+            { _id: '11', title: 'Stressed Out', duration: '3:22', trackNumber: 2, playCount: 500000, likes: [], spotifyId: '3CRDbSIZ4r5MsZ0YwxuEkn' },
+            { _id: '12', title: 'Ride', duration: '3:34', trackNumber: 3, playCount: 350000, likes: [], spotifyId: '2Z8WuEywRWYTKe1NybPxwc' },
+            { _id: '13', title: 'Fairly Local', duration: '3:27', trackNumber: 4, playCount: 280000, likes: [] },
+            { _id: '14', title: 'Tear in My Heart', duration: '3:08', trackNumber: 5, playCount: 320000, likes: [] }
           ]
         },
         {
@@ -139,7 +151,9 @@ const Discography = () => {
           songs: [
             { _id: '13', title: 'Jumpsuit', duration: '3:58', trackNumber: 1, playCount: 180000, likes: [] },
             { _id: '14', title: 'Levitate', duration: '2:33', trackNumber: 2, playCount: 160000, likes: [] },
-            { _id: '15', title: 'Morph', duration: '4:19', trackNumber: 3, playCount: 140000, likes: [] }
+            { _id: '15', title: 'Morph', duration: '4:19', trackNumber: 3, playCount: 140000, likes: [] },
+            { _id: '16', title: 'My Blood', duration: '3:49', trackNumber: 4, playCount: 130000, likes: [] },
+            { _id: '17', title: 'Chlorine', duration: '5:24', trackNumber: 5, playCount: 170000, likes: [], spotifyId: '5LyRtsQLhcXtkQF3VywPi8' }
           ]
         },
         {
@@ -156,7 +170,9 @@ const Discography = () => {
           songs: [
             { _id: '16', title: 'Good Day', duration: '3:24', trackNumber: 1, playCount: 95000, likes: [] },
             { _id: '17', title: 'Choker', duration: '3:43', trackNumber: 2, playCount: 78000, likes: [] },
-            { _id: '18', title: 'Shy Away', duration: '2:55', trackNumber: 3, playCount: 67000, likes: [] }
+            { _id: '18', title: 'Shy Away', duration: '2:55', trackNumber: 3, playCount: 67000, likes: [] },
+            { _id: '19', title: 'The Outside', duration: '3:36', trackNumber: 4, playCount: 72000, likes: [] },
+            { _id: '20', title: 'Saturday', duration: '2:52', trackNumber: 5, playCount: 68000, likes: [] }
           ]
         }
       ]);
@@ -210,6 +226,21 @@ const Discography = () => {
     }
   };
 
+  const loadAlbumArts = async (albums) => {
+    const arts = { ...albumArts };
+
+    for (const album of albums) {
+      if (!album.coverImage && !arts[album._id]) {
+        const artUrl = await getAlbumArt(album.title, album.artist || 'Twenty One Pilots');
+        if (artUrl) {
+          arts[album._id] = artUrl;
+        }
+      }
+    }
+
+    setAlbumArts(arts);
+  };
+
   const handleAlbumClick = (album) => {
     setSelectedAlbumId(album._id);
   };
@@ -220,10 +251,6 @@ const Discography = () => {
 
   const handleFiltersChange = (newFilters) => {
     setFilters(prev => ({ ...prev, ...newFilters, page: 1 }));
-  };
-
-  const handleFilterChange = (newFilters) => {
-    setFilters(prev => ({ ...prev, ...newFilters, page: 1 })); // Reset page on filter change
   };
 
   const handlePageChange = (newPage) => {
@@ -308,8 +335,8 @@ const Discography = () => {
               style={{ cursor: 'pointer' }}
             >
               <div className="album-cover">
-                {album.coverImage ? (
-                  <img src={album.coverImage} alt={`${album.title} cover`} />
+                {(albumArts[album._id] || album.coverImage) ? (
+                  <img src={albumArts[album._id] || album.coverImage} alt={`${album.title} cover`} />
                 ) : (
                   <div className="no-cover">
                     <span>🎵</span>

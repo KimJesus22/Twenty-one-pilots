@@ -131,6 +131,14 @@ class DiscographyAPI {
     });
     return response;
   }
+
+  // Incrementar contador de reproducciones
+  async incrementPlayCount(type, id) {
+    const response = await this.request(`/${type}/${id}/play`, {
+      method: 'POST',
+    });
+    return response;
+  }
 }
 
 export default new DiscographyAPI();

@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 import discographyAPI from '../api/discography';
 import playlistsAPI from '../api/playlists';
+import { getAlbumArt } from '../utils/albumArt';
 import AudioPlayer from './AudioPlayer';
 import Spinner from './Spinner';
 import './AlbumDetail.css';
@@ -20,6 +21,7 @@ const AlbumDetail = ({ albumId, onClose, _onAddToPlaylist }) => {
   const [selectedSongForPlaylist, setSelectedSongForPlaylist] = useState(null);
   const [albumLiked, setAlbumLiked] = useState(false);
   const [songLikes, setSongLikes] = useState({});
+  const [albumArt, setAlbumArt] = useState(null);
 
   useEffect(() => {
     if (albumId) {
@@ -49,6 +51,16 @@ const AlbumDetail = ({ albumId, onClose, _onAddToPlaylist }) => {
 
         // Incrementar contador de vistas
         await discographyAPI.incrementPlayCount(albumId, 'albums');
+
+        // Cargar carátula si no tiene
+        if (!albumData.coverImage) {
+          const artUrl = await getAlbumArt(albumData.title, albumData.artist || 'Twenty One Pilots');
+          if (artUrl) {
+            setAlbumArt(artUrl);
+          }
+        } else {
+          setAlbumArt(albumData.coverImage);
+        }
       } else {
         throw new Error(response.message || 'Error cargando álbum');
       }
@@ -185,7 +197,9 @@ const AlbumDetail = ({ albumId, onClose, _onAddToPlaylist }) => {
   if (error || !album) {
     return (
       <div className="album-detail-modal">
-        <div className="modal-overlay" onClick={onClose}></div>
+        <div className="modal-overlay">
+          <div onClick={onClose} style={{ width: '100%', height: '100%' }}></div>
+        </div>
         <div className="modal-content error">
           <h2>Error</h2>
           <p>{error || 'Álbum no encontrado'}</p>
@@ -202,8 +216,8 @@ const AlbumDetail = ({ albumId, onClose, _onAddToPlaylist }) => {
         <div className="modal-content album-detail">
           <div className="album-header">
             <div className="album-cover-large">
-              {album.coverImage ? (
-                <img src={album.coverImage} alt={`${album.title} cover`} />
+              {(albumArt || album.coverImage) ? (
+                <img src={albumArt || album.coverImage} alt={`${album.title} cover`} />
               ) : (
                 <div className="no-cover-large">
                   <span>🎵</span>
@@ -322,7 +336,9 @@ const AlbumDetail = ({ albumId, onClose, _onAddToPlaylist }) => {
       {/* Modal para agregar a playlist */}
       {showPlaylistModal && selectedSongForPlaylist && (
         <div className="playlist-modal">
-          <div className="modal-overlay" onClick={() => setShowPlaylistModal(false)}></div>
+          <div className="modal-overlay">
+            <div onClick={() => setShowPlaylistModal(false)} style={{ width: '100%', height: '100%' }}></div>
+          </div>
           <div className="modal-content">
             <h3>Agregar "{selectedSongForPlaylist.title}" a playlist</h3>
             <div className="playlists-list">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import LanguageSelector from './LanguageSelector';
 
 const Navbar = () => {
   const location = useLocation();
@@ -58,19 +59,22 @@ const Navbar = () => {
           ))}
         </div>
 
-        <Link
-          to="/login"
-          style={{
-            backgroundColor: '#ff0000',
-            color: '#000000',
-            padding: '0.5rem 1rem',
-            textDecoration: 'none',
-            borderRadius: '4px',
-            fontWeight: 'bold'
-          }}
-        >
-          Login
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <LanguageSelector />
+          <Link
+            to="/login"
+            style={{
+              backgroundColor: '#ff0000',
+              color: '#000000',
+              padding: '0.5rem 1rem',
+              textDecoration: 'none',
+              borderRadius: '4px',
+              fontWeight: 'bold'
+            }}
+          >
+            Login
+          </Link>
+        </div>
       </div>
     </nav>
   );

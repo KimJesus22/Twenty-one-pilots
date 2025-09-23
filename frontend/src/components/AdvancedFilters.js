@@ -11,6 +11,7 @@ const AdvancedFilters = ({
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(showAdvanced);
 
   const handleInputChange = (field, value) => {
+    console.log('Input change:', field, value);
     onFiltersChange({ [field]: value });
   };
 
@@ -54,13 +55,25 @@ const AdvancedFilters = ({
         {/* Filtros básicos siempre visibles */}
         <div className="basic-filters">
           <div className="filter-group">
-            <input
-              type="text"
-              placeholder="Buscar álbumes o canciones..."
-              value={filters.search}
-              onChange={(e) => handleInputChange('search', e.target.value)}
-              className="search-input"
-            />
+            <form onSubmit={(e) => e.preventDefault()} className="search-container">
+              <input
+                type="text"
+                placeholder="Buscar álbumes o canciones..."
+                value={filters.search}
+                onChange={(e) => handleInputChange('search', e.target.value)}
+                className="search-input"
+              />
+              <button
+                type="button"
+                className="search-btn"
+                onClick={() => {
+                  // Forzar búsqueda si es necesario
+                  handleInputChange('search', filters.search);
+                }}
+              >
+                🔍
+              </button>
+            </form>
           </div>
 
           <div className="filter-group">

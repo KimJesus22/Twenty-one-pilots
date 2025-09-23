@@ -53,7 +53,39 @@
   color: #555;
 }
 
-.search-input, .filter-group select, .filter-group input[type="number"] {
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-input {
+  padding: 8px 40px 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 200px;
+  flex: 1;
+}
+
+.search-btn {
+  position: absolute;
+  right: 4px;
+  background: #1db954;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.search-btn:hover {
+  background: #1aa34a;
+}
+
+.filter-group select, .filter-group input[type="number"] {
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
