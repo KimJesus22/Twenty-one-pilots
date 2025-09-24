@@ -9,6 +9,7 @@ echo "Building frontend for production..."
 
 # Set production environment variables
 export REACT_APP_API_URL="https://34.51.90.100/api"
+export NODE_OPTIONS="--max-old-space-size=4096"
 
 # Navigate to frontend directory
 cd /home/adrianceron5852/Twenty-one-pilots/frontend
