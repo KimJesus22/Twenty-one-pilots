@@ -7,8 +7,18 @@ set -e
 
 echo "Building frontend for legacy Node.js..."
 
-# Check Node version
+# Check Node version (prefer nvm if available)
+if command -v nvm &> /dev/null; then
+    echo "Loading nvm..."
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    nvm use 18 2>/dev/null || nvm use 22 2>/dev/null || nvm use default 2>/dev/null
+fi
+
 NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
+echo "Using Node.js version: $(node -v)"
+
 if [ "$NODE_VERSION" -lt 14 ]; then
     echo "Warning: Node.js version $NODE_VERSION detected. Some features may not work."
     echo "Consider upgrading to Node.js 18+ for full compatibility."
