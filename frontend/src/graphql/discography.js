@@ -49,11 +49,11 @@ export const GET_ALBUM_DETAILS = gql`
       rating
       ratingCount
       ratingDistribution {
-        one: 1
-        two: 2
-        three: 3
-        four: 4
-        five: 5
+        one
+        two
+        three
+        four
+        five
       }
       commentCount
       avgCommentRating
@@ -143,11 +143,11 @@ export const RATE_ALBUM = gql`
         rating
         ratingCount
         ratingDistribution {
-          one: 1
-          two: 2
-          three: 3
-          four: 4
-          five: 5
+          one
+          two
+          three
+          four
+          five
         }
       }
     }

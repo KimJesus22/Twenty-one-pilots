@@ -8,6 +8,14 @@ export function useWishlist() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [stats, setStats] = useState({});
+  const [filters, setFilters] = useState({
+    minPrice: 0,
+    maxPrice: Infinity,
+    category: 'all',
+    sortBy: 'addedAt',
+    sortOrder: 'desc'
+  });
+  const [recommendations, setRecommendations] = useState([]);
 
   // Cargar wishlist cuando el usuario cambie
   useEffect(() => {

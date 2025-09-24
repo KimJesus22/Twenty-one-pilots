@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import useAccessibility from '../hooks/useAccessibility';
 import './CookieBanner.css';
 
@@ -13,7 +12,6 @@ const CookieBanner = () => {
     functional: false
   });
 
-  const navigate = useNavigate();
   const {
     announceToScreenReader,
     announceSuccess,
@@ -116,7 +114,7 @@ const CookieBanner = () => {
   };
 
   const handlePrivacyPolicyClick = () => {
-    navigate('/privacy-policy');
+    window.location.href = '/privacy-policy';
     setIsVisible(false);
   };
 
