@@ -139,14 +139,15 @@
 
 .demo-accounts h3 {
   margin: 0 0 15px 0;
-  color: #333;
+  color: #000000; /* Mejor contraste */
 }
 
 .demo-account {
   margin: 5px 0;
-  color: #666;
+  color: #000000; /* Mejor contraste */
 }
 
 .demo-account strong {
-  color: #1976d2;
+  color: #000000; /* Mejor contraste, usar negro en lugar de azul */
+  font-weight: bold;
 }

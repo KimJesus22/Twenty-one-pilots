@@ -108,42 +108,35 @@ app.use('/api/auth/', authLimiter);
 
 // CORS habilitado para desarrollo
 app.use(cors({
-  origin: true, // Permitir todos los orígenes por ahora
+  origin: function (origin, callback) {
+    // Permitir requests sin origin (como mobile apps o curl)
+    if (!origin) return callback(null, true);
+
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
+      'https://localhost:3000',
+      'https://127.0.0.1:3000'
+    ];
+
+    // En producción, agregar el dominio real
+    if (process.env.NODE_ENV === 'production' && process.env.FRONTEND_URL) {
+      allowedOrigins.push(process.env.FRONTEND_URL);
+    }
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      console.warn('Origen no permitido detectado:', { origin, ip: origin });
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   exposedHeaders: ['X-Total-Count', 'X-Rate-Limit-Remaining'],
   maxAge: 86400 // 24 horas
 }));
-//   origin: function (origin, callback) {
-//     // Permitir requests sin origin (como mobile apps o curl)
-//     if (!origin) return callback(null, true);
-
-//     const allowedOrigins = [
-//       'http://localhost:3000',
-//       'http://127.0.0.1:3000',
-//       'https://localhost:3000',
-//       'https://127.0.0.1:3000'
-//     ];
-
-//     // En producción, agregar el dominio real
-//     if (process.env.NODE_ENV === 'production' && process.env.FRONTEND_URL) {
-//       allowedOrigins.push(process.env.FRONTEND_URL);
-//     }
-
-//     if (allowedOrigins.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       logger.warn('Origen no permitido detectado:', { origin, ip: origin });
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-//   credentials: true,
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-//   exposedHeaders: ['X-Total-Count', 'X-Rate-Limit-Remaining'],
-//   maxAge: 86400 // 24 horas
-// }));
 
 app.use(express.json({ limit: '10mb' })); // Limitar tamaño de payload
 
@@ -285,22 +278,6 @@ app.get('/', (req, res) => {
   res.json({ message: 'Bienvenido a la API de Twenty One Pilots' });
 });
 
-// Endpoint público para login (sin prefijo /api/auth)
-app.post('/login', async (req, res) => {
-  try {
-    // Reenviar la solicitud al controlador de auth
-    const authController = require('./controllers/authController');
-    req.url = '/login'; // Cambiar la URL para que coincida con la ruta esperada
-    return authController.login(req, res);
-  } catch (error) {
-    console.error('Error en /login:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
-
 // Endpoint de métricas de rendimiento y seguridad - temporalmente deshabilitado
 // app.get('/api/metrics', metricsEndpoint);
 
@@ -437,6 +414,28 @@ app.get('/api/health', (req, res) => {
 
 // Usar rutas
 app.use('/api/auth', authRoutes);
+
+// Endpoint público para login (sin prefijo /api/auth) - debe ir después de las rutas montadas
+app.post('/login', async (req, res) => {
+  try {
+    // Reenviar la solicitud al controlador de auth
+    const authController = require('./controllers/authController');
+    // Crear un nuevo request object con la URL correcta
+    const originalUrl = req.url;
+    req.url = '/login';
+    const result = await authController.login(req, res);
+    req.url = originalUrl; // Restaurar la URL original
+    return result;
+  } catch (error) {
+    console.error('Error en /login:', error);
+    if (!res.headersSent) {
+      res.status(500).json({
+        success: false,
+        message: 'Error interno del servidor'
+      });
+    }
+  }
+});
 app.use('/api/discography', discographyRoutes);
 app.use('/api/videos', videosRoutes);
 app.use('/api/concerts', concertsRoutes);

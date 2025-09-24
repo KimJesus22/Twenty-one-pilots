@@ -120,14 +120,14 @@ const Login = () => {
   };
 
   return (
-    <div className="login" role="main" aria-labelledby="login-title">
+    <div className="login" aria-labelledby="login-title">
       <div className="login-container">
-        <header className="login-header">
+        <div className="login-header">
           <h1 id="login-title">{isLogin ? t('auth.login') : t('auth.register')}</h1>
           <p id="login-subtitle" className="sr-only">
             {isLogin ? t('auth.loginSubtitle') : t('auth.registerSubtitle')}
           </p>
-        </header>
+        </div>
 
         <form
           onSubmit={handleSubmit(onSubmit)}
