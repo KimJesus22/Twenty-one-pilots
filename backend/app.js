@@ -6,17 +6,56 @@ const rateLimit = require('express-rate-limit');
 const expressSanitizer = require('express-sanitizer');
 const dotenv = require('dotenv');
 const { validationResult } = require('express-validator');
-const logger = require('./utils/logger');
 const crypto = require('crypto');
 
+// Intentar cargar logger
+let logger;
+try {
+  logger = require('./utils/logger');
+  console.log('Logger loaded successfully');
+} catch (error) {
+  console.error('Error loading logger:', error.message);
+  logger = console; // Fallback a console
+}
+
 // Importar Apollo Server para GraphQL
+console.log('Loading GraphQL...');
 const { ApolloServer } = require('@apollo/server');
-const { expressMiddleware } = require('@apollo/server/express4');
-const typeDefs = require('./graphql/types');
-const resolvers = require('./graphql/resolvers');
+console.log('ApolloServer loaded');
+
+let expressMiddleware;
+try {
+  expressMiddleware = require('@apollo/server/express4').expressMiddleware;
+  console.log('expressMiddleware loaded');
+} catch (error) {
+  console.error('Error loading expressMiddleware:', error.message);
+  expressMiddleware = null;
+}
+
+// Intentar cargar GraphQL types
+let typeDefs;
+try {
+  typeDefs = require('./graphql/types');
+  console.log('typeDefs loaded');
+} catch (error) {
+  console.error('Error loading GraphQL types:', error.message);
+  typeDefs = null;
+}
+
+// Intentar cargar GraphQL resolvers
+let resolvers;
+try {
+  resolvers = require('./graphql/resolvers');
+  console.log('resolvers loaded');
+} catch (error) {
+  console.error('Error loading GraphQL resolvers:', error.message);
+  resolvers = null;
+}
 
 // Importar configuración de Swagger
+console.log('Loading Swagger...');
 const setupSwagger = require('./swagger');
+console.log('setupSwagger loaded');
 
 console.log('🚀 Iniciando app.js...');
 
@@ -198,26 +237,48 @@ if (process.env.MONGO_URI) {
 }
 
 // Rutas
+console.log('Loading routes...');
 const authRoutes = require('./routes/auth');
+console.log('authRoutes loaded');
 const videosRoutes = require('./routes/videoRoutes');
+console.log('videosRoutes loaded');
 const concertsRoutes = require('./routes/concerts');
+console.log('concertsRoutes loaded');
 const spotifyRoutes = require('./routes/spotify');
+console.log('spotifyRoutes loaded');
 const discographyRoutes = require('./routes/discography');
+console.log('discographyRoutes loaded');
 const forumRoutes = require('./routes/forum');
+console.log('forumRoutes loaded');
 const playlistsRoutes = require('./routes/playlists');
+console.log('playlistsRoutes loaded');
 const storeRoutes = require('./routes/store');
+console.log('storeRoutes loaded');
 const eventsRoutes = require('./routes/events');
+console.log('eventsRoutes loaded');
 const adminRoutes = require('./routes/admin');
+console.log('adminRoutes loaded');
 const monitoringRoutes = require('./routes/monitoring');
+console.log('monitoringRoutes loaded');
 const favoritesRoutes = require('./routes/favorites');
+console.log('favoritesRoutes loaded');
 const notificationsRoutes = require('./routes/notifications');
+console.log('notificationsRoutes loaded');
 const lyricsRoutes = require('./routes/lyrics');
+console.log('lyricsRoutes loaded');
 const mapsRoutes = require('./routes/maps');
+console.log('mapsRoutes loaded');
 const musicRatingsRoutes = require('./routes/musicRatings');
+console.log('musicRatingsRoutes loaded');
 const musicCommentsRoutes = require('./routes/musicComments');
+console.log('musicCommentsRoutes loaded');
 const albumMetricsRoutes = require('./routes/albumMetrics');
+console.log('albumMetricsRoutes loaded');
 const wishlistRoutes = require('./routes/wishlist');
+console.log('wishlistRoutes loaded');
 const ticketsRoutes = require('./routes/tickets');
+console.log('ticketsRoutes loaded');
+console.log('All routes loaded');
 
 // Rutas básicas
 app.get('/', (req, res) => {
@@ -382,6 +443,11 @@ app.use('/api/admin', adminRoutes);
 
 // Configurar Apollo Server para GraphQL
 async function startApolloServer() {
+  if (!typeDefs || !resolvers || !expressMiddleware) {
+    console.log('⚠️ GraphQL no disponible: faltan dependencias (typeDefs, resolvers o expressMiddleware)');
+    return;
+  }
+
   const server = new ApolloServer({
     typeDefs,
     resolvers,

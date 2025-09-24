@@ -17469,3 +17469,2691 @@ TypeError: nodemailer.createTransporter is not a function
     }
   ]
 }
+2025-09-24 15:38:46 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:38:46 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 21272,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 87171072,
+      "heapTotal": 58511360,
+      "heapUsed": 37031368,
+      "external": 20592807,
+      "arrayBuffers": 18264303
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260295.203
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:38:54 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:38:54 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 7428,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 84459520,
+      "heapTotal": 58781696,
+      "heapUsed": 37654464,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260303.265
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:41:08 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:41:08 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 9892,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 86188032,
+      "heapTotal": 58781696,
+      "heapUsed": 37722384,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260437.031
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:42:18 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:42:18 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 10336,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 85811200,
+      "heapTotal": 58519552,
+      "heapUsed": 37962088,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260507.109
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:43:10 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:43:10 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 3768,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 88244224,
+      "heapTotal": 58519552,
+      "heapUsed": 37705632,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260559.453
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:43:24 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:43:24 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 5940,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 88096768,
+      "heapTotal": 58781696,
+      "heapUsed": 37793168,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260573.046
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:47:40 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:47:40 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 18720,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 87195648,
+      "heapTotal": 58519552,
+      "heapUsed": 37641168,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260829.14
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:48:23 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:48:23 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 2636,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 86237184,
+      "heapTotal": 60616704,
+      "heapUsed": 35804224,
+      "external": 20717047,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260872.656
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:48:23 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:48:23 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 14544,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 85762048,
+      "heapTotal": 58519552,
+      "heapUsed": 37715432,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260872.671
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:49:24 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:49:24 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 12876,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 88068096,
+      "heapTotal": 58519552,
+      "heapUsed": 37732288,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260933.296
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:49:24 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:49:24 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 1772,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 85336064,
+      "heapTotal": 58519552,
+      "heapUsed": 37540672,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260933.296
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:50:11 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:50:11 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 17372,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 85504000,
+      "heapTotal": 58519552,
+      "heapUsed": 37706616,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260980.515
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:50:11 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:50:11 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 21860,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 85966848,
+      "heapTotal": 58519552,
+      "heapUsed": 37801800,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260980.515
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:50:23 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:50:23 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 1340,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 85639168,
+      "heapTotal": 58519552,
+      "heapUsed": 37568824,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260992.421
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:50:23 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:50:23 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 19796,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 87625728,
+      "heapTotal": 58519552,
+      "heapUsed": 37724000,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 260992.453
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:50:35 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:50:35 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 19648,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 85950464,
+      "heapTotal": 58519552,
+      "heapUsed": 37844712,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 261004.234
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:50:35 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:50:35 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 10052,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 85360640,
+      "heapTotal": 58781696,
+      "heapUsed": 37518736,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 261004.25
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:50:47 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:50:47 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 1496,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 85827584,
+      "heapTotal": 58519552,
+      "heapUsed": 37845464,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 261016.109
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:50:47 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:50:47 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 6756,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 87257088,
+      "heapTotal": 58519552,
+      "heapUsed": 37523664,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 261016.125
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:51:08 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in c:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:51:08 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 4112,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 85536768,
+      "heapTotal": 58781696,
+      "heapUsed": 37511752,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 261036.89
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-24 15:51:08 [31merror[39m: [31muncaughtException: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31mError [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by "exports" in C:\Users\gomez\Documents\TOP\backend\node_modules\@apollo\server\package.json[39m
+[31m    at exportsNotFound (node:internal/modules/esm/resolve:313:10)[39m
+[31m    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)[39m
+[31m    at resolveExports (node:internal/modules/cjs/loader:646:36)[39m
+[31m    at Function._findPath (node:internal/modules/cjs/loader:713:31)[39m
+[31m    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)[39m
+[31m    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)[39m
+[31m    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1175:37)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m {
+  "error": {
+    "code": "ERR_PACKAGE_PATH_NOT_EXPORTED"
+  },
+  "stack": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './express4' is not defined by \"exports\" in C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\@apollo\\server\\package.json\n    at exportsNotFound (node:internal/modules/esm/resolve:313:10)\n    at packageExportsResolve (node:internal/modules/esm/resolve:660:9)\n    at resolveExports (node:internal/modules/cjs/loader:646:36)\n    at Function._findPath (node:internal/modules/cjs/loader:713:31)\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1351:27)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)\n    at Function._load (node:internal/modules/cjs/loader:1175:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)",
+  "exception": true,
+  "date": "Wed Sep 24 2025 15:51:08 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 19292,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 85790720,
+      "heapTotal": 58519552,
+      "heapUsed": 37880528,
+      "external": 20717048,
+      "arrayBuffers": 18264479
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 261036.906
+  },
+  "trace": [
+    {
+      "column": 10,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "exportsNotFound",
+      "line": 313,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 9,
+      "file": "node:internal/modules/esm/resolve",
+      "function": "packageExportsResolve",
+      "line": 660,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 36,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveExports",
+      "line": 646,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 31,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._findPath",
+      "line": 713,
+      "method": "_findPath",
+      "native": false
+    },
+    {
+      "column": 27,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._resolveFilename",
+      "line": 1351,
+      "method": "_resolveFilename",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "defaultResolveImpl",
+      "line": 1021,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 22,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "resolveForCJSWithHooks",
+      "line": 1026,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 37,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1175,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    }
+  ]
+}
