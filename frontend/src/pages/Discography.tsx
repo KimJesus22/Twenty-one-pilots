@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client/react';
 import AlbumDetail from '../components/AlbumDetail';
 import AdvancedFilters from '../components/AdvancedFilters';
 import StarRating from '../components/StarRating';
@@ -39,10 +39,10 @@ const Discography: React.FC = () => {
     search: '',
     genre: '',
     type: '',
-    minYear: undefined,
-    maxYear: undefined,
-    minPopularity: undefined,
-    maxPopularity: undefined
+    minYear: '',
+    maxYear: '',
+    minPopularity: '',
+    maxPopularity: ''
   });
   const [genres] = useState<string[]>(['rock', 'alternative', 'indie', 'pop', 'electronic', 'other']);
   const [types] = useState<string[]>(['album', 'ep', 'single', 'compilation', 'live']);
@@ -50,7 +50,7 @@ const Discography: React.FC = () => {
   const [showComments, setShowComments] = useState<Record<string, boolean>>({});
 
   // Query GraphQL para obtener álbumes con filtros optimizados
-  const { data: albumsData, loading: albumsLoading, error: albumsError, refetch: refetchAlbums } = useQuery(GET_ALBUMS_LIST, {
+  const { data: albumsData, loading: albumsLoading, error: albumsError, refetch: refetchAlbums } = useQuery<AlbumsResponse>(GET_ALBUMS_LIST, {
     variables: {
       filters: {
         ...filters,
@@ -66,16 +66,16 @@ const Discography: React.FC = () => {
   });
 
   // Query para estadísticas
-  const { data: statsData } = useQuery(GET_ALBUM_STATS);
+  const { data: statsData } = useQuery<{ albumStats: AlbumStats }>(GET_ALBUM_STATS);
 
   // Mutations para ratings y comentarios
-  const [rateAlbum] = useMutation(RATE_ALBUM);
-  const [addAlbumComment] = useMutation(ADD_ALBUM_COMMENT);
+  const [rateAlbum] = useMutation<{ rateAlbum: RateAlbumResponse }>(RATE_ALBUM);
+  const [addAlbumComment] = useMutation<{ addAlbumComment: AddAlbumCommentResponse }>(ADD_ALBUM_COMMENT);
 
   // Cargar carátulas cuando se obtienen los álbumes
   useEffect(() => {
-    if (albumsData?.albums?.albums) {
-      loadAlbumArts(albumsData.albums.albums);
+    if (albumsData?.albums) {
+      loadAlbumArts(albumsData.albums);
     }
   }, [albumsData]);
 
@@ -206,19 +206,19 @@ const Discography: React.FC = () => {
       <AdvancedFilters
         filters={filters}
         onFiltersChange={handleFiltersChange}
-        genres={genres}
-        types={types}
+        genres={genres as any}
+        types={types as any}
         showAdvanced={true}
       />
 
       <div className="albums-grid">
-        {albumsData?.albums?.albums?.length === 0 ? (
+        {albumsData?.albums?.length === 0 ? (
           <div className="no-albums">
             <h3>No hay álbumes disponibles</h3>
             <p>Los álbumes aparecerán aquí cuando estén disponibles.</p>
           </div>
         ) : (
-          albumsData?.albums?.albums?.map(album => (
+          albumsData?.albums?.map((album: Album) => (
             <div
               key={album.id}
               className="album-card"
@@ -260,6 +260,8 @@ const Discography: React.FC = () => {
                           size="small"
                           interactive={false}
                           showValue={false}
+                          onRatingChange={() => {}}
+                          onRatingSubmit={() => {}}
                         />
                         <span className="rating-text">
                           {album.rating.toFixed(1)} ({album.ratingCount} votos)
@@ -271,7 +273,8 @@ const Discography: React.FC = () => {
                     <StarRating
                       initialRating={0} // TODO: Implementar rating del usuario actual
                       size="small"
-                      onRatingChange={(rating) => handleRatingChange(album.id, rating)}
+                      onRatingChange={(rating: number) => handleRatingChange(album.id, rating)}
+                      onRatingSubmit={() => {}}
                       showValue={false}
                     />
                     <button
@@ -302,24 +305,24 @@ const Discography: React.FC = () => {
         )}
       </div>
 
-      {albumsData?.albums?.albums?.length > 0 && albumsData?.albums?.pagination?.pages > 1 && (
+      {albumsData && albumsData.albums && albumsData.albums.length > 0 && albumsData.pagination && albumsData.pagination.pages > 1 && (
         <div className="pagination">
           <button
-            onClick={() => handlePageChange(albumsData.albums.pagination.page - 1)}
-            disabled={albumsData.albums.pagination.page === 1}
+            onClick={() => handlePageChange(albumsData.pagination.page - 1)}
+            disabled={albumsData.pagination.page === 1}
             className="btn btn-secondary"
           >
             Anterior
           </button>
 
           <span className="page-info">
-            Página {albumsData.albums.pagination.page} de {albumsData.albums.pagination.pages}
-            ({albumsData.albums.pagination.total} álbumes)
+            Página {albumsData.pagination.page} de {albumsData.pagination.pages}
+            ({albumsData.pagination.total} álbumes)
           </span>
 
           <button
-            onClick={() => handlePageChange(albumsData.albums.pagination.page + 1)}
-            disabled={albumsData.albums.pagination.page === albumsData.albums.pagination.pages}
+            onClick={() => handlePageChange(albumsData.pagination.page + 1)}
+            disabled={albumsData.pagination.page === albumsData.pagination.pages}
             className="btn btn-secondary"
           >
             Siguiente

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
 import './index.css';
 import './styles/accessibility.css'; // Estilos de accesibilidad
 import App from './App';

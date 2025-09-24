@@ -24,10 +24,10 @@ export interface AlbumFilters {
   search?: string;
   genre?: string;
   type?: string;
-  minYear?: number;
-  maxYear?: number;
-  minPopularity?: number;
-  maxPopularity?: number;
+  minYear?: string;
+  maxYear?: string;
+  minPopularity?: string;
+  maxPopularity?: string;
   artist?: string;
 }
 

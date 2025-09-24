@@ -74,6 +74,7 @@
 - ✅ **README.md**: Documentación principal
 - ✅ **docs/ARCHITECTURE.md**: Arquitectura detallada
 - ✅ **docs/API_DOCUMENTATION.md**: API completa
+- ✅ **docs/FORUM_PLAYLISTS_SYSTEM.md**: Sistema de playlists y foro completo
 - ✅ **frontend/src/components/YouTubePlayer.README.md**: Componente detallado
 - ✅ **CHANGELOG.md**: Historial de cambios
 

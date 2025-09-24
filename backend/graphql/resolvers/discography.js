@@ -281,7 +281,7 @@ async function updateAlbumRatingStats(albumId, oldRating, newRating) {
   if (ratings.length === 0) {
     album.rating = 0;
     album.ratingCount = 0;
-    album.ratingDistribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+    album.ratingDistribution = { one: 0, two: 0, three: 0, four: 0, five: 0 };
   } else {
     // Calcular promedio
     const totalRating = ratings.reduce((sum, r) => sum + r.rating, 0);
@@ -293,7 +293,13 @@ async function updateAlbumRatingStats(albumId, oldRating, newRating) {
     ratings.forEach(r => {
       distribution[r.rating] = (distribution[r.rating] || 0) + 1;
     });
-    album.ratingDistribution = distribution;
+    album.ratingDistribution = {
+      one: distribution[1],
+      two: distribution[2],
+      three: distribution[3],
+      four: distribution[4],
+      five: distribution[5]
+    };
   }
 
   await album.save();

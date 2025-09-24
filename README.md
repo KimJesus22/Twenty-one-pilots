@@ -229,6 +229,7 @@ cd frontend && npm run build && npm run serve
 - **[Sistema de Caché y Queue](docs/CACHING_QUEUE_SYSTEM.md)** - Optimización de performance
 - **[Integración de Dependencias](docs/DEPENDENCY_INTEGRATION.md)** - Gestión de paquetes
 - **[Sistema de Favoritos y Notificaciones](docs/FAVORITES_NOTIFICATIONS_SYSTEM.md)** - Funcionalidades sociales
+- **[Sistema de Playlists y Foro](docs/FORUM_PLAYLISTS_SYSTEM.md)** - Playlists personalizadas y foro interactivo
 
 ### 📚 API Documentation
 

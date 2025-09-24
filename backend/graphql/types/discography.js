@@ -62,11 +62,11 @@ const discographyTypeDefs = gql`
   }
 
   type RatingDistribution {
-    1: Int
-    2: Int
-    3: Int
-    4: Int
-    5: Int
+    one: Int
+    two: Int
+    three: Int
+    four: Int
+    five: Int
   }
 
   # Tipos principales

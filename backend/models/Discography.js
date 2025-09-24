@@ -72,11 +72,11 @@ const albumSchema = new mongoose.Schema({
   rating: { type: Number, default: 0, min: 0, max: 5 }, // Rating promedio
   ratingCount: { type: Number, default: 0 }, // Número total de ratings
   ratingDistribution: {
-    1: { type: Number, default: 0 },
-    2: { type: Number, default: 0 },
-    3: { type: Number, default: 0 },
-    4: { type: Number, default: 0 },
-    5: { type: Number, default: 0 }
+    one: { type: Number, default: 0 },
+    two: { type: Number, default: 0 },
+    three: { type: Number, default: 0 },
+    four: { type: Number, default: 0 },
+    five: { type: Number, default: 0 }
   },
 
   // Sistema de comentarios/reseñas
