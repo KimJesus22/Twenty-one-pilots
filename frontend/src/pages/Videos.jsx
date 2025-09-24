@@ -182,7 +182,7 @@ const Videos = () => {
     // Fallback con datos reales mínimos pero válidos
     const fallbackVideos = [
       {
-        id: { videoId: 'UprcpdwuwCg' },
+        id: 'UprcpdwuwCg',
         title: 'Twenty One Pilots - Stressed Out',
         description: 'Video oficial de Twenty One Pilots',
         thumbnail: 'https://img.youtube.com/vi/UprcpdwuwCg/mqdefault.jpg',
@@ -190,7 +190,7 @@ const Videos = () => {
         channelTitle: 'Fueled By Ramen'
       },
       {
-        id: { videoId: 'hTWKbfoikeg' },
+        id: 'hTWKbfoikeg',
         title: 'Twenty One Pilots - Heathens',
         description: 'Video oficial de Twenty One Pilots',
         thumbnail: 'https://img.youtube.com/vi/hTWKbfoikeg/mqdefault.jpg',
