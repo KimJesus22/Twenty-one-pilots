@@ -62,10 +62,10 @@ code {
   border-radius: 3px;
 }
 
-/* Button styles - minimalista */
+/* Button styles - minimalista con mejor contraste */
 .btn {
   padding: 0.6rem 1.2rem;
-  border: 1px solid #ff0000;
+  border: 2px solid #ff0000;
   border-radius: 0;
   background-color: transparent;
   color: #ff0000;
@@ -76,35 +76,44 @@ code {
   letter-spacing: 1px;
   transition: all 0.2s ease;
   font-family: 'Arial', sans-serif;
+  /* Mejor contraste: borde más grueso */
 }
 
 .btn:hover {
   background-color: #ff0000;
   color: #000000;
+  border-color: #ff0000;
+}
+
+.btn:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
 
 .btn-primary {
   background-color: #ff0000;
   color: #000000;
-  border: 1px solid #ff0000;
+  border: 2px solid #ff0000;
+  /* Alto contraste: rojo brillante sobre negro */
 }
 
 .btn-primary:hover {
-  background-color: #000000;
-  color: #ff0000;
-  border: 1px solid #ff0000;
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
 }
 
 .btn-secondary {
   background-color: transparent;
   color: #ffffff;
-  border: 1px solid #ffffff;
+  border: 2px solid #ffffff;
+  /* Alto contraste: blanco sobre negro */
 }
 
 .btn-secondary:hover {
   background-color: #ffffff;
   color: #000000;
-  border: 1px solid #ffffff;
+  border-color: #ffffff;
 }
 
 .btn:disabled {

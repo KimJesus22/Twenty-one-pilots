@@ -100,7 +100,14 @@
   "language": {
     "select": "Select language",
     "english": "English",
-    "spanish": "Spanish"
+    "spanish": "Spanish",
+    "french": "French"
+  },
+  "currency": {
+    "usd": "US Dollar",
+    "eur": "Euro",
+    "gbp": "British Pound",
+    "select": "Select currency"
   },
   "auth": {
     "login": "Login",

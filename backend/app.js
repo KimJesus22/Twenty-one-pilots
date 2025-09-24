@@ -285,6 +285,22 @@ app.get('/', (req, res) => {
   res.json({ message: 'Bienvenido a la API de Twenty One Pilots' });
 });
 
+// Endpoint público para login (sin prefijo /api/auth)
+app.post('/login', async (req, res) => {
+  try {
+    // Reenviar la solicitud al controlador de auth
+    const authController = require('./controllers/authController');
+    req.url = '/login'; // Cambiar la URL para que coincida con la ruta esperada
+    return authController.login(req, res);
+  } catch (error) {
+    console.error('Error en /login:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error interno del servidor'
+    });
+  }
+});
+
 // Endpoint de métricas de rendimiento y seguridad - temporalmente deshabilitado
 // app.get('/api/metrics', metricsEndpoint);
 

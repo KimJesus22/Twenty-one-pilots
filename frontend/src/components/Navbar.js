@@ -16,6 +16,7 @@ const Navbar = () => {
     { path: '/discography', label: 'Discografía' },
     { path: '/videos', label: 'Videos' },
     { path: '/playlists', label: 'Playlists' },
+    { path: '/spotify', label: 'Spotify' },
     { path: '/album-metrics', label: 'Métricas' },
     { path: '/concerts', label: 'Conciertos' },
     { path: '/forum', label: 'Foro' },

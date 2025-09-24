@@ -45,6 +45,11 @@ export const axeConfig = {
   reporter: 'v2'
 };
 
+// Lista de reglas habilitadas para axe.run
+export const enabledRules = axeConfig.rules
+  .filter(rule => rule.enabled)
+  .map(rule => rule.id);
+
 // Función para inicializar axe en desarrollo
 export const initAxe = async () => {
   if (process.env.NODE_ENV === 'development') {
@@ -65,14 +70,25 @@ export const initAxe = async () => {
   }
 };
 
+// Semáforo para evitar ejecuciones concurrentes de axe
+let axeRunning = false;
+
 // Función para ejecutar análisis de accesibilidad manual
 export const runAccessibilityAudit = async (context = document) => {
   if (process.env.NODE_ENV === 'development') {
+    // Esperar si axe ya está corriendo
+    if (axeRunning) {
+      console.log('⏳ Axe is already running, waiting...');
+      return null;
+    }
+
+    axeRunning = true;
+
     try {
       const axe = await import('axe-core');
 
       const results = await axe.run(context, {
-        rules: axeConfig.rules
+        runOnly: enabledRules
       });
 
       console.group('🔍 Accessibility Audit Results');
@@ -101,6 +117,8 @@ export const runAccessibilityAudit = async (context = document) => {
     } catch (error) {
       console.error('❌ Accessibility audit failed:', error);
       return null;
+    } finally {
+      axeRunning = false;
     }
   }
 };

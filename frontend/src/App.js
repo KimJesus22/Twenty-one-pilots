@@ -26,6 +26,7 @@ import Admin from './pages/Admin';
 import AlbumMetrics from './pages/AlbumMetrics';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import DataRequests from './pages/DataRequests';
+import Profile from './pages/Profile';
 import CookieBanner from './components/CookieBanner';
 import AccessibilityAuditor from './components/AccessibilityAuditor';
 
@@ -64,6 +65,8 @@ function App() {
                     <Route path="/lyrics" element={<Lyrics />} />
                     <Route path="/maps" element={<Maps />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/user" element={<Profile />} />
+                    <Route path="/profile" element={<Profile />} />
                     <Route path="/admin" element={<Admin />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                     <Route path="/data-requests" element={<DataRequests />} />

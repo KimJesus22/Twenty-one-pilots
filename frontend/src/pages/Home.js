@@ -36,11 +36,10 @@ const Home = () => {
   };
 
   return (
-    <main className="home">
+    <div className="home">
       {/* Hero Section */}
       <section
         className="hero"
-        role="banner"
         aria-labelledby="hero-title"
       >
         <div className="hero-overlay" aria-hidden="true"></div>
@@ -238,7 +237,7 @@ const Home = () => {
           </div>
         </div>
       </footer>
-    </main>
+    </div>
   );
 };
 
