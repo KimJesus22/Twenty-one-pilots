@@ -188,4 +188,10 @@ router.post('/comments/:commentId/vote', [
   handleValidationErrors
 ], forumController.voteComment);
 
+// Tags y menciones
+router.get('/tags/popular', forumController.getPopularTags);
+router.get('/tags/search', forumController.searchByTags);
+router.get('/tags/suggestions', forumController.getTagSuggestions);
+router.get('/mentions/suggestions', forumController.getMentionSuggestions);
+
 module.exports = router;

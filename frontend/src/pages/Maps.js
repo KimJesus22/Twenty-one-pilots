@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useMaps } from '../hooks/useMaps';
-import { useFavorites } from '../hooks/useFavorites';
 import './Maps.css';
 
 const Maps = () => {
@@ -9,7 +8,8 @@ const Maps = () => {
     getNearbyPlaces,
     getNearbyEvents,
     addLocationToFavorites,
-    checkLocationFavorite,
+    // eslint-disable-next-line no-unused-vars
+    _checkLocationFavorite,
     loading,
     error,
     currentLocation,

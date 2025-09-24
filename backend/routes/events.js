@@ -2,6 +2,7 @@ const express = require('express');
 const { query, param, body } = require('express-validator');
 const eventController = require('../controllers/eventController');
 const authService = require('../services/authService');
+const ticketingService = require('../services/ticketingService');
 const logger = require('../utils/logger');
 
 const router = express.Router();
@@ -123,5 +124,153 @@ router.get('/:id/icalendar', [
 
 // Obtener estadísticas de eventos
 router.get('/stats/overview', eventController.getEventStats);
+
+// ===== RUTAS DE TICKETING =====
+
+// Buscar eventos con ticketing disponible
+router.get('/ticketing/search', [
+  query('query').optional().isString().withMessage('Query debe ser un string'),
+  query('location').optional().isString().withMessage('Location debe ser un string'),
+  query('limit').optional().isInt({ min: 1, max: 50 }).withMessage('Limit debe estar entre 1 y 50'),
+], async (req, res) => {
+  try {
+    const result = await ticketingService.searchEventsWithTickets(
+      req.query.query,
+      req.query.location,
+      { limit: req.query.limit }
+    );
+    res.json(result);
+  } catch (error) {
+    logger.error('Error buscando eventos con ticketing:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Obtener detalles de ticketing de un evento
+router.get('/:id/ticketing', [
+  param('id').isMongoId().withMessage('ID de evento inválido'),
+  query('provider').optional().isIn(['internal', 'eventbrite', 'ticketmaster']).withMessage('Provider inválido'),
+], async (req, res) => {
+  try {
+    const result = await ticketingService.getEventTicketingDetails(
+      req.params.id,
+      req.query.provider || 'internal'
+    );
+    res.json(result);
+  } catch (error) {
+    logger.error('Error obteniendo detalles de ticketing:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Obtener disponibilidad de asientos
+router.get('/:id/seats/availability', [
+  param('id').isMongoId().withMessage('ID de evento inválido'),
+  query('provider').optional().isIn(['internal', 'eventbrite', 'ticketmaster']).withMessage('Provider inválido'),
+], async (req, res) => {
+  try {
+    const result = await ticketingService.getSeatAvailability(
+      req.params.id,
+      req.query.provider || 'internal'
+    );
+    res.json(result);
+  } catch (error) {
+    logger.error('Error obteniendo disponibilidad de asientos:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Reservar asientos (requiere autenticación)
+router.post('/:id/seats/reserve', authService.authenticateToken, [
+  param('id').isMongoId().withMessage('ID de evento inválido'),
+  body('seats').isArray({ min: 1, max: 10 }).withMessage('Debe seleccionar entre 1 y 10 asientos'),
+  body('seats.*.section').isString().notEmpty().withMessage('Sección requerida'),
+  body('seats.*.row').isString().notEmpty().withMessage('Fila requerida'),
+  body('seats.*.seat').isString().notEmpty().withMessage('Asiento requerido'),
+  body('provider').optional().isIn(['internal', 'eventbrite', 'ticketmaster']).withMessage('Provider inválido'),
+], async (req, res) => {
+  try {
+    const result = await ticketingService.reserveSeats(
+      req.params.id,
+      req.body.seats,
+      req.user._id,
+      req.body.provider || 'internal'
+    );
+    res.json(result);
+  } catch (error) {
+    logger.error('Error reservando asientos:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Comprar tickets (requiere autenticación)
+router.post('/:id/tickets/purchase', authService.authenticateToken, [
+  param('id').isMongoId().withMessage('ID de evento inválido'),
+  body('reservationId').optional().isString().withMessage('ID de reserva inválido'),
+  body('paymentMethod').isIn(['paypal', 'mercadopago', 'stripe', 'bank_transfer', 'cash_on_delivery']).withMessage('Método de pago inválido'),
+  body('seats').optional().isArray().withMessage('Asientos deben ser un array'),
+], async (req, res) => {
+  try {
+    const result = await ticketingService.purchaseTickets(
+      req.body.reservationId,
+      req.body.paymentMethod,
+      req.user._id
+    );
+    res.json(result);
+  } catch (error) {
+    logger.error('Error comprando tickets:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Solicitar reembolso de tickets (requiere autenticación)
+router.post('/:id/tickets/refund', authService.authenticateToken, [
+  param('id').isMongoId().withMessage('ID de evento inválido'),
+  body('ticketIds').isArray({ min: 1 }).withMessage('Debe proporcionar al menos un ticket'),
+  body('ticketIds.*').isMongoId().withMessage('ID de ticket inválido'),
+  body('reason').isString().notEmpty().withMessage('Razón del reembolso requerida'),
+], async (req, res) => {
+  try {
+    const result = await ticketingService.refundTickets(
+      req.body.ticketIds,
+      req.body.reason,
+      req.user._id
+    );
+    res.json(result);
+  } catch (error) {
+    logger.error('Error procesando reembolso:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Validar ticket para entrada
+router.post('/:id/tickets/validate', [
+  param('id').isMongoId().withMessage('ID de evento inválido'),
+  body('ticketNumber').isString().notEmpty().withMessage('Número de ticket requerido'),
+], async (req, res) => {
+  try {
+    const result = await ticketingService.validateTicket(
+      req.body.ticketNumber,
+      req.params.id
+    );
+    res.json(result);
+  } catch (error) {
+    logger.error('Error validando ticket:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Obtener estadísticas de ticketing
+router.get('/:id/ticketing/stats', [
+  param('id').isMongoId().withMessage('ID de evento inválido'),
+], async (req, res) => {
+  try {
+    const result = await ticketingService.getTicketingStats(req.params.id);
+    res.json(result);
+  } catch (error) {
+    logger.error('Error obteniendo estadísticas de ticketing:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
 
 module.exports = router;

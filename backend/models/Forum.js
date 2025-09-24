@@ -14,6 +14,8 @@ const commentSchema = new mongoose.Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   thread: { type: mongoose.Schema.Types.ObjectId, ref: 'Thread', required: true },
   parentComment: { type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }, // Para respuestas anidadas
+  mentions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Usuarios mencionados
+  tags: [{ type: String, trim: true, lowercase: true }], // Tags extraídos del contenido
   votes: [voteSchema],
   voteCount: {
     likes: { type: Number, default: 0 },
@@ -35,7 +37,8 @@ const threadSchema = new mongoose.Schema({
     enum: ['general', 'music', 'concerts', 'merchandise', 'fan-art', 'questions', 'announcements'],
     default: 'general'
   },
-  tags: [{ type: String, trim: true, lowercase: true }],
+  tags: [{ type: String, trim: true, lowercase: true }], // Tags del contenido + tags manuales
+  mentions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Usuarios mencionados
   votes: [voteSchema],
   voteCount: {
     likes: { type: Number, default: 0 },

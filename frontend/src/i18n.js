@@ -5,6 +5,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 // Importar archivos de traducción
 import enTranslations from './translations/en.json';
 import esTranslations from './translations/es.json';
+import frTranslations from './translations/fr.json';
 
 const resources = {
   en: {
@@ -15,6 +16,9 @@ const resources = {
   },
   'es-MX': {
     translation: esTranslations, // Usar las mismas traducciones que 'es'
+  },
+  fr: {
+    translation: frTranslations,
   },
 };
 
@@ -34,6 +38,22 @@ i18n
       order: ['localStorage', 'navigator', 'htmlTag'],
       lookupLocalStorage: 'twentyOnePilots-language',
       caches: ['localStorage'],
+    },
+
+    // Configuración adicional para persistencia de divisa
+    interpolation: {
+      ...i18n.options.interpolation,
+      format: function(value, format, lng) {
+        if (format === 'currency') {
+          const currency = localStorage.getItem('twentyOnePilots-currency') || 'USD';
+          const formatter = new Intl.NumberFormat(lng, {
+            style: 'currency',
+            currency: currency,
+          });
+          return formatter.format(value);
+        }
+        return value;
+      }
     },
 
     react: {

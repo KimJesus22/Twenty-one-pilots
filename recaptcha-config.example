@@ -1,0 +1,107 @@
+# Twenty One Pilots - reCAPTCHA v3 Configuration Example
+# Copy this file to .env and replace with your actual reCAPTCHA keys
+
+# ==================================================
+# reCAPTCHA v3 Configuration
+# ==================================================
+
+# Get these keys from: https://www.google.com/recaptcha/admin/create
+# 1. Go to Google reCAPTCHA admin console
+# 2. Click "Create" button
+# 3. Select "reCAPTCHA v3"
+# 4. Add your domains (localhost for dev, yourdomain.com for prod)
+# 5. Copy the keys below
+
+# Secret Key (server-side only - keep this secure!)
+RECAPTCHA_SECRET_KEY=6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
+
+# Site Key (public - safe to expose in frontend)
+RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+
+# Minimum score threshold (0.0 to 1.0)
+# Recommended values:
+# - 0.9: Very strict (few false positives, more false negatives)
+# - 0.7: Strict (balanced security/usability)
+# - 0.5: Moderate (good default for most sites)
+# - 0.3: Lenient (more false positives, fewer false negatives)
+RECAPTCHA_MINIMUM_SCORE=0.5
+
+# ==================================================
+# Advanced Configuration (Optional)
+# ==================================================
+
+# Enable/disable reCAPTCHA globally
+RECAPTCHA_ENABLED=true
+
+# Rate limiting for failed verifications
+RECAPTCHA_RATE_LIMIT_WINDOW_MS=900000  # 15 minutes
+RECAPTCHA_RATE_LIMIT_MAX_ATTEMPTS=5    # Max failures per window
+
+# Monitoring and alerting
+RECAPTCHA_ENABLE_MONITORING=true
+RECAPTCHA_ALERT_HIGH_FAILURE_RATE=0.2  # Alert if >20% failure rate
+RECAPTCHA_ALERT_LOW_AVERAGE_SCORE=0.6  # Alert if avg score <0.6
+
+# ==================================================
+# Development Settings
+# ==================================================
+
+# Disable reCAPTCHA in development (NOT recommended for production)
+# RECAPTCHA_ENABLED=false
+
+# Use test keys for development (these always return score 0.9)
+# RECAPTCHA_SECRET_KEY=6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
+# RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+
+# ==================================================
+# Setup Instructions
+# ==================================================
+
+# 1. Get your keys from Google reCAPTCHA:
+#    https://www.google.com/recaptcha/admin/create
+
+# 2. For development, add these domains:
+#    - localhost
+#    - 127.0.0.1
+#    - your-dev-domain.com
+
+# 3. For production, add your actual domains:
+#    - yourdomain.com
+#    - api.yourdomain.com
+#    - www.yourdomain.com
+
+# 4. Test your setup:
+#    ./scripts/setup-recaptcha.sh validate
+
+# 5. Monitor in Grafana:
+#    Check the "Security & RBAC Monitoring" dashboard
+#    Look for reCAPTCHA panels showing verification trends
+
+# ==================================================
+# Troubleshooting
+# ==================================================
+
+# If reCAPTCHA is not working:
+# 1. Check that keys are correct and match your domain
+# 2. Verify that the reCAPTCHA script loads in browser dev tools
+# 3. Check server logs for validation errors
+# 4. Test with Google's test keys (always return score 0.9)
+
+# Common issues:
+# - "Invalid site key": Check RECAPTCHA_SITE_KEY
+# - "Invalid secret key": Check RECAPTCHA_SECRET_KEY
+# - "Low score": Adjust RECAPTCHA_MINIMUM_SCORE
+# - "Script not loading": Check internet connection to Google
+
+# ==================================================
+# Security Notes
+# ==================================================
+
+# - Never commit real keys to version control
+# - Use different keys for dev/staging/production
+# - Rotate keys regularly (Google recommends annually)
+# - Monitor usage in Google reCAPTCHA admin console
+# - Set up alerts for unusual verification patterns
+
+# For more information:
+# https://developers.google.com/recaptcha/docs/v3

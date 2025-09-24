@@ -52,6 +52,71 @@ const cpuUsage = new promClient.Gauge({
   help: 'CPU usage percentage'
 });
 
+// Métricas específicas de la aplicación Twenty One Pilots
+const userRegistrations = new promClient.Counter({
+  name: 'user_registrations_total',
+  help: 'Total number of user registrations'
+});
+
+const activeUsers = new promClient.Gauge({
+  name: 'active_users',
+  help: 'Number of active users in the last 24 hours'
+});
+
+const videoViews = new promClient.Counter({
+  name: 'video_views_total',
+  help: 'Total number of video views',
+  labelNames: ['video_id', 'video_title']
+});
+
+const albumPlays = new promClient.Counter({
+  name: 'album_plays_total',
+  help: 'Total number of album plays',
+  labelNames: ['album_id', 'album_title']
+});
+
+const searchQueries = new promClient.Counter({
+  name: 'search_queries_total',
+  help: 'Total number of search queries',
+  labelNames: ['type', 'query_length']
+});
+
+const apiCallsByEndpoint = new promClient.Counter({
+  name: 'api_calls_by_endpoint_total',
+  help: 'Total API calls by endpoint',
+  labelNames: ['endpoint', 'method', 'status']
+});
+
+const cacheHitRatio = new promClient.Gauge({
+  name: 'cache_hit_ratio',
+  help: 'Cache hit ratio (0-1)',
+  labelNames: ['cache_type']
+});
+
+const databaseConnections = new promClient.Gauge({
+  name: 'database_connections_active',
+  help: 'Number of active database connections'
+});
+
+const queueSize = new promClient.Gauge({
+  name: 'queue_size',
+  help: 'Current queue size',
+  labelNames: ['queue_name']
+});
+
+const e2eTestResults = new promClient.Counter({
+  name: 'e2e_test_results_total',
+  help: 'E2E test results',
+  labelNames: ['test_name', 'status', 'duration']
+});
+
+const e2eTestDuration = new promClient.Histogram({
+  name: 'e2e_test_duration_seconds',
+  help: 'Duration of E2E tests',
+  labelNames: ['test_name'],
+  buckets: [1, 5, 10, 30, 60, 120, 300]
+});
+
 // Registrar métricas
 register.registerMetric(httpRequestDuration);
 register.registerMetric(httpRequestsTotal);
@@ -60,6 +125,19 @@ register.registerMetric(databaseQueryDuration);
 register.registerMetric(errorRate);
 register.registerMetric(memoryUsage);
 register.registerMetric(cpuUsage);
+
+// Registrar métricas específicas de la aplicación
+register.registerMetric(userRegistrations);
+register.registerMetric(activeUsers);
+register.registerMetric(videoViews);
+register.registerMetric(albumPlays);
+register.registerMetric(searchQueries);
+register.registerMetric(apiCallsByEndpoint);
+register.registerMetric(cacheHitRatio);
+register.registerMetric(databaseConnections);
+register.registerMetric(queueSize);
+register.registerMetric(e2eTestResults);
+register.registerMetric(e2eTestDuration);
 
 // Configuración de alertas
 const alertThresholds = {
@@ -282,6 +360,125 @@ function recordError(type, endpoint, error) {
   }
 }
 
+// Funciones para actualizar métricas específicas de la aplicación
+function recordUserRegistration() {
+  userRegistrations.inc();
+}
+
+function updateActiveUsers(count) {
+  activeUsers.set(count);
+}
+
+function recordVideoView(videoId, videoTitle) {
+  videoViews.labels(videoId, videoTitle).inc();
+}
+
+function recordAlbumPlay(albumId, albumTitle) {
+  albumPlays.labels(albumId, albumTitle).inc();
+}
+
+function recordSearchQuery(type, queryLength) {
+  searchQueries.labels(type, queryLength.toString()).inc();
+}
+
+function recordApiCall(endpoint, method, status) {
+  apiCallsByEndpoint.labels(endpoint, method, status.toString()).inc();
+}
+
+function updateCacheHitRatio(cacheType, ratio) {
+  cacheHitRatio.labels(cacheType).set(ratio);
+}
+
+function updateDatabaseConnections(count) {
+  databaseConnections.set(count);
+}
+
+function updateQueueSize(queueName, size) {
+  queueSize.labels(queueName).set(size);
+}
+
+function recordE2eTestResult(testName, status, duration) {
+  e2eTestResults.labels(testName, status, duration.toString()).inc();
+  e2eTestDuration.labels(testName).observe(duration);
+}
+
+// Función mejorada para enviar alertas con Slack
+async function sendSlackAlert(subject, message, level = 'warning') {
+  if (!process.env.SLACK_WEBHOOK_URL) return;
+
+  const colors = {
+    info: '#36a64f',
+    warning: '#ffcc00',
+    critical: '#ff0000'
+  };
+
+  const payload = {
+    attachments: [{
+      color: colors[level] || colors.warning,
+      title: subject,
+      text: message,
+      fields: [{
+        title: 'Timestamp',
+        value: new Date().toISOString(),
+        short: true
+      }, {
+        title: 'Environment',
+        value: process.env.NODE_ENV || 'development',
+        short: true
+      }],
+      footer: 'Twenty One Pilots API Monitor',
+      ts: Math.floor(Date.now() / 1000)
+    }]
+  };
+
+  try {
+    const response = await fetch(process.env.SLACK_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      logger.info('📱 Alerta enviada a Slack');
+    } else {
+      logger.error('❌ Error enviando alerta a Slack:', response.status);
+    }
+  } catch (error) {
+    logger.error('❌ Error enviando alerta a Slack:', error);
+  }
+}
+
+// Actualizar función sendAlert para incluir Slack
+async function sendAlert(subject, message, level = 'warning') {
+  logger.warn(`🚨 ALERTA ${level.toUpperCase()}: ${subject}`, { message });
+
+  // Enviar a Slack
+  await sendSlackAlert(subject, message, level);
+
+  // Enviar email si está configurado
+  if (emailTransporter && process.env.ALERT_EMAIL) {
+    try {
+      await emailTransporter.sendMail({
+        from: process.env.SMTP_USER,
+        to: process.env.ALERT_EMAIL,
+        subject: `[${level.toUpperCase()}] ${subject}`,
+        html: `
+          <h2>Alerta del Sistema</h2>
+          <p><strong>Nivel:</strong> ${level}</p>
+          <p><strong>Hora:</strong> ${new Date().toISOString()}</p>
+          <p><strong>Mensaje:</strong></p>
+          <pre>${message}</pre>
+          <hr>
+          <p>Esta es una alerta automática del sistema Twenty One Pilots API.</p>
+        `
+      });
+      logger.info('📧 Alerta enviada por email');
+    } catch (error) {
+      logger.error('❌ Error enviando alerta por email:', error);
+    }
+  }
+}
+
 // Función para obtener métricas en formato Prometheus
 async function getMetrics() {
   try {
@@ -367,5 +564,19 @@ module.exports = {
   getMetricsJSON,
   getHealthMetrics,
   startPeriodicMonitoring,
-  register
+  register,
+  // Nuevas funciones para métricas específicas
+  recordUserRegistration,
+  updateActiveUsers,
+  recordVideoView,
+  recordAlbumPlay,
+  recordSearchQuery,
+  recordApiCall,
+  updateCacheHitRatio,
+  updateDatabaseConnections,
+  updateQueueSize,
+  recordE2eTestResult,
+  // Alertas mejoradas
+  sendAlert,
+  sendSlackAlert
 };

@@ -40,6 +40,20 @@ const reviewSchema = new mongoose.Schema({
   moderatedAt: { type: Date },
   moderationReason: { type: String },
 
+  // Moderación automática
+  autoModerated: { type: Boolean, default: false },
+  moderationSeverity: {
+    type: String,
+    enum: ['low', 'medium', 'high'],
+    default: 'low'
+  },
+  profanityDetected: { type: Boolean, default: false },
+  badWords: [{ type: String }],
+  autoModerationAction: {
+    type: String,
+    enum: ['none', 'censored', 'hidden', 'user_warned', 'user_suspended']
+  },
+
   // Engagement
   helpful: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   notHelpful: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
@@ -223,12 +237,194 @@ reviewSchema.methods.edit = async function(newRating, newTitle, newComment) {
   return this.save();
 };
 
-// Método estático para obtener reseñas de un producto
-reviewSchema.statics.getProductReviews = function(productId, options = {}) {
-  const { page = 1, limit = 10, sort = 'createdAt', order = 'desc', status = 'approved' } = options;
+// Método para aplicar moderación automática
+reviewSchema.methods.applyAutoModeration = async function() {
+  try {
+    // Importar dinámicamente para evitar problemas en SSR
+    const Filter = require('bad-words');
+    const filter = new Filter();
 
-  const query = { product: productId, status };
-  const sortOption = { [sort]: order === 'desc' ? -1 : 1 };
+    // Analizar título y comentario
+    const titleAnalysis = this.analyzeContent(this.title);
+    const commentAnalysis = this.analyzeContent(this.comment);
+
+    // Combinar análisis
+    const hasProfanity = titleAnalysis.hasProfanity || commentAnalysis.hasProfanity;
+    const allBadWords = [...titleAnalysis.badWords, ...commentAnalysis.badWords];
+    const severity = this.calculateSeverity(titleAnalysis, commentAnalysis);
+
+    // Actualizar campos de moderación
+    this.profanityDetected = hasProfanity;
+    this.badWords = [...new Set(allBadWords)]; // Eliminar duplicados
+    this.moderationSeverity = severity;
+    this.autoModerated = true;
+
+    // Aplicar acción automática basada en severidad
+    const action = this.getAutoModerationAction(severity, hasProfanity);
+    this.autoModerationAction = action;
+
+    // Aplicar acción
+    switch (action) {
+      case 'censored':
+        this.comment = filter.clean(this.comment);
+        this.title = filter.clean(this.title);
+        this.status = 'approved';
+        break;
+      case 'hidden':
+        this.status = 'hidden';
+        break;
+      case 'user_warned':
+        // Aquí se podría integrar con sistema de warnings del usuario
+        this.status = 'approved';
+        break;
+      case 'user_suspended':
+        // Aquí se podría integrar con sistema de suspensiones
+        this.status = 'hidden';
+        break;
+      default:
+        this.status = 'approved';
+    }
+
+    return this.save();
+  } catch (error) {
+    console.warn('Error en moderación automática:', error);
+    this.status = 'pending'; // Dejar pendiente para revisión manual
+    return this.save();
+  }
+};
+
+// Método helper para analizar contenido
+reviewSchema.methods.analyzeContent = function(text) {
+  try {
+    const Filter = require('bad-words');
+    const filter = new Filter();
+
+    const hasProfanity = filter.isProfane(text);
+    const badWords = [];
+
+    if (hasProfanity) {
+      const words = text.toLowerCase().split(/\s+/);
+      words.forEach(word => {
+        if (filter.isProfane(word)) {
+          badWords.push(word);
+        }
+      });
+    }
+
+    return {
+      hasProfanity,
+      badWords,
+      severity: badWords.length > 2 ? 'high' : badWords.length > 0 ? 'medium' : 'low'
+    };
+  } catch (error) {
+    return { hasProfanity: false, badWords: [], severity: 'low' };
+  }
+};
+
+// Método para calcular severidad combinada
+reviewSchema.methods.calculateSeverity = function(titleAnalysis, commentAnalysis) {
+  const severities = ['low', 'medium', 'high'];
+  const titleLevel = severities.indexOf(titleAnalysis.severity);
+  const commentLevel = severities.indexOf(commentAnalysis.severity);
+
+  return severities[Math.max(titleLevel, commentLevel)];
+};
+
+// Método para determinar acción automática
+reviewSchema.methods.getAutoModerationAction = function(severity, hasProfanity) {
+  if (!hasProfanity) return 'none';
+
+  switch (severity) {
+    case 'low':
+      return 'censored';
+    case 'medium':
+      return 'censored';
+    case 'high':
+      return 'hidden';
+    default:
+      return 'none';
+  }
+};
+
+// Método estático para obtener reseñas de un producto con filtros avanzados
+reviewSchema.statics.getProductReviews = function(productId, options = {}) {
+  const {
+    page = 1,
+    limit = 10,
+    sort = 'createdAt',
+    order = 'desc',
+    status = 'approved',
+    rating,
+    verified,
+    hasImages,
+    dateFrom,
+    dateTo,
+    search
+  } = options;
+
+  let query = { product: productId };
+
+  // Filtro por estado
+  if (status !== 'all') {
+    query.status = status;
+  }
+
+  // Filtro por calificación
+  if (rating && rating !== 'all') {
+    query.rating = parseInt(rating);
+  }
+
+  // Filtro por compra verificada
+  if (verified === 'true') {
+    query.verified = true;
+  } else if (verified === 'false') {
+    query.verified = false;
+  }
+
+  // Filtro por reseñas con imágenes
+  if (hasImages === 'true') {
+    query.images = { $exists: true, $ne: [] };
+  }
+
+  // Filtro por fecha
+  if (dateFrom || dateTo) {
+    query.createdAt = {};
+    if (dateFrom) query.createdAt.$gte = new Date(dateFrom);
+    if (dateTo) query.createdAt.$lte = new Date(dateTo);
+  }
+
+  // Búsqueda en título y comentario
+  if (search) {
+    query.$or = [
+      { title: new RegExp(search, 'i') },
+      { comment: new RegExp(search, 'i') }
+    ];
+  }
+
+  // Ordenamiento
+  let sortOption = {};
+  switch (sort) {
+    case 'rating':
+      sortOption = { rating: order === 'desc' ? -1 : 1, createdAt: -1 };
+      break;
+    case 'helpful':
+      sortOption = { helpfulCount: order === 'desc' ? -1 : 1, createdAt: -1 };
+      break;
+    case 'verified':
+      sortOption = { verified: order === 'desc' ? -1 : 1, createdAt: -1 };
+      break;
+    case 'relevance':
+      // Ordenar por combinación de factores
+      sortOption = {
+        verified: -1,
+        helpfulCount: -1,
+        rating: -1,
+        createdAt: -1
+      };
+      break;
+    default:
+      sortOption = { [sort]: order === 'desc' ? -1 : 1 };
+  }
 
   return this.find(query)
     .populate('customer', 'username avatar')
@@ -236,6 +432,111 @@ reviewSchema.statics.getProductReviews = function(productId, options = {}) {
     .sort(sortOption)
     .limit(limit)
     .skip((page - 1) * limit);
+};
+
+// Método estático para obtener estadísticas detalladas de reseñas
+reviewSchema.statics.getProductReviewStats = async function(productId) {
+  try {
+    // Obtener todas las reseñas aprobadas
+    const reviews = await this.find({ product: productId, status: 'approved' });
+
+    if (reviews.length === 0) {
+      return {
+        avgRating: 0,
+        totalReviews: 0,
+        verifiedReviews: 0,
+        reviewsWithImages: 0,
+        recommendedCount: 0,
+        ratingDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+        ratingPercentages: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+        helpfulVotes: 0,
+        notHelpfulVotes: 0,
+        reportedCount: 0,
+        avgHelpfulScore: 0
+      };
+    }
+
+    // Calcular estadísticas básicas
+    const totalReviews = reviews.length;
+    const avgRating = reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews;
+
+    // Calcular distribución de ratings
+    const distribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+    reviews.forEach(review => {
+      distribution[review.rating] = (distribution[review.rating] || 0) + 1;
+    });
+
+    // Calcular porcentajes
+    const ratingPercentages = {};
+    Object.keys(distribution).forEach(rating => {
+      ratingPercentages[rating] = totalReviews > 0
+        ? Math.round((distribution[rating] / totalReviews) * 100)
+        : 0;
+    });
+
+    // Calcular otras estadísticas
+    const verifiedReviews = reviews.filter(r => r.verified).length;
+    const reviewsWithImages = reviews.filter(r => r.images && r.images.length > 0).length;
+    const recommendedCount = reviews.filter(r => r.recommended).length;
+    const helpfulVotes = reviews.reduce((sum, r) => sum + r.helpful.length, 0);
+    const notHelpfulVotes = reviews.reduce((sum, r) => sum + r.notHelpful.length, 0);
+    const reportedCount = reviews.reduce((sum, r) => sum + r.reported.length, 0);
+
+    // Calcular promedio de puntuación útil
+    const avgHelpfulScore = reviews.length > 0
+      ? reviews.reduce((sum, r) => sum + (r.helpful.length - r.notHelpful.length), 0) / reviews.length
+      : 0;
+
+    return {
+      avgRating: Math.round(avgRating * 10) / 10,
+      totalReviews,
+      verifiedReviews,
+      reviewsWithImages,
+      recommendedCount,
+      ratingDistribution: distribution,
+      ratingPercentages,
+      helpfulVotes,
+      notHelpfulVotes,
+      reportedCount,
+      avgHelpfulScore: Math.round(avgHelpfulScore * 100) / 100
+    };
+  } catch (error) {
+    console.error('Error calculando estadísticas de reseñas:', error);
+    return {
+      avgRating: 0,
+      totalReviews: 0,
+      verifiedReviews: 0,
+      reviewsWithImages: 0,
+      recommendedCount: 0,
+      ratingDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+      ratingPercentages: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+      helpfulVotes: 0,
+      notHelpfulVotes: 0,
+      reportedCount: 0,
+      avgHelpfulScore: 0
+    };
+  }
+};
+
+// Método estático para obtener reseñas destacadas
+reviewSchema.statics.getFeaturedReviews = function(productId, limit = 3) {
+  return this.find({
+    product: productId,
+    status: 'approved',
+    $or: [
+      { verified: true },
+      { helpful: { $exists: true, $ne: [] } },
+      { images: { $exists: true, $ne: [] } }
+    ]
+  })
+  .populate('customer', 'username avatar')
+  .sort({
+    verified: -1,
+    helpfulCount: -1,
+    rating: -1,
+    createdAt: -1
+  })
+  .limit(limit);
 };
 
 const Review = mongoose.model('Review', reviewSchema);

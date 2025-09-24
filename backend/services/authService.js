@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const recaptchaService = require('./recaptchaService');
 const logger = require('../utils/logger');
 
 class AuthService {
@@ -53,6 +54,34 @@ class AuthService {
     } catch (error) {
       logger.error('Error generando token de refresco:', error);
       throw new Error('Error generando token de refresco');
+    }
+  }
+
+  // Generar token temporal para 2FA (5 minutos)
+  generateTempToken(userId) {
+    try {
+      return jwt.sign(
+        { userId, type: 'temp-2fa' },
+        this.jwtSecret,
+        { expiresIn: '5m' }
+      );
+    } catch (error) {
+      logger.error('Error generando token temporal 2FA:', error);
+      throw new Error('Error generando token temporal');
+    }
+  }
+
+  // Verificar token temporal para 2FA
+  verifyTempToken(token) {
+    try {
+      const decoded = jwt.verify(token, this.jwtSecret);
+      if (decoded.type !== 'temp-2fa') {
+        throw new Error('Tipo de token inválido');
+      }
+      return decoded;
+    } catch (error) {
+      logger.error('Error verificando token temporal 2FA:', error);
+      return null;
     }
   }
 
@@ -167,6 +196,82 @@ class AuthService {
     }
 
     next();
+  }
+
+  // Middleware para verificar permisos de moderador
+  requireModerator(req, res, next) {
+    if (!req.user) {
+      return res.status(401).json({
+        success: false,
+        message: 'Autenticación requerida'
+      });
+    }
+
+    if (req.user.role !== 'admin' && req.user.role !== 'moderator') {
+      return res.status(403).json({
+        success: false,
+        message: 'Permisos de moderador requeridos'
+      });
+    }
+
+    next();
+  }
+
+  // Validar reCAPTCHA para registro
+  async validateRecaptchaForRegistration(recaptchaToken, ip, userAgent) {
+    const result = await recaptchaService.verifyToken(
+      recaptchaToken,
+      'register',
+      ip,
+      userAgent
+    );
+
+    if (!result.success) {
+      throw new Error(result.error || 'Validación reCAPTCHA fallida');
+    }
+
+    return result;
+  }
+
+  // Validar reCAPTCHA para login
+  async validateRecaptchaForLogin(recaptchaToken, ip, userAgent) {
+    const result = await recaptchaService.verifyToken(
+      recaptchaToken,
+      'login',
+      ip,
+      userAgent
+    );
+
+    if (!result.success) {
+      throw new Error(result.error || 'Validación reCAPTCHA fallida');
+    }
+
+    return result;
+  }
+
+  // Validar reCAPTCHA para creación de hilos (forum)
+  async validateRecaptchaForThreadCreation(recaptchaToken, ip, userAgent) {
+    const result = await recaptchaService.verifyToken(
+      recaptchaToken,
+      'create_thread',
+      ip,
+      userAgent
+    );
+
+    if (!result.success) {
+      throw new Error(result.error || 'Validación reCAPTCHA fallida');
+    }
+
+    return result;
+  }
+
+  // Obtener configuración de reCAPTCHA para frontend
+  getRecaptchaConfig() {
+    return {
+      siteKey: recaptchaService.getSiteKey(),
+      enabled: !!recaptchaService.getSiteKey(),
+      minimumScore: recaptchaService.minimumScore
+    };
   }
 
   // Limpiar tokens expirados (útil para mantenimiento)

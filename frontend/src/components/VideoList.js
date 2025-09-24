@@ -2,7 +2,17 @@ import React from 'react';
 import { formatViewCount, formatPublishedDate } from '../api/videos';
 import './VideoList.css';
 
-const VideoList = ({ videos, onVideoSelect, selectedVideoId }) => {
+const VideoList = ({
+  videos,
+  onVideoSelect,
+  selectedVideoId,
+  onAddToPlaylist,
+  onToggleFavorite,
+  favoriteStatus,
+  loading = false,
+  hasMore = true,
+  onLoadMore
+}) => {
 
   if (!videos || videos.length === 0) {
     return (
@@ -56,11 +66,62 @@ const VideoList = ({ videos, onVideoSelect, selectedVideoId }) => {
                     </div>
                   )}
                 </div>
+                <div className="video-actions">
+                  {onToggleFavorite && (
+                    <button
+                      className={`favorite-btn ${favoriteStatus?.[video.id || video._id] ? 'favorited' : ''}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onToggleFavorite(video);
+                      }}
+                      title={favoriteStatus?.[video.id || video._id] ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+                    >
+                      {favoriteStatus?.[video.id || video._id] ? '❤️' : '🤍'}
+                    </button>
+                  )}
+                  {onAddToPlaylist && (
+                    <button
+                      className="add-to-playlist-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onAddToPlaylist(video);
+                      }}
+                      title="Agregar a playlist"
+                    >
+                      ➕ Playlist
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           );
         })}
       </div>
+
+      {/* Indicador de carga y botón de cargar más */}
+      {loading && (
+        <div className="loading-more">
+          <div className="loading-spinner"></div>
+          <span>Cargando más videos...</span>
+        </div>
+      )}
+
+      {!loading && hasMore && onLoadMore && (
+        <div className="load-more-container">
+          <button
+            className="load-more-btn"
+            onClick={onLoadMore}
+          >
+            Cargar más videos
+          </button>
+        </div>
+      )}
+
+      {!hasMore && videos.length > 0 && (
+        <div className="no-more-videos">
+          <span>No hay más videos para mostrar</span>
+        </div>
+      )}
     </div>
   );
 };

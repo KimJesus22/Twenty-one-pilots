@@ -13407,3 +13407,2657 @@ TypeError: nodemailer.createTransporter is not a function
     }
   ]
 }
+2025-09-22 21:30:17 [31merror[39m: [31muncaughtException: addSongValidations is not defined[39m
+[31mReferenceError: addSongValidations is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\playlists.js:315:3)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:201:25)[39m {
+  "error": {},
+  "stack": "ReferenceError: addSongValidations is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\playlists.js:315:3)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:201:25)",
+  "exception": true,
+  "date": "Mon Sep 22 2025 21:30:17 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 14872,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 141230080,
+      "heapTotal": 93978624,
+      "heapUsed": 68804608,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 108588.031
+  },
+  "trace": [
+    {
+      "column": 3,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\playlists.js",
+      "function": null,
+      "line": 315,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 25,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 201,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-22 21:30:24 [31merror[39m: [31muncaughtException: addSongValidations is not defined[39m
+[31mReferenceError: addSongValidations is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\playlists.js:315:3)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:201:25)[39m {
+  "error": {},
+  "stack": "ReferenceError: addSongValidations is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\playlists.js:315:3)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:201:25)",
+  "exception": true,
+  "date": "Mon Sep 22 2025 21:30:24 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 8220,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 139395072,
+      "heapTotal": 92143616,
+      "heapUsed": 68142528,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 108594.718
+  },
+  "trace": [
+    {
+      "column": 3,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\playlists.js",
+      "function": null,
+      "line": 315,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 25,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 201,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-22 21:30:30 [31merror[39m: [31muncaughtException: addSongValidations is not defined[39m
+[31mReferenceError: addSongValidations is not defined[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\playlists.js:315:3)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\app.js:201:25)[39m {
+  "error": {},
+  "stack": "ReferenceError: addSongValidations is not defined\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\playlists.js:315:3)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js:201:25)",
+  "exception": true,
+  "date": "Mon Sep 22 2025 21:30:30 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 11196,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 134594560,
+      "heapTotal": 87425024,
+      "heapUsed": 67739088,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 108601.437
+  },
+  "trace": [
+    {
+      "column": 3,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\playlists.js",
+      "function": null,
+      "line": 315,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 25,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\app.js",
+      "function": null,
+      "line": 201,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:26:52 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:26:52 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 17216,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 150904832,
+      "heapTotal": 107085824,
+      "heapUsed": 80370288,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 169581.703
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:37:26 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:37:26 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 10328,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 150339584,
+      "heapTotal": 106561536,
+      "heapUsed": 81352152,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170216.046
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:40:08 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:40:08 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 6048,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 151273472,
+      "heapTotal": 107347968,
+      "heapUsed": 80386552,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170378.031
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:44:47 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:44:47 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 17736,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 150339584,
+      "heapTotal": 106823680,
+      "heapUsed": 81019384,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170657.25
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:44:55 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:44:55 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 13108,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 151195648,
+      "heapTotal": 107085824,
+      "heapUsed": 81180992,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170664.515
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:45:02 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:45:02 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 13268,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 151207936,
+      "heapTotal": 107347968,
+      "heapUsed": 81147568,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170671.656
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:45:31 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:45:31 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 22008,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 150716416,
+      "heapTotal": 107085824,
+      "heapUsed": 80748136,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170700.906
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:45:38 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:45:38 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 17036,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 151437312,
+      "heapTotal": 107347968,
+      "heapUsed": 80957176,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170707.875
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:45:46 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:45:46 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 3232,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 150597632,
+      "heapTotal": 106823680,
+      "heapUsed": 84325496,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170716.421
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:45:56 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:45:56 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 21724,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 150884352,
+      "heapTotal": 107347968,
+      "heapUsed": 80515648,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170725.484
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:46:04 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (C:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (C:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:46:04 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 11792,
+    "uid": null,
+    "gid": null,
+    "cwd": "C:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 151158784,
+      "heapTotal": 107085824,
+      "heapUsed": 80647432,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170733.515
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "C:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:46:16 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (c:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (c:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:46:16 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 19180,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 152784896,
+      "heapTotal": 108920832,
+      "heapUsed": 79241192,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170746.046
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:47:23 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (c:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (c:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:47:23 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 14392,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 150908928,
+      "heapTotal": 107085824,
+      "heapUsed": 80543304,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170813.312
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:48:35 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (c:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (c:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:48:35 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 420,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 150544384,
+      "heapTotal": 107347968,
+      "heapUsed": 80506592,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170884.921
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:49:26 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (c:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (c:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:49:26 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 22048,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 151093248,
+      "heapTotal": 106823680,
+      "heapUsed": 80611992,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170935.609
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 14:49:39 [31merror[39m: [31muncaughtException: argument handler must be a function[39m
+[31mTypeError: argument handler must be a function[39m
+[31m    at Route.<computed> [as patch] (c:\Users\gomez\Documents\TOP\backend\node_modules\router\lib\route.js:228:15)[39m
+[31m    at Router.<computed> [as patch] (c:\Users\gomez\Documents\TOP\backend\node_modules\router\index.js:448:19)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\routes\musicComments.js:438:8)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1688:14)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m {
+  "error": {},
+  "stack": "TypeError: argument handler must be a function\n    at Route.<computed> [as patch] (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js:228:15)\n    at Router.<computed> [as patch] (c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js:448:19)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js:438:8)\n    at Module._compile (node:internal/modules/cjs/loader:1688:14)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 14:49:39 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 7432,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 152297472,
+      "heapTotal": 108396544,
+      "heapUsed": 79457832,
+      "external": 21853508,
+      "arrayBuffers": 18346788
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 170948.546
+  },
+  "trace": [
+    {
+      "column": 15,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\lib\\route.js",
+      "function": "Route.<computed> [as patch]",
+      "line": 228,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 19,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\node_modules\\router\\index.js",
+      "function": "Router.<computed> [as patch]",
+      "line": 448,
+      "method": "<computed> [as patch]",
+      "native": false
+    },
+    {
+      "column": 8,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\routes\\musicComments.js",
+      "function": null,
+      "line": 438,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1688,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    }
+  ]
+}
+2025-09-23 17:29:13 [31merror[39m: [31muncaughtException: Unexpected number[39m
+[31mc:\Users\gomez\Documents\TOP\backend\models\Review.js:447[39m
+[31m        reviewsWithImages: { $sum: { $cond: [{ $gt: [{ $size: '$images' }, 0] }], 1, 0] } },[39m
+[31m                                                                                  ^[39m
+
+[31mSyntaxError: Unexpected number[39m
+[31m    at wrapSafe (node:internal/modules/cjs/loader:1620:18)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1662:20)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\controllers\storeController.js:3:16)[39m {
+  "error": {},
+  "stack": "c:\\Users\\gomez\\Documents\\TOP\\backend\\models\\Review.js:447\n        reviewsWithImages: { $sum: { $cond: [{ $gt: [{ $size: '$images' }, 0] }], 1, 0] } },\n                                                                                  ^\n\nSyntaxError: Unexpected number\n    at wrapSafe (node:internal/modules/cjs/loader:1620:18)\n    at Module._compile (node:internal/modules/cjs/loader:1662:20)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js:3:16)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 17:29:13 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 21692,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 125927424,
+      "heapTotal": 88428544,
+      "heapUsed": 44729976,
+      "external": 21852266,
+      "arrayBuffers": 18346772
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 180523.187
+  },
+  "trace": [
+    {
+      "column": 18,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapSafe",
+      "line": 1620,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1662,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js",
+      "function": null,
+      "line": 3,
+      "method": null,
+      "native": false
+    }
+  ]
+}
+2025-09-23 17:29:48 [31merror[39m: [31muncaughtException: Unexpected token '}'[39m
+[31mc:\Users\gomez\Documents\TOP\backend\models\Review.js:457[39m
+[31m    }[39m
+[31m    ^[39m
+
+[31mSyntaxError: Unexpected token '}'[39m
+[31m    at wrapSafe (node:internal/modules/cjs/loader:1620:18)[39m
+[31m    at Module._compile (node:internal/modules/cjs/loader:1662:20)[39m
+[31m    at Object..js (node:internal/modules/cjs/loader:1820:10)[39m
+[31m    at Module.load (node:internal/modules/cjs/loader:1423:32)[39m
+[31m    at Function._load (node:internal/modules/cjs/loader:1246:12)[39m
+[31m    at TracingChannel.traceSync (node:diagnostics_channel:322:14)[39m
+[31m    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)[39m
+[31m    at Module.require (node:internal/modules/cjs/loader:1445:12)[39m
+[31m    at require (node:internal/modules/helpers:135:16)[39m
+[31m    at Object.<anonymous> (c:\Users\gomez\Documents\TOP\backend\controllers\storeController.js:3:16)[39m {
+  "error": {},
+  "stack": "c:\\Users\\gomez\\Documents\\TOP\\backend\\models\\Review.js:457\n    }\n    ^\n\nSyntaxError: Unexpected token '}'\n    at wrapSafe (node:internal/modules/cjs/loader:1620:18)\n    at Module._compile (node:internal/modules/cjs/loader:1662:20)\n    at Object..js (node:internal/modules/cjs/loader:1820:10)\n    at Module.load (node:internal/modules/cjs/loader:1423:32)\n    at Function._load (node:internal/modules/cjs/loader:1246:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)\n    at Module.require (node:internal/modules/cjs/loader:1445:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js:3:16)",
+  "exception": true,
+  "date": "Tue Sep 23 2025 17:29:48 GMT-0600 (hora estándar central)",
+  "process": {
+    "pid": 13756,
+    "uid": null,
+    "gid": null,
+    "cwd": "c:\\Users\\gomez\\Documents\\TOP\\backend",
+    "execPath": "C:\\Program Files\\nodejs\\node.exe",
+    "version": "v22.18.0",
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "c:\\Users\\gomez\\Documents\\TOP\\backend\\server.js"
+    ],
+    "memoryUsage": {
+      "rss": 126058496,
+      "heapTotal": 88952832,
+      "heapUsed": 44802288,
+      "external": 21852266,
+      "arrayBuffers": 18346772
+    }
+  },
+  "os": {
+    "loadavg": [
+      0,
+      0,
+      0
+    ],
+    "uptime": 180557.953
+  },
+  "trace": [
+    {
+      "column": 18,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapSafe",
+      "line": 1620,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 20,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module._compile",
+      "line": 1662,
+      "method": "_compile",
+      "native": false
+    },
+    {
+      "column": 10,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Object..js",
+      "line": 1820,
+      "method": ".js",
+      "native": false
+    },
+    {
+      "column": 32,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.load",
+      "line": 1423,
+      "method": "load",
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Function._load",
+      "line": 1246,
+      "method": "_load",
+      "native": false
+    },
+    {
+      "column": 14,
+      "file": "node:diagnostics_channel",
+      "function": "TracingChannel.traceSync",
+      "line": 322,
+      "method": "traceSync",
+      "native": false
+    },
+    {
+      "column": 24,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "wrapModuleLoad",
+      "line": 235,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 12,
+      "file": "node:internal/modules/cjs/loader",
+      "function": "Module.require",
+      "line": 1445,
+      "method": "require",
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "node:internal/modules/helpers",
+      "function": "require",
+      "line": 135,
+      "method": null,
+      "native": false
+    },
+    {
+      "column": 16,
+      "file": "c:\\Users\\gomez\\Documents\\TOP\\backend\\controllers\\storeController.js",
+      "function": null,
+      "line": 3,
+      "method": null,
+      "native": false
+    }
+  ]
+}

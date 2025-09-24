@@ -2,6 +2,8 @@ import React, { useEffect, useState, useCallback, memo, Suspense, lazy } from 'r
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import forumAPI from '../api/forum';
+import socketService from '../services/socketService';
+import notificationService from '../services/notificationService';
 import './Forum.css';
 
 // Lazy loading de componentes
@@ -9,6 +11,7 @@ const ThreadList = lazy(() => import('../components/forum/ThreadList'));
 const ThreadDetail = lazy(() => import('../components/forum/ThreadDetail'));
 const CreateThreadForm = lazy(() => import('../components/forum/CreateThreadForm'));
 const ForumFilters = lazy(() => import('../components/forum/ForumFilters'));
+const PopularTags = lazy(() => import('../components/forum/PopularTags'));
 
 // Componente de carga
 const LoadingSpinner = () => (
@@ -49,6 +52,7 @@ const Forum = () => {
   const [threads, setThreads] = useState([]);
   const [categories, setCategories] = useState([]);
   const [stats, setStats] = useState(null);
+  const [popularTags, setPopularTags] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -89,12 +93,76 @@ const Forum = () => {
     }
   }, [filters, currentView]);
 
+  // Inicializar Socket.io y notificaciones
+  useEffect(() => {
+    // Conectar a Socket.io
+    socketService.connect();
+
+    // Unirse al foro general
+    socketService.joinForum();
+
+    // Unirse a notificaciones de usuario si está autenticado
+    if (user?.id) {
+      socketService.joinUserNotifications(user.id);
+    }
+
+    // Solicitar permisos de notificación
+    notificationService.requestPermission();
+
+    // Configurar listeners de eventos en tiempo real
+    const handleThreadCreated = (data) => {
+      console.log('Nuevo hilo creado:', data);
+      // Actualizar lista de hilos si estamos en vista de lista
+      if (currentView === 'list') {
+        setThreads(prev => [data.thread, ...prev]);
+        setStats(prev => prev ? {
+          ...prev,
+          totalThreads: prev.totalThreads + 1
+        } : prev);
+      }
+    };
+
+    const handleNotification = (data) => {
+      console.log('Notificación recibida:', data);
+
+      // Mostrar notificación del navegador
+      if (data.type === 'new-comment') {
+        notificationService.showNewCommentNotification(
+          data.threadTitle,
+          data.commentAuthor,
+          data.threadId
+        );
+      } else if (data.type === 'new-reply') {
+        notificationService.showNewReplyNotification(
+          data.threadTitle,
+          data.replyAuthor,
+          data.commentId,
+          data.threadId
+        );
+      }
+
+      // Mostrar notificación en la UI
+      showNotification(data.message, 'info');
+    };
+
+    // Registrar listeners
+    socketService.on('thread-created', handleThreadCreated);
+    socketService.on('notification', handleNotification);
+
+    // Cleanup
+    return () => {
+      socketService.off('thread-created', handleThreadCreated);
+      socketService.off('notification', handleNotification);
+    };
+  }, [user, currentView]);
+
   const loadInitialData = useCallback(async () => {
     try {
       setLoading(true);
-      const [categoriesResponse, statsResponse] = await Promise.all([
+      const [categoriesResponse, statsResponse, tagsResponse] = await Promise.all([
         forumAPI.getCategories(),
-        forumAPI.getStats()
+        forumAPI.getStats(),
+        forumAPI.getPopularTags(15)
       ]);
 
       if (categoriesResponse.success) {
@@ -103,6 +171,11 @@ const Forum = () => {
 
       if (statsResponse.success) {
         setStats(statsResponse.data.stats);
+        setPopularTags(statsResponse.data.popularTags || []);
+      }
+
+      if (tagsResponse.success) {
+        setPopularTags(tagsResponse.data.popularTags);
       }
     } catch (err) {
       console.error('Error loading initial data:', err);
@@ -181,6 +254,30 @@ const Forum = () => {
     setFilters(prev => ({ ...prev, page: newPage }));
   }, []);
 
+  // Funciones de manejo de tags
+  const handleTagClick = useCallback((tag) => {
+    setFilters(prev => {
+      const currentTags = prev.tags || [];
+      const newTags = currentTags.includes(tag)
+        ? currentTags.filter(t => t !== tag)
+        : [...currentTags, tag];
+
+      return { ...prev, tags: newTags, page: 1 };
+    });
+  }, []);
+
+  const handleTagRemove = useCallback((tag) => {
+    setFilters(prev => ({
+      ...prev,
+      tags: (prev.tags || []).filter(t => t !== tag),
+      page: 1
+    }));
+  }, []);
+
+  const handleClearTags = useCallback(() => {
+    setFilters(prev => ({ ...prev, tags: [], page: 1 }));
+  }, []);
+
   // Funciones de acciones del foro
   const handleThreadCreated = useCallback(async (threadData) => {
     try {
@@ -199,7 +296,8 @@ const Forum = () => {
     }
   }, [t, loadThreads]);
 
-  const handleThreadUpdated = useCallback(async (threadId, threadData) => {
+  // eslint-disable-next-line no-unused-vars
+  const _handleThreadUpdated = useCallback(async (threadId, threadData) => {
     try {
       const response = await forumAPI.updateThread(threadId, threadData);
 
@@ -391,7 +489,7 @@ const Forum = () => {
         <h1>{t('forum.title')}</h1>
         <p>{t('forum.subtitle')}</p>
 
-        {currentView === 'list' && isAuthenticated() && (
+        {currentView === 'list' && isAuthenticated && (
           <button
             onClick={handleCreateThread}
             className="btn btn-primary create-thread-btn"
@@ -409,9 +507,19 @@ const Forum = () => {
         </div>
       )}
 
-      {/* Estadísticas */}
+      {/* Estadísticas y Tags Populares */}
       {stats && currentView === 'list' && (
-        <ForumStats stats={stats} t={t} />
+        <div className="forum-sidebar">
+          <ForumStats stats={stats} t={t} />
+
+          <PopularTags
+            tags={popularTags}
+            selectedTags={filters.tags || []}
+            onTagClick={handleTagClick}
+            onTagRemove={handleTagRemove}
+            t={t}
+          />
+        </div>
       )}
 
       {/* Contenido principal */}

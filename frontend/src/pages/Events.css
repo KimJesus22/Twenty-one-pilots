@@ -528,3 +528,95 @@
   color: #ffffff;
   margin-bottom: 8px;
 }
+
+/* Modal de selección de asientos */
+.seat-selector-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seat-selector-modal .modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.seat-selector-modal .modal-content {
+  position: relative;
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 12px;
+  max-width: 95vw;
+  width: 1200px;
+  max-height: 95vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.seat-selector-content {
+  padding: 0;
+}
+
+.seat-selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #333333;
+  background: #111111;
+  border-radius: 12px 12px 0 0;
+}
+
+.seat-selector-header h2 {
+  color: #ff0000;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.seat-selector-actions {
+  padding: 20px 24px;
+  border-top: 1px solid #333333;
+  background: #111111;
+  border-radius: 0 0 12px 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.seat-selector-actions .btn {
+  min-width: 200px;
+}
+
+/* Responsive para modal de asientos */
+@media (max-width: 768px) {
+  .seat-selector-modal .modal-content {
+    width: 98vw;
+    max-height: 98vh;
+  }
+
+  .seat-selector-header {
+    padding: 16px 20px;
+  }
+
+  .seat-selector-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .seat-selector-actions {
+    padding: 16px 20px;
+  }
+
+  .seat-selector-actions .btn {
+    min-width: 150px;
+    font-size: 14px;
+  }
+}

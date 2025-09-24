@@ -1,6 +1,9 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import CommentItem from './CommentItem';
 import CommentForm from './CommentForm';
+import socketService from '../../services/socketService';
 
 const ThreadDetail = memo(({
   thread,
@@ -17,6 +20,8 @@ const ThreadDetail = memo(({
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [editingComment, setEditingComment] = useState(null);
   const [voting, setVoting] = useState(false);
+  const [realTimeComments, setRealTimeComments] = useState([]);
+  const [realTimeVotes, setRealTimeVotes] = useState({});
 
   const handleVoteThread = async (voteType) => {
     if (voting) return;
@@ -63,6 +68,73 @@ const ThreadDetail = memo(({
   const canEditThread = currentUser && thread.author._id === currentUser._id;
   const userVote = thread.userVote;
 
+  // Inicializar listeners de Socket.io para este hilo
+  useEffect(() => {
+    if (!thread?._id) return;
+
+    // Unirse a la sala del hilo
+    socketService.joinThread(thread._id);
+
+    // Listeners para eventos en tiempo real
+    const handleNewComment = (data) => {
+      if (data.threadId === thread._id) {
+        console.log('Nuevo comentario recibido:', data);
+        setRealTimeComments(prev => [...prev, data.comment]);
+      }
+    };
+
+    const handleCommentUpdate = (data) => {
+      if (data.threadId === thread._id) {
+        console.log('Comentario actualizado:', data);
+        // Aquí podríamos actualizar el comentario específico
+      }
+    };
+
+    const handleCommentDelete = (data) => {
+      if (data.threadId === thread._id) {
+        console.log('Comentario eliminado:', data);
+        // Aquí podríamos remover el comentario de la lista
+      }
+    };
+
+    const handleThreadVote = (data) => {
+      if (data.threadId === thread._id) {
+        console.log('Voto en hilo recibido:', data);
+        setRealTimeVotes(prev => ({
+          ...prev,
+          thread: data.voteCount
+        }));
+      }
+    };
+
+    const handleCommentVote = (data) => {
+      if (data.threadId === thread._id) {
+        console.log('Voto en comentario recibido:', data);
+        setRealTimeVotes(prev => ({
+          ...prev,
+          [`comment-${data.commentId}`]: data.voteCount
+        }));
+      }
+    };
+
+    // Registrar listeners
+    socketService.onNewComment(handleNewComment);
+    socketService.onCommentUpdate(handleCommentUpdate);
+    socketService.onCommentDelete(handleCommentDelete);
+    socketService.onThreadVote(handleThreadVote);
+    socketService.onCommentVote(handleCommentVote);
+
+    // Cleanup
+    return () => {
+      socketService.leaveThread(thread._id);
+      socketService.off('new-comment', handleNewComment);
+      socketService.off('comment-update', handleCommentUpdate);
+      socketService.off('comment-delete', handleCommentDelete);
+      socketService.off('thread-vote', handleThreadVote);
+      socketService.off('comment-vote', handleCommentVote);
+    };
+  }, [thread?._id]);
+
   return (
     <div className="thread-detail">
       <div className="thread-detail-header">
@@ -102,9 +174,31 @@ const ThreadDetail = memo(({
 
         <div className="thread-body">
           <div className="thread-text">
-            {thread.content.split('\n').map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                // Custom components for better styling
+                p: ({ children }) => <p className="markdown-p">{children}</p>,
+                blockquote: ({ children }) => <blockquote className="markdown-blockquote">{children}</blockquote>,
+                code: ({ inline, children }) => inline ?
+                  <code className="markdown-inline-code">{children}</code> :
+                  <code className="markdown-code-block">{children}</code>,
+                pre: ({ children }) => <pre className="markdown-pre">{children}</pre>,
+                ul: ({ children }) => <ul className="markdown-ul">{children}</ul>,
+                ol: ({ children }) => <ol className="markdown-ol">{children}</ol>,
+                li: ({ children }) => <li className="markdown-li">{children}</li>,
+                a: ({ href, children }) => <a href={href} className="markdown-link" target="_blank" rel="noopener noreferrer">{children}</a>,
+                img: ({ src, alt }) => <img src={src} alt={alt} className="markdown-img" />,
+                strong: ({ children }) => <strong className="markdown-strong">{children}</strong>,
+                em: ({ children }) => <em className="markdown-em">{children}</em>,
+                del: ({ children }) => <del className="markdown-del">{children}</del>,
+                h1: ({ children }) => <h1 className="markdown-h1">{children}</h1>,
+                h2: ({ children }) => <h2 className="markdown-h2">{children}</h2>,
+                h3: ({ children }) => <h3 className="markdown-h3">{children}</h3>,
+              }}
+            >
+              {thread.content || ''}
+            </ReactMarkdown>
           </div>
 
           {thread.tags && thread.tags.length > 0 && (
@@ -136,7 +230,7 @@ const ThreadDetail = memo(({
                 disabled={voting}
                 title={t('forum.like')}
               >
-                👍 {thread.voteCount.likes}
+                👍 {(realTimeVotes.thread?.likes ?? thread.voteCount.likes)}
               </button>
 
               <button
@@ -145,7 +239,7 @@ const ThreadDetail = memo(({
                 disabled={voting}
                 title={t('forum.dislike')}
               >
-                👎 {thread.voteCount.dislikes}
+                👎 {(realTimeVotes.thread?.dislikes ?? thread.voteCount.dislikes)}
               </button>
             </div>
           )}
@@ -193,22 +287,46 @@ const ThreadDetail = memo(({
         )}
 
         <div className="comments-list">
-          {thread.comments && thread.comments.length > 0 ? (
-            thread.comments.map(comment => (
-              <CommentItem
-                key={comment._id}
-                comment={comment}
-                threadId={thread._id}
-                onEdit={handleCommentEdit}
-                onDelete={handleCommentDelete}
-                onVote={handleVoteComment}
-                currentUser={currentUser}
-                isEditing={editingComment?._id === comment._id}
-                onUpdate={handleCommentUpdate}
-                onCancelEdit={() => setEditingComment(null)}
-                t={t}
-              />
-            ))
+          {((thread.comments && thread.comments.length > 0) || realTimeComments.length > 0) ? (
+            <>
+              {/* Comentarios originales */}
+              {thread.comments && thread.comments.map(comment => (
+                <CommentItem
+                  key={comment._id}
+                  comment={{
+                    ...comment,
+                    voteCount: realTimeVotes[`comment-${comment._id}`] || comment.voteCount
+                  }}
+                  threadId={thread._id}
+                  onEdit={handleCommentEdit}
+                  onDelete={handleCommentDelete}
+                  onVote={handleVoteComment}
+                  currentUser={currentUser}
+                  isEditing={editingComment?._id === comment._id}
+                  onUpdate={handleCommentUpdate}
+                  onCancelEdit={() => setEditingComment(null)}
+                  t={t}
+                />
+              ))}
+
+              {/* Comentarios en tiempo real */}
+              {realTimeComments.map(comment => (
+                <CommentItem
+                  key={`rt-${comment._id}`}
+                  comment={comment}
+                  threadId={thread._id}
+                  onEdit={handleCommentEdit}
+                  onDelete={handleCommentDelete}
+                  onVote={handleVoteComment}
+                  currentUser={currentUser}
+                  isEditing={editingComment?._id === comment._id}
+                  onUpdate={handleCommentUpdate}
+                  onCancelEdit={() => setEditingComment(null)}
+                  t={t}
+                  isRealTime={true}
+                />
+              ))}
+            </>
           ) : (
             <div className="no-comments">
               <h3>{t('forum.noComments')}</h3>

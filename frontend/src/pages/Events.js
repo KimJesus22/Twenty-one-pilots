@@ -4,6 +4,7 @@ import eventsAPI from '../api/events';
 import EventMap from '../components/EventMap';
 import AdvancedFilters from '../components/AdvancedFilters';
 import AudioPlayer from '../components/AudioPlayer';
+import SeatSelector from '../components/SeatSelector';
 import Spinner from '../components/Spinner';
 import './Events.css';
 
@@ -19,6 +20,13 @@ const Events = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [viewMode, setViewMode] = useState('map'); // 'map', 'list', 'calendar'
   const [eventStats, setEventStats] = useState(null);
+
+  // Estados para ticketing
+  const [showSeatSelector, setShowSeatSelector] = useState(false);
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [occupiedSeats, setOccupiedSeats] = useState([]);
+  const [ticketingDetails, setTicketingDetails] = useState(null);
+  const [purchaseLoading, setPurchaseLoading] = useState(false);
 
   // Filtros
   const [filters, setFilters] = useState({
@@ -209,15 +217,48 @@ const Events = () => {
     setFilteredEvents(filtered);
   };
 
-  const handleEventSelect = (event) => {
+  const handleEventSelect = async (event) => {
     setSelectedEvent(event);
+
+    // Si el evento tiene ticketing habilitado, cargar detalles
+    if (event.ticketing?.enabled) {
+      try {
+        const ticketingResponse = await eventsAPI.getEventTicketingDetails(event._id);
+        if (ticketingResponse.success) {
+          setTicketingDetails(ticketingResponse.data);
+        }
+
+        // Cargar disponibilidad de asientos
+        const availabilityResponse = await eventsAPI.getSeatAvailability(event._id);
+        if (availabilityResponse.success) {
+          setOccupiedSeats(availabilityResponse.data.occupiedSeats || []);
+        }
+      } catch (error) {
+        console.error('Error cargando detalles de ticketing:', error);
+      }
+    }
   };
 
   const handleBuyTickets = (event) => {
+    if (!isAuthenticated) {
+      alert('Debes iniciar sesión para comprar tickets');
+      return;
+    }
+
+    // Si tiene ticketing interno habilitado
+    if (event.ticketing?.enabled && event.ticketing?.provider === 'internal') {
+      setSelectedEvent(event);
+      setShowSeatSelector(true);
+      return;
+    }
+
+    // Fallback a proveedores externos
     if (event.ticketUrl) {
       window.open(event.ticketUrl, '_blank');
     } else if (event.eventbriteId) {
       window.open(`https://www.eventbrite.com/e/${event.eventbriteId}`, '_blank');
+    } else if (event.ticketmasterId) {
+      window.open(`https://www.ticketmaster.com/event/${event.ticketmasterId}`, '_blank');
     } else {
       alert('Compra de entradas próximamente disponible');
     }
@@ -295,6 +336,40 @@ const Events = () => {
     } else {
       alert('Música relacionada próximamente disponible');
     }
+  };
+
+  // Funciones para ticketing
+  const handleSeatsSelected = (seats) => {
+    setSelectedSeats(seats);
+  };
+
+  const handleReserveSeats = async () => {
+    if (selectedSeats.length === 0) {
+      alert('Por favor selecciona al menos un asiento');
+      return;
+    }
+
+    try {
+      setPurchaseLoading(true);
+      const response = await eventsAPI.reserveSeats(selectedEvent._id, selectedSeats);
+      if (response.success) {
+        alert(`Asientos reservados exitosamente. Tienes 15 minutos para completar la compra.`);
+        setShowSeatSelector(false);
+        // Aquí podrías redirigir a una página de checkout
+      } else {
+        alert('Error reservando asientos: ' + response.error);
+      }
+    } catch (error) {
+      console.error('Error reservando asientos:', error);
+      alert('Error al reservar asientos');
+    } finally {
+      setPurchaseLoading(false);
+    }
+  };
+
+  const handleCloseSeatSelector = () => {
+    setShowSeatSelector(false);
+    setSelectedSeats([]);
   };
 
   const formatDate = (date) => {
@@ -518,7 +593,7 @@ const Events = () => {
       </div>
 
       {/* Modal de detalles del evento */}
-      {selectedEvent && (
+      {selectedEvent && !showSeatSelector && (
         <div className="event-detail-modal">
           <div className="modal-overlay" onClick={() => setSelectedEvent(null)}></div>
           <div className="modal-content">
@@ -585,6 +660,45 @@ const Events = () => {
                 ✕
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de selección de asientos */}
+      {showSeatSelector && selectedEvent && (
+        <div className="seat-selector-modal">
+          <div className="modal-overlay" onClick={handleCloseSeatSelector}></div>
+          <div className="modal-content seat-selector-content">
+            <div className="seat-selector-header">
+              <h2>Seleccionar Asientos - {selectedEvent.title}</h2>
+              <button
+                className="close-modal-btn"
+                onClick={handleCloseSeatSelector}
+              >
+                ✕
+              </button>
+            </div>
+
+            <SeatSelector
+              eventId={selectedEvent._id}
+              venue={selectedEvent.venue}
+              onSeatsSelected={handleSeatsSelected}
+              selectedSeats={selectedSeats}
+              occupiedSeats={occupiedSeats}
+              maxSeats={10}
+            />
+
+            {selectedSeats.length > 0 && (
+              <div className="seat-selector-actions">
+                <button
+                  className="btn btn-success btn-large"
+                  onClick={handleReserveSeats}
+                  disabled={purchaseLoading}
+                >
+                  {purchaseLoading ? 'Reservando...' : `Reservar ${selectedSeats.length} Asiento(s)`}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}

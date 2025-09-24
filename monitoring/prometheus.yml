@@ -3,8 +3,7 @@ global:
   evaluation_interval: 15s
 
 rule_files:
-  # - "first_rules.yml"
-  # - "second_rules.yml"
+  - "alert_rules.yml"
 
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
@@ -16,27 +15,47 @@ scrape_configs:
     static_configs:
       - targets: ['backend:5000']
     scrape_interval: 5s
+    scrape_timeout: 4s
     metrics_path: '/api/metrics/prometheus'
     params:
       format: ['prometheus']
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'backend'
 
   - job_name: 'twentyonepilots-frontend'
     static_configs:
       - targets: ['frontend:80']
     scrape_interval: 30s
+    scrape_timeout: 10s
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: 'frontend'
 
   - job_name: 'mongodb'
     static_configs:
       - targets: ['mongodb:27017']
     scrape_interval: 30s
+    scrape_timeout: 10s
 
   - job_name: 'redis'
     static_configs:
       - targets: ['redis:6379']
     scrape_interval: 30s
+    scrape_timeout: 10s
 
   - job_name: 'elasticsearch'
     static_configs:
       - targets: ['elasticsearch:9200']
     scrape_interval: 30s
+    scrape_timeout: 10s
     metrics_path: '/_prometheus/metrics'
+
+  # E2E Tests metrics (si se ejecutan en contenedor separado)
+  - job_name: 'e2e-tests'
+    static_configs:
+      - targets: ['e2e-tests:9091']
+    scrape_interval: 60s
+    scrape_timeout: 30s

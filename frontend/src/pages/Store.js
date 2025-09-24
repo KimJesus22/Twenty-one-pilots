@@ -1,11 +1,12 @@
 import React, { useEffect, useState, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../contexts/CartContext';
+import { useUserPreferences } from '../contexts/UserPreferencesContext';
 import storeAPI from '../api/store';
 import './Store.css';
 
 // Componente memoizado para tarjetas de producto
-const ProductCard = memo(({ product, onAddToCart, onUpdateQuantity, quantity, t }) => (
+const ProductCard = memo(({ product, onAddToCart, onUpdateQuantity, quantity, t, formatPrice }) => (
   <div className="product-card">
     <div className="product-image">
       {product.image ? (
@@ -18,7 +19,7 @@ const ProductCard = memo(({ product, onAddToCart, onUpdateQuantity, quantity, t 
     <div className="product-info">
       <h3>{product.name}</h3>
       <p className="product-description">{product.description}</p>
-      <p className="product-price">${product.price.toFixed(2)}</p>
+      <p className="product-price">{formatPrice(product.price)}</p>
       <p className="product-stock">
         {t('store.stock')}: {product.stock} {product.stock <= 5 && <span className="low-stock">({t('store.lowStock')})</span>}
       </p>
@@ -59,6 +60,7 @@ const ProductCard = memo(({ product, onAddToCart, onUpdateQuantity, quantity, t 
 
 const Store = () => {
   const { addItem, removeItem, updateQuantity, items, total, itemCount, clearCart, validateStock } = useCart();
+  const { formatPrice, convertPrice } = useUserPreferences();
   const { t } = useTranslation();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -324,6 +326,7 @@ const Store = () => {
                   onUpdateQuantity={handleQuantityChange}
                   quantity={getItemQuantity(product._id)}
                   t={t}
+                  formatPrice={formatPrice}
                 />
               ))
             )}
@@ -370,9 +373,9 @@ const Store = () => {
                   <div key={item.product._id} className="cart-item">
                     <div className="cart-item-info">
                       <h4>{item.product.name}</h4>
-                      <p>${item.product.price.toFixed(2)} x {item.quantity}</p>
+                      <p>{formatPrice(item.product.price)} x {item.quantity}</p>
                       <p className="cart-item-total">
-                        ${(item.product.price * item.quantity).toFixed(2)}
+                        {formatPrice(item.product.price * item.quantity)}
                       </p>
                     </div>
                     <div className="cart-item-controls">
@@ -408,7 +411,7 @@ const Store = () => {
             {items.length > 0 && (
               <div className="cart-footer">
                 <div className="cart-total">
-                  <strong>{t('store.cartTotal')}: ${total.toFixed(2)}</strong>
+                  <strong>{t('store.cartTotal')}: {formatPrice(total)}</strong>
                 </div>
                 <button
                   onClick={handleCheckout}

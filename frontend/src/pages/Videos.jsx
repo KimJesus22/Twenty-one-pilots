@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import YouTubePlayer from '../components/YouTubePlayer';
+import SkeletonLoader from '../components/SkeletonLoader';
 import { searchVideos, getPopularVideos, formatViewCount, formatPublishedDate, normalizeVideo } from '../api/videos';
-import { filterValidVideos, findFirstValidVideo, canSelectVideo } from '../utils/videoGuards';
+import { filterValidVideos, canSelectVideo } from '../utils/videoGuards';
 import './Videos.css';
 
 /**
@@ -32,7 +33,11 @@ const Videos = () => {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isUsingFallback, setIsUsingFallback] = useState(false);
   const [error, setError] = useState(null);
+
+  // Mantener useErrorHandler disponible para futuras implementaciones
+  // const { handleError: handleAdvancedError, clearError: clearAdvancedError } = useErrorHandler();
 
   // Guard para evitar doble carga en StrictMode (desarrollo)
   const hasLoadedRef = useRef(false);
@@ -46,6 +51,13 @@ const Videos = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [hasPrevPage, setHasPrevPage] = useState(false);
+
+  // Estados de filtros avanzados
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  const [filterByDate, setFilterByDate] = useState(''); // 'week', 'month', 'year', 'all'
+  const [filterByChannel, setFilterByChannel] = useState(''); // canal específico
+  const [filterByDuration, setFilterByDuration] = useState(''); // 'short', 'medium', 'long'
+  const [sortBy, setSortBy] = useState('relevance'); // 'relevance', 'date', 'viewCount', 'rating'
 
   // Estados de configuración
   const [autoplay, setAutoplay] = useState(false);
@@ -100,6 +112,7 @@ const Videos = () => {
     try {
       setLoading(true);
       setError(null);
+      setIsUsingFallback(false);
 
       console.log('🎵 Cargando videos iniciales...');
 
@@ -140,6 +153,7 @@ const Videos = () => {
    */
   const loadPopularVideos = useCallback(async () => {
     try {
+      setIsUsingFallback(false);
       const result = await getPopularVideos({ limit: 12 });
       const validVideos = filterValidVideos(result.data || []);
       setVideos(validVideos);
@@ -163,6 +177,7 @@ const Videos = () => {
    */
   const loadFallbackVideos = useCallback(async () => {
     console.log('🔄 Cargando videos de respaldo...');
+    setIsUsingFallback(true);
 
     // Fallback con datos reales mínimos pero válidos
     const fallbackVideos = [
@@ -196,6 +211,83 @@ const Videos = () => {
   }, []);
 
   /**
+   * Aplica filtros avanzados a la lista de videos
+   */
+  const applyAdvancedFilters = useCallback((videos) => {
+    let filtered = [...videos];
+
+    // Filtro por fecha
+    if (filterByDate) {
+      const now = new Date();
+      const filterDate = new Date();
+      switch (filterByDate) {
+        case 'week':
+          filterDate.setDate(now.getDate() - 7);
+          break;
+        case 'month':
+          filterDate.setMonth(now.getMonth() - 1);
+          break;
+        case 'year':
+          filterDate.setFullYear(now.getFullYear() - 1);
+          break;
+        default:
+          break;
+      }
+      if (filterByDate !== 'all') {
+        filtered = filtered.filter(video => {
+          const videoDate = new Date(video.publishedAt);
+          return videoDate >= filterDate;
+        });
+      }
+    }
+
+    // Filtro por canal
+    if (filterByChannel) {
+      filtered = filtered.filter(video =>
+        video.channelTitle?.toLowerCase().includes(filterByChannel.toLowerCase())
+      );
+    }
+
+    // Filtro por duración (aproximado basado en título o descripción)
+    if (filterByDuration) {
+      filtered = filtered.filter(video => {
+        // Esto es aproximado, en una implementación real usaríamos la duración real de la API
+        const title = video.title?.toLowerCase() || '';
+        const description = video.description?.toLowerCase() || '';
+        const content = title + description;
+
+        switch (filterByDuration) {
+          case 'short':
+            return content.includes('lyric') || content.includes('clip') || title.length < 50;
+          case 'medium':
+            return !content.includes('lyric') && !content.includes('full album') && title.length < 100;
+          case 'long':
+            return content.includes('full') || content.includes('album') || content.includes('concert');
+          default:
+            return true;
+        }
+      });
+    }
+
+    // Ordenamiento
+    filtered.sort((a, b) => {
+      switch (sortBy) {
+        case 'date':
+          return new Date(b.publishedAt) - new Date(a.publishedAt);
+        case 'viewCount':
+          return (b.statistics?.viewCount || 0) - (a.statistics?.viewCount || 0);
+        case 'rating':
+          return (b.statistics?.likeCount || 0) - (a.statistics?.likeCount || 0);
+        case 'relevance':
+        default:
+          return 0; // Mantener orden original
+      }
+    });
+
+    return filtered;
+  }, [filterByDate, filterByChannel, filterByDuration, sortBy]);
+
+  /**
    * Maneja la búsqueda de videos
    */
   const handleSearch = useCallback(async (e) => {
@@ -218,16 +310,24 @@ const Videos = () => {
 
       if (result.data && result.data.length > 0) {
         const validVideos = filterValidVideos(result.data);
-        setVideos(validVideos);
-        const normalized = normalizeVideo(validVideos[0]);
-        assertNormalized(normalized, 'handleSearch');
-        setSelectedVideo(normalized);
-        // Nueva búsqueda: permitir reselección
-        hasSelectedInitialRef.current = true;
-        setHasNextPage(result.pagination?.hasNextPage || false);
-        setHasPrevPage(result.pagination?.hasPrevPage || false);
-        setSearchQuery(query);
-        console.log(`✅ Encontrados ${validVideos.length} videos válidos para "${query}"`);
+        const filteredVideos = applyAdvancedFilters(validVideos);
+
+        if (filteredVideos.length > 0) {
+          setVideos(filteredVideos);
+          const normalized = normalizeVideo(filteredVideos[0]);
+          assertNormalized(normalized, 'handleSearch');
+          setSelectedVideo(normalized);
+          // Nueva búsqueda: permitir reselección
+          hasSelectedInitialRef.current = true;
+          setHasNextPage(result.pagination?.hasNextPage || false);
+          setHasPrevPage(result.pagination?.hasPrevPage || false);
+          setSearchQuery(query);
+          console.log(`✅ Encontrados ${filteredVideos.length} videos válidos para "${query}"`);
+        } else {
+          setError(`No se encontraron videos que coincidan con los filtros aplicados`);
+          setVideos([]);
+          setSelectedVideo(null);
+        }
       } else {
         setError(`No se encontraron videos válidos para "${query}"`);
         setVideos([]);
@@ -239,7 +339,7 @@ const Videos = () => {
     } finally {
       setLoading(false);
     }
-  }, [searchInput]);
+  }, [searchInput, applyAdvancedFilters]);
 
   /**
    * Maneja la selección de un video
@@ -286,7 +386,7 @@ const Videos = () => {
   /**
    * Maneja cuando el reproductor está listo
    */
-  const handlePlayerReady = useCallback((event) => {
+  const handlePlayerReady = useCallback((_event) => {
     console.log('✅ Reproductor de YouTube listo');
   }, []);
 
@@ -312,6 +412,11 @@ const Videos = () => {
         <div className="header-content">
           <h1 className="page-title">
             🎵 Videos de Twenty One Pilots
+            {isUsingFallback && (
+              <span className="connection-badge fallback">
+                🔄 Modo Offline
+              </span>
+            )}
           </h1>
           <p className="page-subtitle">
             Descubre los mejores videos musicales y contenido oficial de la banda
@@ -337,6 +442,90 @@ const Videos = () => {
               {loading ? '🔍' : 'Buscar'}
             </button>
           </div>
+
+          {/* Filtros avanzados toggle */}
+          <div className="advanced-filters-toggle">
+            <button
+              type="button"
+              onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+              className="filter-toggle-button"
+            >
+              {showAdvancedFilters ? '🔽 Ocultar Filtros' : '🔼 Mostrar Filtros Avanzados'}
+            </button>
+          </div>
+
+          {/* Filtros avanzados */}
+          {showAdvancedFilters && (
+            <div className="advanced-filters">
+              <div className="filter-group">
+                <label>Fecha de publicación:</label>
+                <select
+                  value={filterByDate}
+                  onChange={(e) => setFilterByDate(e.target.value)}
+                  className="filter-select"
+                >
+                  <option value="">Todas las fechas</option>
+                  <option value="week">Última semana</option>
+                  <option value="month">Último mes</option>
+                  <option value="year">Último año</option>
+                </select>
+              </div>
+
+              <div className="filter-group">
+                <label>Canal:</label>
+                <input
+                  type="text"
+                  value={filterByChannel}
+                  onChange={(e) => setFilterByChannel(e.target.value)}
+                  placeholder="Ej: Fueled By Ramen"
+                  className="filter-input"
+                />
+              </div>
+
+              <div className="filter-group">
+                <label>Duración aproximada:</label>
+                <select
+                  value={filterByDuration}
+                  onChange={(e) => setFilterByDuration(e.target.value)}
+                  className="filter-select"
+                >
+                  <option value="">Todas las duraciones</option>
+                  <option value="short">Corta (clips, lyrics)</option>
+                  <option value="medium">Media (videos normales)</option>
+                  <option value="long">Larga (álbumes, conciertos)</option>
+                </select>
+              </div>
+
+              <div className="filter-group">
+                <label>Ordenar por:</label>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="filter-select"
+                >
+                  <option value="relevance">Relevancia</option>
+                  <option value="date">Fecha</option>
+                  <option value="viewCount">Vistas</option>
+                  <option value="rating">Likes</option>
+                </select>
+              </div>
+
+              <div className="filter-actions">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFilterByDate('');
+                    setFilterByChannel('');
+                    setFilterByDuration('');
+                    setSortBy('relevance');
+                  }}
+                  className="clear-filters-button"
+                >
+                  Limpiar Filtros
+                </button>
+              </div>
+            </div>
+          )}
         </form>
 
         {/* Controles adicionales */}
@@ -376,9 +565,14 @@ const Videos = () => {
           <div className="error-content">
             <span className="error-icon">⚠️</span>
             <span className="error-message">{error}</span>
-            <button onClick={handleRetry} className="error-retry">
-              Reintentar
-            </button>
+            <div className="error-actions">
+              <button onClick={handleRetry} className="error-retry">
+                Reintentar
+              </button>
+              <button onClick={() => setError(null)} className="error-clear">
+                Limpiar Error
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -409,10 +603,7 @@ const Videos = () => {
           </div>
 
           {loading && videos.length === 0 ? (
-            <div className="loading-section">
-              <div className="loading-spinner"></div>
-              <p>Cargando videos...</p>
-            </div>
+            <SkeletonLoader type="card" count={6} />
           ) : (
             <div className="videos-grid">
               {videos.map((video) => (

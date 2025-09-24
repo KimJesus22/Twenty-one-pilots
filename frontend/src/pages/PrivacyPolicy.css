@@ -1,0 +1,433 @@
+/* ==================================================
+   Privacy Policy Page - WCAG 2.1 AA Compliance
+   ================================================== */
+
+.privacy-policy {
+  min-height: 100vh;
+  background: var(--background-primary, #000000);
+  color: var(--text-primary, #ffffff);
+  line-height: 1.6;
+}
+
+.privacy-header {
+  background: var(--background-secondary, #111111);
+  padding: 2rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color, #333333);
+}
+
+.privacy-nav {
+  margin-bottom: 2rem;
+}
+
+.nav-home-link {
+  color: #ff0000;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.nav-home-link:hover,
+.nav-home-link:focus-visible {
+  background: rgba(255, 0, 0, 0.1);
+  outline: 3px solid #ff0000;
+  outline-offset: 2px;
+}
+
+.privacy-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff0000;
+  margin: 1rem 0;
+}
+
+.privacy-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary, #cccccc);
+  max-width: 800px;
+  margin: 0 auto 1rem;
+}
+
+.privacy-last-updated {
+  font-size: 0.9rem;
+  color: var(--text-secondary, #cccccc);
+  font-style: italic;
+}
+
+/* ==================================================
+   Table of Contents
+   ================================================== */
+
+.privacy-table-of-contents {
+  background: var(--background-secondary, #111111);
+  padding: 2rem 1rem;
+  border-bottom: 1px solid var(--border-color, #333333);
+}
+
+.privacy-table-of-contents ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.privacy-table-of-contents li {
+  margin: 0;
+}
+
+.toc-link {
+  background: none;
+  border: 2px solid var(--border-color, #333333);
+  color: var(--text-primary, #ffffff);
+  padding: 0.75rem 1rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  min-height: 44px; /* WCAG touch target */
+}
+
+.toc-link:hover,
+.toc-link:focus-visible {
+  background: var(--background-primary, #000000);
+  border-color: #ff0000;
+  outline: 3px solid #ff0000;
+  outline-offset: 2px;
+}
+
+/* ==================================================
+   Main Content
+   ================================================== */
+
+.privacy-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.privacy-section {
+  margin-bottom: 3rem;
+  scroll-margin-top: 2rem; /* For smooth scrolling */
+}
+
+.privacy-section h2 {
+  color: #ff0000;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #ff0000;
+}
+
+.privacy-section h3 {
+  color: #ff0000;
+  font-size: 1.4rem;
+  margin: 2rem 0 1rem 0;
+}
+
+.privacy-section h4 {
+  color: var(--text-primary, #ffffff);
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.75rem 0;
+  font-weight: 600;
+}
+
+.privacy-section p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.privacy-section ul {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.privacy-section li {
+  margin-bottom: 0.5rem;
+}
+
+.privacy-section strong {
+  color: #ff0000;
+  font-weight: 600;
+}
+
+.cookie-category {
+  background: var(--background-secondary, #111111);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border-left: 4px solid #ff0000;
+}
+
+.cookie-category h4 {
+  color: #ff0000;
+  margin-top: 0;
+}
+
+.cookie-category ul {
+  margin-top: 0.5rem;
+}
+
+.contact-info {
+  background: var(--background-secondary, #111111);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.contact-info p {
+  margin: 0.5rem 0;
+}
+
+/* ==================================================
+   Footer
+   ================================================== */
+
+.privacy-footer {
+  background: var(--background-secondary, #111111);
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--border-color, #333333);
+  text-align: center;
+}
+
+.privacy-footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.privacy-footer-links a {
+  color: #ff0000;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.privacy-footer-links a:hover,
+.privacy-footer-links a:focus-visible {
+  background: rgba(255, 0, 0, 0.1);
+  outline: 3px solid #ff0000;
+  outline-offset: 2px;
+}
+
+.privacy-copyright {
+  color: var(--text-secondary, #cccccc);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ==================================================
+   Focus Management
+   ================================================== */
+
+.privacy-content:focus-visible {
+  outline: 3px solid #ff0000;
+  outline-offset: 2px;
+}
+
+.privacy-section h2:focus-visible,
+.privacy-section h3:focus-visible {
+  outline: 3px solid #ff0000;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ==================================================
+   Responsive Design
+   ================================================== */
+
+@media (max-width: 768px) {
+  .privacy-header {
+    padding: 1.5rem 1rem;
+  }
+
+  .privacy-title {
+    font-size: 2rem;
+  }
+
+  .privacy-subtitle {
+    font-size: 1rem;
+  }
+
+  .privacy-table-of-contents ul {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .toc-link {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .privacy-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .privacy-section {
+    margin-bottom: 2rem;
+  }
+
+  .privacy-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .privacy-section h3 {
+    font-size: 1.2rem;
+  }
+
+  .privacy-footer-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .privacy-footer-links li {
+    margin: 0;
+  }
+}
+
+/* ==================================================
+   High Contrast Mode
+   ================================================== */
+
+@media (prefers-contrast: high) {
+  .privacy-section h2,
+  .privacy-section h3,
+  .privacy-section h4 {
+    border-bottom-width: 3px;
+  }
+
+  .cookie-category,
+  .contact-info {
+    border-left-width: 6px;
+  }
+
+  .toc-link,
+  .nav-home-link {
+    border-width: 3px;
+  }
+}
+
+/* ==================================================
+   Reduced Motion
+   ================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .toc-link,
+  .nav-home-link,
+  .privacy-footer-links a {
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ==================================================
+   Print Styles
+   ================================================== */
+
+@media print {
+  .privacy-nav,
+  .privacy-table-of-contents {
+    display: none;
+  }
+
+  .privacy-policy {
+    background: white;
+    color: black;
+  }
+
+  .privacy-section {
+    page-break-inside: avoid;
+  }
+
+  .privacy-section h2 {
+    page-break-after: avoid;
+    border-bottom: 2px solid black;
+    color: black;
+  }
+
+  .cookie-category,
+  .contact-info {
+    border: 1px solid black;
+    background: #f9f9f9;
+  }
+
+  .privacy-footer {
+    border-top: 1px solid black;
+  }
+}
+
+/* ==================================================
+   Skip Links (for screen readers)
+   ================================================== */
+
+.privacy-skip-links {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  z-index: 1000;
+}
+
+.privacy-skip-links:focus-within {
+  top: 6px;
+}
+
+.privacy-skip-link {
+  background: #000000;
+  color: #ffffff;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.privacy-skip-link:focus {
+  outline: 3px solid #ff0000;
+}
+
+/* ==================================================
+   Screen Reader Only Content
+   ================================================== */
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sr-only:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0.5rem !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+  border: 2px solid #ff0000 !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  z-index: 9999 !important;
+}

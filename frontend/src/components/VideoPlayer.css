@@ -87,6 +87,37 @@
   gap: 0.5rem;
 }
 
+/* Botones de compartir */
+.video-share {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.video-share h4 {
+  color: #333;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.share-buttons button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.share-buttons button:hover {
+  transform: scale(1.1);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .video-player {

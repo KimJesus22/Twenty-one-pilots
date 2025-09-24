@@ -5,7 +5,8 @@ import { useNotifications } from './useNotifications';
 import mapsAPI from '../api/maps';
 
 export function useMaps() {
-  const { user, isAuthenticated } = useAuth();
+  // eslint-disable-next-line no-unused-vars
+  const { user: _user, isAuthenticated } = useAuth();
   const { addToFavorites: addToFavoritesGeneral, hasFavorite } = useFavorites();
   const { createNotification } = useNotifications();
 

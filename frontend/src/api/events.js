@@ -137,6 +137,73 @@ class EventsAPI {
     const response = await this.request('/stats/overview');
     return response;
   }
+
+  // ===== FUNCIONES DE TICKETING =====
+
+  // Buscar eventos con ticketing
+  async searchEventsWithTickets(query = '', location = '', limit = 20) {
+    const queryParams = new URLSearchParams();
+    if (query) queryParams.append('query', query);
+    if (location) queryParams.append('location', location);
+    if (limit) queryParams.append('limit', limit);
+
+    const response = await this.request(`/ticketing/search?${queryParams}`);
+    return response;
+  }
+
+  // Obtener detalles de ticketing de un evento
+  async getEventTicketingDetails(eventId, provider = 'internal') {
+    const response = await this.request(`/${eventId}/ticketing?provider=${provider}`);
+    return response;
+  }
+
+  // Obtener disponibilidad de asientos
+  async getSeatAvailability(eventId, provider = 'internal') {
+    const response = await this.request(`/${eventId}/seats/availability?provider=${provider}`);
+    return response;
+  }
+
+  // Reservar asientos
+  async reserveSeats(eventId, seats, provider = 'internal') {
+    const response = await this.request(`/${eventId}/seats/reserve`, {
+      method: 'POST',
+      body: JSON.stringify({ seats, provider }),
+    });
+    return response;
+  }
+
+  // Comprar tickets
+  async purchaseTickets(eventId, reservationId, paymentMethod, seats = null) {
+    const response = await this.request(`/${eventId}/tickets/purchase`, {
+      method: 'POST',
+      body: JSON.stringify({ reservationId, paymentMethod, seats }),
+    });
+    return response;
+  }
+
+  // Solicitar reembolso
+  async refundTickets(eventId, ticketIds, reason) {
+    const response = await this.request(`/${eventId}/tickets/refund`, {
+      method: 'POST',
+      body: JSON.stringify({ ticketIds, reason }),
+    });
+    return response;
+  }
+
+  // Validar ticket
+  async validateTicket(eventId, ticketNumber) {
+    const response = await this.request(`/${eventId}/tickets/validate`, {
+      method: 'POST',
+      body: JSON.stringify({ ticketNumber }),
+    });
+    return response;
+  }
+
+  // Obtener estadísticas de ticketing
+  async getTicketingStats(eventId) {
+    const response = await this.request(`/${eventId}/ticketing/stats`);
+    return response;
+  }
 }
 
 export default new EventsAPI();

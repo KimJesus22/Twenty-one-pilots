@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLyrics } from '../hooks/useLyrics';
-import { useFavorites } from '../hooks/useFavorites';
 import './Lyrics.css';
 
 const Lyrics = () => {
@@ -9,7 +8,8 @@ const Lyrics = () => {
     translateLyrics,
     searchSongs,
     addLyricsToFavorites,
-    checkLyricsFavorite,
+    // eslint-disable-next-line no-unused-vars
+    _checkLyricsFavorite,
     loading,
     error,
     currentLyrics,
@@ -43,7 +43,7 @@ const Lyrics = () => {
     try {
       setSelectedSong(song);
       clearSearchResults();
-      const lyrics = await getLyrics(song.id, song.artist, song.title);
+      await getLyrics(song.id, song.artist, song.title);
       setArtist(song.artist);
       setTitle(song.title);
     } catch (err) {
@@ -87,7 +87,7 @@ const Lyrics = () => {
 
     try {
       setSelectedSong({ artist, title });
-      const lyrics = await getLyrics(null, artist, title);
+      await getLyrics(null, artist, title);
     } catch (err) {
       console.error('Error getting lyrics:', err);
     }

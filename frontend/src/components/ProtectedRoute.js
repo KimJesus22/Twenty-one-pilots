@@ -28,12 +28,12 @@ const ProtectedRoute = ({
   }
 
   // Si requiere autenticación y no está autenticado
-  if (requireAuth && !isAuthenticated()) {
+  if (requireAuth && !isAuthenticated) {
     return <Navigate to={redirectTo} state={{ from: location }} replace />;
   }
 
   // Si no requiere autenticación pero está autenticado (ej: páginas de login)
-  if (!requireAuth && isAuthenticated()) {
+  if (!requireAuth && isAuthenticated) {
     return <Navigate to="/" replace />;
   }
 
@@ -76,7 +76,7 @@ export const ProtectedAction = ({
   const { isAuthenticated, hasRole } = useAuth();
 
   // Si requiere autenticación y no está autenticado
-  if (!isAuthenticated()) {
+  if (!isAuthenticated) {
     if (showMessage) {
       return (
         <div style={{ color: '#666', fontSize: '14px' }}>

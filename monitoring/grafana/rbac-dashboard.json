@@ -1,0 +1,214 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Twenty One Pilots - Security & RBAC Monitoring",
+    "tags": ["security", "rbac", "audit"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "User Authentication Trends",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(twentyonepilots_auth_login_total[5m])) by (method)",
+            "legendFormat": "{{method}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": 2,
+        "title": "2FA Verification Rate",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "rate(twentyonepilots_2fa_verification_total{status=\"success\"}[5m]) / rate(twentyonepilots_2fa_verification_total[5m]) * 100",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 12,
+          "y": 0
+        }
+      },
+      {
+        "id": 3,
+        "title": "Failed Login Attempts by IP",
+        "type": "table",
+        "targets": [
+          {
+            "expr": "sum(increase(twentyonepilots_auth_login_failures_total[1h])) by (ip)",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 18,
+          "y": 0
+        }
+      },
+      {
+        "id": 4,
+        "title": "RBAC Permission Changes",
+        "type": "logs",
+        "targets": [
+          {
+            "expr": "{job=\"twentyonepilots-audit\"} |= \"PERMISSION_\"",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 8
+        }
+      },
+      {
+        "id": 5,
+        "title": "Admin Actions Timeline",
+        "type": "timeline",
+        "targets": [
+          {
+            "expr": "sum(twentyonepilots_admin_actions_total) by (action)",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 8
+        }
+      },
+      {
+        "id": 6,
+        "title": "Security Score",
+        "type": "gauge",
+        "targets": [
+          {
+            "expr": "twentyonepilots_security_score",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 0,
+          "y": 16
+        }
+      },
+      {
+        "id": 7,
+        "title": "Account Lockouts",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "increase(twentyonepilots_account_lockouts_total[1h])",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 6,
+          "y": 16
+        }
+      },
+      {
+        "id": 8,
+        "title": "Deployment Authorizations",
+        "type": "table",
+        "targets": [
+          {
+            "expr": "twentyonepilots_deployment_auth_total",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 16
+        }
+      },
+      {
+        "id": 9,
+        "title": "reCAPTCHA Verification Trends",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(rate(twentyonepilots_recaptcha_verification_total[5m])) by (success)",
+            "legendFormat": "{{success}}",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 24
+        }
+      },
+      {
+        "id": 10,
+        "title": "reCAPTCHA Risk Distribution",
+        "type": "piechart",
+        "targets": [
+          {
+            "expr": "sum(twentyonepilots_recaptcha_risk_total) by (level)",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 12,
+          "y": 24
+        }
+      },
+      {
+        "id": 11,
+        "title": "reCAPTCHA Average Score",
+        "type": "gauge",
+        "targets": [
+          {
+            "expr": "avg(twentyonepilots_recaptcha_score)",
+            "refId": "A"
+          }
+        ],
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 18,
+          "y": 24
+        }
+      }
+    ],
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "templating": {
+      "list": []
+    },
+    "annotations": {
+      "list": []
+    },
+    "refresh": "5s",
+    "schemaVersion": 27,
+    "version": 0,
+    "links": []
+  }
+}

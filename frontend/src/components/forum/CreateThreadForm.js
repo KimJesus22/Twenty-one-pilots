@@ -1,5 +1,6 @@
 import React, { memo, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import MarkdownEditor from '../MarkdownEditor';
 
 const CreateThreadForm = memo(({ categories, onSubmit, onCancel, _currentUser, t }) => {
   const [tags, setTags] = useState([]);
@@ -9,7 +10,9 @@ const CreateThreadForm = memo(({ categories, onSubmit, onCancel, _currentUser, t
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset
+    reset,
+    watch,
+    setValue
   } = useForm({
     defaultValues: {
       title: '',
@@ -105,21 +108,10 @@ const CreateThreadForm = memo(({ categories, onSubmit, onCancel, _currentUser, t
 
         <div className="form-group">
           <label htmlFor="content">{t('forum.threadContent')}</label>
-          <textarea
-            id="content"
-            {...register('content', {
-              required: t('forum.threadContent') + ' is required',
-              minLength: {
-                value: 10,
-                message: 'Content must be at least 10 characters'
-              },
-              maxLength: {
-                value: 10000,
-                message: 'Content cannot exceed 10000 characters'
-              }
-            })}
+          <MarkdownEditor
+            value={watch('content') || ''}
+            onChange={(value) => setValue('content', value)}
             placeholder={t('forum.threadContent')}
-            rows={8}
             className={errors.content ? 'error' : ''}
           />
           {errors.content && (

@@ -1,9 +1,60 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import YouTube from 'react-youtube';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  WhatsappIcon
+} from 'react-share';
 import { formatViewCount, formatPublishedDate } from '../api/videos';
+import VideoComments from './VideoComments';
 import './VideoPlayer.css';
 
-const VideoPlayer = ({ video }) => {
+const VideoPlayer = ({ video, currentUser, onNext, onPrevious, hasNext, hasPrevious }) => {
+  const playerRef = useRef(null);
+
+  // Navegación por teclado
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      // Solo si el foco no está en un input o textarea
+      if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
+        return;
+      }
+
+      switch (event.code) {
+        case 'Space':
+          event.preventDefault();
+          if (playerRef.current) {
+            const state = playerRef.current.getPlayerState();
+            if (state === 1) { // Reproduciendo
+              playerRef.current.pauseVideo();
+            } else {
+              playerRef.current.playVideo();
+            }
+          }
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          if (hasNext && onNext) {
+            onNext();
+          }
+          break;
+        case 'ArrowLeft':
+          event.preventDefault();
+          if (hasPrevious && onPrevious) {
+            onPrevious();
+          }
+          break;
+        default:
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [hasNext, hasPrevious, onNext, onPrevious]);
 
   // Función helper para normalizar el acceso a propiedades del video
   const getVideoProperty = (video, propertyPath) => {
@@ -32,6 +83,9 @@ const VideoPlayer = ({ video }) => {
   }
 
   const videoId = getVideoProperty(video, 'id.videoId') || getVideoProperty(video, 'id') || video.id;
+  const videoTitle = getVideoProperty(video, 'title') || getVideoProperty(video, 'snippet.title') || 'Video de Twenty One Pilots';
+  const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+  const shareTitle = `Mira este video: ${videoTitle}`;
 
   const opts = {
     height: '390',
@@ -52,16 +106,15 @@ const VideoPlayer = ({ video }) => {
 
   const onReady = (event) => {
     // El reproductor está listo
-    console.log('Video player ready:', videoId);
+    playerRef.current = event.target;
   };
 
   const onError = (error) => {
     console.error('Error en el reproductor de YouTube:', error);
   };
 
-  const onStateChange = (event) => {
+  const onStateChange = (_event) => {
     // Estados posibles: -1 (no empezado), 0 (terminado), 1 (reproduciendo), 2 (pausado), 3 (buffering), 5 (en cola)
-    console.log('Estado del reproductor cambió:', event.data);
   };
 
   return (
@@ -96,12 +149,36 @@ const VideoPlayer = ({ video }) => {
           </div>
         )}
 
+        {/* Botones de compartir */}
+        <div className="video-share">
+          <h4>Compartir este video:</h4>
+          <div className="share-buttons">
+            <FacebookShareButton url={videoUrl} quote={shareTitle}>
+              <FacebookIcon size={32} round />
+            </FacebookShareButton>
+
+            <TwitterShareButton url={videoUrl} title={shareTitle}>
+              <TwitterIcon size={32} round />
+            </TwitterShareButton>
+
+            <WhatsappShareButton url={videoUrl} title={shareTitle}>
+              <WhatsappIcon size={32} round />
+            </WhatsappShareButton>
+          </div>
+        </div>
+
         <div className="video-published">
           <span>
             📅 Publicado: {formatPublishedDate(getVideoProperty(video, 'publishedAt') || getVideoProperty(video, 'snippet.publishedAt') || getVideoProperty(video, 'items.0.snippet.publishedAt'))}
           </span>
         </div>
       </div>
+
+      {/* Comentarios del video */}
+      <VideoComments
+        videoId={videoId}
+        currentUser={currentUser}
+      />
     </div>
   );
 };

@@ -278,6 +278,75 @@
   margin-top: 2px;
 }
 
+/* Sistema de ratings y comentarios */
+.album-rating {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #333333;
+}
+
+.rating-display {
+  margin-bottom: 8px;
+}
+
+.rating-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.rating-text {
+  font-size: 0.8rem;
+  color: #cccccc;
+}
+
+.rating-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.comments-toggle {
+  background: #333333;
+  color: #cccccc;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.comments-toggle:hover {
+  background: #444444;
+  color: #ffffff;
+}
+
+.album-comments {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #333333;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* Tema oscuro adicional para ratings */
+[data-theme="dark"] .album-rating {
+  border-color: #4a5568;
+}
+
+[data-theme="dark"] .comments-toggle {
+  background: #2d3748;
+  color: #a0aec0;
+}
+
+[data-theme="dark"] .comments-toggle:hover {
+  background: #4a5568;
+  color: #e2e8f0;
+}
+
 /* Responsive adicional */
 @media (max-width: 480px) {
   .popularity-stats {

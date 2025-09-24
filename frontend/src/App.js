@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { UserPreferencesProvider } from './contexts/UserPreferencesContext';
+import { ThemeProvider } from './ThemeProvider';
 import Navbar from './components/Navbar';
 import './App.css';
 import './i18n'; // Asegurar que i18n se importe
@@ -21,42 +23,61 @@ import Lyrics from './pages/Lyrics';
 import Maps from './pages/Maps';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
+import AlbumMetrics from './pages/AlbumMetrics';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import DataRequests from './pages/DataRequests';
+import CookieBanner from './components/CookieBanner';
+import AccessibilityAuditor from './components/AccessibilityAuditor';
 
 function App() {
   return (
-    <div className="App" style={{
-      backgroundColor: '#000000',
-      color: '#ffffff',
-      minHeight: '100vh',
-      fontFamily: 'Arial, sans-serif'
-    }}>
-      <LanguageProvider>
-        <AuthProvider>
-          <CartProvider>
-            <Router>
-              <Navbar />
-              <main style={{ padding: '20px' }}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/discography" element={<Discography />} />
-                  <Route path="/videos" element={<Videos />} />
-                  <Route path="/concerts" element={<Concerts />} />
-                  <Route path="/events" element={<Events />} />
-                  <Route path="/forum" element={<Forum />} />
-                  <Route path="/playlists" element={<Playlists />} />
-                  <Route path="/spotify" element={<Spotify />} />
-                  <Route path="/store" element={<Store />} />
-                  <Route path="/lyrics" element={<Lyrics />} />
-                  <Route path="/maps" element={<Maps />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/admin" element={<Admin />} />
-                </Routes>
-              </main>
-            </Router>
-          </CartProvider>
-        </AuthProvider>
-      </LanguageProvider>
+    <ThemeProvider>
+      <div className="App" style={{
+        minHeight: '100vh',
+        fontFamily: 'Arial, sans-serif'
+      }}>
+        <UserPreferencesProvider>
+          <LanguageProvider>
+            <AuthProvider>
+              <CartProvider>
+                <Router>
+                  <header role="banner">
+                    <Navbar />
+                  </header>
+                  <main
+                    id="main-content"
+                    role="main"
+                    style={{ padding: '20px' }}
+                    tabIndex="-1"
+                  >
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/discography" element={<Discography />} />
+                    <Route path="/videos" element={<Videos />} />
+                    <Route path="/concerts" element={<Concerts />} />
+                    <Route path="/events" element={<Events />} />
+                    <Route path="/forum" element={<Forum />} />
+                    <Route path="/playlists" element={<Playlists />} />
+                    <Route path="/album-metrics" element={<AlbumMetrics />} />
+                    <Route path="/spotify" element={<Spotify />} />
+                    <Route path="/store" element={<Store />} />
+                    <Route path="/lyrics" element={<Lyrics />} />
+                    <Route path="/maps" element={<Maps />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/admin" element={<Admin />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="/data-requests" element={<DataRequests />} />
+                  </Routes>
+                </main>
+              </Router>
+            </CartProvider>
+          </AuthProvider>
+        </LanguageProvider>
+      </UserPreferencesProvider>
+      <CookieBanner />
+      <AccessibilityAuditor />
     </div>
+    </ThemeProvider>
   );
 }
 

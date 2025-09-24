@@ -61,6 +61,10 @@ apiClient.interceptors.response.use(
  * @param {number} options.limit - Número máximo de resultados (default: 20)
  * @param {string} options.pageToken - Token para paginación
  * @param {string} options.sortBy - Campo para ordenar (default: 'relevance')
+ * @param {string} options.type - Tipo de video (official, concert, etc.)
+ * @param {string} options.genre - Género musical
+ * @param {string} options.artist - Artista
+ * @param {number} options.year - Año de lanzamiento
  * @returns {Promise<Object>} Resultados de búsqueda con paginación
  */
 export const searchVideos = async (query, options = {}) => {
@@ -70,6 +74,10 @@ export const searchVideos = async (query, options = {}) => {
       limit: options.limit || 20,
       ...(options.pageToken && { pageToken: options.pageToken }),
       ...(options.sortBy && { sortBy: options.sortBy }),
+      ...(options.type && { type: options.type }),
+      ...(options.genre && { genre: options.genre }),
+      ...(options.artist && { artist: options.artist }),
+      ...(options.year && { year: options.year }),
     };
 
     console.log('🔍 Buscando videos:', { query, params });
@@ -281,6 +289,100 @@ export const createVideosApiClient = () => {
   };
 };
 
+// Gestión de favoritos
+export const addToFavorites = async (userId, videoId) => {
+  try {
+    const response = await apiClient.post(`/videos/favorites/${userId}/${videoId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding to favorites:', error);
+    throw error;
+  }
+};
+
+export const removeFromFavorites = async (userId, videoId) => {
+  try {
+    const response = await apiClient.delete(`/videos/favorites/${userId}/${videoId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error removing from favorites:', error);
+    throw error;
+  }
+};
+
+export const getUserFavorites = async (userId, page = 1, limit = 20) => {
+  try {
+    const response = await apiClient.get(`/videos/favorites/${userId}`, {
+      params: { page, limit }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error getting user favorites:', error);
+    throw error;
+  }
+};
+
+export const checkFavoriteStatus = async (userId, videoId) => {
+  try {
+    const response = await apiClient.get(`/videos/favorites/${userId}/${videoId}/check`);
+    return response.data;
+  } catch (error) {
+    console.error('Error checking favorite status:', error);
+    throw error;
+  }
+};
+
+// Gestión de listas personalizadas
+export const createCustomList = async (userId, listData) => {
+  try {
+    const response = await apiClient.post(`/videos/lists/${userId}`, listData);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating custom list:', error);
+    throw error;
+  }
+};
+
+export const addToCustomList = async (userId, listIndex, videoId) => {
+  try {
+    const response = await apiClient.post(`/videos/lists/${userId}/${listIndex}/videos/${videoId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding to custom list:', error);
+    throw error;
+  }
+};
+
+export const removeFromCustomList = async (userId, listIndex, videoId) => {
+  try {
+    const response = await apiClient.delete(`/videos/lists/${userId}/${listIndex}/videos/${videoId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error removing from custom list:', error);
+    throw error;
+  }
+};
+
+export const getUserCustomLists = async (userId) => {
+  try {
+    const response = await apiClient.get(`/videos/lists/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error getting user custom lists:', error);
+    throw error;
+  }
+};
+
+export const deleteCustomList = async (userId, listIndex) => {
+  try {
+    const response = await apiClient.delete(`/videos/lists/${userId}/${listIndex}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting custom list:', error);
+    throw error;
+  }
+};
+
 // Exportar funciones individuales
 export default {
   searchVideos,
@@ -291,4 +393,13 @@ export default {
   formatPublishedDate,
   createVideosApiClient,
   normalizeVideo,
+  addToFavorites,
+  removeFromFavorites,
+  getUserFavorites,
+  checkFavoriteStatus,
+  createCustomList,
+  addToCustomList,
+  removeFromCustomList,
+  getUserCustomLists,
+  deleteCustomList,
 };

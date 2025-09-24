@@ -1,0 +1,91 @@
+global:
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_from: 'alerts@twentyonepilots.com'
+  smtp_auth_username: '${SMTP_USER}'
+  smtp_auth_password: '${SMTP_PASS}'
+
+route:
+  group_by: ['alertname', 'service']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  receiver: 'twentyonepilots-alerts'
+  routes:
+    - match:
+        severity: critical
+      receiver: 'twentyonepilots-critical'
+    - match:
+        service: testing
+      receiver: 'twentyonepilots-dev'
+
+receivers:
+  - name: 'twentyonepilots-alerts'
+    email_configs:
+      - to: '${ALERT_EMAIL}'
+        subject: '[{{ .GroupLabels.alertname }}] {{ .Annotations.summary }}'
+        body: |
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Severity: {{ .Labels.severity }}
+          Service: {{ .Labels.service }}
+          Timestamp: {{ .StartsAt.Format "2006-01-02 15:04:05" }}
+          {{ end }}
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#alerts'
+        title: '[{{ .GroupLabels.alertname }}] {{ .Annotations.summary }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert:* {{ .Annotations.summary }}
+          *Description:* {{ .Annotations.description }}
+          *Severity:* {{ .Labels.severity }}
+          *Service:* {{ .Labels.service }}
+          *Timestamp:* {{ .StartsAt.Format "2006-01-02 15:04:05" }}
+          {{ end }}
+
+  - name: 'twentyonepilots-critical'
+    email_configs:
+      - to: '${CRITICAL_ALERT_EMAIL}'
+        subject: '🚨 CRITICAL: [{{ .GroupLabels.alertname }}] {{ .Annotations.summary }}'
+        body: |
+          🚨 CRITICAL ALERT 🚨
+
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Severity: {{ .Labels.severity }}
+          Service: {{ .Labels.service }}
+          Timestamp: {{ .StartsAt.Format "2006-01-02 15:04:05" }}
+
+          This is a CRITICAL alert requiring immediate attention!
+          {{ end }}
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#critical-alerts'
+        title: '🚨 CRITICAL: [{{ .GroupLabels.alertname }}] {{ .Annotations.summary }}'
+        color: 'danger'
+        text: |
+          🚨 *CRITICAL ALERT* 🚨
+
+          {{ range .Alerts }}
+          *Alert:* {{ .Annotations.summary }}
+          *Description:* {{ .Annotations.description }}
+          *Severity:* {{ .Labels.severity }}
+          *Service:* {{ .Labels.service }}
+          *Timestamp:* {{ .StartsAt.Format "2006-01-02 15:04:05" }}
+
+          *IMMEDIATE ACTION REQUIRED!*
+          {{ end }}
+
+  - name: 'twentyonepilots-dev'
+    slack_configs:
+      - api_url: '${SLACK_WEBHOOK_URL}'
+        channel: '#dev-alerts'
+        title: '[TEST] {{ .GroupLabels.alertname }}'
+        color: 'good'
+        text: |
+          🧪 *Test Alert:* {{ .Annotations.summary }}
+          {{ .Annotations.description }}
+
+          This alert is related to automated testing.

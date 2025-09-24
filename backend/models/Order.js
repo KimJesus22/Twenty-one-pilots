@@ -46,14 +46,18 @@ const orderSchema = new mongoose.Schema({
   total: { type: Number, required: true },
 
   // Moneda y método de pago
-  currency: { type: String, default: 'USD' },
+  currency: { type: String, default: 'USD', enum: ['USD', 'MXN', 'EUR'] },
   paymentMethod: {
     type: String,
-    enum: ['stripe', 'paypal', 'bank_transfer', 'cash_on_delivery'],
+    enum: ['stripe', 'paypal', 'apple_pay', 'mercadopago', 'conekta', 'bank_transfer', 'cash_on_delivery'],
     required: true
   },
   paymentIntentId: { type: String }, // Para Stripe
   paypalOrderId: { type: String }, // Para PayPal
+  applePayTransactionId: { type: String }, // Para Apple Pay
+  mercadopagoPaymentId: { type: String }, // Para MercadoPago
+  conektaChargeId: { type: String }, // Para Conekta
+  paymentReference: { type: String }, // Referencia general de pago
 
   // Estado del pago
   paymentStatus: {
@@ -113,7 +117,10 @@ const orderSchema = new mongoose.Schema({
     processedAt: { type: Date, default: Date.now },
     processedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     stripeRefundId: { type: String },
-    paypalRefundId: { type: String }
+    paypalRefundId: { type: String },
+    applePayRefundId: { type: String },
+    mercadopagoRefundId: { type: String },
+    conektaRefundId: { type: String }
   }],
 
   // Información de GDPR/CCPA
@@ -131,7 +138,7 @@ const orderSchema = new mongoose.Schema({
 });
 
 // Índices para búsquedas eficientes
-orderSchema.index({ orderNumber: 1 });
+// orderNumber ya tiene índice único por unique: true
 orderSchema.index({ customer: 1, createdAt: -1 });
 orderSchema.index({ status: 1 });
 orderSchema.index({ paymentStatus: 1 });

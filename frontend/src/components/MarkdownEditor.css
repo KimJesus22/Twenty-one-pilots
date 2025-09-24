@@ -1,0 +1,375 @@
+.markdown-editor {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.markdown-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  padding: 0 16px;
+}
+
+.markdown-editor-tabs {
+  display: flex;
+}
+
+.markdown-tab {
+  background: none;
+  border: none;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.markdown-tab:hover {
+  background: #e9ecef;
+  color: #333;
+}
+
+.markdown-tab.active {
+  color: #007bff;
+  border-bottom-color: #007bff;
+}
+
+.markdown-help-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.markdown-help-btn:hover {
+  background: #5a6268;
+}
+
+.markdown-help {
+  background: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  padding: 16px;
+}
+
+.markdown-help h4 {
+  margin: 0 0 12px 0;
+  color: #333;
+}
+
+.markdown-help-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 8px;
+}
+
+.help-item {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #666;
+}
+
+.help-item strong {
+  color: #333;
+}
+
+.markdown-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-toolbar-btn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  color: #333;
+}
+
+.markdown-toolbar-btn:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.markdown-toolbar-btn:active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.markdown-textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 16px;
+  border: none;
+  outline: none;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  background: white;
+}
+
+.markdown-preview {
+  padding: 16px;
+  min-height: 200px;
+  background: white;
+  overflow-x: auto;
+}
+
+/* Markdown styling */
+.markdown-h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.67em 0;
+  color: #333;
+}
+
+.markdown-h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.83em 0;
+  color: #333;
+}
+
+.markdown-h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin: 1em 0;
+  color: #333;
+}
+
+.markdown-p {
+  margin: 1em 0;
+  line-height: 1.6;
+}
+
+.markdown-blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 16px;
+  margin: 16px 0;
+  color: #666;
+  font-style: italic;
+}
+
+.markdown-inline-code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  color: #d73a49;
+}
+
+.markdown-code-block {
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 6px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.45;
+  overflow-x: auto;
+  color: #333;
+}
+
+.markdown-pre {
+  margin: 16px 0;
+}
+
+.markdown-ul,
+.markdown-ol {
+  margin: 16px 0;
+  padding-left: 32px;
+}
+
+.markdown-li {
+  margin: 4px 0;
+  line-height: 1.6;
+}
+
+.markdown-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.markdown-link:hover {
+  text-decoration: underline;
+}
+
+.markdown-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+
+.markdown-strong {
+  font-weight: bold;
+  color: #333;
+}
+
+.markdown-em {
+  font-style: italic;
+  color: #666;
+}
+
+.markdown-del {
+  text-decoration: line-through;
+  color: #6c757d;
+}
+
+/* Dark theme support */
+[data-theme="dark"] .markdown-editor {
+  border-color: #495057;
+  background: #343a40;
+}
+
+[data-theme="dark"] .markdown-editor-header {
+  background: #495057;
+  border-bottom-color: #495057;
+}
+
+[data-theme="dark"] .markdown-tab {
+  color: #adb5bd;
+}
+
+[data-theme="dark"] .markdown-tab:hover {
+  background: #6c757d;
+  color: #fff;
+}
+
+[data-theme="dark"] .markdown-tab.active {
+  color: #4dabf7;
+  border-bottom-color: #4dabf7;
+}
+
+[data-theme="dark"] .markdown-help {
+  background: #495057;
+  border-bottom-color: #495057;
+}
+
+[data-theme="dark"] .markdown-help h4 {
+  color: #fff;
+}
+
+[data-theme="dark"] .help-item {
+  color: #adb5bd;
+}
+
+[data-theme="dark"] .help-item strong {
+  color: #fff;
+}
+
+[data-theme="dark"] .markdown-toolbar {
+  background: #495057;
+  border-bottom-color: #495057;
+}
+
+[data-theme="dark"] .markdown-toolbar-btn {
+  background: #6c757d;
+  border-color: #495057;
+  color: #fff;
+}
+
+[data-theme="dark"] .markdown-toolbar-btn:hover {
+  background: #5a6268;
+  border-color: #6c757d;
+}
+
+[data-theme="dark"] .markdown-textarea {
+  background: #343a40;
+  color: #fff;
+}
+
+[data-theme="dark"] .markdown-preview {
+  background: #343a40;
+  color: #fff;
+}
+
+[data-theme="dark"] .markdown-h1,
+[data-theme="dark"] .markdown-h2,
+[data-theme="dark"] .markdown-h3 {
+  color: #fff;
+}
+
+[data-theme="dark"] .markdown-p {
+  color: #adb5bd;
+}
+
+[data-theme="dark"] .markdown-blockquote {
+  border-left-color: #6c757d;
+  color: #adb5bd;
+}
+
+[data-theme="dark"] .markdown-inline-code,
+[data-theme="dark"] .markdown-code-block {
+  background: #495057;
+  color: #ff6b6b;
+}
+
+[data-theme="dark"] .markdown-link {
+  color: #4dabf7;
+}
+
+[data-theme="dark"] .markdown-strong {
+  color: #fff;
+}
+
+[data-theme="dark"] .markdown-em {
+  color: #adb5bd;
+}
+
+[data-theme="dark"] .markdown-del {
+  color: #6c757d;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .markdown-toolbar {
+    padding: 4px;
+  }
+
+  .markdown-toolbar-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .markdown-help-content {
+    grid-template-columns: 1fr;
+  }
+
+  .markdown-editor-header {
+    padding: 0 8px;
+  }
+
+  .markdown-tab {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}

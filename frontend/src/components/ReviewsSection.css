@@ -1,0 +1,264 @@
+/* ReviewsSection Component Styles */
+.reviews-section {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Loading state */
+.loading-reviews {
+  text-align: center;
+  padding: 60px 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 107, 107, 0.3);
+  border-top: 4px solid #ff6b6b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+.spinner.small {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+  margin: 0 8px 0 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-reviews p {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Sección escribir reseña */
+.write-review-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.write-review-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  transition: all 0.3s ease;
+}
+
+.write-review-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* Reseñas destacadas */
+.featured-reviews {
+  margin-bottom: 24px;
+}
+
+.featured-reviews h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* Lista de reseñas */
+.reviews-list {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.reviews-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #e9ecef;
+  background: #f8f9fa;
+}
+
+.reviews-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filtered-count {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #666;
+  background: rgba(0, 123, 255, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.reviews-container {
+  padding: 0;
+}
+
+.no-reviews {
+  padding: 40px 24px;
+  text-align: center;
+  color: #666;
+}
+
+.no-reviews p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Cargar más */
+.load-more-section {
+  padding: 24px;
+  text-align: center;
+  border-top: 1px solid #e9ecef;
+}
+
+.load-more-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.load-more-btn:hover:not(:disabled) {
+  background: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+.load-more-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .reviews-section {
+    padding: 0 16px;
+  }
+
+  .loading-reviews {
+    padding: 40px 16px;
+  }
+
+  .write-review-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviews-header {
+    padding: 16px 20px;
+  }
+
+  .reviews-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .load-more-section {
+    padding: 20px;
+  }
+
+  .load-more-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .reviews-section {
+    padding: 0 8px;
+  }
+
+  .loading-reviews {
+    padding: 30px 12px;
+  }
+
+  .spinner {
+    width: 30px;
+    height: 30px;
+    border-width: 3px;
+  }
+
+  .write-review-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .featured-reviews h3 {
+    font-size: 1.1rem;
+  }
+
+  .reviews-header {
+    padding: 12px 16px;
+  }
+
+  .reviews-header h3 {
+    font-size: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .filtered-count {
+    font-size: 0.8rem;
+    padding: 1px 6px;
+  }
+
+  .no-reviews {
+    padding: 30px 16px;
+  }
+
+  .load-more-section {
+    padding: 16px;
+  }
+
+  .load-more-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .spinner.small {
+    margin: 0;
+  }
+}

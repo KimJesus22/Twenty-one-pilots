@@ -212,4 +212,50 @@ router.post('/logout',
   authController.logout
 );
 
+// 2FA: Configurar 2FA (requiere autenticación)
+router.post('/2fa/setup',
+  authService.authenticateToken,
+  authController.setupTwoFactor
+);
+
+// 2FA: Habilitar 2FA (requiere autenticación)
+router.post('/2fa/enable',
+  authService.authenticateToken,
+  [
+    body('token')
+      .isLength({ min: 6, max: 6 })
+      .withMessage('Token debe tener 6 dígitos')
+      .matches(/^\d{6}$/)
+      .withMessage('Token debe contener solo números'),
+  ],
+  authController.enableTwoFactor
+);
+
+// 2FA: Deshabilitar 2FA (requiere autenticación)
+router.post('/2fa/disable',
+  authService.authenticateToken,
+  authController.disableTwoFactor
+);
+
+// 2FA: Verificar token para login (no requiere autenticación completa)
+router.post('/2fa/verify',
+  [
+    body('tempToken').notEmpty().withMessage('Token temporal requerido'),
+    body('twoFactorToken').optional().isLength({ min: 6, max: 6 }).matches(/^\d{6}$/).withMessage('Token 2FA inválido'),
+    body('backupCode').optional().isLength({ min: 10, max: 10 }).withMessage('Código de respaldo inválido'),
+  ],
+  authController.verifyTwoFactor
+);
+
+// 2FA: Regenerar códigos de respaldo (requiere autenticación)
+router.post('/2fa/regenerate-backup',
+  authService.authenticateToken,
+  authController.regenerateBackupCodes
+);
+
+// Obtener configuración de reCAPTCHA (público)
+router.get('/recaptcha/config',
+  authController.getRecaptchaConfig
+);
+
 module.exports = router;

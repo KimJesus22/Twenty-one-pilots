@@ -20,60 +20,103 @@ export function AuthProvider({ children }) {
   // Funciones básicas simplificadas
   const login = async (credentials) => {
     setLoading(true);
-    // Simulación básica para desarrollo
-    if (credentials.email === 'admin@top.com' && credentials.password === 'admin123') {
-      const userData = {
-        _id: 'admin123',
-        email: 'admin@top.com',
-        username: 'admin',
-        role: 'admin'
-      };
-      localStorage.setItem('user', JSON.stringify(userData));
-      setUser(userData);
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        const userData = {
+          _id: data.data.user.id,
+          email: data.data.user.email,
+          username: data.data.user.username,
+          role: data.data.user.role
+        };
+        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('token', data.data.token);
+        setUser(userData);
+        setLoading(false);
+        return { success: true };
+      } else {
+        setLoading(false);
+        return { success: false, error: data.message || 'Credenciales inválidas' };
+      }
+    } catch (error) {
+      console.error('Login error:', error);
       setLoading(false);
-      return { success: true };
+      return { success: false, error: 'Error de conexión' };
     }
-    setLoading(false);
-    return { success: false, error: 'Credenciales inválidas' };
   };
 
   const register = async (userData) => {
     setLoading(true);
-    // Simulación básica
-    const newUser = {
-      _id: Date.now().toString(),
-      email: userData.email,
-      username: userData.username,
-      role: 'user'
-    };
-    localStorage.setItem('user', JSON.stringify(newUser));
-    setUser(newUser);
-    setLoading(false);
-    return { success: true };
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        const userData = {
+          _id: data.data.user.id,
+          email: data.data.user.email,
+          username: data.data.user.username,
+          role: data.data.user.role
+        };
+        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('token', data.data.token);
+        setUser(userData);
+        setLoading(false);
+        return { success: true };
+      } else {
+        setLoading(false);
+        return { success: false, error: data.message || 'Error en registro' };
+      }
+    } catch (error) {
+      console.error('Register error:', error);
+      setLoading(false);
+      return { success: false, error: 'Error de conexión' };
+    }
   };
 
   const logout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     setUser(null);
   };
 
-  const isAuthenticated = () => {
-    return !!user;
-  };
+  const isAuthenticated = !!user;
 
-  const isAdmin = () => {
-    return user?.role === 'admin';
-  };
+  const isAdmin = user?.role === 'admin';
 
   // Verificar si hay usuario guardado al iniciar
   React.useEffect(() => {
     const savedUser = localStorage.getItem('user');
-    if (savedUser) {
+    const token = localStorage.getItem('token');
+
+    if (savedUser && token) {
       try {
         setUser(JSON.parse(savedUser));
       } catch (e) {
+        // Limpiar datos inválidos
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
       }
+    } else {
+      // Limpiar cualquier dato inconsistente
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
     }
   }, []);
 

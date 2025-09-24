@@ -1,533 +1,972 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Playlists
+ *   description: Endpoints para gestión de playlists personalizadas
+ */
+
 const express = require('express');
-const { body, param, query, validationResult } = require('express-validator');
-const Playlist = require('../models/Playlist');
-const User = require('../models/User');
-const { validateMongoId } = require('../middleware/security');
-const logger = require('../utils/logger');
+const { param, body, query } = require('express-validator');
+const playlistController = require('../controllers/playlistController');
+const authService = require('../services/authService');
 
 const router = express.Router();
 
-// Middleware para verificar autenticación (simplificado)
-const requireAuth = (req, res, next) => {
-  // En producción, verificar JWT token
-  next();
-};
+/**
+ * @swagger
+ * /api/playlists:
+ *   post:
+ *     summary: Crear una nueva playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 maxLength: 100
+ *               description:
+ *                 type: string
+ *                 maxLength: 500
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               category:
+ *                 type: string
+ *                 enum: [favorites, workout, party, study, custom]
+ *               isPublic:
+ *                 type: boolean
+ *                 default: false
+ *               isCollaborative:
+ *                 type: boolean
+ *                 default: false
+ *               rating:
+ *                 type: integer
+ *                 minimum: 1
+ *                 maximum: 5
+ *               coverImage:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Playlist creada exitosamente
+ *       400:
+ *         description: Datos inválidos
+ *       401:
+ *         description: No autorizado
+ */
+router.post('/',
+  authService.authenticateToken,
+  [
+    body('name').isLength({ min: 1, max: 100 }).withMessage('Nombre requerido (1-100 caracteres)'),
+    body('description').optional().isLength({ max: 500 }).withMessage('Descripción muy larga'),
+    body('tags.*').optional().isLength({ max: 50 }).withMessage('Tag muy largo'),
+    body('category').optional().isIn(['favorites', 'workout', 'party', 'study', 'custom']).withMessage('Categoría inválida'),
+    body('isPublic').optional().isBoolean().withMessage('isPublic debe ser boolean'),
+    body('isCollaborative').optional().isBoolean().withMessage('isCollaborative debe ser boolean'),
+    body('rating').optional().isInt({ min: 1, max: 5 }).withMessage('Rating debe ser entre 1 y 5'),
+    body('coverImage').optional().isURL().withMessage('URL de imagen inválida'),
+  ],
+  playlistController.createPlaylist
+);
 
-// Validaciones para crear playlist
-const createPlaylistValidations = [
-  body('name')
-    .trim()
-    .isLength({ min: 1, max: 100 })
-    .withMessage('El nombre debe tener entre 1 y 100 caracteres')
-    .matches(/^[a-zA-Z0-9\s\-_.,!?()]+$/)
-    .withMessage('El nombre contiene caracteres no permitidos'),
-  body('description')
-    .optional()
-    .trim()
-    .isLength({ max: 500 })
-    .withMessage('La descripción no puede exceder 500 caracteres'),
-  body('userId')
-    .isMongoId()
-    .withMessage('ID de usuario inválido'),
-  body('isPublic')
-    .optional()
-    .isBoolean()
-    .withMessage('isPublic debe ser un valor booleano')
-];
+/**
+ * @swagger
+ * /api/playlists:
+ *   get:
+ *     summary: Obtener playlists del usuario autenticado
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           maximum: 50
+ *           default: 10
+ *       - in: query
+ *         name: category
+ *         schema:
+ *           type: string
+ *           enum: [favorites, workout, party, study, custom, all]
+ *       - in: query
+ *         name: sort
+ *         schema:
+ *           type: string
+ *           enum: [createdAt, updatedAt, name, playCount]
+ *           default: createdAt
+ *       - in: query
+ *         name: order
+ *         schema:
+ *           type: string
+ *           enum: [asc, desc]
+ *           default: desc
+ *     responses:
+ *       200:
+ *         description: Playlists obtenidas exitosamente
+ *       401:
+ *         description: No autorizado
+ */
+router.get('/',
+  authService.authenticateToken,
+  [
+    query('page').optional().isInt({ min: 1 }).withMessage('Page debe ser un entero positivo'),
+    query('limit').optional().isInt({ min: 1, max: 50 }).withMessage('Limit debe ser entre 1 y 50'),
+    query('category').optional().isIn(['favorites', 'workout', 'party', 'study', 'custom', 'all']).withMessage('Categoría inválida'),
+    query('sort').optional().isIn(['createdAt', 'updatedAt', 'name', 'playCount']).withMessage('Campo de ordenamiento inválido'),
+    query('order').optional().isIn(['asc', 'desc']).withMessage('Orden debe ser asc o desc'),
+  ],
+  playlistController.getUserPlaylists
+);
 
-// Validaciones para actualizar playlist
-const updatePlaylistValidations = [
-  param('id')
-    .isMongoId()
-    .withMessage('ID de playlist inválido'),
-  body('name')
-    .optional()
-    .trim()
-    .isLength({ min: 1, max: 100 })
-    .withMessage('El nombre debe tener entre 1 y 100 caracteres'),
-  body('description')
-    .optional()
-    .trim()
-    .isLength({ max: 500 })
-    .withMessage('La descripción no puede exceder 500 caracteres'),
-  body('isPublic')
-    .optional()
-    .isBoolean()
-    .withMessage('isPublic debe ser un valor booleano'),
-  body('userId')
-    .isMongoId()
-    .withMessage('ID de usuario inválido')
-];
+/**
+ * @swagger
+ * /api/playlists/public:
+ *   get:
+ *     summary: Obtener playlists públicas
+ *     tags: [Playlists]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           maximum: 50
+ *           default: 10
+ *       - in: query
+ *         name: category
+ *         schema:
+ *           type: string
+ *           enum: [favorites, workout, party, study, custom, all]
+ *       - in: query
+ *         name: tags
+ *         schema:
+ *           type: string
+ *           description: Tags separados por coma
+ *       - in: query
+ *         name: sort
+ *         schema:
+ *           type: string
+ *           enum: [createdAt, likes, playCount, viewCount]
+ *           default: createdAt
+ *       - in: query
+ *         name: order
+ *         schema:
+ *           type: string
+ *           enum: [asc, desc]
+ *           default: desc
+ *     responses:
+ *       200:
+ *         description: Playlists públicas obtenidas exitosamente
+ */
+router.get('/public',
+  [
+    query('page').optional().isInt({ min: 1 }).withMessage('Page debe ser un entero positivo'),
+    query('limit').optional().isInt({ min: 1, max: 50 }).withMessage('Limit debe ser entre 1 y 50'),
+    query('category').optional().isIn(['favorites', 'workout', 'party', 'study', 'custom', 'all']).withMessage('Categoría inválida'),
+    query('sort').optional().isIn(['createdAt', 'likes', 'playCount', 'viewCount']).withMessage('Campo de ordenamiento inválido'),
+    query('order').optional().isIn(['asc', 'desc']).withMessage('Orden debe ser asc o desc'),
+  ],
+  playlistController.getPublicPlaylists
+);
 
-// Validaciones para agregar canción
-const addSongValidations = [
-  param('id')
-    .isMongoId()
-    .withMessage('ID de playlist inválido'),
-  body('songId')
-    .isMongoId()
-    .withMessage('ID de canción inválido'),
-  body('userId')
-    .isMongoId()
-    .withMessage('ID de usuario inválido')
-];
+/**
+ * @swagger
+ * /api/playlists/{playlistId}:
+ *   get:
+ *     summary: Obtener playlist por ID
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Playlist obtenida exitosamente
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: No tiene permisos para ver la playlist
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.get('/:playlistId',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+  ],
+  playlistController.getPlaylistById
+);
 
-// Middleware para manejar errores de validación
-const handleValidationErrors = (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    logger.warn('Errores de validación en playlists:', {
-      errors: errors.array(),
-      path: req.path,
-      method: req.method,
-      ip: req.ip
-    });
-    return res.status(400).json({
-      success: false,
-      message: 'Datos de entrada inválidos',
-      errors: errors.array()
-    });
-  }
-  next();
-};
+/**
+ * @swagger
+ * /api/playlists/{playlistId}:
+ *   put:
+ *     summary: Actualizar playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 maxLength: 100
+ *               description:
+ *                 type: string
+ *                 maxLength: 500
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               category:
+ *                 type: string
+ *                 enum: [favorites, workout, party, study, custom]
+ *               isPublic:
+ *                 type: boolean
+ *               isCollaborative:
+ *                 type: boolean
+ *               rating:
+ *                 type: integer
+ *                 minimum: 1
+ *                 maximum: 5
+ *               coverImage:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Playlist actualizada exitosamente
+ *       400:
+ *         description: Datos inválidos
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: No tiene permisos para editar
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.put('/:playlistId',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+    body('name').optional().isLength({ min: 1, max: 100 }).withMessage('Nombre inválido (1-100 caracteres)'),
+    body('description').optional().isLength({ max: 500 }).withMessage('Descripción muy larga'),
+    body('tags.*').optional().isLength({ max: 50 }).withMessage('Tag muy largo'),
+    body('category').optional().isIn(['favorites', 'workout', 'party', 'study', 'custom']).withMessage('Categoría inválida'),
+    body('isPublic').optional().isBoolean().withMessage('isPublic debe ser boolean'),
+    body('isCollaborative').optional().isBoolean().withMessage('isCollaborative debe ser boolean'),
+    body('rating').optional().isInt({ min: 1, max: 5 }).withMessage('Rating debe ser entre 1 y 5'),
+    body('coverImage').optional().isURL().withMessage('URL de imagen inválida'),
+  ],
+  playlistController.updatePlaylist
+);
 
-// Obtener playlists del usuario
-router.get('/user/:userId', [
-  requireAuth,
-  param('userId').isMongoId().withMessage('ID de usuario inválido'),
-  query('page').optional().isInt({ min: 1 }).withMessage('Página debe ser un número entero positivo'),
-  query('limit').optional().isInt({ min: 1, max: 50 }).withMessage('Límite debe estar entre 1 y 50'),
-  handleValidationErrors
-], async (req, res) => {
-  try {
-    const { userId } = req.params;
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
-    const skip = (page - 1) * limit;
+/**
+ * @swagger
+ * /api/playlists/{playlistId}:
+ *   delete:
+ *     summary: Eliminar playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Playlist eliminada exitosamente
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: Solo el propietario puede eliminar
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.delete('/:playlistId',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+  ],
+  playlistController.deletePlaylist
+);
 
-    const playlists = await Playlist.find({ user: userId })
-      .populate('songs')
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit);
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/videos:
+ *   post:
+ *     summary: Agregar video a playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - videoId
+ *             properties:
+ *               videoId:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Video agregado exitosamente
+ *       400:
+ *         description: Datos inválidos
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: No tiene permisos para editar
+ *       404:
+ *         description: Playlist o video no encontrado
+ */
+router.post('/:playlistId/videos',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+    body('videoId').isMongoId().withMessage('ID de video inválido'),
+  ],
+  playlistController.addVideoToPlaylist
+);
 
-    const total = await Playlist.countDocuments({ user: userId });
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/videos/{videoId}:
+ *   delete:
+ *     summary: Quitar video de playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: path
+ *         name: videoId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Video removido exitosamente
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: No tiene permisos para editar
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.delete('/:playlistId/videos/:videoId',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+    param('videoId').isMongoId().withMessage('ID de video inválido'),
+  ],
+  playlistController.removeVideoFromPlaylist
+);
 
-    res.json({
-      success: true,
-      data: playlists,
-      pagination: {
-        currentPage: page,
-        totalPages: Math.ceil(total / limit),
-        totalItems: total,
-        itemsPerPage: limit,
-        hasNextPage: page * limit < total,
-        hasPrevPage: page > 1
-      }
-    });
-  } catch (error) {
-    logger.error('Error obteniendo playlists del usuario:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/reorder:
+ *   put:
+ *     summary: Reordenar videos en playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - videoOrder
+ *             properties:
+ *               videoOrder:
+ *                 type: object
+ *                 description: Objeto con videoId como clave y orden como valor
+ *                 example: {"60d5ecb74b24c72b8c8b4567": 1, "60d5ecb74b24c72b8c8b4568": 2}
+ *     responses:
+ *       200:
+ *         description: Videos reordenados exitosamente
+ *       400:
+ *         description: Datos inválidos
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: No tiene permisos para editar
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.put('/:playlistId/reorder',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+    body('videoOrder').isObject().withMessage('videoOrder debe ser un objeto'),
+  ],
+  playlistController.reorderPlaylistVideos
+);
 
-// Obtener playlist específica
-router.get('/:id', [
-  param('id').isMongoId().withMessage('ID de playlist inválido'),
-  handleValidationErrors
-], async (req, res) => {
-  try {
-    const playlist = await Playlist.findById(req.params.id)
-      .populate('user', 'username')
-      .populate('songs');
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/like:
+ *   post:
+ *     summary: Dar/quitar like a playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Like procesado exitosamente
+ *       401:
+ *         description: No autorizado
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.post('/:playlistId/like',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+  ],
+  playlistController.togglePlaylistLike
+);
 
-    if (!playlist) {
-      return res.status(404).json({
-        success: false,
-        message: 'Playlist no encontrada'
-      });
-    }
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/collaborators:
+ *   post:
+ *     summary: Agregar colaborador a playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - userId
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *                 enum: [viewer, editor, admin]
+ *                 default: viewer
+ *     responses:
+ *       200:
+ *         description: Colaborador agregado exitosamente
+ *       400:
+ *         description: Datos inválidos
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: Solo el propietario puede gestionar colaboradores
+ *       404:
+ *         description: Playlist o usuario no encontrado
+ */
+router.post('/:playlistId/collaborators',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+    body('userId').isMongoId().withMessage('ID de usuario inválido'),
+    body('role').optional().isIn(['viewer', 'editor', 'admin']).withMessage('Rol inválido'),
+  ],
+  playlistController.addCollaborator
+);
 
-    res.json({
-      success: true,
-      data: playlist
-    });
-  } catch (error) {
-    logger.error('Error obteniendo playlist específica:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/share:
+ *   put:
+ *     summary: Actualizar configuración de compartir
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               isEnabled:
+ *                 type: boolean
+ *               allowCopy:
+ *                 type: boolean
+ *               password:
+ *                 type: string
+ *               expiresAt:
+ *                 type: string
+ *                 format: date-time
+ *               maxViews:
+ *                 type: integer
+ *                 minimum: 1
+ *     responses:
+ *       200:
+ *         description: Configuración actualizada exitosamente
+ *       400:
+ *         description: Datos inválidos
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: No tiene permisos para editar
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.put('/:playlistId/share',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+    body('isEnabled').optional().isBoolean().withMessage('isEnabled debe ser boolean'),
+    body('allowCopy').optional().isBoolean().withMessage('allowCopy debe ser boolean'),
+    body('password').optional().isLength({ min: 4, max: 50 }).withMessage('Contraseña debe tener 4-50 caracteres'),
+    body('expiresAt').optional().isISO8601().withMessage('Fecha de expiración inválida'),
+    body('maxViews').optional().isInt({ min: 1 }).withMessage('maxViews debe ser un entero positivo'),
+  ],
+  playlistController.updateShareSettings
+);
 
-// Crear nueva playlist
-router.post('/', [
-  requireAuth,
-  createPlaylistValidations,
-  handleValidationErrors
-], async (req, res) => {
-  try {
-    const { name, description, userId, isPublic } = req.body;
+/**
+ * @swagger
+ * /api/playlists/shared/{shareUrl}:
+ *   get:
+ *     summary: Obtener playlist compartida por URL
+ *     tags: [Playlists]
+ *     parameters:
+ *       - in: path
+ *         name: shareUrl
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Playlist compartida obtenida exitosamente
+ *       404:
+ *         description: Playlist no encontrada
+ *       410:
+ *         description: Enlace expirado o límite alcanzado
+ */
+router.get('/shared/:shareUrl',
+  [
+    param('shareUrl').isLength({ min: 1 }).withMessage('URL de compartir requerida'),
+  ],
+  playlistController.getSharedPlaylist
+);
 
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'Usuario no encontrado'
-      });
-    }
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/export:
+ *   get:
+ *     summary: Exportar playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: format
+ *         schema:
+ *           type: string
+ *           enum: [json]
+ *           default: json
+ *     responses:
+ *       200:
+ *         description: Playlist exportada exitosamente
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: No tiene permisos para exportar
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.get('/:playlistId/export',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+    query('format').optional().isIn(['json']).withMessage('Formato inválido'),
+  ],
+  playlistController.exportPlaylist
+);
 
-    const playlist = new Playlist({
-      name,
-      description,
-      user: userId,
-      isPublic: isPublic || false,
-    });
+/**
+ * @swagger
+ * /api/playlists/import:
+ *   post:
+ *     summary: Importar playlist desde JSON
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - data
+ *             properties:
+ *               data:
+ *                 type: object
+ *                 properties:
+ *                   name:
+ *                     type: string
+ *                   description:
+ *                     type: string
+ *                   category:
+ *                     type: string
+ *                   tags:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                   rating:
+ *                     type: integer
+ *                   videos:
+ *                     type: array
+ *                     items:
+ *                       type: object
+ *                       properties:
+ *                         title:
+ *                           type: string
+ *                         youtubeId:
+ *                           type: string
+ *                         spotifyId:
+ *                           type: string
+ *     responses:
+ *       201:
+ *         description: Playlist importada exitosamente
+ *       400:
+ *         description: Datos inválidos
+ *       401:
+ *         description: No autorizado
+ */
+router.post('/import',
+  authService.authenticateToken,
+  [
+    body('data').isObject().withMessage('Datos de importación requeridos'),
+    body('data.name').isLength({ min: 1, max: 100 }).withMessage('Nombre requerido'),
+  ],
+  playlistController.importPlaylist
+);
 
-    await playlist.save();
-    await playlist.populate('user', 'username');
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/stats:
+ *   get:
+ *     summary: Obtener estadísticas de playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Estadísticas obtenidas exitosamente
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: No tiene permisos para ver estadísticas
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.get('/:playlistId/stats',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+  ],
+  playlistController.getPlaylistStats
+);
 
-    logger.info('Nueva playlist creada:', {
-      playlistId: playlist._id,
-      userId,
-      name
-    });
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/audit:
+ *   get:
+ *     summary: Obtener log de auditoría de playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           maximum: 50
+ *           default: 20
+ *     responses:
+ *       200:
+ *         description: Log de auditoría obtenido exitosamente
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: Solo el propietario puede ver el log
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.get('/:playlistId/audit',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+    query('page').optional().isInt({ min: 1 }).withMessage('Page debe ser un entero positivo'),
+    query('limit').optional().isInt({ min: 1, max: 50 }).withMessage('Limit debe ser entre 1 y 50'),
+  ],
+  playlistController.getPlaylistAuditLog
+);
 
-    res.status(201).json({
-      success: true,
-      data: playlist,
-      message: 'Playlist creada exitosamente'
-    });
-  } catch (error) {
-    logger.error('Error creando playlist:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/moderate:
+ *   patch:
+ *     summary: Moderar playlist (solo administradores)
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - status
+ *             properties:
+ *               status:
+ *                 type: string
+ *                 enum: [active, pending, moderated, banned]
+ *               reason:
+ *                 type: string
+ *                 maxLength: 200
+ *     responses:
+ *       200:
+ *         description: Playlist moderada exitosamente
+ *       400:
+ *         description: Datos inválidos
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: No tiene permisos de moderador
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.patch('/:playlistId/moderate',
+  authService.authenticateToken,
+  authService.requireModerator,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+    body('status').isIn(['active', 'pending', 'moderated', 'banned']).withMessage('Status inválido'),
+    body('reason').optional().isLength({ max: 200 }).withMessage('Razón muy larga'),
+  ],
+  playlistController.moderatePlaylist
+);
 
-// Actualizar playlist
-router.put('/:id', [
-  requireAuth,
-  updatePlaylistValidations,
-  handleValidationErrors
-], async (req, res) => {
-  try {
-    const { userId, name, description, isPublic } = req.body;
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/subscribe:
+ *   post:
+ *     summary: Suscribirse a notificaciones en tiempo real de una playlist
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Suscripción exitosa
+ *       401:
+ *         description: No autorizado
+ *       403:
+ *         description: No tiene permisos para suscribirse
+ *       404:
+ *         description: Playlist no encontrada
+ */
+router.post('/:playlistId/subscribe',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+  ],
+  playlistController.subscribeToPlaylist
+);
 
-    const playlist = await Playlist.findById(req.params.id);
-    if (!playlist) {
-      return res.status(404).json({
-        success: false,
-        message: 'Playlist no encontrada'
-      });
-    }
+/**
+ * @swagger
+ * /api/playlists/{playlistId}/unsubscribe:
+ *   post:
+ *     summary: Cancelar suscripción a notificaciones en tiempo real
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: playlistId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: false
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               connectionId:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Suscripción cancelada exitosamente
+ *       401:
+ *         description: No autorizado
+ */
+router.post('/:playlistId/unsubscribe',
+  authService.authenticateToken,
+  [
+    param('playlistId').isMongoId().withMessage('ID de playlist inválido'),
+  ],
+  playlistController.unsubscribeFromPlaylist
+);
 
-    // Verificar que el usuario sea el propietario
-    if (playlist.user.toString() !== userId) {
-      return res.status(403).json({
-        success: false,
-        message: 'No autorizado para modificar esta playlist'
-      });
-    }
+/**
+ * @swagger
+ * /api/playlists/realtime/stats:
+ *   get:
+ *     summary: Obtener estadísticas del servicio en tiempo real (solo admin)
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Estadísticas obtenidas exitosamente
+ *       403:
+ *         description: Solo administradores pueden ver estadísticas
+ */
+router.get('/realtime/stats',
+  authService.authenticateToken,
+  authService.requireAdmin,
+  playlistController.getRealtimeStats
+);
 
-    // Actualizar campos
-    if (name !== undefined) playlist.name = name;
-    if (description !== undefined) playlist.description = description;
-    if (isPublic !== undefined) playlist.isPublic = isPublic;
-
-    await playlist.save();
-    await playlist.populate('user', 'username');
-
-    logger.info('Playlist actualizada:', {
-      playlistId: req.params.id,
-      userId
-    });
-
-    res.json({
-      success: true,
-      data: playlist,
-      message: 'Playlist actualizada exitosamente'
-    });
-  } catch (error) {
-    logger.error('Error actualizando playlist:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
-
-// Eliminar playlist
-router.delete('/:id', [
-  requireAuth,
-  param('id').isMongoId().withMessage('ID de playlist inválido'),
-  body('userId').isMongoId().withMessage('ID de usuario inválido'),
-  handleValidationErrors
-], async (req, res) => {
-  try {
-    const { userId } = req.body;
-
-    const playlist = await Playlist.findById(req.params.id);
-    if (!playlist) {
-      return res.status(404).json({
-        success: false,
-        message: 'Playlist no encontrada'
-      });
-    }
-
-    // Verificar que el usuario sea el propietario
-    if (playlist.user.toString() !== userId) {
-      return res.status(403).json({
-        success: false,
-        message: 'No autorizado para eliminar esta playlist'
-      });
-    }
-
-    await Playlist.findByIdAndDelete(req.params.id);
-
-    logger.info('Playlist eliminada:', {
-      playlistId: req.params.id,
-      userId
-    });
-
-    res.json({
-      success: true,
-      message: 'Playlist eliminada exitosamente'
-    });
-  } catch (error) {
-    logger.error('Error eliminando playlist:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
-
-// Agregar canción a playlist
-router.post('/:id/songs', [
-  requireAuth,
-  addSongValidations,
-  handleValidationErrors
-], async (req, res) => {
-  try {
-    const { songId, userId } = req.body;
-
-    const playlist = await Playlist.findById(req.params.id);
-    if (!playlist) {
-      return res.status(404).json({
-        success: false,
-        message: 'Playlist no encontrada'
-      });
-    }
-
-    // Verificar que el usuario sea el propietario
-    if (playlist.user.toString() !== userId) {
-      return res.status(403).json({
-        success: false,
-        message: 'No autorizado'
-      });
-    }
-
-    // Verificar que la canción no esté ya en la playlist
-    if (playlist.songs.includes(songId)) {
-      return res.status(400).json({
-        success: false,
-        message: 'La canción ya está en la playlist'
-      });
-    }
-
-    playlist.songs.push(songId);
-    await playlist.save();
-    await playlist.populate('songs');
-
-    logger.info('Canción agregada a playlist:', {
-      playlistId: req.params.id,
-      songId,
-      userId
-    });
-
-    res.json({
-      success: true,
-      data: playlist,
-      message: 'Canción agregada exitosamente'
-    });
-  } catch (error) {
-    logger.error('Error agregando canción a playlist:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
-
-// Eliminar canción de playlist
-router.delete('/:id/songs/:songId', [
-  requireAuth,
-  param('id').isMongoId().withMessage('ID de playlist inválido'),
-  param('songId').isMongoId().withMessage('ID de canción inválido'),
-  body('userId').isMongoId().withMessage('ID de usuario inválido'),
-  handleValidationErrors
-], async (req, res) => {
-  try {
-    const { userId } = req.body;
-
-    const playlist = await Playlist.findById(req.params.id);
-    if (!playlist) {
-      return res.status(404).json({
-        success: false,
-        message: 'Playlist no encontrada'
-      });
-    }
-
-    // Verificar que el usuario sea el propietario
-    if (playlist.user.toString() !== userId) {
-      return res.status(403).json({
-        success: false,
-        message: 'No autorizado'
-      });
-    }
-
-    playlist.songs = playlist.songs.filter(song => song.toString() !== req.params.songId);
-    await playlist.save();
-    await playlist.populate('songs');
-
-    logger.info('Canción eliminada de playlist:', {
-      playlistId: req.params.id,
-      songId: req.params.songId,
-      userId
-    });
-
-    res.json({
-      success: true,
-      data: playlist,
-      message: 'Canción eliminada exitosamente'
-    });
-  } catch (error) {
-    logger.error('Error eliminando canción de playlist:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
-
-// Obtener playlists públicas
-router.get('/public/all', [
-  query('page').optional().isInt({ min: 1 }).withMessage('Página debe ser un número entero positivo'),
-  query('limit').optional().isInt({ min: 1, max: 50 }).withMessage('Límite debe estar entre 1 y 50'),
-  handleValidationErrors
-], async (req, res) => {
-  try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
-    const skip = (page - 1) * limit;
-
-    const playlists = await Playlist.find({ isPublic: true })
-      .populate('user', 'username')
-      .populate('songs')
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit);
-
-    const total = await Playlist.countDocuments({ isPublic: true });
-
-    res.json({
-      success: true,
-      data: playlists,
-      pagination: {
-        currentPage: page,
-        totalPages: Math.ceil(total / limit),
-        totalItems: total,
-        itemsPerPage: limit,
-        hasNextPage: page * limit < total,
-        hasPrevPage: page > 1
-      }
-    });
-  } catch (error) {
-    logger.error('Error obteniendo playlists públicas:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
-
-// Clonar playlist pública
-router.post('/:id/clone', [
-  requireAuth,
-  param('id').isMongoId().withMessage('ID de playlist inválido'),
-  body('userId').isMongoId().withMessage('ID de usuario inválido'),
-  body('name').optional().trim().isLength({ min: 1, max: 100 }).withMessage('Nombre inválido'),
-  handleValidationErrors
-], async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { userId, name } = req.body;
-
-    // Verificar que la playlist original existe y es pública
-    const originalPlaylist = await Playlist.findById(id).populate('songs');
-    if (!originalPlaylist) {
-      return res.status(404).json({
-        success: false,
-        message: 'Playlist no encontrada'
-      });
-    }
-
-    if (!originalPlaylist.isPublic) {
-      return res.status(403).json({
-        success: false,
-        message: 'No puedes clonar una playlist privada'
-      });
-    }
-
-    // Verificar que el usuario existe
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'Usuario no encontrado'
-      });
-    }
-
-    // Crear la nueva playlist clonada
-    const clonedPlaylist = new Playlist({
-      name: name || `${originalPlaylist.name} (Copia)`,
-      description: originalPlaylist.description,
-      user: userId,
-      songs: originalPlaylist.songs,
-      isPublic: false, // Las copias son privadas por defecto
-      tags: originalPlaylist.tags || []
-    });
-
-    await clonedPlaylist.save();
-    await clonedPlaylist.populate('user', 'username');
-    await clonedPlaylist.populate('songs');
-
-    logger.info('Playlist clonada:', {
-      originalId: id,
-      clonedId: clonedPlaylist._id,
-      userId,
-      name: clonedPlaylist.name
-    });
-
-    res.status(201).json({
-      success: true,
-      data: clonedPlaylist,
-      message: 'Playlist clonada exitosamente'
-    });
-  } catch (error) {
-    logger.error('Error clonando playlist:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error interno del servidor'
-    });
-  }
-});
+/**
+ * @swagger
+ * /api/playlists/notifications/pending:
+ *   get:
+ *     summary: Obtener notificaciones pendientes (para polling)
+ *     tags: [Playlists]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: since
+ *         schema:
+ *           type: string
+ *           format: date-time
+ *     responses:
+ *       200:
+ *         description: Notificaciones obtenidas exitosamente
+ *       401:
+ *         description: No autorizado
+ */
+router.get('/notifications/pending',
+  authService.authenticateToken,
+  playlistController.getPendingNotifications
+);
 
 module.exports = router;

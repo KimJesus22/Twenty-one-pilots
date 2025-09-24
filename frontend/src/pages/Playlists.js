@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import playlistsAPI from '../api/playlists';
-import AudioPlayer from '../components/AudioPlayer';
+import VideoPlayer from '../components/VideoPlayer';
 import SkeletonLoader from '../components/SkeletonLoader';
-import Spinner from '../components/Spinner';
-import AdvancedFilters from '../components/AdvancedFilters';
 import { useErrorHandler } from '../hooks/useErrorHandler';
 import './Playlists.css';
 
 const Playlists = () => {
   const { user, isAuthenticated } = useAuth();
-  const { error, handleError, clearError, safeRequest } = useErrorHandler();
-  const [activeTab, setActiveTab] = useState('my'); // 'my', 'public', 'favorites'
+  const { error, clearError } = useErrorHandler();
+  const [activeTab, setActiveTab] = useState('public'); // 'my', 'public', 'favorites' - default to public
   const [playlists, setPlaylists] = useState([]);
   const [publicPlaylists, setPublicPlaylists] = useState([]);
   const [favoritePlaylists, setFavoritePlaylists] = useState([]);
   const [loading, setLoading] = useState(true);
   const [localError, setLocalError] = useState(null);
-  const [filters, setFilters] = useState({
-    search: '',
-    category: 'all',
-    sort: 'createdAt',
-    order: 'desc'
-  });
-  const [savedSearches, setSavedSearches] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingPlaylist, setEditingPlaylist] = useState(null);
@@ -44,38 +35,26 @@ const Playlists = () => {
     totalItems: 0,
     itemsPerPage: 10
   });
-  const [currentSong, setCurrentSong] = useState(null);
+  const [currentVideo, setCurrentVideo] = useState(null);
   const [currentPlaylist, setCurrentPlaylist] = useState(null);
-  const [actionLoading, setActionLoading] = useState({
-    create: false,
-    update: false,
-    delete: false,
-    clone: false
-  });
 
-  const currentUserId = user?._id || '507f1f77bcf86cd799439011'; // Usar ID real del usuario autenticado
+
+  // Efecto para cambiar automáticamente la pestaña cuando cambia el estado de autenticación
+  useEffect(() => {
+    if (!isAuthenticated && activeTab === 'my') {
+      setActiveTab('public');
+    }
+  }, [isAuthenticated, activeTab]);
 
   useEffect(() => {
-    if (activeTab === 'my') {
+    if (activeTab === 'my' && isAuthenticated) {
       fetchPlaylists();
     } else if (activeTab === 'public') {
       fetchPublicPlaylists();
     } else if (activeTab === 'favorites') {
       fetchFavoritePlaylists();
     }
-  }, [pagination.currentPage, publicPagination.currentPage, activeTab, filters]);
-
-  // Cargar búsquedas guardadas al iniciar
-  useEffect(() => {
-    const saved = localStorage.getItem('savedSearches');
-    if (saved) {
-      try {
-        setSavedSearches(JSON.parse(saved));
-      } catch (error) {
-        console.error('Error loading saved searches:', error);
-      }
-    }
-  }, []);
+  }, [pagination.currentPage, publicPagination.currentPage, activeTab, isAuthenticated]);
 
   const fetchPlaylists = async () => {
     if (!isAuthenticated) return;
@@ -83,18 +62,17 @@ const Playlists = () => {
     try {
       setLoading(true);
       const response = await playlistsAPI.getUserPlaylists(
-        currentUserId,
         pagination.currentPage,
         pagination.itemsPerPage
       );
 
       if (response.success) {
-        setPlaylists(response.data);
+        setPlaylists(response.data.playlists || []);
         setPagination({
-          currentPage: response.pagination.currentPage,
-          totalPages: response.pagination.totalPages,
-          totalItems: response.pagination.totalItems,
-          itemsPerPage: response.pagination.itemsPerPage
+          currentPage: response.data.pagination?.page || 1,
+          totalPages: response.data.pagination?.pages || 1,
+          totalItems: response.data.pagination?.total || 0,
+          itemsPerPage: response.data.pagination?.limit || 10
         });
         setLocalError(null);
       } else {
@@ -108,9 +86,9 @@ const Playlists = () => {
         {
           _id: '1',
           name: 'Mis Favoritas',
-          description: 'Las mejores canciones de Twenty One Pilots',
+          description: 'Las mejores videos de Twenty One Pilots',
           user: { username: user?.username || 'fan123' },
-          songs: [],
+          videos: [],
           isPublic: true,
           createdAt: new Date().toISOString()
         },
@@ -119,7 +97,7 @@ const Playlists = () => {
           name: 'Para Entrenar',
           description: 'Playlist energética para el gym',
           user: { username: user?.username || 'fan123' },
-          songs: [],
+          videos: [],
           isPublic: false,
           createdAt: new Date().toISOString()
         }
@@ -138,12 +116,12 @@ const Playlists = () => {
       );
 
       if (response.success) {
-        setPublicPlaylists(response.data);
+        setPublicPlaylists(response.data.playlists || []);
         setPublicPagination({
-          currentPage: response.pagination.currentPage,
-          totalPages: response.pagination.totalPages,
-          totalItems: response.pagination.totalItems,
-          itemsPerPage: response.pagination.itemsPerPage
+          currentPage: response.data.pagination?.page || 1,
+          totalPages: response.data.pagination?.pages || 1,
+          totalItems: response.data.pagination?.total || 0,
+          itemsPerPage: response.data.pagination?.limit || 10
         });
         setLocalError(null);
       } else {
@@ -157,9 +135,9 @@ const Playlists = () => {
         {
           _id: '3',
           name: 'TOP Clásicos',
-          description: 'Las canciones más icónicas de Twenty One Pilots',
+          description: 'Las videos más icónicas de Twenty One Pilots',
           user: { username: 'musicfan' },
-          songs: [
+          videos: [
             { _id: '1', title: 'Stressed Out', duration: '3:22' },
             { _id: '2', title: 'Ride', duration: '3:34' }
           ],
@@ -193,8 +171,9 @@ const Playlists = () => {
     e.preventDefault();
     try {
       const playlistData = {
-        ...newPlaylist,
-        userId: currentUserId
+        name: newPlaylist.name,
+        description: newPlaylist.description,
+        isPublic: newPlaylist.isPublic
       };
 
       const response = await playlistsAPI.createPlaylist(playlistData);
@@ -227,8 +206,9 @@ const Playlists = () => {
     e.preventDefault();
     try {
       const playlistData = {
-        ...newPlaylist,
-        userId: currentUserId
+        name: newPlaylist.name,
+        description: newPlaylist.description,
+        isPublic: newPlaylist.isPublic
       };
 
       const response = await playlistsAPI.updatePlaylist(editingPlaylist._id, playlistData);
@@ -256,7 +236,7 @@ const Playlists = () => {
     }
 
     try {
-      const response = await playlistsAPI.deletePlaylist(playlistId, currentUserId);
+      const response = await playlistsAPI.deletePlaylist(playlistId);
 
       if (response.success) {
         setPlaylists(prev => prev.filter(p => p._id !== playlistId));
@@ -278,54 +258,40 @@ const Playlists = () => {
     setPublicPagination(prev => ({ ...prev, currentPage: newPage }));
   };
 
-  const handleClonePlaylist = async (playlist) => {
+  const handleClonePlaylist = async (_playlist) => {
     if (!isAuthenticated) {
       alert('Debes iniciar sesión para clonar playlists');
       return;
     }
 
-    try {
-      const response = await playlistsAPI.clonePlaylist(playlist._id, currentUserId);
-
-      if (response.success) {
-        alert('Playlist clonada exitosamente');
-        // Refrescar las playlists del usuario
-        if (activeTab === 'my') {
-          fetchPlaylists();
-        }
-      } else {
-        throw new Error(response.message || 'Error al clonar playlist');
-      }
-    } catch (err) {
-      console.error('Error clonando playlist:', err);
-      alert('Error al clonar playlist: ' + err.message);
-    }
+    // Por ahora, mostrar mensaje de que la funcionalidad estará disponible próximamente
+    alert('La funcionalidad de clonar playlists estará disponible próximamente');
   };
 
-  const handlePlaySong = (song, playlist) => {
-    setCurrentSong(song);
+  const handlePlayVideo = (video, playlist) => {
+    setCurrentVideo(video);
     setCurrentPlaylist(playlist);
   };
 
   const handleClosePlayer = () => {
-    setCurrentSong(null);
+    setCurrentVideo(null);
     setCurrentPlaylist(null);
   };
 
-  const handleNextSong = () => {
-    if (!currentPlaylist || !currentSong) return;
+  const handleNextVideo = () => {
+    if (!currentPlaylist || !currentVideo) return;
 
-    const currentIndex = currentPlaylist.songs.findIndex(s => s._id === currentSong._id);
-    const nextIndex = (currentIndex + 1) % currentPlaylist.songs.length;
-    setCurrentSong(currentPlaylist.songs[nextIndex]);
+    const currentIndex = currentPlaylist.videos.findIndex(v => v._id === currentVideo._id);
+    const nextIndex = (currentIndex + 1) % currentPlaylist.videos.length;
+    setCurrentVideo(currentPlaylist.videos[nextIndex]);
   };
 
-  const handlePreviousSong = () => {
-    if (!currentPlaylist || !currentSong) return;
+  const handlePreviousVideo = () => {
+    if (!currentPlaylist || !currentVideo) return;
 
-    const currentIndex = currentPlaylist.songs.findIndex(s => s._id === currentSong._id);
-    const prevIndex = currentIndex === 0 ? currentPlaylist.songs.length - 1 : currentIndex - 1;
-    setCurrentSong(currentPlaylist.songs[prevIndex]);
+    const currentIndex = currentPlaylist.videos.findIndex(v => v._id === currentVideo._id);
+    const prevIndex = currentIndex === 0 ? currentPlaylist.videos.length - 1 : currentIndex - 1;
+    setCurrentVideo(currentPlaylist.videos[prevIndex]);
   };
 
   if (loading) {
@@ -419,9 +385,9 @@ const Playlists = () => {
           </div>
           <div className="stat-item">
             <div className="stat-number">
-              {playlists.reduce((total, playlist) => total + playlist.songs.length, 0)}
+              {playlists.reduce((total, playlist) => total + playlist.videos.length, 0)}
             </div>
-            <div className="stat-label">Canciones</div>
+            <div className="stat-label">Videos</div>
           </div>
           <div className="stat-item">
             <div className="stat-number">
@@ -440,9 +406,9 @@ const Playlists = () => {
           </div>
           <div className="stat-item">
             <div className="stat-number">
-              {publicPlaylists.reduce((total, playlist) => total + playlist.songs.length, 0)}
+              {publicPlaylists.reduce((total, playlist) => total + playlist.videos.length, 0)}
             </div>
-            <div className="stat-label">Canciones Totales</div>
+            <div className="stat-label">Videos Totales</div>
           </div>
           <div className="stat-item">
             <div className="stat-number">
@@ -461,9 +427,9 @@ const Playlists = () => {
           </div>
           <div className="stat-item">
             <div className="stat-number">
-              {favoritePlaylists.reduce((total, playlist) => total + playlist.songs.length, 0)}
+              {favoritePlaylists.reduce((total, playlist) => total + playlist.videos.length, 0)}
             </div>
-            <div className="stat-label">Canciones Totales</div>
+            <div className="stat-label">Videos Totales</div>
           </div>
         </div>
       )}
@@ -474,7 +440,7 @@ const Playlists = () => {
           playlists.length === 0 ? (
             <div className="no-playlists">
               <h3>No tienes playlists</h3>
-              <p>Crea tu primera playlist para empezar a organizar tus canciones favoritas.</p>
+              <p>Crea tu primera playlist para empezar a organizar tus videos favoritas.</p>
               {isAuthenticated && (
                 <button
                   onClick={() => setShowCreateModal(true)}
@@ -505,7 +471,7 @@ const Playlists = () => {
                   </div>
 
                   <div className="playlist-stats">
-                    <span>{playlist.songs.length} canciones</span>
+                    <span>{playlist.videos.length} videos</span>
                   </div>
 
                   <div className="playlist-tags">
@@ -517,9 +483,9 @@ const Playlists = () => {
 
                 <div className="playlist-actions">
                   <button
-                    onClick={() => handlePlaySong(playlist.songs[0], playlist)}
+                    onClick={() => handlePlayVideo(playlist.videos[0], playlist)}
                     className="btn btn-secondary"
-                    disabled={playlist.songs.length === 0}
+                    disabled={playlist.videos.length === 0}
                   >
                     ▶️ Reproducir
                   </button>
@@ -565,7 +531,7 @@ const Playlists = () => {
                   </div>
 
                   <div className="playlist-stats">
-                    <span>{playlist.songs.length} canciones</span>
+                    <span>{playlist.videos.length} videos</span>
                   </div>
 
                   <div className="playlist-tags">
@@ -575,9 +541,9 @@ const Playlists = () => {
 
                 <div className="playlist-actions">
                   <button
-                    onClick={() => handlePlaySong(playlist.songs[0], playlist)}
+                    onClick={() => handlePlayVideo(playlist.videos[0], playlist)}
                     className="btn btn-secondary"
-                    disabled={playlist.songs.length === 0}
+                    disabled={playlist.videos.length === 0}
                   >
                     ▶️ Reproducir
                   </button>
@@ -622,7 +588,7 @@ const Playlists = () => {
                   </div>
 
                   <div className="playlist-stats">
-                    <span>{playlist.songs.length} canciones</span>
+                    <span>{playlist.videos.length} videos</span>
                   </div>
 
                   <div className="playlist-tags">
@@ -635,9 +601,9 @@ const Playlists = () => {
 
                 <div className="playlist-actions">
                   <button
-                    onClick={() => handlePlaySong(playlist.songs[0], playlist)}
+                    onClick={() => handlePlayVideo(playlist.videos[0], playlist)}
                     className="btn btn-secondary"
-                    disabled={playlist.songs.length === 0}
+                    disabled={playlist.videos.length === 0}
                   >
                     ▶️ Reproducir
                   </button>
@@ -705,15 +671,15 @@ const Playlists = () => {
         </div>
       )}
 
-      {/* Reproductor de Audio */}
-      {currentSong && (
-        <AudioPlayer
-          song={currentSong}
+      {/* Reproductor de Video */}
+      {currentVideo && (
+        <VideoPlayer
+          video={currentVideo}
           onClose={handleClosePlayer}
-          onNext={handleNextSong}
-          onPrevious={handlePreviousSong}
-          hasNext={currentPlaylist && currentPlaylist.songs.length > 1}
-          hasPrevious={currentPlaylist && currentPlaylist.songs.length > 1}
+          onNext={handleNextVideo}
+          onPrevious={handlePreviousVideo}
+          hasNext={currentPlaylist && currentPlaylist.videos.length > 1}
+          hasPrevious={currentPlaylist && currentPlaylist.videos.length > 1}
         />
       )}
 

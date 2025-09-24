@@ -1,0 +1,550 @@
+/* EventReminderManager Component Styles */
+.event-reminder-manager {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  max-width: 500px;
+  margin: 1rem auto;
+}
+
+.reminder-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.reminder-header h3 {
+  color: #333;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.reminder-header p {
+  color: #666;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.reminder-tabs {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  background: #f8f9fa;
+  color: #333;
+}
+
+.tab-btn.active {
+  color: #ff6b6b;
+  border-bottom-color: #ff6b6b;
+}
+
+.reminder-content {
+  min-height: 300px;
+}
+
+/* Calendar Tab */
+.calendar-tab h4 {
+  color: #333;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+}
+
+.provider-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.provider-selection label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.provider-selection label:hover {
+  background: #f8f9fa;
+}
+
+.google-signin-btn {
+  background: #4285f4;
+  color: white;
+  border: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-left: auto;
+  transition: background-color 0.3s ease;
+}
+
+.google-signin-btn:hover {
+  background: #3367d6;
+}
+
+.export-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+}
+
+.export-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.export-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.calendar-status {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.calendar-status h5 {
+  color: #333;
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+  font-size: 0.85rem;
+}
+
+.status-item .available {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.status-item .unavailable {
+  color: #f44336;
+  font-weight: 500;
+}
+
+/* Reminders Tab */
+.reminders-tab h4 {
+  color: #333;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+}
+
+.reminder-type {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.reminder-type label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.reminder-type label:hover {
+  background: #f8f9fa;
+}
+
+.time-config, .location-config {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.time-config label, .location-config label {
+  display: block;
+  color: #333;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.time-config select, .location-config select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: white;
+}
+
+.location-config p {
+  margin: 0 0 0.75rem 0;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.reminder-options {
+  margin-bottom: 1rem;
+}
+
+.reminder-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.route-preview {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #e8f5e8;
+  border-radius: 6px;
+  border: 1px solid #4caf50;
+}
+
+.route-preview h5 {
+  margin: 0 0 0.5rem 0;
+  color: #2e7d32;
+  font-size: 0.9rem;
+}
+
+.route-preview p {
+  margin: 0;
+  color: #2e7d32;
+  font-size: 0.85rem;
+}
+
+.create-reminder-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(40, 167, 69, 0.3);
+}
+
+.create-reminder-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.create-reminder-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.notifications-status {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.notifications-status h5 {
+  color: #333;
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+}
+
+/* Compact Mode */
+.event-reminder-compact {
+  position: relative;
+  display: inline-block;
+}
+
+.reminder-toggle-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+  transition: all 0.3s ease;
+}
+
+.reminder-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.reminder-popup {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  z-index: 1000;
+}
+
+.reminder-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.reminder-popup-header h4 {
+  margin: 0;
+  color: #333;
+  font-size: 1rem;
+}
+
+.reminder-popup-header button {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reminder-popup-content {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quick-reminder-btn, .calendar-export-btn {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.quick-reminder-btn:hover, .calendar-export-btn:hover {
+  background: #ff6b6b;
+  color: white;
+  border-color: #ff6b6b;
+}
+
+.calendar-export-btn {
+  background: #4285f4;
+  color: white;
+  border-color: #4285f4;
+}
+
+.calendar-export-btn:hover {
+  background: #3367d6;
+  border-color: #3367d6;
+}
+
+.quick-reminder-btn:disabled, .calendar-export-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .event-reminder-manager {
+    margin: 0.5rem;
+    padding: 1rem;
+    max-width: none;
+  }
+
+  .reminder-tabs {
+    flex-direction: column;
+  }
+
+  .tab-btn {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .provider-selection {
+    gap: 0.5rem;
+  }
+
+  .reminder-type {
+    gap: 0.5rem;
+  }
+
+  .time-config, .location-config {
+    padding: 0.75rem;
+  }
+
+  .reminder-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 280px;
+    max-width: 90vw;
+  }
+
+  .reminder-toggle-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-reminder-manager {
+    padding: 0.75rem;
+  }
+
+  .reminder-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .export-btn, .create-reminder-btn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .reminder-popup-content {
+    padding: 0.5rem;
+  }
+
+  .quick-reminder-btn, .calendar-export-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .tab-btn, .export-btn, .create-reminder-btn, .reminder-toggle-btn,
+  .quick-reminder-btn, .calendar-export-btn, .google-signin-btn {
+    transition: none;
+  }
+
+  .reminder-toggle-btn:hover {
+    transform: none;
+  }
+
+  .export-btn:hover, .create-reminder-btn:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .event-reminder-manager {
+    border: 2px solid #000;
+  }
+
+  .tab-btn.active {
+    border-bottom-width: 3px;
+  }
+
+  .export-btn, .create-reminder-btn {
+    border: 2px solid #000;
+  }
+}
+
+/* Focus states for accessibility */
+.tab-btn:focus, .export-btn:focus, .create-reminder-btn:focus,
+.reminder-toggle-btn:focus, .quick-reminder-btn:focus, .calendar-export-btn:focus {
+  outline: 2px solid #ff6b6b;
+  outline-offset: 2px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .event-reminder-manager {
+    background: #2d2d2d;
+    color: #ffffff;
+  }
+
+  .reminder-header h3 {
+    color: #ffffff;
+  }
+
+  .reminder-header p {
+    color: #cccccc;
+  }
+
+  .tab-btn {
+    color: #cccccc;
+  }
+
+  .tab-btn:hover, .tab-btn.active {
+    color: #ff6b6b;
+  }
+
+  .provider-selection label:hover,
+  .reminder-type label:hover {
+    background: #404040;
+  }
+
+  .time-config, .location-config, .route-preview {
+    background: #404040;
+    color: #ffffff;
+  }
+
+  .reminder-popup {
+    background: #2d2d2d;
+    color: #ffffff;
+  }
+
+  .reminder-popup-header {
+    border-bottom-color: #555;
+  }
+
+  .quick-reminder-btn, .calendar-export-btn {
+    background: #404040;
+    border-color: #555;
+    color: #ffffff;
+  }
+
+  .status-item {
+    color: #cccccc;
+  }
+}

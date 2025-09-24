@@ -1,0 +1,165 @@
+.song-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.preview-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.preview-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  width: 32px;
+  height: 32px;
+}
+
+.preview-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.preview-btn:active {
+  transform: scale(0.95);
+}
+
+.preview-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.preview-btn.playing {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: #ff0000;
+}
+
+.preview-btn.loading {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.stop-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.stop-btn:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.preview-unavailable {
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+}
+
+.no-preview-icon {
+  font-size: 14px;
+  cursor: help;
+}
+
+.preview-error {
+  display: flex;
+  align-items: center;
+  color: #ff6b6b;
+  font-size: 14px;
+  cursor: help;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .song-preview {
+    gap: 6px;
+  }
+
+  .preview-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  .stop-btn {
+    font-size: 10px;
+    padding: 2px;
+  }
+
+  .no-preview-icon,
+  .preview-error {
+    font-size: 12px;
+  }
+}
+
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .preview-btn {
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .stop-btn {
+    min-width: 32px;
+    min-height: 32px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .preview-btn {
+    border: 1px solid currentColor;
+  }
+
+  .preview-btn.playing {
+    background-color: currentColor;
+    color: black;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .preview-btn {
+    transition: none;
+  }
+
+  .preview-btn:hover {
+    transform: none;
+  }
+
+  .preview-btn:active {
+    transform: none;
+  }
+
+  .preview-btn.loading {
+    animation: none;
+  }
+}

@@ -2,6 +2,7 @@ const { Thread, Comment } = require('../models/Forum');
 const User = require('../models/User');
 const logger = require('../utils/logger');
 const { validationResult } = require('express-validator');
+const forumUtils = require('../utils/forumUtils');
 
 class ForumController {
   // Obtener hilos con filtros avanzados y paginación
@@ -163,12 +164,26 @@ class ForumController {
       const { title, content, category, tags } = req.body;
       const authorId = req.user.id;
 
+      // Extraer menciones y tags del contenido
+      const contentMentions = forumUtils.extractMentions(content);
+      const titleMentions = forumUtils.extractMentions(title);
+      const allMentions = [...new Set([...contentMentions, ...titleMentions])];
+
+      const contentTags = forumUtils.extractTags(content);
+      const titleTags = forumUtils.extractTags(title);
+      const manualTags = tags ? tags.split(',').map(tag => tag.trim().toLowerCase()) : [];
+      const allTags = [...new Set([...contentTags, ...titleTags, ...manualTags])];
+
+      // Validar menciones
+      const { valid: validMentions } = await forumUtils.validateMentions(allMentions, User);
+
       const thread = new Thread({
         title,
         content,
         author: authorId,
         category: category || 'general',
-        tags: tags ? tags.split(',').map(tag => tag.trim().toLowerCase()) : []
+        tags: allTags,
+        mentions: validMentions.map(m => m.userId)
       });
 
       await thread.save();
@@ -179,6 +194,27 @@ class ForumController {
         authorId,
         title: title.substring(0, 50)
       });
+
+      // Emitir evento en tiempo real
+      if (global.io) {
+        global.io.to('forum').emit('thread-created', {
+          thread: thread.toObject(),
+          author: thread.author
+        });
+
+        // Notificar a usuarios mencionados
+        validMentions.forEach(mention => {
+          if (mention.userId.toString() !== authorId) {
+            global.io.to(`user-${mention.userId}`).emit('notification', {
+              type: 'mention',
+              threadId: thread._id,
+              threadTitle: thread.title,
+              mentionedBy: thread.author.username,
+              message: `${thread.author.username} te mencionó en un hilo: "${thread.title}"`
+            });
+          }
+        });
+      }
 
       res.status(201).json({
         success: true,
@@ -316,6 +352,16 @@ class ForumController {
 
       await thread.addVote(userId, voteType);
 
+      // Emitir evento en tiempo real
+      if (global.io) {
+        global.io.to(`thread-${id}`).emit('thread-vote', {
+          threadId: id,
+          voteCount: thread.voteCount,
+          userVote: voteType,
+          voterId: userId
+        });
+      }
+
       res.json({
         success: true,
         message: 'Voto registrado',
@@ -363,11 +409,20 @@ class ForumController {
         });
       }
 
+      // Extraer menciones y tags del contenido
+      const mentions = forumUtils.extractMentions(content);
+      const tags = forumUtils.extractTags(content);
+
+      // Validar menciones
+      const { valid: validMentions } = await forumUtils.validateMentions(mentions, User);
+
       const comment = new Comment({
         content,
         author: authorId,
         thread: id,
-        parentComment: parentCommentId || null
+        parentComment: parentCommentId || null,
+        mentions: validMentions.map(m => m.userId),
+        tags
       });
 
       await comment.save();
@@ -381,6 +436,56 @@ class ForumController {
         threadId: id,
         authorId
       });
+
+      // Emitir evento en tiempo real
+      if (global.io) {
+        // Emitir a la sala del hilo específico
+        global.io.to(`thread-${id}`).emit('new-comment', {
+          comment: comment.toObject(),
+          threadId: id,
+          threadTitle: thread.title
+        });
+
+        // Emitir notificación al autor del hilo si no es el mismo usuario
+        if (thread.author.toString() !== authorId) {
+          global.io.to(`user-${thread.author}`).emit('notification', {
+            type: 'new-comment',
+            threadId: id,
+            threadTitle: thread.title,
+            commentAuthor: comment.author.username,
+            message: `${comment.author.username} comentó en tu hilo "${thread.title}"`
+          });
+        }
+
+        // Si es una respuesta, notificar al autor del comentario padre
+        if (parentCommentId) {
+          const parentComment = await Comment.findById(parentCommentId);
+          if (parentComment && parentComment.author.toString() !== authorId) {
+            global.io.to(`user-${parentComment.author}`).emit('notification', {
+              type: 'new-reply',
+              threadId: id,
+              threadTitle: thread.title,
+              commentId: comment._id,
+              replyAuthor: comment.author.username,
+              message: `${comment.author.username} respondió a tu comentario en "${thread.title}"`
+            });
+          }
+        }
+
+        // Notificar a usuarios mencionados en el comentario
+        validMentions.forEach(mention => {
+          if (mention.userId.toString() !== authorId) {
+            global.io.to(`user-${mention.userId}`).emit('notification', {
+              type: 'mention',
+              threadId: id,
+              threadTitle: thread.title,
+              commentId: comment._id,
+              mentionedBy: comment.author.username,
+              message: `${comment.author.username} te mencionó en un comentario en "${thread.title}"`
+            });
+          }
+        });
+      }
 
       res.status(201).json({
         success: true,
@@ -519,6 +624,17 @@ class ForumController {
 
       await comment.addVote(userId, voteType);
 
+      // Emitir evento en tiempo real
+      if (global.io) {
+        global.io.to(`thread-${comment.thread}`).emit('comment-vote', {
+          commentId: commentId,
+          threadId: comment.thread,
+          voteCount: comment.voteCount,
+          userVote: voteType,
+          voterId: userId
+        });
+      }
+
       res.json({
         success: true,
         message: 'Voto registrado',
@@ -569,7 +685,8 @@ class ForumController {
         totalThreads,
         totalComments,
         totalUsers,
-        recentThreads
+        recentThreads,
+        popularTags
       ] = await Promise.all([
         Thread.countDocuments(),
         Comment.countDocuments(),
@@ -577,7 +694,8 @@ class ForumController {
         Thread.find()
           .populate('author', 'username')
           .sort({ createdAt: -1 })
-          .limit(5)
+          .limit(5),
+        forumUtils.getPopularTags(Thread, 10)
       ]);
 
       res.json({
@@ -588,7 +706,8 @@ class ForumController {
             totalComments,
             totalUsers
           },
-          recentThreads
+          recentThreads,
+          popularTags
         }
       });
     } catch (error) {
@@ -596,6 +715,104 @@ class ForumController {
       res.status(500).json({
         success: false,
         message: 'Error obteniendo estadísticas'
+      });
+    }
+  }
+
+  // Obtener tags populares
+  async getPopularTags(req, res) {
+    try {
+      const limit = Math.min(parseInt(req.query.limit) || 20, 50);
+      const popularTags = await forumUtils.getPopularTags(Thread, limit);
+
+      res.json({
+        success: true,
+        data: { popularTags }
+      });
+    } catch (error) {
+      logger.error('Error obteniendo tags populares:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error obteniendo tags populares'
+      });
+    }
+  }
+
+  // Buscar por tags
+  async searchByTags(req, res) {
+    try {
+      const { tags } = req.query;
+      if (!tags) {
+        return res.status(400).json({
+          success: false,
+          message: 'Se requieren tags para la búsqueda'
+        });
+      }
+
+      const tagArray = tags.split(',').map(tag => tag.trim().toLowerCase());
+      const options = {
+        page: parseInt(req.query.page) || 1,
+        limit: Math.min(parseInt(req.query.limit) || 20, 50),
+        sort: req.query.sort || 'lastActivity'
+      };
+
+      const result = await forumUtils.searchByTags(Thread, tagArray, options);
+
+      res.json({
+        success: true,
+        data: {
+          threads: result.docs,
+          pagination: {
+            page: result.page,
+            pages: result.totalPages,
+            total: result.totalDocs,
+            limit: result.limit
+          }
+        }
+      });
+    } catch (error) {
+      logger.error('Error buscando por tags:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error buscando por tags'
+      });
+    }
+  }
+
+  // Obtener sugerencias de tags
+  async getTagSuggestions(req, res) {
+    try {
+      const { q } = req.query;
+      const suggestions = await forumUtils.getTagSuggestions(Thread, q);
+
+      res.json({
+        success: true,
+        data: { suggestions }
+      });
+    } catch (error) {
+      logger.error('Error obteniendo sugerencias de tags:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error obteniendo sugerencias de tags'
+      });
+    }
+  }
+
+  // Obtener sugerencias de menciones
+  async getMentionSuggestions(req, res) {
+    try {
+      const { q } = req.query;
+      const suggestions = await forumUtils.getMentionSuggestions(User, q);
+
+      res.json({
+        success: true,
+        data: { suggestions }
+      });
+    } catch (error) {
+      logger.error('Error obteniendo sugerencias de menciones:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Error obteniendo sugerencias de menciones'
       });
     }
   }

@@ -95,6 +95,12 @@ class AuthAPI {
       console.warn('Logout API call failed:', error);
     }
   }
+
+  // Obtener configuración de reCAPTCHA
+  async getRecaptchaConfig() {
+    const response = await this.request('/recaptcha/config');
+    return response;
+  }
 }
 
 export default new AuthAPI();

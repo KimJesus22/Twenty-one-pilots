@@ -9,7 +9,22 @@ class CacheService {
   }
 
   async init() {
+    // Verificar si Redis está deshabilitado para desarrollo
+    if (process.env.REDIS_DISABLED === 'true') {
+      logger.warn('Redis disabled for development - cache will not be available');
+      this.isConnected = false;
+      this.client = null;
+      return;
+    }
+
     try {
+      logger.info('Initializing Redis connection...', {
+        host: process.env.REDIS_HOST || 'localhost',
+        port: process.env.REDIS_PORT || 6379,
+        db: process.env.REDIS_DB || 0,
+        hasPassword: !!(process.env.REDIS_PASSWORD)
+      });
+
       // Configuración de Redis con opciones de conexión robustas
       this.client = new Redis({
         host: process.env.REDIS_HOST || 'localhost',
@@ -24,7 +39,9 @@ class CacheService {
           return err.message.includes('READONLY');
         },
         retryDelayOnClusterDown: 1000,
-        clusterRetryDelay: 1000
+        clusterRetryDelay: 1000,
+        connectTimeout: 5000, // 5 segundos timeout
+        commandTimeout: 3000  // 3 segundos por comando
       });
 
       // Eventos de conexión
@@ -39,7 +56,14 @@ class CacheService {
 
       this.client.on('error', (err) => {
         this.isConnected = false;
-        logger.error('Redis connection error:', err);
+        logger.error('Redis connection error:', {
+          message: err.message,
+          code: err.code,
+          errno: err.errno,
+          syscall: err.syscall,
+          hostname: err.hostname,
+          port: err.port
+        });
       });
 
       this.client.on('close', () => {
@@ -47,10 +71,24 @@ class CacheService {
         logger.warn('Redis connection closed');
       });
 
+      this.client.on('reconnecting', (delay) => {
+        logger.warn(`Redis reconnecting in ${delay}ms`);
+      });
+
+      logger.info('Attempting to connect to Redis...');
       await this.client.connect();
+      logger.info('Redis connection attempt completed');
 
     } catch (error) {
-      logger.error('Failed to initialize Redis:', error);
+      logger.error('Failed to initialize Redis:', {
+        message: error.message,
+        code: error.code,
+        errno: error.errno,
+        syscall: error.syscall,
+        hostname: error.hostname,
+        port: error.port,
+        stack: error.stack
+      });
       // Fallback: continuar sin caché pero loggear
       this.isConnected = false;
     }

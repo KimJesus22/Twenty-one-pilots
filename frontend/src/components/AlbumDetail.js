@@ -5,6 +5,7 @@ import discographyAPI from '../api/discography';
 import playlistsAPI from '../api/playlists';
 import { getAlbumArt } from '../utils/albumArt';
 import AudioPlayer from './AudioPlayer';
+import SongPreview from './SongPreview';
 import Spinner from './Spinner';
 import './AlbumDetail.css';
 
@@ -22,6 +23,7 @@ const AlbumDetail = ({ albumId, onClose, _onAddToPlaylist }) => {
   const [albumLiked, setAlbumLiked] = useState(false);
   const [songLikes, setSongLikes] = useState({});
   const [albumArt, setAlbumArt] = useState(null);
+  const [previewStates, setPreviewStates] = useState({}); // Estados de previews por canción
 
   useEffect(() => {
     if (albumId) {
@@ -77,6 +79,25 @@ const AlbumDetail = ({ albumId, onClose, _onAddToPlaylist }) => {
     setCurrentPlaylist({ songs: album.songs, title: album.title });
     // Incrementar contador de reproducción
     discographyAPI.incrementPlayCount(song._id, 'songs');
+  };
+
+  const handlePreviewStateChange = (songId, state) => {
+    setPreviewStates(prev => ({
+      ...prev,
+      [songId]: state
+    }));
+
+    // Si una preview está reproduciendo, pausar otras
+    if (state === 'playing') {
+      Object.keys(previewStates).forEach(id => {
+        if (id !== songId && previewStates[id] === 'playing') {
+          setPreviewStates(prev => ({
+            ...prev,
+            [id]: 'paused'
+          }));
+        }
+      });
+    }
   };
 
   const handleToggleAlbumLike = async () => {
@@ -291,10 +312,15 @@ const AlbumDetail = ({ albumId, onClose, _onAddToPlaylist }) => {
                   </div>
 
                   <div className="track-actions">
+                    <SongPreview
+                      song={song}
+                      onPlayStateChange={handlePreviewStateChange}
+                    />
+
                     <button
                       className="play-track-btn"
                       onClick={() => handlePlaySong(song)}
-                      title="Reproducir"
+                      title="Reproducir canción completa"
                     >
                       ▶️
                     </button>
@@ -322,6 +348,228 @@ const AlbumDetail = ({ albumId, onClose, _onAddToPlaylist }) => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Enlaces externos */}
+          {(album.externalLinks && Object.keys(album.externalLinks).some(key => album.externalLinks[key])) && (
+            <div className="album-external-links">
+              <h3>Enlaces Externos</h3>
+              <div className="external-links-grid">
+                {album.externalLinks.spotify && (
+                  <a href={album.externalLinks.spotify} target="_blank" rel="noopener noreferrer" className="external-link spotify">
+                    <span className="link-icon">🎵</span>
+                    <span>Spotify</span>
+                  </a>
+                )}
+                {album.externalLinks.appleMusic && (
+                  <a href={album.externalLinks.appleMusic} target="_blank" rel="noopener noreferrer" className="external-link apple">
+                    <span className="link-icon">🍎</span>
+                    <span>Apple Music</span>
+                  </a>
+                )}
+                {album.externalLinks.youtube && (
+                  <a href={album.externalLinks.youtube} target="_blank" rel="noopener noreferrer" className="external-link youtube">
+                    <span className="link-icon">📺</span>
+                    <span>YouTube</span>
+                  </a>
+                )}
+                {album.externalLinks.youtubeMusic && (
+                  <a href={album.externalLinks.youtubeMusic} target="_blank" rel="noopener noreferrer" className="external-link youtube-music">
+                    <span className="link-icon">🎶</span>
+                    <span>YouTube Music</span>
+                  </a>
+                )}
+                {album.externalLinks.deezer && (
+                  <a href={album.externalLinks.deezer} target="_blank" rel="noopener noreferrer" className="external-link deezer">
+                    <span className="link-icon">🎧</span>
+                    <span>Deezer</span>
+                  </a>
+                )}
+                {album.externalLinks.tidal && (
+                  <a href={album.externalLinks.tidal} target="_blank" rel="noopener noreferrer" className="external-link tidal">
+                    <span className="link-icon">🌊</span>
+                    <span>Tidal</span>
+                  </a>
+                )}
+                {album.externalLinks.amazonMusic && (
+                  <a href={album.externalLinks.amazonMusic} target="_blank" rel="noopener noreferrer" className="external-link amazon">
+                    <span className="link-icon">📦</span>
+                    <span>Amazon Music</span>
+                  </a>
+                )}
+                {album.externalLinks.genius && (
+                  <a href={album.externalLinks.genius} target="_blank" rel="noopener noreferrer" className="external-link genius">
+                    <span className="link-icon">📝</span>
+                    <span>Genius (Letras)</span>
+                  </a>
+                )}
+                {album.externalLinks.musicbrainz && (
+                  <a href={album.externalLinks.musicbrainz} target="_blank" rel="noopener noreferrer" className="external-link musicbrainz">
+                    <span className="link-icon">🧠</span>
+                    <span>MusicBrainz</span>
+                  </a>
+                )}
+                {album.externalLinks.discogs && (
+                  <a href={album.externalLinks.discogs} target="_blank" rel="noopener noreferrer" className="external-link discogs">
+                    <span className="link-icon">💿</span>
+                    <span>Discogs</span>
+                  </a>
+                )}
+                {album.externalLinks.allmusic && (
+                  <a href={album.externalLinks.allmusic} target="_blank" rel="noopener noreferrer" className="external-link allmusic">
+                    <span className="link-icon">🎼</span>
+                    <span>AllMusic</span>
+                  </a>
+                )}
+                {album.externalLinks.wikipedia && (
+                  <a href={album.externalLinks.wikipedia} target="_blank" rel="noopener noreferrer" className="external-link wikipedia">
+                    <span className="link-icon">📖</span>
+                    <span>Wikipedia</span>
+                  </a>
+                )}
+                {album.externalLinks.officialWebsite && (
+                  <a href={album.externalLinks.officialWebsite} target="_blank" rel="noopener noreferrer" className="external-link official">
+                    <span className="link-icon">🌐</span>
+                    <span>Sitio Oficial</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Créditos del álbum */}
+          {(album.credits && Object.keys(album.credits).some(key => album.credits[key] && album.credits[key].length > 0)) && (
+            <div className="album-credits">
+              <h3>Créditos</h3>
+              <div className="credits-grid">
+                {album.credits.executiveProducer && (
+                  <div className="credit-item">
+                    <strong>Productor Ejecutivo:</strong> {album.credits.executiveProducer}
+                  </div>
+                )}
+                {album.credits.producers && album.credits.producers.length > 0 && (
+                  <div className="credit-item">
+                    <strong>Productores:</strong> {album.credits.producers.join(', ')}
+                  </div>
+                )}
+                {album.credits.coProducers && album.credits.coProducers.length > 0 && (
+                  <div className="credit-item">
+                    <strong>Co-Productores:</strong> {album.credits.coProducers.join(', ')}
+                  </div>
+                )}
+                {album.credits.engineers && album.credits.engineers.length > 0 && (
+                  <div className="credit-item">
+                    <strong>Ingenieros:</strong> {album.credits.engineers.join(', ')}
+                  </div>
+                )}
+                {album.credits.mixingEngineers && album.credits.mixingEngineers.length > 0 && (
+                  <div className="credit-item">
+                    <strong>Ingenieros de Mezcla:</strong> {album.credits.mixingEngineers.join(', ')}
+                  </div>
+                )}
+                {album.credits.masteringEngineers && album.credits.masteringEngineers.length > 0 && (
+                  <div className="credit-item">
+                    <strong>Ingenieros de Mastering:</strong> {album.credits.masteringEngineers.join(', ')}
+                  </div>
+                )}
+                {album.credits.artworkBy && (
+                  <div className="credit-item">
+                    <strong>Arte:</strong> {album.credits.artworkBy}
+                  </div>
+                )}
+                {album.credits.photographyBy && (
+                  <div className="credit-item">
+                    <strong>Fotografía:</strong> {album.credits.photographyBy}
+                  </div>
+                )}
+                {album.credits.designBy && (
+                  <div className="credit-item">
+                    <strong>Diseño:</strong> {album.credits.designBy}
+                  </div>
+                )}
+                {album.credits.additionalCredits && album.credits.additionalCredits.length > 0 && (
+                  <div className="additional-credits">
+                    <strong>Créditos Adicionales:</strong>
+                    {album.credits.additionalCredits.map((credit, index) => (
+                      <div key={index} className="additional-credit">
+                        <span className="role">{credit.role}:</span> {credit.names.join(', ')}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Notas de producción */}
+          {(album.productionNotes && Object.keys(album.productionNotes).some(key => album.productionNotes[key])) && (
+            <div className="album-production-notes">
+              <h3>Notas de Producción</h3>
+              <div className="production-notes-grid">
+                {album.productionNotes.recordingLocation && (
+                  <div className="note-item">
+                    <strong>Lugar de Grabación:</strong> {album.productionNotes.recordingLocation}
+                  </div>
+                )}
+                {album.productionNotes.recordingDates && (
+                  <div className="note-item">
+                    <strong>Fechas de Grabación:</strong> {album.productionNotes.recordingDates}
+                  </div>
+                )}
+                {album.productionNotes.mixingLocation && (
+                  <div className="note-item">
+                    <strong>Lugar de Mezcla:</strong> {album.productionNotes.mixingLocation}
+                  </div>
+                )}
+                {album.productionNotes.masteringLocation && (
+                  <div className="note-item">
+                    <strong>Lugar de Mastering:</strong> {album.productionNotes.masteringLocation}
+                  </div>
+                )}
+                {album.productionNotes.studio && (
+                  <div className="note-item">
+                    <strong>Estudio:</strong> {album.productionNotes.studio}
+                  </div>
+                )}
+                {album.productionNotes.equipment && (
+                  <div className="note-item">
+                    <strong>Equipo:</strong> {album.productionNotes.equipment}
+                  </div>
+                )}
+                {album.productionNotes.additionalInfo && (
+                  <div className="note-item additional-info">
+                    <strong>Información Adicional:</strong>
+                    <p>{album.productionNotes.additionalInfo}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Información adicional del álbum */}
+          <div className="album-additional-info">
+            <div className="info-grid">
+              {album.upc && (
+                <div className="info-item">
+                  <strong>UPC:</strong> {album.upc}
+                </div>
+              )}
+              {album.catalogNumber && (
+                <div className="info-item">
+                  <strong>Número de Catálogo:</strong> {album.catalogNumber}
+                </div>
+              )}
+              {album.label && (
+                <div className="info-item">
+                  <strong>Sello:</strong> {album.label}
+                </div>
+              )}
+              {album.copyright && (
+                <div className="info-item">
+                  <strong>Derechos de Autor:</strong> {album.copyright}
+                </div>
+              )}
             </div>
           </div>
 

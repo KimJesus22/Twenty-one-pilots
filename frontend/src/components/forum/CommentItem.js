@@ -1,5 +1,8 @@
 import React, { memo, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import CommentForm from './CommentForm';
+import { ForumUtils } from '../../utils/forumUtils';
 
 const CommentItem = memo(({
   comment,
@@ -11,7 +14,8 @@ const CommentItem = memo(({
   isEditing,
   onUpdate,
   onCancelEdit,
-  t
+  t,
+  isRealTime = false
 }) => {
   const [voting, setVoting] = useState(false);
 
@@ -62,10 +66,15 @@ const CommentItem = memo(({
   }
 
   return (
-    <div className="comment-item">
+    <div className={`comment-item ${isRealTime ? 'real-time' : ''}`}>
       <div className="comment-header">
         <div className="comment-author">
           <strong>{comment.author.username}</strong>
+          {isRealTime && (
+            <span className="real-time-indicator" title={t('forum.realTimeComment') || 'Comentario en tiempo real'}>
+              ⚡
+            </span>
+          )}
         </div>
         <div className="comment-meta">
           <span className="comment-date">
@@ -76,15 +85,53 @@ const CommentItem = memo(({
               ({t('forum.edited')})
             </span>
           )}
+          {isRealTime && (
+            <span className="real-time-badge">
+              {t('forum.live') || 'EN VIVO'}
+            </span>
+          )}
         </div>
       </div>
 
       <div className="comment-content">
         <div className="comment-text">
-          {comment.content.split('\n').map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              // Custom components for better styling
+              p: ({ children }) => <p className="markdown-p">{children}</p>,
+              blockquote: ({ children }) => <blockquote className="markdown-blockquote">{children}</blockquote>,
+              code: ({ inline, children }) => inline ?
+                <code className="markdown-inline-code">{children}</code> :
+                <code className="markdown-code-block">{children}</code>,
+              pre: ({ children }) => <pre className="markdown-pre">{children}</pre>,
+              ul: ({ children }) => <ul className="markdown-ul">{children}</ul>,
+              ol: ({ children }) => <ol className="markdown-ol">{children}</ol>,
+              li: ({ children }) => <li className="markdown-li">{children}</li>,
+              a: ({ href, children }) => <a href={href} className="markdown-link" target="_blank" rel="noopener noreferrer">{children}</a>,
+              img: ({ src, alt }) => <img src={src} alt={alt} className="markdown-img" />,
+              strong: ({ children }) => <strong className="markdown-strong">{children}</strong>,
+              em: ({ children }) => <em className="markdown-em">{children}</em>,
+              del: ({ children }) => <del className="markdown-del">{children}</del>,
+              h1: ({ children }) => <h1 className="markdown-h1">{children}</h1>,
+              h2: ({ children }) => <h2 className="markdown-h2">{children}</h2>,
+              h3: ({ children }) => <h3 className="markdown-h3">{children}</h3>,
+            }}
+          >
+            {comment.content || ''}
+          </ReactMarkdown>
         </div>
+
+        {/* Mostrar tags del comentario */}
+        {comment.tags && comment.tags.length > 0 && (
+          <div className="comment-tags">
+            {comment.tags.map(tag => (
+              <span key={tag} className="comment-tag" onClick={() => window.location.href = `/forum?tags=${tag}`}>
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="comment-actions">

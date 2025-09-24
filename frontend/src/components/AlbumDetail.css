@@ -297,3 +297,176 @@
 .playlist-option:not(:last-child) {
   margin-bottom: 8px;
 }
+
+/* Enlaces externos */
+.album-external-links {
+  padding: 24px;
+  border-top: 1px solid #eee;
+}
+
+.album-external-links h3 {
+  margin-bottom: 16px;
+  color: #333;
+  font-size: 18px;
+}
+
+.external-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.external-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.2s;
+  background: white;
+}
+
+.external-link:hover {
+  border-color: #007bff;
+  background: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.link-icon {
+  font-size: 16px;
+}
+
+/* Créditos */
+.album-credits {
+  padding: 24px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+}
+
+.album-credits h3 {
+  margin-bottom: 16px;
+  color: #333;
+  font-size: 18px;
+}
+
+.credits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.credit-item {
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 3px solid #007bff;
+}
+
+.credit-item strong {
+  color: #007bff;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.additional-credits {
+  grid-column: 1 / -1;
+}
+
+.additional-credit {
+  margin-top: 8px;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.additional-credit .role {
+  font-weight: bold;
+  color: #495057;
+}
+
+/* Notas de producción */
+.album-production-notes {
+  padding: 24px;
+  border-top: 1px solid #eee;
+}
+
+.album-production-notes h3 {
+  margin-bottom: 16px;
+  color: #333;
+  font-size: 18px;
+}
+
+.production-notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.note-item {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 3px solid #28a745;
+}
+
+.note-item strong {
+  color: #28a745;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.note-item.additional-info p {
+  margin: 8px 0 0 0;
+  line-height: 1.5;
+  color: #495057;
+}
+
+/* Información adicional */
+.album-additional-info {
+  padding: 24px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.info-item {
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 3px solid #6c757d;
+}
+
+.info-item strong {
+  color: #6c757d;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Responsive para nuevas secciones */
+@media (max-width: 768px) {
+  .external-links-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .credits-grid,
+  .production-notes-grid,
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .album-external-links,
+  .album-credits,
+  .album-production-notes,
+  .album-additional-info {
+    padding: 16px;
+  }
+}

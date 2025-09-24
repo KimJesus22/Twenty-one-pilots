@@ -98,6 +98,30 @@ const videoSchema = new mongoose.Schema({
     default: '10' // Música por defecto
   },
 
+  // Categorías jerárquicas
+  genre: {
+    type: String,
+    enum: ['pop', 'rock', 'hip-hop', 'electronic', 'indie', 'alternative', 'folk', 'jazz', 'classical', 'other'],
+    index: true
+  },
+  artist: {
+    type: String,
+    trim: true,
+    index: true
+  },
+  year: {
+    type: Number,
+    min: 1900,
+    max: new Date().getFullYear() + 1,
+    index: true
+  },
+  type: {
+    type: String,
+    enum: ['official', 'concert', 'lyric', 'interview', 'cover', 'remix', 'live', 'acoustic', 'other'],
+    default: 'official',
+    index: true
+  },
+
   // Estado del video
   privacyStatus: {
     type: String,
@@ -176,6 +200,11 @@ videoSchema.index({ associatedSongs: 1 });
 videoSchema.index({ associatedAlbums: 1 });
 videoSchema.index({ cacheExpiry: 1 });
 
+// Índices para categorías
+videoSchema.index({ genre: 1, artist: 1 });
+videoSchema.index({ year: -1, type: 1 });
+videoSchema.index({ type: 1, genre: 1 });
+
 // Virtual para verificar si el cache está expirado
 videoSchema.virtual('isCacheExpired').get(function() {
   return new Date() > this.cacheExpiry;
@@ -250,6 +279,101 @@ videoSchema.statics.cleanExpiredCache = function() {
   return this.deleteMany({
     cacheExpiry: { $lt: new Date() }
   });
+};
+
+// Métodos estáticos para búsqueda por categorías
+videoSchema.statics.findByGenre = function(genre, limit = 20) {
+  return this.find({ genre, isAvailable: true })
+    .sort({ 'statistics.viewCount': -1 })
+    .limit(limit)
+    .populate('associatedSongs', 'title artist')
+    .populate('associatedAlbums', 'title artist releaseYear');
+};
+
+videoSchema.statics.findByArtist = function(artist, limit = 20) {
+  return this.find({ artist: new RegExp(artist, 'i'), isAvailable: true })
+    .sort({ publishedAt: -1 })
+    .limit(limit)
+    .populate('associatedSongs', 'title artist')
+    .populate('associatedAlbums', 'title artist releaseYear');
+};
+
+videoSchema.statics.findByYear = function(year, limit = 20) {
+  return this.find({ year, isAvailable: true })
+    .sort({ 'statistics.viewCount': -1 })
+    .limit(limit)
+    .populate('associatedSongs', 'title artist')
+    .populate('associatedAlbums', 'title artist releaseYear');
+};
+
+videoSchema.statics.findByType = function(type, limit = 20) {
+  return this.find({ type, isAvailable: true })
+    .sort({ publishedAt: -1 })
+    .limit(limit)
+    .populate('associatedSongs', 'title artist')
+    .populate('associatedAlbums', 'title artist releaseYear');
+};
+
+videoSchema.statics.findByFilters = function(filters = {}, limit = 20) {
+  const query = { isAvailable: true };
+  if (filters.genre) query.genre = filters.genre;
+  if (filters.artist) query.artist = new RegExp(filters.artist, 'i');
+  if (filters.year) query.year = filters.year;
+  if (filters.type) query.type = filters.type;
+
+  return this.find(query)
+    .sort({ 'statistics.viewCount': -1 })
+    .limit(limit)
+    .populate('associatedSongs', 'title artist')
+    .populate('associatedAlbums', 'title artist releaseYear');
+};
+
+// Método para obtener recomendaciones basadas en historial de usuario
+videoSchema.statics.getRecommendations = async function(userId, limit = 10) {
+  try {
+    // Obtener historial del usuario
+    const User = require('./User');
+    const user = await User.findById(userId).populate('watchHistory.video');
+
+    if (!user || !user.watchHistory.length) {
+      // Si no hay historial, devolver videos populares
+      return this.findPopular(limit);
+    }
+
+    // Extraer géneros y artistas del historial
+    const genres = new Set();
+    const artists = new Set();
+
+    user.watchHistory.forEach(item => {
+      if (item.video.genre) genres.add(item.video.genre);
+      if (item.video.artist) artists.add(item.video.artist);
+    });
+
+    // Buscar videos similares
+    const recommendations = await this.find({
+      isAvailable: true,
+      $or: [
+        { genre: { $in: Array.from(genres) } },
+        { artist: { $in: Array.from(artists) } }
+      ],
+      _id: { $nin: user.watchHistory.map(item => item.video._id) } // Excluir videos ya vistos
+    })
+    .sort({ 'statistics.viewCount': -1 })
+    .limit(limit)
+    .populate('associatedSongs', 'title artist')
+    .populate('associatedAlbums', 'title artist releaseYear');
+
+    // Si no hay suficientes recomendaciones, completar con populares
+    if (recommendations.length < limit) {
+      const popular = await this.findPopular(limit - recommendations.length);
+      recommendations.push(...popular.filter(v => !recommendations.some(r => r._id.equals(v._id))));
+    }
+
+    return recommendations;
+  } catch (error) {
+    console.error('Error getting recommendations:', error);
+    return this.findPopular(limit);
+  }
 };
 
 // Pre-save middleware para actualizar cacheExpiry

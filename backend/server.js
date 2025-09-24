@@ -14,11 +14,12 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
+const { Server } = require('socket.io');
 
 // solo aquí, al tope de server.js
 dotenv.config({ quiet: true });
 
-console.log('🚀 Iniciando server.js...');
+console.log('🚀 Iniciando server.js... (Redis disabled for development)');
 
 // Importar aplicación configurada
 const app = require('./app');
@@ -178,6 +179,54 @@ function startServers() {
       }
     });
   }
+
+  // Configurar Socket.io
+  const io = new Server(server, {
+    cors: {
+      origin: process.env.NODE_ENV === 'production'
+        ? process.env.FRONTEND_URL || false
+        : ["http://localhost:3000", "http://127.0.0.1:3000"],
+      methods: ["GET", "POST"],
+      credentials: true
+    },
+    transports: ['websocket', 'polling']
+  });
+
+  // Configurar eventos de Socket.io
+  io.on('connection', (socket) => {
+    console.log('🔌 Usuario conectado:', socket.id);
+
+    // Unirse a sala de foro
+    socket.on('join-forum', () => {
+      socket.join('forum');
+      console.log(`👥 Usuario ${socket.id} se unió al foro`);
+    });
+
+    // Unirse a sala de hilo específico
+    socket.on('join-thread', (threadId) => {
+      socket.join(`thread-${threadId}`);
+      console.log(`📄 Usuario ${socket.id} se unió al hilo ${threadId}`);
+    });
+
+    // Dejar sala de hilo
+    socket.on('leave-thread', (threadId) => {
+      socket.leave(`thread-${threadId}`);
+      console.log(`📄 Usuario ${socket.id} dejó el hilo ${threadId}`);
+    });
+
+    // Unirse a sala de notificaciones de usuario
+    socket.on('join-user-notifications', (userId) => {
+      socket.join(`user-${userId}`);
+      console.log(`🔔 Usuario ${socket.id} se unió a notificaciones de usuario ${userId}`);
+    });
+
+    socket.on('disconnect', () => {
+      console.log('🔌 Usuario desconectado:', socket.id);
+    });
+  });
+
+  // Hacer io disponible globalmente para los controladores
+  global.io = io;
 
   // Graceful shutdown para ambos servidores
   const gracefulShutdown = (signal) => {

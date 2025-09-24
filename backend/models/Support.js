@@ -97,7 +97,7 @@ const supportTicketSchema = new mongoose.Schema({
 });
 
 // Índices para búsquedas eficientes
-supportTicketSchema.index({ ticketNumber: 1 });
+// ticketNumber ya tiene índice único por unique: true
 supportTicketSchema.index({ customer: 1, createdAt: -1 });
 supportTicketSchema.index({ assignedTo: 1, status: 1 });
 supportTicketSchema.index({ status: 1, priority: -1, createdAt: -1 });

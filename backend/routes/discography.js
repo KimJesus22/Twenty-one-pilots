@@ -91,7 +91,34 @@ router.get('/albums',
   discographyController.getAlbums
 );
 
-// Ruta para obtener un álbum específico
+/**
+ * @swagger
+ * /api/discography/albums/{id}:
+ *   get:
+ *     summary: Obtener un álbum específico por ID
+ *     tags: [Discography]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del álbum
+ *     responses:
+ *       200:
+ *         description: Álbum obtenido exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   $ref: '#/components/schemas/Album'
+ *       404:
+ *         description: Álbum no encontrado
+ *       500:
+ *         description: Error del servidor
+ */
 router.get('/albums/:id',
   [
     param('id').isMongoId().withMessage('ID de álbum inválido'),
@@ -217,7 +244,48 @@ router.post('/:type/:id/play',
   discographyController.incrementPlayCount
 );
 
-// Obtener estadísticas de popularidad
+/**
+ * @swagger
+ * /api/discography/stats/popularity:
+ *   get:
+ *     summary: Obtener estadísticas de popularidad de álbumes y canciones
+ *     tags: [Discography]
+ *     responses:
+ *       200:
+ *         description: Estadísticas obtenidas exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     albums:
+ *                       type: object
+ *                       properties:
+ *                         totalAlbums:
+ *                           type: integer
+ *                         totalViews:
+ *                           type: integer
+ *                         totalLikes:
+ *                           type: integer
+ *                         avgPopularity:
+ *                           type: number
+ *                     songs:
+ *                       type: object
+ *                       properties:
+ *                         totalSongs:
+ *                           type: integer
+ *                         totalPlays:
+ *                           type: integer
+ *                         totalLikes:
+ *                           type: integer
+ *                         avgPopularity:
+ *                           type: number
+ *       500:
+ *         description: Error del servidor
+ */
 router.get('/stats/popularity', discographyController.getPopularityStats);
 
 // Obtener géneros disponibles

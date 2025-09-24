@@ -28,12 +28,28 @@ const queues = {
   notifications: new Queue('notifications-queue', QUEUE_CONFIG)
 };
 
+// Log configuración de Redis para colas
+logger.info('Initializing Bull queues with Redis config:', {
+  host: QUEUE_CONFIG.redis.host,
+  port: QUEUE_CONFIG.redis.port,
+  db: QUEUE_CONFIG.redis.db,
+  hasPassword: !!(QUEUE_CONFIG.redis.password)
+});
+
 class QueueService {
   constructor() {
-    this.queues = queues;
+    this.redisDisabled = process.env.REDIS_DISABLED === 'true';
+
+    if (this.redisDisabled) {
+      logger.warn('Redis disabled for development - queues will be mocked');
+      this.queues = this.createMockQueues();
+    } else {
+      this.queues = queues;
+      this.setupQueueEvents();
+      this.setupProcessors();
+    }
+
     this.processors = {};
-    this.setupQueueEvents();
-    this.setupProcessors();
   }
 
   // Configurar eventos globales para todas las colas
@@ -45,7 +61,15 @@ class QueueService {
       });
 
       queue.on('error', (error) => {
-        logger.error(`Queue ${name} error:`, error);
+        logger.error(`Queue ${name} error:`, {
+          message: error.message,
+          code: error.code,
+          errno: error.errno,
+          syscall: error.syscall,
+          hostname: error.hostname,
+          port: error.port,
+          stack: error.stack
+        });
       });
 
       queue.on('waiting', (jobId) => {
@@ -457,12 +481,49 @@ class QueueService {
     };
   }
 
+  // ===== MÉTODOS DE MOCK PARA DESARROLLO =====
+
+  createMockQueues() {
+    const mockQueue = {
+      add: async (data, options) => {
+        logger.info('Mock queue: job added (not processed)', { data, options });
+        return { id: `mock-${Date.now()}`, data };
+      },
+      process: () => {
+        logger.info('Mock queue: processor registered (not executed)');
+      },
+      on: () => {
+        logger.debug('Mock queue: event listener registered');
+      },
+      getWaiting: async () => [],
+      getActive: async () => [],
+      getCompleted: async () => [],
+      getFailed: async () => [],
+      isPaused: async () => false,
+      close: async () => {
+        logger.info('Mock queue: closed');
+      }
+    };
+
+    return {
+      email: mockQueue,
+      analytics: mockQueue,
+      recommendations: mockQueue,
+      notifications: mockQueue
+    };
+  }
+
   // ===== MÉTODOS DE AGREGACIÓN DE JOBS =====
 
   /**
    * Agregar job de email a la cola
    */
   async addEmailJob(type, data, options = {}) {
+    if (this.redisDisabled) {
+      logger.info('Mock: Email job added (not queued)', { type, data });
+      return { id: `mock-email-${Date.now()}`, data: { type, data } };
+    }
+
     const jobOptions = {
       ...QUEUE_CONFIG.defaultJobOptions,
       priority: this.getEmailPriority(type),
@@ -476,6 +537,11 @@ class QueueService {
    * Agregar job de analytics a la cola
    */
   async addAnalyticsJob(type, data, options = {}) {
+    if (this.redisDisabled) {
+      logger.info('Mock: Analytics job added (not queued)', { type, data });
+      return { id: `mock-analytics-${Date.now()}`, data: { type, data, timestamp: new Date() } };
+    }
+
     const jobOptions = {
       ...QUEUE_CONFIG.defaultJobOptions,
       priority: this.getAnalyticsPriority(type),
@@ -489,6 +555,11 @@ class QueueService {
    * Agregar job de recomendaciones a la cola
    */
   async addRecommendationJob(userId, type, context, options = {}) {
+    if (this.redisDisabled) {
+      logger.info('Mock: Recommendation job added (not queued)', { userId, type });
+      return { id: `mock-recommendation-${Date.now()}`, data: { userId, type, context } };
+    }
+
     const jobOptions = {
       ...QUEUE_CONFIG.defaultJobOptions,
       priority: 5, // Alta prioridad para recomendaciones
@@ -502,6 +573,11 @@ class QueueService {
    * Agregar job de notificación a la cola
    */
   async addNotificationJob(type, userId, data, options = {}) {
+    if (this.redisDisabled) {
+      logger.info('Mock: Notification job added (not queued)', { type, userId });
+      return { id: `mock-notification-${Date.now()}`, data: { type, userId, data } };
+    }
+
     const jobOptions = {
       ...QUEUE_CONFIG.defaultJobOptions,
       priority: this.getNotificationPriority(type),
@@ -545,6 +621,16 @@ class QueueService {
   // ===== MÉTODOS DE ESTADÍSTICAS =====
 
   async getQueueStats() {
+    if (this.redisDisabled) {
+      logger.info('Mock: Returning mock queue stats');
+      return {
+        email: { waiting: 0, active: 0, completed: 0, failed: 0, isPaused: false, mock: true },
+        analytics: { waiting: 0, active: 0, completed: 0, failed: 0, isPaused: false, mock: true },
+        recommendations: { waiting: 0, active: 0, completed: 0, failed: 0, isPaused: false, mock: true },
+        notifications: { waiting: 0, active: 0, completed: 0, failed: 0, isPaused: false, mock: true }
+      };
+    }
+
     const stats = {};
 
     for (const [name, queue] of Object.entries(this.queues)) {

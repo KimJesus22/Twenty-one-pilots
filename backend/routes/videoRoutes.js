@@ -947,6 +947,422 @@ router.get('/recent',
 );
 
 /**
+ * @route GET /api/videos/recommendations/:userId
+ * @desc Obtener recomendaciones personalizadas
+ * @access Private
+ * @param {string} userId - ID del usuario
+ * @query {number} [limit=10] - Número máximo de resultados
+ */
+router.get('/recommendations/:userId',
+  requireAuth,
+  [
+    param('userId')
+      .isMongoId()
+      .withMessage('ID de usuario inválido'),
+    query('limit')
+      .optional()
+      .isInt({ min: 1, max: 50 })
+      .withMessage('limit debe ser un número entre 1 y 50')
+  ],
+  handleValidationErrors,
+  videoController.getRecommendations
+);
+
+/**
+ * @route POST /api/videos/history/:userId/:videoId
+ * @desc Agregar video al historial de visualización
+ * @access Private
+ * @param {string} userId - ID del usuario
+ * @param {string} videoId - ID del video
+ * @body {number} [watchDuration=0] - Duración vista en segundos
+ */
+router.post('/history/:userId/:videoId',
+  requireAuth,
+  [
+    param('userId')
+      .isMongoId()
+      .withMessage('ID de usuario inválido'),
+    param('videoId')
+      .isMongoId()
+      .withMessage('ID de video inválido'),
+    body('watchDuration')
+      .optional()
+      .isInt({ min: 0 })
+      .withMessage('watchDuration debe ser un número positivo')
+  ],
+  handleValidationErrors,
+  videoController.addToWatchHistory
+);
+
+// =============================================================================
+// RUTAS DE FAVORITOS
+// =============================================================================
+
+/**
+ * @route POST /api/videos/favorites/:userId/:videoId
+ * @desc Agregar video a favoritos
+ * @access Private
+ * @param {string} userId - ID del usuario
+ * @param {string} videoId - ID del video
+ */
+router.post('/favorites/:userId/:videoId',
+  requireAuth,
+  [
+    param('userId')
+      .isMongoId()
+      .withMessage('ID de usuario inválido'),
+    param('videoId')
+      .isMongoId()
+      .withMessage('ID de video inválido')
+  ],
+  handleValidationErrors,
+  videoController.addToFavorites
+);
+
+/**
+ * @route DELETE /api/videos/favorites/:userId/:videoId
+ * @desc Quitar video de favoritos
+ * @access Private
+ * @param {string} userId - ID del usuario
+ * @param {string} videoId - ID del video
+ */
+router.delete('/favorites/:userId/:videoId',
+  requireAuth,
+  [
+    param('userId')
+      .isMongoId()
+      .withMessage('ID de usuario inválido'),
+    param('videoId')
+      .isMongoId()
+      .withMessage('ID de video inválido')
+  ],
+  handleValidationErrors,
+  videoController.removeFromFavorites
+);
+
+/**
+ * @route GET /api/videos/favorites/:userId
+ * @desc Obtener videos favoritos del usuario
+ * @access Private
+ * @param {string} userId - ID del usuario
+ * @query {number} [page=1] - Página
+ * @query {number} [limit=20] - Límite por página
+ */
+router.get('/favorites/:userId',
+  requireAuth,
+  [
+    param('userId')
+      .isMongoId()
+      .withMessage('ID de usuario inválido'),
+    query('page')
+      .optional()
+      .isInt({ min: 1 })
+      .withMessage('page debe ser un número positivo'),
+    query('limit')
+      .optional()
+      .isInt({ min: 1, max: 50 })
+      .withMessage('limit debe estar entre 1 y 50')
+  ],
+  handleValidationErrors,
+  videoController.getUserFavorites
+);
+
+/**
+ * @route GET /api/videos/favorites/:userId/:videoId/check
+ * @desc Verificar si un video está en favoritos
+ * @access Private
+ * @param {string} userId - ID del usuario
+ * @param {string} videoId - ID del video
+ */
+router.get('/favorites/:userId/:videoId/check',
+  requireAuth,
+  [
+    param('userId')
+      .isMongoId()
+      .withMessage('ID de usuario inválido'),
+    param('videoId')
+      .isMongoId()
+      .withMessage('ID de video inválido')
+  ],
+  handleValidationErrors,
+  videoController.checkFavoriteStatus
+);
+
+// =============================================================================
+// RUTAS DE LISTAS PERSONALIZADAS
+// =============================================================================
+
+/**
+ * @route POST /api/videos/lists/:userId
+ * @desc Crear lista personalizada
+ * @access Private
+ * @param {string} userId - ID del usuario
+ * @body {string} name - Nombre de la lista
+ * @body {string} [description] - Descripción
+ * @body {boolean} [isPublic=false] - Si es pública
+ */
+router.post('/lists/:userId',
+  requireAuth,
+  [
+    param('userId')
+      .isMongoId()
+      .withMessage('ID de usuario inválido'),
+    body('name')
+      .isString()
+      .notEmpty()
+      .withMessage('El nombre es requerido')
+      .isLength({ min: 1, max: 100 })
+      .withMessage('El nombre debe tener entre 1 y 100 caracteres'),
+    body('description')
+      .optional()
+      .isString()
+      .isLength({ max: 500 })
+      .withMessage('La descripción no puede exceder 500 caracteres'),
+    body('isPublic')
+      .optional()
+      .isBoolean()
+      .withMessage('isPublic debe ser un booleano')
+  ],
+  handleValidationErrors,
+  videoController.createCustomList
+);
+
+/**
+ * @route POST /api/videos/lists/:userId/:listIndex/videos/:videoId
+ * @desc Agregar video a lista personalizada
+ * @access Private
+ * @param {string} userId - ID del usuario
+ * @param {number} listIndex - Índice de la lista
+ * @param {string} videoId - ID del video
+ */
+router.post('/lists/:userId/:listIndex/videos/:videoId',
+  requireAuth,
+  [
+    param('userId')
+      .isMongoId()
+      .withMessage('ID de usuario inválido'),
+    param('listIndex')
+      .isInt({ min: 0 })
+      .withMessage('Índice de lista inválido'),
+    param('videoId')
+      .isMongoId()
+      .withMessage('ID de video inválido')
+  ],
+  handleValidationErrors,
+  videoController.addToCustomList
+);
+
+/**
+ * @route DELETE /api/videos/lists/:userId/:listIndex/videos/:videoId
+ * @desc Quitar video de lista personalizada
+ * @access Private
+ * @param {string} userId - ID del usuario
+ * @param {number} listIndex - Índice de la lista
+ * @param {string} videoId - ID del video
+ */
+router.delete('/lists/:userId/:listIndex/videos/:videoId',
+  requireAuth,
+  [
+    param('userId')
+      .isMongoId()
+      .withMessage('ID de usuario inválido'),
+    param('listIndex')
+      .isInt({ min: 0 })
+      .withMessage('Índice de lista inválido'),
+    param('videoId')
+      .isMongoId()
+      .withMessage('ID de video inválido')
+  ],
+  handleValidationErrors,
+  videoController.removeFromCustomList
+);
+
+/**
+ * @route GET /api/videos/lists/:userId
+ * @desc Obtener listas personalizadas del usuario
+ * @access Private
+ * @param {string} userId - ID del usuario
+ */
+router.get('/lists/:userId',
+  requireAuth,
+  [
+    param('userId')
+      .isMongoId()
+      .withMessage('ID de usuario inválido')
+  ],
+  handleValidationErrors,
+  videoController.getUserCustomLists
+);
+
+/**
+ * @route DELETE /api/videos/lists/:userId/:listIndex
+ * @desc Eliminar lista personalizada
+ * @access Private
+ * @param {string} userId - ID del usuario
+ * @param {number} listIndex - Índice de la lista
+ */
+router.delete('/lists/:userId/:listIndex',
+  requireAuth,
+  [
+    param('userId')
+      .isMongoId()
+      .withMessage('ID de usuario inválido'),
+    param('listIndex')
+      .isInt({ min: 0 })
+      .withMessage('Índice de lista inválido')
+  ],
+  handleValidationErrors,
+  videoController.deleteCustomList
+);
+
+// =============================================================================
+// RUTAS DE COMENTARIOS DE VIDEOS
+// =============================================================================
+
+/**
+ * @route GET /api/videos/comments/:videoId
+ * @desc Obtener comentarios de un video
+ * @access Public
+ * @param {string} videoId - ID del video
+ * @query {number} [page=1] - Página
+ * @query {number} [limit=20] - Límite por página
+ */
+router.get('/comments/:videoId',
+  [
+    param('videoId')
+      .isMongoId()
+      .withMessage('ID de video inválido'),
+    query('page')
+      .optional()
+      .isInt({ min: 1 })
+      .withMessage('page debe ser un número positivo'),
+    query('limit')
+      .optional()
+      .isInt({ min: 1, max: 50 })
+      .withMessage('limit debe estar entre 1 y 50')
+  ],
+  handleValidationErrors,
+  videoController.getVideoComments
+);
+
+/**
+ * @route POST /api/videos/comments/:videoId
+ * @desc Crear comentario en un video
+ * @access Private
+ * @param {string} videoId - ID del video
+ * @body {string} content - Contenido del comentario
+ * @body {string} [parentCommentId] - ID del comentario padre (para respuestas)
+ */
+router.post('/comments/:videoId',
+  requireAuth,
+  [
+    param('videoId')
+      .isMongoId()
+      .withMessage('ID de video inválido'),
+    body('content')
+      .isString()
+      .notEmpty()
+      .withMessage('El contenido es requerido')
+      .isLength({ min: 1, max: 1000 })
+      .withMessage('El comentario debe tener entre 1 y 1000 caracteres'),
+    body('parentCommentId')
+      .optional()
+      .isMongoId()
+      .withMessage('ID de comentario padre inválido')
+  ],
+  handleValidationErrors,
+  videoController.createVideoComment
+);
+
+/**
+ * @route PUT /api/videos/comments/:commentId
+ * @desc Editar comentario
+ * @access Private
+ * @param {string} commentId - ID del comentario
+ * @body {string} content - Nuevo contenido
+ */
+router.put('/comments/:commentId',
+  requireAuth,
+  [
+    param('commentId')
+      .isMongoId()
+      .withMessage('ID de comentario inválido'),
+    body('content')
+      .isString()
+      .notEmpty()
+      .withMessage('El contenido es requerido')
+      .isLength({ min: 1, max: 1000 })
+      .withMessage('El comentario debe tener entre 1 y 1000 caracteres')
+  ],
+  handleValidationErrors,
+  videoController.updateVideoComment
+);
+
+/**
+ * @route DELETE /api/videos/comments/:commentId
+ * @desc Eliminar comentario
+ * @access Private
+ * @param {string} commentId - ID del comentario
+ */
+router.delete('/comments/:commentId',
+  requireAuth,
+  [
+    param('commentId')
+      .isMongoId()
+      .withMessage('ID de comentario inválido')
+  ],
+  handleValidationErrors,
+  videoController.deleteVideoComment
+);
+
+/**
+ * @route POST /api/videos/comments/:commentId/vote
+ * @desc Votar en un comentario
+ * @access Private
+ * @param {string} commentId - ID del comentario
+ * @body {string} voteType - Tipo de voto ('like' o 'dislike')
+ */
+router.post('/comments/:commentId/vote',
+  requireAuth,
+  [
+    param('commentId')
+      .isMongoId()
+      .withMessage('ID de comentario inválido'),
+    body('voteType')
+      .isIn(['like', 'dislike'])
+      .withMessage('voteType debe ser "like" o "dislike"')
+  ],
+  handleValidationErrors,
+  videoController.voteVideoComment
+);
+
+/**
+ * @route GET /api/videos/comments/:commentId/replies
+ * @desc Obtener respuestas de un comentario
+ * @access Public
+ * @param {string} commentId - ID del comentario
+ * @query {number} [page=1] - Página
+ * @query {number} [limit=10] - Límite por página
+ */
+router.get('/comments/:commentId/replies',
+  [
+    param('commentId')
+      .isMongoId()
+      .withMessage('ID de comentario inválido'),
+    query('page')
+      .optional()
+      .isInt({ min: 1 })
+      .withMessage('page debe ser un número positivo'),
+    query('limit')
+      .optional()
+      .isInt({ min: 1, max: 20 })
+      .withMessage('limit debe estar entre 1 y 20')
+  ],
+  handleValidationErrors,
+  videoController.getCommentReplies
+);
+
+/**
  * @route GET /api/videos/stats/service
  * @desc Obtener estadísticas del servicio de videos
  * @access Private (Admin)

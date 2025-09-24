@@ -9,6 +9,15 @@ const { validationResult } = require('express-validator');
 const logger = require('./utils/logger');
 const crypto = require('crypto');
 
+// Importar Apollo Server para GraphQL
+const { ApolloServer } = require('@apollo/server');
+const { expressMiddleware } = require('@apollo/server/express4');
+const typeDefs = require('./graphql/types');
+const resolvers = require('./graphql/resolvers');
+
+// Importar configuración de Swagger
+const setupSwagger = require('./swagger');
+
 console.log('🚀 Iniciando app.js...');
 
 const app = express();
@@ -204,6 +213,11 @@ const favoritesRoutes = require('./routes/favorites');
 const notificationsRoutes = require('./routes/notifications');
 const lyricsRoutes = require('./routes/lyrics');
 const mapsRoutes = require('./routes/maps');
+const musicRatingsRoutes = require('./routes/musicRatings');
+const musicCommentsRoutes = require('./routes/musicComments');
+const albumMetricsRoutes = require('./routes/albumMetrics');
+const wishlistRoutes = require('./routes/wishlist');
+const ticketsRoutes = require('./routes/tickets');
 
 // Rutas básicas
 app.get('/', (req, res) => {
@@ -358,11 +372,68 @@ app.use('/api/favorites', favoritesRoutes);
 app.use('/api/notifications', notificationsRoutes);
 app.use('/api/lyrics', lyricsRoutes);
 app.use('/api/maps', mapsRoutes);
+app.use('/api/music-ratings', musicRatingsRoutes);
+app.use('/api/music-comments', musicCommentsRoutes);
+app.use('/api/albums', albumMetricsRoutes);
+app.use('/api/wishlist', wishlistRoutes);
+app.use('/api/tickets', ticketsRoutes);
 app.use('/api/monitoring', monitoringRoutes);
-app.use('/api/admin', (req, res) => res.json({
-  success: false,
-  message: 'Panel de administración próximamente - funcionalidad en desarrollo'
-}));
+app.use('/api/admin', adminRoutes);
+
+// Configurar Apollo Server para GraphQL
+async function startApolloServer() {
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    introspection: true, // Habilitar introspection para desarrollo
+    formatError: (error) => {
+      logger.error('GraphQL Error:', error);
+      return {
+        message: error.message,
+        locations: error.locations,
+        path: error.path,
+        extensions: {
+          code: error.extensions?.code || 'INTERNAL_ERROR',
+          ...(process.env.NODE_ENV === 'development' && { stacktrace: error.stack })
+        }
+      };
+    }
+  });
+
+  await server.start();
+
+  // Middleware de GraphQL con contexto de autenticación
+  app.use('/graphql', cors(), express.json(), expressMiddleware(server, {
+    context: async ({ req }) => {
+      // Extraer token de autenticación del header
+      const token = req.headers.authorization?.replace('Bearer ', '');
+      let user = null;
+
+      if (token) {
+        try {
+          // Aquí iría la lógica de verificación del token JWT
+          // Por ahora, devolver null para desarrollo
+          user = null;
+        } catch (error) {
+          logger.warn('Error verificando token JWT:', error.message);
+        }
+      }
+
+      return { user, req };
+    }
+  }));
+
+  console.log('🚀 GraphQL server listo en /graphql');
+}
+
+// Iniciar Apollo Server
+startApolloServer().catch(error => {
+  logger.error('Error iniciando Apollo Server:', error);
+  console.error('❌ Error iniciando GraphQL:', error.message);
+});
+
+// Configurar Swagger
+setupSwagger(app);
 
 // Middleware para manejar errores de validación
 app.use((req, res, next) => {
