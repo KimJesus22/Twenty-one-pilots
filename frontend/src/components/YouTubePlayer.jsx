@@ -23,6 +23,7 @@ const YouTubePlayer = ({
   useEffect(() => {
     // Reset states when video changes
     if (video) {
+      console.log('🌐 YouTube Player - Origen actual:', window.location.origin, 'Protocolo:', window.location.protocol);
       // Confirmar que el video está normalizado (no usa snippet)
       console.assert(typeof video.id === 'string', 'YouTubePlayer: video.id debe ser string');
       console.assert(typeof video.title === 'string', 'YouTubePlayer: video.title debe ser string');

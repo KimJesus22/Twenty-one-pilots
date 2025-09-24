@@ -21,7 +21,10 @@ export function AuthProvider({ children }) {
   const login = async (credentials) => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const apiUrl = `${baseUrl}/api/auth/login`;
+      console.log('🔗 Intentando login a URL:', apiUrl, 'desde origen:', window.location.origin);
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +60,10 @@ export function AuthProvider({ children }) {
   const register = async (userData) => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const apiUrl = `${baseUrl}/api/auth/register`;
+      console.log('🔗 Intentando register a URL:', apiUrl, 'desde origen:', window.location.origin);
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
