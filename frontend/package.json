@@ -6,7 +6,7 @@
     "@apollo/client": "^4.0.5",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@googlemaps/js-api-loader": "^1.16.10",
+    "@googlemaps/js-api-loader": "^2.0.0",
     "@googlemaps/react-wrapper": "^1.2.0",
     "@mui/icons-material": "^6.1.1",
     "@mui/lab": "^6.0.0-beta.10",
