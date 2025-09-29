@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
@@ -29,6 +29,7 @@ const Login = () => {
 
   // Enfocar el primer campo al montar
   useEffect(() => {
+    console.log('Login component mounted and focusing initial field');
     setInitialFocus(focusRef.current);
   }, [setInitialFocus]);
 

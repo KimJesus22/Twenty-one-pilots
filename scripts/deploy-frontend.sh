@@ -8,7 +8,16 @@ set -e
 echo "Building frontend for production..."
 
 # Load nvm if available
-if command -v nvm &> /dev/null; then
+if [ -n "$SUDO_USER" ]; then
+    # If running with sudo, try to load nvm for the original user
+    USER_HOME=$(eval echo ~$SUDO_USER)
+    export NVM_DIR="$USER_HOME/.nvm"
+    if [ -s "$NVM_DIR/nvm.sh" ]; then
+        echo "Loading nvm for user $SUDO_USER..."
+        . "$NVM_DIR/nvm.sh"
+        nvm use 22 2>/dev/null || nvm use 18 2>/dev/null || nvm use default 2>/dev/null
+    fi
+elif command -v nvm &> /dev/null; then
     echo "Loading nvm..."
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
