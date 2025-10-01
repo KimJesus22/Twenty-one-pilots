@@ -100,7 +100,7 @@
     "i18next-browser-languagedetector": "^8.0.0",
     "jest-environment-jsdom": "^29.7.0",
     "react-axe": "^3.5.4",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "jest": {
     "transformIgnorePatterns": [
