@@ -90,36 +90,47 @@ app.use('/api/auth/', authLimiter);
 // app.use('/api/store', advancedRateLimit(5 * 60 * 1000, 10)); // 10 requests por 5 min
 
 // CORS habilitado para desarrollo
-app.use(cors({
-  origin: function (origin, callback) {
-    // Permitir requests sin origin (como mobile apps o curl)
-    if (!origin) return callback(null, true);
+if (process.env.NODE_ENV === 'production') {
+  app.use(cors({
+    origin: function (origin, callback) {
+      // Permitir requests sin origin (como mobile apps o curl)
+      if (!origin) return callback(null, true);
 
-    const allowedOrigins = [
-      'http://localhost:3000',
-      'http://127.0.0.1:3000',
-      'https://localhost:3000',
-      'https://127.0.0.1:3000'
-    ];
+      const allowedOrigins = [
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+        'https://localhost:3000',
+        'https://127.0.0.1:3000'
+      ];
 
-    // En producción, agregar el dominio real
-    if (process.env.NODE_ENV === 'production' && process.env.FRONTEND_URL) {
-      allowedOrigins.push(process.env.FRONTEND_URL);
-    }
+      // En producción, agregar el dominio real
+      if (process.env.FRONTEND_URL) {
+        allowedOrigins.push(process.env.FRONTEND_URL);
+      }
 
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      console.warn('Origen no permitido detectado:', { origin, ip: origin });
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  exposedHeaders: ['X-Total-Count', 'X-Rate-Limit-Remaining'],
-  maxAge: 86400 // 24 horas
-}));
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        console.warn('Origen no permitido detectado:', { origin, ip: origin });
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    exposedHeaders: ['X-Total-Count', 'X-Rate-Limit-Remaining'],
+    maxAge: 86400 // 24 horas
+  }));
+} else {
+  // En desarrollo, permitir cualquier origen
+  app.use(cors({
+    origin: true,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    exposedHeaders: ['X-Total-Count', 'X-Rate-Limit-Remaining']
+  }));
+}
 
 app.use(express.json({ limit: '10mb' })); // Limitar tamaño de payload
 
@@ -399,6 +410,14 @@ app.get('/api/health', (req, res) => {
 console.log('🔧 Configurando GraphQL...');
 
 if (schema) {
+  // Middleware para loggear peticiones GraphQL
+  app.use('/graphql', (req, res, next) => {
+    if (req.method === 'POST') {
+      console.log('📨 GraphQL Request Body:', req.body);
+    }
+    next();
+  });
+
   app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true
