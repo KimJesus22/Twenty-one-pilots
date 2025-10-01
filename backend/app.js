@@ -18,44 +18,21 @@ try {
   logger = console; // Fallback a console
 }
 
-// Importar Apollo Server para GraphQL
-console.log('Loading GraphQL...');
-const { ApolloServer } = require('@apollo/server');
-console.log('ApolloServer loaded');
+// Importar express-graphql
+console.log('Loading express-graphql...');
+const { graphqlHTTP } = require('express-graphql');
+console.log('express-graphql loaded');
 
-console.log('Loading expressMiddleware...');
-let expressMiddleware;
+// Intentar cargar GraphQL schema
+let schema;
 try {
-  expressMiddleware = require('@apollo/server/express4').expressMiddleware;
-  console.log('expressMiddleware loaded');
+  console.log('🔍 Attempting to load GraphQL schema...');
+  schema = require('./graphql-schema');
+  console.log('✅ schema loaded successfully, type:', typeof schema);
 } catch (error) {
-  console.error('Error loading expressMiddleware:', error.message);
-  console.error('Stack:', error.stack);
-  expressMiddleware = null;
-}
-
-// Intentar cargar GraphQL types
-let typeDefs;
-try {
-  console.log('🔍 Attempting to load GraphQL types...');
-  typeDefs = require('./graphql/types');
-  console.log('✅ typeDefs loaded successfully, type:', typeof typeDefs);
-} catch (error) {
-  console.error('❌ Error loading GraphQL types:', error.message);
+  console.error('❌ Error loading GraphQL schema:', error.message);
   console.error('Stack trace:', error.stack);
-  typeDefs = null;
-}
-
-// Intentar cargar GraphQL resolvers
-let resolvers;
-try {
-  console.log('🔍 Attempting to load GraphQL resolvers...');
-  resolvers = require('./graphql/resolvers');
-  console.log('✅ resolvers loaded successfully, type:', typeof resolvers);
-} catch (error) {
-  console.error('❌ Error loading GraphQL resolvers:', error.message);
-  console.error('Stack trace:', error.stack);
-  resolvers = null;
+  schema = null;
 }
 
 // Importar configuración de Swagger
@@ -418,121 +395,18 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Configurar GraphQL ANTES de las rutas REST
+// Configurar GraphQL con express-graphql
 console.log('🔧 Configurando GraphQL...');
 
-// Crear Apollo Server de manera síncrona
-(async () => {
-  try {
-    console.log('🚀 Iniciando Apollo Server...');
-
-    if (!typeDefs || !resolvers || !expressMiddleware) {
-      console.log('⚠️ GraphQL no disponible: faltan dependencias');
-      console.log('  - typeDefs is null:', typeDefs === null);
-      console.log('  - resolvers is null:', resolvers === null);
-      console.log('  - expressMiddleware is null:', expressMiddleware === null);
-      return;
-    }
-
-    const server = new ApolloServer({
-      typeDefs,
-      resolvers,
-      introspection: true,
-      formatError: (error) => {
-        logger.error('GraphQL Error:', error);
-        return {
-          message: error.message,
-          locations: error.locations,
-          path: error.path,
-          extensions: {
-            code: error.extensions?.code || 'INTERNAL_ERROR',
-            ...(process.env.NODE_ENV === 'development' && { stacktrace: error.stack })
-          }
-        };
-      }
-    });
-
-    await server.start();
-    console.log('✅ Apollo Server iniciado exitosamente');
-
-    // Registrar rutas GraphQL directamente
-    app.post('/graphql', cors(), express.json(), async (req, res) => {
-      console.log('📨 GraphQL POST request received');
-      try {
-        const { query, variables, operationName } = req.body;
-
-        const token = req.headers.authorization?.replace('Bearer ', '');
-        let user = null;
-        if (token) {
-          try {
-            user = null; // Para desarrollo
-          } catch (error) {
-            logger.warn('Error verificando token JWT:', error.message);
-          }
-        }
-
-        const result = await server.executeHTTPGraphQLRequest({
-          httpGraphQLRequest: {
-            method: 'POST',
-            body: { query, variables, operationName },
-            headers: req.headers,
-            search: req.url.split('?')[1] || ''
-          },
-          contextValue: { user, req }
-        });
-
-        res.status(result.status || 200);
-        res.setHeader('Content-Type', 'application/json');
-
-        if (result.body.kind === 'complete') {
-          res.send(JSON.stringify(result.body.singleResult));
-        } else {
-          res.send(JSON.stringify(result.body.initialResult));
-        }
-      } catch (error) {
-        console.error('❌ Error procesando GraphQL request:', error);
-        res.status(500).json({
-          errors: [{ message: 'Internal server error' }]
-        });
-      }
-    });
-
-    app.get('/graphql', cors(), async (req, res) => {
-      console.log('📨 GraphQL GET request received');
-      try {
-        const result = await server.executeHTTPGraphQLRequest({
-          httpGraphQLRequest: {
-            method: 'GET',
-            search: req.url.split('?')[1] || '',
-            headers: req.headers
-          },
-          contextValue: { user: null, req }
-        });
-
-        res.status(result.status || 200);
-        res.setHeader('Content-Type', 'application/json');
-
-        if (result.body.kind === 'complete') {
-          res.send(JSON.stringify(result.body.singleResult));
-        } else {
-          res.send(JSON.stringify(result.body.initialResult));
-        }
-      } catch (error) {
-        console.error('❌ Error procesando GraphQL GET request:', error);
-        res.status(500).json({
-          errors: [{ message: 'Internal server error' }]
-        });
-      }
-    });
-
-    console.log('✅ GraphQL configurado exitosamente en /graphql');
-
-  } catch (error) {
-    logger.error('Error configurando GraphQL:', error);
-    console.error('❌ Error configurando GraphQL:', error.message);
-    console.error('Stack:', error.stack);
-  }
-})();
+if (schema) {
+  app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: true
+  }));
+  console.log('✅ GraphQL configurado exitosamente en /graphql');
+} else {
+  console.log('⚠️ GraphQL no disponible: schema no cargado');
+}
 
 // Ruta de prueba para verificar que las rutas se registran
 app.post('/test', (req, res) => {
@@ -585,153 +459,6 @@ app.use('/api/tickets', ticketsRoutes);
 app.use('/api/monitoring', monitoringRoutes);
 app.use('/api/admin', adminRoutes);
 
-// Configurar Apollo Server para GraphQL
-async function startApolloServer() {
-  console.log('🚀 Iniciando startApolloServer...');
-  console.log('🔍 Verificando dependencias GraphQL...');
-  console.log('typeDefs:', typeDefs ? 'cargado' : 'null');
-  console.log('resolvers:', resolvers ? 'cargado' : 'null');
-  console.log('expressMiddleware:', expressMiddleware ? 'cargado' : 'null');
-
-  if (!typeDefs || !resolvers || !expressMiddleware) {
-    console.log('⚠️ GraphQL no disponible: faltan dependencias');
-    console.log('  - typeDefs is null:', typeDefs === null);
-    console.log('  - resolvers is null:', resolvers === null);
-    console.log('  - expressMiddleware is null:', expressMiddleware === null);
-    return;
-  }
-
-  console.log('Creando ApolloServer...');
-
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    introspection: true, // Habilitar introspection para desarrollo
-    formatError: (error) => {
-      logger.error('GraphQL Error:', error);
-      return {
-        message: error.message,
-        locations: error.locations,
-        path: error.path,
-        extensions: {
-          code: error.extensions?.code || 'INTERNAL_ERROR',
-          ...(process.env.NODE_ENV === 'development' && { stacktrace: error.stack })
-        }
-      };
-    }
-  });
-
-  await server.start();
-
-  console.log('🔧 Configurando ruta /graphql...');
-
-  try {
-    // Configuración alternativa: usar ruta POST directa
-    app.post('/graphql', cors(), express.json(), async (req, res) => {
-      console.log('📨 GraphQL POST request received');
-
-      try {
-        const { query, variables, operationName } = req.body;
-
-        // Extraer token de autenticación del header
-        const token = req.headers.authorization?.replace('Bearer ', '');
-        let user = null;
-
-        if (token) {
-          try {
-            // Aquí iría la lógica de verificación del token JWT
-            // Por ahora, devolver null para desarrollo
-            user = null;
-          } catch (error) {
-            logger.warn('Error verificando token JWT:', error.message);
-          }
-        }
-
-        // Ejecutar la consulta GraphQL
-        const result = await server.executeHTTPGraphQLRequest({
-          httpGraphQLRequest: {
-            method: 'POST',
-            body: { query, variables, operationName },
-            headers: req.headers,
-            search: req.url.split('?')[1] || ''
-          },
-          contextValue: { user, req }
-        });
-
-        // Enviar respuesta
-        res.status(result.status || 200);
-        res.setHeader('Content-Type', 'application/json');
-
-        if (result.body.kind === 'complete') {
-          res.send(JSON.stringify(result.body.singleResult));
-        } else {
-          // Para streaming, por ahora solo enviamos el primer resultado
-          res.send(JSON.stringify(result.body.initialResult));
-        }
-
-      } catch (error) {
-        console.error('❌ Error procesando GraphQL request:', error);
-        res.status(500).json({
-          errors: [{ message: 'Internal server error' }]
-        });
-      }
-    });
-
-    // También soporta GET para queries simples
-    app.get('/graphql', cors(), async (req, res) => {
-      console.log('📨 GraphQL GET request received');
-
-      try {
-        const { query, variables, operationName } = req.query;
-
-        // Extraer token de autenticación del header
-        const token = req.headers.authorization?.replace('Bearer ', '');
-        let user = null;
-
-        if (token) {
-          try {
-            user = null; // Para desarrollo
-          } catch (error) {
-            logger.warn('Error verificando token JWT:', error.message);
-          }
-        }
-
-        const result = await server.executeHTTPGraphQLRequest({
-          httpGraphQLRequest: {
-            method: 'GET',
-            search: req.url.split('?')[1] || '',
-            headers: req.headers
-          },
-          contextValue: { user, req }
-        });
-
-        res.status(result.status || 200);
-        res.setHeader('Content-Type', 'application/json');
-
-        if (result.body.kind === 'complete') {
-          res.send(JSON.stringify(result.body.singleResult));
-        } else {
-          res.send(JSON.stringify(result.body.initialResult));
-        }
-
-      } catch (error) {
-        console.error('❌ Error procesando GraphQL GET request:', error);
-        res.status(500).json({
-          errors: [{ message: 'Internal server error' }]
-        });
-      }
-    });
-
-    console.log('✅ Ruta /graphql configurada exitosamente (método alternativo)');
-  } catch (error) {
-    console.error('❌ Error configurando ruta /graphql:', error.message);
-    console.error('Stack:', error.stack);
-  }
-
-  console.log('🚀 GraphQL server listo en /graphql');
-}
-
-// Apollo Server ya se inició antes de las rutas REST
 
 // Configurar Swagger
 setupSwagger(app);
