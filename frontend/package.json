@@ -8,7 +8,7 @@
     "@emotion/styled": "^11.11.5",
     "@googlemaps/js-api-loader": "^1.16.10",
     "@googlemaps/react-wrapper": "^1.2.0",
-    "@mui/icons-material": "^6.1.1",
+    "@mui/icons-material": "^7.3.4",
     "@mui/lab": "^6.0.0-beta.10",
     "@mui/material": "^6.1.1",
     "axios": "^1.12.2",
