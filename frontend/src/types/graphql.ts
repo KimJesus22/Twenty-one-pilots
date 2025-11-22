@@ -87,8 +87,10 @@ export interface Album {
 }
 
 export interface AlbumsResponse {
-  albums: Album[];
-  pagination: Pagination;
+  albums: {
+    albums: Album[];
+    pagination: Pagination;
+  };
 }
 
 export interface AlbumStats {

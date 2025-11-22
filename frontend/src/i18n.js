@@ -40,22 +40,6 @@ i18n
       caches: ['localStorage'],
     },
 
-    // Configuración adicional para persistencia de divisa
-    interpolation: {
-      ...i18n.options.interpolation,
-      format: function(value, format, lng) {
-        if (format === 'currency') {
-          const currency = localStorage.getItem('twentyOnePilots-currency') || 'USD';
-          const formatter = new Intl.NumberFormat(lng, {
-            style: 'currency',
-            currency: currency,
-          });
-          return formatter.format(value);
-        }
-        return value;
-      }
-    },
-
     react: {
       useSuspense: false, // Desactivar suspense para evitar problemas de carga
     },

@@ -6,8 +6,7 @@ import StarRating from '../components/StarRating';
 import {
   GET_ALBUMS_LIST,
   GET_ALBUM_STATS,
-  RATE_ALBUM,
-  ADD_ALBUM_COMMENT
+  RATE_ALBUM
 } from '../graphql/discography';
 import { getAlbumArt } from '../utils/albumArt';
 import {
@@ -15,19 +14,10 @@ import {
   AlbumsResponse,
   AlbumStats,
   RateAlbumResponse,
-  AddAlbumCommentResponse,
   Album
 } from '../types';
 import './Discography.css';
 
-interface DiscographyState {
-  selectedAlbumId: string | null;
-  filters: AlbumFilters;
-  genres: string[];
-  types: string[];
-  albumArts: Record<string, string>;
-  showComments: Record<string, boolean>;
-}
 
 const Discography: React.FC = () => {
   const [selectedAlbumId, setSelectedAlbumId] = useState<string | null>(null);
@@ -47,7 +37,6 @@ const Discography: React.FC = () => {
   const [genres] = useState<string[]>(['rock', 'alternative', 'indie', 'pop', 'electronic', 'other']);
   const [types] = useState<string[]>(['album', 'ep', 'single', 'compilation', 'live']);
   const [albumArts, setAlbumArts] = useState<Record<string, string>>({});
-  const [showComments, setShowComments] = useState<Record<string, boolean>>({});
 
   // Query GraphQL para obtener álbumes con filtros optimizados
   const { data: albumsData, loading: albumsLoading, error: albumsError, refetch: refetchAlbums } = useQuery<AlbumsResponse>(GET_ALBUMS_LIST, {
@@ -68,14 +57,13 @@ const Discography: React.FC = () => {
   // Query para estadísticas
   const { data: statsData } = useQuery<{ albumStats: AlbumStats }>(GET_ALBUM_STATS);
 
-  // Mutations para ratings y comentarios
+  // Mutations para ratings
   const [rateAlbum] = useMutation<{ rateAlbum: RateAlbumResponse }>(RATE_ALBUM);
-  const [addAlbumComment] = useMutation<{ addAlbumComment: AddAlbumCommentResponse }>(ADD_ALBUM_COMMENT);
 
   // Cargar carátulas cuando se obtienen los álbumes
   useEffect(() => {
-    if (albumsData?.albums) {
-      loadAlbumArts(albumsData.albums);
+    if (albumsData?.albums?.albums) {
+      loadAlbumArts(albumsData.albums.albums);
     }
   }, [albumsData]);
 
@@ -125,12 +113,6 @@ const Discography: React.FC = () => {
     }
   };
 
-  const toggleComments = (albumId: string) => {
-    setShowComments(prev => ({
-      ...prev,
-      [albumId]: !prev[albumId]
-    }));
-  };
 
   const handleAlbumClick = (album: Album) => {
     setSelectedAlbumId(album.id);
@@ -212,13 +194,13 @@ const Discography: React.FC = () => {
       />
 
       <div className="albums-grid">
-        {albumsData?.albums?.length === 0 ? (
+        {albumsData?.albums?.albums?.length === 0 ? (
           <div className="no-albums">
             <h3>No hay álbumes disponibles</h3>
             <p>Los álbumes aparecerán aquí cuando estén disponibles.</p>
           </div>
         ) : (
-          albumsData?.albums?.map((album: Album) => (
+          albumsData?.albums?.albums?.map((album: Album) => (
             <div
               key={album.id}
               className="album-card"
@@ -277,15 +259,6 @@ const Discography: React.FC = () => {
                       onRatingSubmit={() => {}}
                       showValue={false}
                     />
-                    <button
-                      className="comments-toggle"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleComments(album.id);
-                      }}
-                    >
-                      💬 Comentarios ({album.commentCount || 0})
-                    </button>
                   </div>
                 </div>
 
@@ -305,24 +278,24 @@ const Discography: React.FC = () => {
         )}
       </div>
 
-      {albumsData && albumsData.albums && albumsData.albums.length > 0 && albumsData.pagination && albumsData.pagination.pages > 1 && (
+      {albumsData && albumsData.albums && albumsData.albums.albums && albumsData.albums.albums.length > 0 && albumsData.albums.pagination && albumsData.albums.pagination.pages > 1 && (
         <div className="pagination">
           <button
-            onClick={() => handlePageChange(albumsData.pagination.page - 1)}
-            disabled={albumsData.pagination.page === 1}
+            onClick={() => handlePageChange(albumsData.albums.pagination.page - 1)}
+            disabled={albumsData.albums.pagination.page === 1}
             className="btn btn-secondary"
           >
             Anterior
           </button>
 
           <span className="page-info">
-            Página {albumsData.pagination.page} de {albumsData.pagination.pages}
-            ({albumsData.pagination.total} álbumes)
+            Página {albumsData.albums.pagination.page} de {albumsData.albums.pagination.pages}
+            ({albumsData.albums.pagination.total} álbumes)
           </span>
 
           <button
-            onClick={() => handlePageChange(albumsData.pagination.page + 1)}
-            disabled={albumsData.pagination.page === albumsData.pagination.pages}
+            onClick={() => handlePageChange(albumsData.albums.pagination.page + 1)}
+            disabled={albumsData.albums.pagination.page === albumsData.albums.pagination.pages}
             className="btn btn-secondary"
           >
             Siguiente

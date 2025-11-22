@@ -1,5 +1,5 @@
 console.log('Loading graphql-schema.js...');
-const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList, GraphQLID, GraphQLFloat, GraphQLBoolean } = require('graphql');
+const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList, GraphQLID, GraphQLFloat, GraphQLBoolean, GraphQLInputObjectType } = require('graphql');
 
 // Tipos simples
 const AlbumType = new GraphQLObjectType({
@@ -30,8 +30,6 @@ const PaginationType = new GraphQLObjectType({
     limit: { type: GraphQLInt }
   }
 });
-
-const { GraphQLInputObjectType } = require('graphql');
 
 const AlbumFiltersType = new GraphQLInputObjectType({
   name: 'AlbumFilters',
@@ -68,30 +66,17 @@ const RootQueryType = new GraphQLObjectType({
       args: {
         filters: { type: AlbumFiltersType }
       },
-      resolve: () => {
-        console.log('Resolving albums query');
-        const result = {
-          albums: [
-            { id: '1', title: 'Blurryface', releaseYear: 2015, coverImage: null, artist: 'Twenty One Pilots', genre: 'alternative', type: 'album', rating: 4.5, ratingCount: 100, commentCount: 50, views: 1000, likes: 500, isAvailable: true },
-            { id: '2', title: 'Trench', releaseYear: 2018, coverImage: null, artist: 'Twenty One Pilots', genre: 'alternative', type: 'album', rating: 4.7, ratingCount: 150, commentCount: 75, views: 1500, likes: 750, isAvailable: true }
-          ],
-          pagination: {
-            page: 1,
-            pages: 1,
-            total: 2,
-            limit: 12
-          }
-        };
-        console.log('Albums resolve result:', JSON.stringify(result, null, 2));
-        return result;
+      resolve: async (_parent, args) => {
+        const discographyResolvers = require('./graphql/resolvers/discography');
+        return await discographyResolvers.Query.albums(_parent, args);
       }
     },
     album: {
       type: AlbumType,
       args: { id: { type: GraphQLID } },
-      resolve: (parent, args) => {
-        // Datos de ejemplo
-        return { id: args.id, title: 'Blurryface', releaseYear: 2015 };
+      resolve: async (_parent, args) => {
+        const discographyResolvers = require('./graphql/resolvers/discography');
+        return await discographyResolvers.Query.album(_parent, args);
       }
     }
   }

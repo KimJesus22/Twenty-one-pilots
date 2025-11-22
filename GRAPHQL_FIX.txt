@@ -1,0 +1,50 @@
+INSTRUCCIONES PARA ARREGLAR EL BUG DE GRAPHQL IDS
+===================================================
+
+Archivo a editar: backend/graphql/resolvers/discography.js
+
+Encuentra la sección que dice:
+
+  // Resolvers para campos relacionados
+  Album: {
+    songs: async (album, _, { includeLyrics = false }) => {
+      if (!album.songs || album.songs.length === 0) return [];
+
+Reemplázala con:
+
+  // Resolvers para campos relacionados
+  Album: {
+    // Convertir _id a string para GraphQL
+    id: (album) => album._id.toString(),
+    
+    songs: async (album, _, { includeLyrics = false }) => {
+      if (!album.songs || album.songs.length === 0) return [];
+
+---
+
+Y también encuentra:
+
+  Song: {
+    album: async (song) => {
+      return await Album.findById(song.album).select('title artist releaseYear coverImage');
+    }
+  }
+
+Reemplázala con:
+
+  Song: {
+    // Convertir _id a string para GraphQL
+    id: (song) => song._id.toString(),
+    
+    album: async (song) => {
+      return await Album.findById(song.album).select('title artist releaseYear coverImage');
+    }
+  }
+
+---
+
+Después de hacer estos cambios:
+1. Guarda el archivo (Ctrl+S)
+2. Nodemon reiniciará el servidor automáticamente
+3. En el navegador, presiona Ctrl+Shift+R para limpiar el caché
+4. Los álbumes deberían cargar correctamente ahora
