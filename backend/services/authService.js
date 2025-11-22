@@ -7,6 +7,11 @@ class AuthService {
   constructor() {
     this.jwtSecret = process.env.JWT_SECRET || 'fallback-secret-key';
     this.jwtExpiresIn = process.env.JWT_EXPIRES_IN || '7d';
+
+    // Bind middleware methods to preserve 'this' context
+    this.authenticateToken = this.authenticateToken.bind(this);
+    this.requireAdmin = this.requireAdmin.bind(this);
+    this.requireModerator = this.requireModerator.bind(this);
   }
 
   // Generar token JWT

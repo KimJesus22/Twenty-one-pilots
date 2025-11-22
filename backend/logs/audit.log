@@ -15,3 +15,7 @@
 {"timestamp":"2025-09-24T22:42:50.174Z","event":"LOGIN_FAILURE","email":"admin@top.com","reason":"user_not_found","ip":"::1","userAgent":"curl/8.14.1"}
 {"timestamp":"2025-09-24T22:45:07.728Z","event":"LOGIN_SUCCESS","userId":"68d474284f764875300008a4","ip":"::1","userAgent":"curl/8.14.1"}
 {"timestamp":"2025-09-24T22:48:40.936Z","event":"LOGIN_FAILURE","email":"test@example.com","reason":"user_not_found","ip":"::1","userAgent":"curl/8.14.1"}
+{"timestamp":"2025-11-22T02:27:21.175Z","event":"LOGIN_FAILURE","email":"admin@top.com","reason":"user_not_found","ip":"::ffff:127.0.0.1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0"}
+{"timestamp":"2025-11-22T02:29:46.854Z","event":"LOGIN_SUCCESS","userId":"69211fe32079fbc1a6a9325b","ip":"::ffff:127.0.0.1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0"}
+{"timestamp":"2025-11-22T02:34:14.468Z","event":"LOGIN_SUCCESS","userId":"69211fe32079fbc1a6a9325b","ip":"::ffff:127.0.0.1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0"}
+{"timestamp":"2025-11-22T02:37:10.441Z","event":"LOGIN_SUCCESS","userId":"69211fe32079fbc1a6a9325b","ip":"::ffff:127.0.0.1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0"}
