@@ -213,12 +213,12 @@ app.post('/api/security/ct-report', (req, res) => {
 // Conectar a MongoDB (opcional para desarrollo)
 if (process.env.MONGO_URI) {
   mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log('Conectado a MongoDB');
-  })
-  .catch(err => {
-    console.error('Error conectando a MongoDB:', err.message);
-  });
+    .then(() => {
+      console.log('Conectado a MongoDB');
+    })
+    .catch(err => {
+      console.error('Error conectando a MongoDB:', err.message);
+    });
 } else {
   console.log('MongoDB no configurado - ejecutando sin base de datos');
 }
