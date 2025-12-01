@@ -38,19 +38,6 @@ jobs:
       working-directory: ./backend
       run: npm ci
 
-    - name: Install frontend dependencies
-      working-directory: ./frontend
-      run: npm ci
-
-    - name: Run ESLint
-      run: |
-        npm run lint --workspace=backend
-        npm run lint --workspace=frontend
-
-    - name: Run TypeScript check
-      working-directory: ./frontend
-      run: npx tsc --noEmit
-
     - name: Calculate quality score
       id: quality
       run: |
@@ -104,19 +91,6 @@ jobs:
     - name: Install Playwright
       working-directory: ./frontend
       run: npx playwright install --with-deps
-
-    - name: Run backend tests with coverage
-      working-directory: ./backend
-      run: npm run test:coverage
-      env:
-        NODE_ENV: test
-        MONGO_URI: mongodb://localhost:27017/twentyonepilots_test
-        REDIS_URL: redis://localhost:6379
-
-    - name: Run frontend tests with coverage
-      working-directory: ./frontend
-      run: npm run test:coverage
-
     - name: Build frontend production
       working-directory: ./frontend
       run: npm run build

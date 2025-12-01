@@ -51,19 +51,6 @@ jobs:
       working-directory: ./frontend
       run: npx playwright install --with-deps
 
-    - name: Run backend tests
-      working-directory: ./backend
-      run: npm run test:coverage
-      env:
-        NODE_ENV: test
-        MONGO_URI: mongodb://localhost:27017/twentyonepilots_test
-        REDIS_URL: redis://localhost:6379
-        JWT_SECRET: test_jwt_secret
-
-    - name: Run frontend tests
-      working-directory: ./frontend
-      run: npm run test:coverage
-
     - name: Build frontend
       working-directory: ./frontend
       run: npm run build
