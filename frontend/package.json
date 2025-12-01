@@ -90,7 +90,7 @@
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "axe-core": "^4.10.3",
-    "eslint": "^9.36.0",
+    "eslint": "^9.39.1",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
