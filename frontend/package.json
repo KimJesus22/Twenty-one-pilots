@@ -10,7 +10,7 @@
     "@googlemaps/react-wrapper": "^1.2.0",
     "@mui/icons-material": "^6.1.1",
     "@mui/lab": "^6.0.0-beta.10",
-    "@mui/material": "^6.1.1",
+    "@mui/material": "^7.3.4",
     "axios": "^1.12.2",
     "bad-words": "^4.0.0",
     "chart.js": "^4.5.0",
