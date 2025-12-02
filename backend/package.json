@@ -68,7 +68,7 @@
     "socket.io": "^4.8.1",
     "speakeasy": "^2.0.0",
     "spotify-web-api-node": "^5.0.2",
-    "stripe": "^18.5.0",
+    "stripe": "^19.3.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0",
